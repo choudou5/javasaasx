@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<!-- 生成分类 -->
+	<categorys>
+		<category value="baseClass" label="基础类">
+			<template>base/model.xml</template>
+			<!-- <template>base/...</template> -->
+		</category>
+	</categorys>
+	
+	<!-- java类型 -->
+	<javaType>
+		<xmlTag value="String" label="String"/>
+		<xmlTag value="Integer" label="Integer"/>
+		<xmlTag value="Long" label="Long"/>
+		<xmlTag value="Float" label="Float"/>
+		<xmlTag value="Double" label="Double"/>
+		<xmlTag value="java.util.Date" label="Date"/>
+	</javaType>
+	
+</config>

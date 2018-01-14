@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <property scope="system" name="SYSTEM_NAME" value="javasaasx" />
+    <property scope="system" name="LOG_DIR" value="/data/logs" />
+    
+    <appender name="ROOT_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${SYSTEM_NAME}/root.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${SYSTEM_NAME}/root.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-20(%d{yyy-MM-dd HH:mm:ss.SSS} [%thread]) %-5level - %logger{80} -  %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="CONSOLE_LOG" class="ch.qos.logback.core.ConsoleAppender">
+    	<filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"> 
+             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>   
+        </encoder> 
+    </appender>
+    
+    <appender name="SERVICE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${SYSTEM_NAME}/service.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${SYSTEM_NAME}/service.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <MaxHistory>30</MaxHistory> <!--日志文件保留天数-->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-20(%d{yyy-MM-dd HH:mm:ss.SSS} [%thread]) %-5level - %logger{80} - %M | %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${SYSTEM_NAME}/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${SYSTEM_NAME}/error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <MaxHistory>30</MaxHistory> <!--日志文件保留天数-->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5000MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-20(%d{yyy-MM-dd HH:mm:ss.SSS} [%thread]) %-5level - %logger{80} - %M | %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    
+    
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="org.springframework" level="DEBUG" />
+    <logger name="org.apache" level="DEBUG" />
+    <logger name="net.sf.ehcache" level="ERROR" />
+    <!-- <logger name="org.dozer" level="ERROR" /> -->
+    <!-- <logger name="com.lianj.admin.common.security.shiro.session" level="ERROR" />
+     -->
+
+    <logger name="com.choudou5.javasaasx" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE_LOG" />
+        <appender-ref ref="ERROR_LOG "/>
+        <appender-ref ref="SERVICE_LOG" />
+    </logger>
+    
+    <!-- 日志输出级别 -->
+    <root level="DEBUG,INFO,ERROR">
+    	<appender-ref ref="ROOT_LOG" />
+        <appender-ref ref="CONSOLE_LOG" />
+        <appender-ref ref="ERROR_LOG" />
+        <appender-ref ref="SERVICE_LOG"/>
+    </root>
+    
+</configuration>

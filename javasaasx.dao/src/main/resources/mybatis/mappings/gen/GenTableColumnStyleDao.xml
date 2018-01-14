@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.gen.GenTableColumnStyleDao" >
+    <resultMap id="RM_GenTableColumnStyle" type="com.choudou5.javasaasx.dao.gen.po.GenTableColumnStylePo">
+        <result property="id" column="id"/>
+        <result property="table" column="table"/>
+        <result property="tableName" column="table_name"/>
+        <result property="column" column="column"/>
+        <result property="columnName" column="column_name"/>
+        <result property="isInsert" column="is_insert"/>
+        <result property="isEdit" column="is_edit"/>
+        <result property="isList" column="is_list"/>
+        <result property="isQuery" column="is_query"/>
+        <result property="queryType" column="query_type"/>
+        <result property="showType" column="show_type"/>
+        <result property="dicType" column="dic_type"/>
+        <result property="sort" column="sort"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `table`, `table_name`, `column`, `column_name`, `is_insert`, `is_edit`, `is_list`, `is_query`, `query_type`, `show_type`, `dic_type`, `sort`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            <!--
+            eg: AND a.title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null and paramBean.id != null and paramBean.id != ''">
+                AND `id` = #{paramBean.id}
+            </if>
+            <if test="paramBean != null and paramBean.table != null and paramBean.table != ''">
+                AND `table` = #{paramBean.table}
+            </if>
+            <if test="paramBean != null and paramBean.tableName != null and paramBean.tableName != ''">
+                AND `table_name` = #{paramBean.tableName}
+            </if>
+            <if test="paramBean != null and paramBean.column != null and paramBean.column != ''">
+                AND `column` = #{paramBean.column}
+            </if>
+            <if test="paramBean != null and paramBean.columnName != null and paramBean.columnName != ''">
+                AND `column_name` = #{paramBean.columnName}
+            </if>
+            <if test="paramBean != null and paramBean.isInsert != null and paramBean.isInsert != ''">
+                AND `is_insert` = #{paramBean.isInsert}
+            </if>
+            <if test="paramBean != null and paramBean.isEdit != null and paramBean.isEdit != ''">
+                AND `is_edit` = #{paramBean.isEdit}
+            </if>
+            <if test="paramBean != null and paramBean.isList != null and paramBean.isList != ''">
+                AND `is_list` = #{paramBean.isList}
+            </if>
+            <if test="paramBean != null and paramBean.isQuery != null and paramBean.isQuery != ''">
+                AND `is_query` = #{paramBean.isQuery}
+            </if>
+            <if test="paramBean != null and paramBean.queryType != null and paramBean.queryType != ''">
+                AND `query_type` = #{paramBean.queryType}
+            </if>
+            <if test="paramBean != null and paramBean.showType != null and paramBean.showType != ''">
+                AND `show_type` = #{paramBean.showType}
+            </if>
+            <if test="paramBean != null and paramBean.dicType != null and paramBean.dicType != ''">
+                AND `dic_type` = #{paramBean.dicType}
+            </if>
+            <if test="paramBean != null and paramBean.sort != null ">
+                AND `sort` = #{paramBean.sort}
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO gen_table_column_style (
+        <if test="id != null">`id`</if>
+        <if test="table != null">,`table`</if>
+        <if test="tableName != null">,`table_name`</if>
+        <if test="column != null">,`column`</if>
+        <if test="columnName != null">,`column_name`</if>
+        <if test="isInsert != null">,`is_insert`</if>
+        <if test="isEdit != null">,`is_edit`</if>
+        <if test="isList != null">,`is_list`</if>
+        <if test="isQuery != null">,`is_query`</if>
+        <if test="queryType != null">,`query_type`</if>
+        <if test="showType != null">,`show_type`</if>
+        <if test="dicType != null">,`dic_type`</if>
+        <if test="sort != null">,`sort`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="table != null">,#{table}</if>
+        <if test="tableName != null">,#{tableName}</if>
+        <if test="column != null">,#{column}</if>
+        <if test="columnName != null">,#{columnName}</if>
+        <if test="isInsert != null">,#{isInsert}</if>
+        <if test="isEdit != null">,#{isEdit}</if>
+        <if test="isList != null">,#{isList}</if>
+        <if test="isQuery != null">,#{isQuery}</if>
+        <if test="queryType != null">,#{queryType}</if>
+        <if test="showType != null">,#{showType}</if>
+        <if test="dicType != null">,#{dicType}</if>
+        <if test="sort != null">,#{sort}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO gen_table_column_style (
+        `id`
+        ,`table`
+        ,`table_name`
+        ,`column`
+        ,`column_name`
+        ,`is_insert`
+        ,`is_edit`
+        ,`is_list`
+        ,`is_query`
+        ,`query_type`
+        ,`show_type`
+        ,`dic_type`
+        ,`sort`
+        ) VALUES
+        <foreach collection="entities" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.table}
+        ,#{entity.tableName}
+        ,#{entity.column}
+        ,#{entity.columnName}
+        ,#{entity.isInsert}
+        ,#{entity.isEdit}
+        ,#{entity.isList}
+        ,#{entity.isQuery}
+        ,#{entity.queryType}
+        ,#{entity.showType}
+        ,#{entity.dicType}
+        ,#{entity.sort}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE gen_table_column_style SET
+            `table` = #{table} ,
+            `table_name` = #{tableName} ,
+            `column` = #{column} ,
+            `column_name` = #{columnName} ,
+            `is_insert` = #{isInsert} ,
+            `is_edit` = #{isEdit} ,
+            `is_list` = #{isList} ,
+            `is_query` = #{isQuery} ,
+            `query_type` = #{queryType} ,
+            `show_type` = #{showType} ,
+            `dic_type` = #{dicType} ,
+            `sort` = #{sort} 
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM gen_table_column_style
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM gen_table_column_style
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM gen_table_column_style
+        <include refid="where"/>
+    </delete>
+
+    <select id="findById" resultMap="RM_GenTableColumnStyle">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM gen_table_column_style
+            WHEREid = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM gen_table_column_style
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_GenTableColumnStyle">
+        SELECT <include refid="columns"/>
+        FROM gen_table_column_style
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql' or dbName == 'sqlite'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_GenTableColumnStyle">
+        SELECT <include refid="columns"/>
+        FROM gen_table_column_style
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_GenTableColumnStyle">
+        SELECT <include refid="columns"/>
+        FROM gen_table_column_style
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql' or dbName == 'sqlite'">limit 1</if>
+    </select>
+
+
+</mapper>
+
+

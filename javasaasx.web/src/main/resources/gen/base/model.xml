@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>model</name>
+	<filePath>src/main/java/${packageName}</filePath>
+	<fileName>${ClassName}.java</fileName>
+	<content><![CDATA[
+package ${packageName};
+
+import java.util.Date;
+
+import org.apache.solr.client.solrj.beans.Field;
+
+import com.choudoufu.client.model.SolrBaseModel;
+
+/**
+ * ${functionName}-Model
+ * @author ${functionAuthor}
+ * @version ${functionVersion}
+ */
+public class ${ClassName} extends SolrBaseModel {
+	
+	private static final long serialVersionUID = 1L;
+	<#-- 生成字段属性 -->
+	<#list schema.fields as field>
+	/** ${field.label} */
+	@Field
+	private ${field.javaType}<#if field.multiValued?? && field.multiValued>[]</#if> ${field.javaField};
+	</#list>
+	
+	<#-- 生成get和set方法 -->
+	<#list schema.fields as field>
+	public ${field.javaType}<#if field.multiValued?? && field.multiValued>[]</#if> get${field.javaField?cap_first}() {
+		return ${field.javaField};
+	}
+
+	public void set${field.javaField?cap_first}(${field.javaType}<#if field.multiValued?? && field.multiValued>[]</#if> ${field.javaField}) {
+		this.${field.javaField} = ${field.javaField};
+	}
+	</#list>
+}]]>
+	</content>
+</template>

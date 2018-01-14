@@ -1,0 +1,147 @@
+<#include "/macro.include"/>
+<#assign className = table.className>
+<#assign classPOName = table.className + 'Po'>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro namespace>${className}.</#macro>
+<mapper namespace="${packageNamePrefix}.dao.${moduleName}.${className}Dao" >
+    <resultMap id="RM_${className}" type="${packageNamePrefix}.dao.${moduleName}.po.${classPOName}">
+    <#list table.columns as column>
+        <result property="${column.columnNameFirstLower}" column="${column.sqlName}"/>
+    </#list>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        <#list table.columns as column>`${column.sqlName}`<#if column_has_next>, </#if></#list>
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            <!--
+            eg: AND a.title LIKE concat('%',${"#"}{paramBean.title},'%')
+            -->
+            <#list table.columns as column>
+            <if test="paramBean != null and paramBean.${column.columnNameFirstLower} != null <#if column.isStringColumn>and paramBean.${column.columnNameFirstLower} != ''</#if>">
+                AND `${column.sqlName}` = <@mapperEl 'paramBean.${column.columnNameFirstLower}'/>
+            </if>
+        </#list>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="${table.idColumn.columnNameFirstLower}">
+        INSERT INTO ${table.sqlName} (
+        <#list table.columns as column>
+        <if test="${column.columnNameFirstLower} != null"><#if column_index != 0>,</#if>`${column.sqlName}`</if>
+                </#list>
+        ) VALUES (
+        <#list table.columns as column>
+        <if test="${column.columnNameFirstLower} != null"><#if column_index != 0>,</#if><@mapperEl column.columnNameFirstLower/></if>
+                </#list>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="${table.idColumn.columnNameFirstLower}">
+        INSERT INTO ${table.sqlName} (
+        <#list table.columns as column>
+        <#if column_index != 0>,</#if>`${column.sqlName}`
+                </#list>
+        ) VALUES
+        <foreach collection="entities" item="entity" index="index" separator="," >
+        (
+        <#list table.columns as column>
+        <#if column_index != 0>,</#if><@mapperEl 'entity.${column.columnNameFirstLower}'/>
+            </#list>
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE ${table.sqlName} SET
+            <#list table.notPkColumns as column>
+            `${column.sqlName}` = <@mapperEl column.columnNameFirstLower/> <#if column_has_next>,</#if>
+            </#list>
+        WHERE
+            <#list table.compositeIdColumns as column>
+            ${column.sqlName} = <@mapperEl column.columnNameLower/> <#if column_has_next> AND </#if>
+            </#list>
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM ${table.sqlName}
+        WHERE <#list table.compositeIdColumns as column>${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next> AND </#if></#list>
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM ${table.sqlName}
+        WHERE <#list table.compositeIdColumns as column>${column.sqlName} IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," ><@mapperEl 'id'/> <#if column_has_next> AND </#if></foreach>
+        </#list>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM ${table.sqlName}
+        <include refid="where"/>
+    </delete>
+
+    <select id="findById" resultMap="RM_${className}">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM ${table.sqlName}
+            WHERE<#list table.compositeIdColumns as column>${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next> AND </#if></#list>
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM ${table.sqlName}
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_${className}">
+        SELECT <include refid="columns"/>
+        FROM ${table.sqlName}
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY <@jspEl 'orderBean.orderBy'/> <@jspEl 'orderBean.order'/>
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql' or dbName == 'sqlite'">limit <@jspEl 'pageBean.start'/>, <@jspEl 'pageBean.pageSize'/> </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_${className}">
+        SELECT <include refid="columns"/>
+        FROM ${table.sqlName}
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_${className}">
+        SELECT <include refid="columns"/>
+        FROM ${table.sqlName}
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY <@jspEl 'orderBean.orderBy'/> <@jspEl 'orderBean.order'/>
+        </if>
+        <if test="dbName == 'mysql' or dbName == 'sqlite'">limit 1</if>
+    </select>
+
+    <#list table.columns as column>
+    <#if column.unique && !column.pk>
+    <select id="getBy${column.columnName}" resultMap="RM_${className}" parameterType="${column.javaType}">
+        SELECT *
+        <![CDATA[
+                    FROM ${table.sqlName} where ${column.sqlName} = <@mapperEl column.columnNameLower/>
+                ]]>
+    </select>
+    </#if>
+    </#list>
+
+</mapper>
+
+

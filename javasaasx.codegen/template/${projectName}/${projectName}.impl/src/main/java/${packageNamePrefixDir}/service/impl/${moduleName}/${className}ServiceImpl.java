@@ -1,0 +1,33 @@
+<#assign className = table.className>
+<#assign classBOName = table.className + 'Bo'>
+<#assign classNameLower = className?uncap_first>
+package ${packageNamePrefix}.service.impl.${moduleName};
+
+import ${packageNamePrefix}.dao.${moduleName}.${className}Dao;
+import ${packageNamePrefix}.service.${moduleName}.bo.${classBOName};
+import ${packageNamePrefix}.framework.dao.BaseDao;
+import ${packageNamePrefix}.service.impl.BaseServiceImpl;
+import ${packageNamePrefix}.service.${moduleName}.${className}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @Name：${table.remarks} 接口实现类
+ * @Author：${author}
+ * @Date：${createTime}
+ * @Site：${site}
+ * @License：${license}
+ * @Copyright：${copyright}
+ */
+@Service("${classNameLower}Service")
+public class ${className}ServiceImpl extends BaseServiceImpl<${classBOName}> implements ${className}Service {
+
+    @Autowired
+    private ${className}Dao dao;
+
+    @Override
+    protected BaseDao getDao() {
+        return dao;
+    }
+
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <!-- 启用shrio授权注解拦截方式 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 装配 securityManager -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 配置登陆页面 -->
+        <property name="loginUrl" value="/login.do"/>
+        <!-- 登陆成功后的一面 -->
+        <property name="successUrl" value="/sys/index.jsp"/>
+        <property name="unauthorizedUrl" value="/pub/unauthorized.jsp"/>
+        <!-- 具体配置需要拦截哪些 URL, 以及访问对应的 URL 时使用 Shiro 的什么 Filter 进行拦截.  -->
+        <property name="filterChainDefinitions">
+            <value>
+                /login.do = anon
+                /dologin.do = anon
+                /logout.do = anon
+                /admin/** = anon
+                /assets/** = anon
+                /**=anon
+            </value>
+            <!-- 1、authc 表示需要认证的链接
+			2、perms[/url] 表示该链接需要拥有对应的资源/权限才能访问
+			3、roles[admin] 表示需要对应的角色才能访问
+			4、perms[admin:url] 表示需要对应角色的资源才能访问 
+			-->
+        </property>
+    </bean>
+
+    <!-- 配置缓存管理器 -->
+    <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>
+
+    <!-- 配置进行授权和认证的 Realm -->
+    <bean id="adminShiroRealm" class="com.choudou5.javasaasx.common.security.AdminShiroRealm">
+        <property name="userService" ref="sysUserService" />
+    </bean>
+
+    <!-- 配置 Shiro 的 SecurityManager Bean. -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="cacheManager" ref="shiroCacheManager"/>
+        <property name="realm" ref="adminShiroRealm"/>
+        <property name="sessionMode" value="native">
+        </property>
+    </bean>
+    <!-- 配置 Bean 后置处理器: 会自动的调用和 Spring 整合后各个组件的生命周期方法. -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/></beans>

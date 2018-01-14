@@ -1,0 +1,191 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/include/tagLib.jsp" %>
+<!doctype html>
+<html lang="en">
+<head>
+    <title>admin-首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%@include file="/include/cssLib.jsp" %>
+</head>
+<body>
+<div class="wrapper">
+    <%@include file="/include/sidebar.jsp" %>
+    <div class="main-panel">
+        <%@include file="/include/sidebarHead.jsp" %>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="orange">
+                                <i class="material-icons">weekend</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Bookings</p>
+                                <h3 class="card-title">184</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons text-danger">warning</i>
+                                    <a href="#pablo">Get More Space...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="rose">
+                                <i class="material-icons">equalizer</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Website Visits</p>
+                                <h3 class="card-title">75.521</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">local_offer</i> Tracked from Google Analytics
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="green">
+                                <i class="material-icons">store</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Revenue</p>
+                                <h3 class="card-title">$34,245</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">date_range</i> Last 24 Hours
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="fa fa-twitter"></i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Followers</p>
+                                <h3 class="card-title">+245</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">update</i> Just Updated
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card card-chart">
+                            <div class="card-header" data-background-color="rose" data-header-animation="true">
+                                <div class="ct-chart" id="websiteViewsChart"></div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-actions">
+                                    <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                                        <i class="material-icons">build</i> Fix Header!
+                                    </button>
+                                    <button type="button" class="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
+                                        <i class="material-icons">refresh</i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </div>
+                                <h4 class="card-title">Website Views</h4>
+                                <p class="category">Last Campaign Performance</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-chart">
+                            <div class="card-header" data-background-color="green" data-header-animation="true">
+                                <div class="ct-chart" id="dailySalesChart"></div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-actions">
+                                    <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                                        <i class="material-icons">build</i> Fix Header!
+                                    </button>
+                                    <button type="button" class="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
+                                        <i class="material-icons">refresh</i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </div>
+                                <h4 class="card-title">Daily Sales</h4>
+                                <p class="category">
+                                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-chart">
+                            <div class="card-header" data-background-color="blue" data-header-animation="true">
+                                <div class="ct-chart" id="completedTasksChart"></div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-actions">
+                                    <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                                        <i class="material-icons">build</i> Fix Header!
+                                    </button>
+                                    <button type="button" class="btn btn-info btn-simple" rel="tooltip" data-placement="bottom" title="Refresh">
+                                        <i class="material-icons">refresh</i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="Change Date">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </div>
+                                <h4 class="card-title">Completed Tasks</h4>
+                                <p class="category">Last Campaign Performance</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%@include file="/include/footer.jsp" %>
+    </div>
+</div>
+<%@include file="/include/sidebarRight.jsp" %>
+</body>
+
+<%@include file="/include/scriptLib.jsp" %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        notify.show( '在此一游');
+
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+        demo.initVectorMap();
+    });
+</script>
+
+</html>

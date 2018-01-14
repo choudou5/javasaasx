@@ -1,0 +1,174 @@
+package com.choudou5.javasaasx.web.controller.gen;
+
+import cn.org.rapid_framework.generator.GeneratorConstants;
+import cn.org.rapid_framework.generator.GeneratorProperties;
+import cn.org.rapid_framework.generator.provider.db.DataCollectionInfo;
+import com.choudou5.javasaasx.framework.bean.SelectBo;
+import com.choudou5.javasaasx.framework.bean.TableDataBo;
+import com.choudou5.javasaasx.framework.page.PageResult;
+import com.choudou5.javasaasx.framework.util.AssertUtil;
+import com.choudou5.javasaasx.framework.util.ToolkitUtil;
+import com.choudou5.javasaasx.service.gen.GenTableColumnStyleService;
+import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
+import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleQueryParam;
+import com.choudou5.javasaasx.web.controller.BaseController;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
+/**
+ * @Name：生成表字段样式 Controller
+ * @Author：xuhaowende@sina.cn
+ * @Date：2018-01-14
+ * @Site：http://solrhome.com
+ * @License：MIT
+ * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
+ */
+@Controller
+@Scope("prototype")
+@RequestMapping("/gen/genTableColumnStyle")
+public class GenTableColumnStyleController extends BaseController {
+
+    @Autowired
+    private GenTableColumnStyleService genTableColumnStyleService;
+
+
+    /**
+     * 获取 数据库表
+     * @param req
+     * @param attributes
+     * @return
+     */
+    @RequiresPermissions("gen:genTableColumnStyle:view")
+    @RequestMapping(value = "getTableList", method = RequestMethod.POST)
+    @ResponseBody
+    public String getTableList(HttpServletRequest req, RedirectAttributes attributes) {
+        try {
+            List<SelectBo> list =  genTableColumnStyleService.getTableList();
+            return returnOK(list);
+        } catch (Exception e) {
+            return returnFail(e, "获取数据库表失败.");
+        }
+    }
+
+
+    /**
+     * 获取 表字段样式 列表
+     * @param req
+     * @param attributes
+     * @return
+     */
+    @RequiresPermissions("gen:genTableColumnStyle:view")
+    @RequestMapping(value = "getGenTableColumnStyleList", method = RequestMethod.POST)
+    @ResponseBody
+    public String getGenTableColumnStyleList(String table, HttpServletRequest req, RedirectAttributes attributes) {
+        try {
+            List<TableDataBo> list =  genTableColumnStyleService.getGenTableColumnStyleList(table);
+            return returnOK(list);
+        } catch (Exception e) {
+            return returnFail(e, "表字段样式列表失败.");
+        }
+    }
+
+
+    /**
+     * 列表
+     * @param queryParam
+     * @param req
+     * @param model
+     * @return
+     */
+    @RequiresPermissions("gen:genTableColumnStyle:view")
+    @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
+    public String list(GenTableColumnStyleQueryParam queryParam, HttpServletRequest req, Model model) {
+        PageResult<GenTableColumnStyleBo> pageResult = genTableColumnStyleService.findPage(queryParam);
+        model.addAttribute("pageResult", pageResult);
+        return "/gen/genTableColumnStyleList";
+    }
+
+    /**
+     * 查看
+     * @param id
+     * @param req
+     * @param model
+     * @return
+     */
+    @RequiresPermissions("gen:genTableColumnStyle:view")
+    @RequestMapping(value = {"view"})
+    public String view(String id, HttpServletRequest req, Model model) {
+        GenTableColumnStyleBo genTableColumnStyleBo = genTableColumnStyleService.get(id);
+        model.addAttribute("genTableColumnStyleBo", genTableColumnStyleBo);
+        return "/gen/genTableColumnStyleView";
+    }
+
+    /**
+     * 编辑记录
+     * @param id
+     * @param req
+     * @param model
+     * @return
+     */
+    @RequiresPermissions("gen:genTableColumnStyle:edit")
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
+    public String edit(String id, HttpServletRequest req, Model model) {
+        try {
+            GenTableColumnStyleBo bo = genTableColumnStyleService.get(id);
+            AssertUtil.isNotNull(bo, "数据不存在！");
+            model.addAttribute("genTableColumnStyleBo", bo);
+        } catch (Exception e) {
+            addMessage(model, e);
+        }
+        return "/gen/genTableColumnStyleEdit";
+    }
+
+    /**
+     * 保存记录
+     * @param genTableColumnStyleBo
+     * @param req
+     * @param attributes
+     * @return
+     */
+    @RequiresPermissions("gen:genTableColumnStyle:edit")
+    @RequestMapping(value = "save", method = RequestMethod.POST)
+    @ResponseBody
+    public String save(GenTableColumnStyleBo genTableColumnStyleBo, HttpServletRequest req, RedirectAttributes attributes) {
+        //数据 验证
+        if (!beanValidator(attributes, genTableColumnStyleBo))
+            return returnFail(attributes);
+        try {
+            genTableColumnStyleService.save(genTableColumnStyleBo);
+            return returnOK("保存成功！");
+        } catch (Exception e) {
+            return returnFail(e, "保存失败！");
+        }
+    }
+
+    /**
+     * 删除记录
+     * @param id
+     * @param req
+     * @param attributes
+     * @return
+     */
+    @RequiresPermissions("gen:genTableColumnStyle:delete")
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    @ResponseBody
+    public String delete(String id, HttpServletRequest req, RedirectAttributes attributes) {
+        try {
+            genTableColumnStyleService.delete(id);
+            return returnOK("删除成功！");
+        } catch (Exception e) {
+            return returnFail(e, "删除失败！");
+        }
+    }
+
+}

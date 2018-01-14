@@ -1,0 +1,6 @@
+<script type="text/javascript" src="/js/store1.3.20/store.min.js"></script>
+
+
+store.get(key);
+
+store.set(key, val);

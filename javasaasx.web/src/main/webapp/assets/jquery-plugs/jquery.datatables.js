@@ -6059,7 +6059,7 @@
             }
 
             if (type == 'alert') {
-                alert(msg);
+                dialogTip(msg, 'error');
             } else if (type == 'throw') {
                 throw new Error(msg);
             } else if (typeof type == 'function') {

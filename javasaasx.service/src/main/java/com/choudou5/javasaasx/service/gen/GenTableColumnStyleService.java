@@ -20,6 +20,6 @@ public interface GenTableColumnStyleService extends BaseService<GenTableColumnSt
 
     List<SelectBo> getTableList();
 
-    List<TableDataBo> getGenTableColumnStyleList(String table);
+    TableDataBo  getGenTableColumnStyleList(String table);
 
 }

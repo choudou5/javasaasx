@@ -208,7 +208,6 @@ public class TableFactory {
 				String remarks = rs.getString("REMARKS");
 				if(StringHelper.isBlank(remarks)) {
 					//fix: 修复获取mysql表备注
-					System.out.println(connection.getCatalog());
 					if(DatabaseMetaDataUtils.isMysqlDataBase(connection.getMetaData()))
 						remarks = getMySqlTableComments(tableName, connection.getCatalog());
 					if(DatabaseMetaDataUtils.isOracleDataBase(connection.getMetaData()))

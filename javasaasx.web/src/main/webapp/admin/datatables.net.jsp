@@ -22,7 +22,7 @@
                                     <i class="material-icons">assignment</i>
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="card-title">DataTables.net</h4>
+                                    <h4 class="card-title">DataTables.net<a target="_blank" href="http://www.datatables.club/manual/">手册</a></h4>
                                     <div class="toolbar">
                                         <!--        Here you can write extra buttons/actions for the toolbar              -->
                                     </div>

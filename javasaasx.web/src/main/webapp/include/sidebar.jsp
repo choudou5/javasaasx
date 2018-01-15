@@ -146,7 +146,7 @@
                 <div class="collapse" id="codeExamples">
                     <ul class="nav">
                         <li>
-                            <a href="${ctx }/viewPage/gen/genTableColumnStyleListTree">表字段设计管理</a>
+                            <a href="${ctx }/gen/genTableColumnStyle">表字段设计管理</a>
                         </li>
                         <li>
                             <a href="${ctx }/viewPage/tool/sqlconvert">sql转换</a>

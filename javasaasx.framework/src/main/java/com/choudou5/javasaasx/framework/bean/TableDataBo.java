@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class TableDataBo implements Serializable {
 
-    private List<Object> data;
+    private List data;
 
-    public TableDataBo(List<Object> data) {
+    public TableDataBo(List data) {
         this.data = data;
     }
 

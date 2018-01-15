@@ -3,6 +3,7 @@ package com.choudou5.javasaasx.web.controller.gen;
 import cn.org.rapid_framework.generator.GeneratorConstants;
 import cn.org.rapid_framework.generator.GeneratorProperties;
 import cn.org.rapid_framework.generator.provider.db.DataCollectionInfo;
+import com.choudou5.javasaasx.common.util.JsonUtil;
 import com.choudou5.javasaasx.framework.bean.SelectBo;
 import com.choudou5.javasaasx.framework.bean.TableDataBo;
 import com.choudou5.javasaasx.framework.page.PageResult;
@@ -72,8 +73,8 @@ public class GenTableColumnStyleController extends BaseController {
     @ResponseBody
     public String getGenTableColumnStyleList(String table, HttpServletRequest req, RedirectAttributes attributes) {
         try {
-            List<TableDataBo> list =  genTableColumnStyleService.getGenTableColumnStyleList(table);
-            return returnOK(list);
+            TableDataBo tableDataBo =  genTableColumnStyleService.getGenTableColumnStyleList(table);
+            return JsonUtil.toString(tableDataBo);
         } catch (Exception e) {
             return returnFail(e, "表字段样式列表失败.");
         }
@@ -90,9 +91,11 @@ public class GenTableColumnStyleController extends BaseController {
     @RequiresPermissions("gen:genTableColumnStyle:view")
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String list(GenTableColumnStyleQueryParam queryParam, HttpServletRequest req, Model model) {
-        PageResult<GenTableColumnStyleBo> pageResult = genTableColumnStyleService.findPage(queryParam);
-        model.addAttribute("pageResult", pageResult);
-        return "/gen/genTableColumnStyleList";
+//        PageResult<GenTableColumnStyleBo> pageResult = genTableColumnStyleService.findPage(queryParam);
+//        model.addAttribute("pageResult", pageResult);
+        List<SelectBo> list =  genTableColumnStyleService.getTableList();
+        model.addAttribute("tableList", list);
+        return "/gen/genTableColumnStyleListTree";
     }
 
     /**

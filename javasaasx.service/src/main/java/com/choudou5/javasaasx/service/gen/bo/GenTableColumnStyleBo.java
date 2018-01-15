@@ -1,5 +1,6 @@
 package com.choudou5.javasaasx.service.gen.bo;
 
+import com.choudou5.javasaasx.framework.constant.CommonConstant;
 import org.hibernate.validator.constraints.Length;
 import com.choudou5.javasaasx.framework.bean.BaseBo;
 
@@ -26,21 +27,21 @@ public class GenTableColumnStyleBo implements BaseBo {
     /**  字段描述 */
 	private String columnName;
     /**  是否为插入字段 */
-	private String isInsert;
+	private String isInsert = CommonConstant.DATA_STATUS_NO;
     /**  是否编辑字段: 0=否，1=是 */
-	private String isEdit;
+	private String isEdit = CommonConstant.DATA_STATUS_NO;
     /**  是否列表字段: 0=否，1=是 */
-	private String isList;
+	private String isList= CommonConstant.DATA_STATUS_OK;
     /**  是否查询字段: 0=否，1=是 */
-	private String isQuery;
+	private String isQuery = CommonConstant.DATA_STATUS_NO;
     /**  查询方式：（eq，neq，gt，lt，between，like） */
-	private String queryType;
+	private String queryType= "eq";
     /**  字段生成方案: （input、textarea、select、checkbox、radio、dialog） */
-	private String showType;
+	private String showType= "input";
     /**  字典类型 */
-	private String dicType;
+	private String dicType = "";
     /**  排序 */
-	private Integer sort;
+	private Integer sort = 1;
 
 	public GenTableColumnStyleBo(){
 	}

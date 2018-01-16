@@ -2,14 +2,14 @@
          pageEncoding="UTF-8"%>
 
 <!--sidebar-menu-->
-<div class="sidebar" data-active-color="rose" data-background-color="black" data-image="${ossImg }sidebar-4.jpg">
+<div class="sidebar" data-active-color="grey" data-background-color="black" data-image="${ossImg }sidebar-4.jpg">
     <!--
     Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
     Tip 2: you can also add an image using data-image tag
     Tip 3: you can change the color of the sidebar with data-background-color="white | black"
 -->
     <div class="logo">
-        <a href="#" class="simple-text">web codegen</a>
+        <a href="#" class="simple-text">java saas系统</a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">

@@ -12,12 +12,12 @@
 <link rel="icon" type="image/png" href="${ctxStaticImg }favicon.png"/>
 
 
-<link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" syn >
 <link rel="stylesheet" href="${ctxStaticCss }material-dashboard.css" />
 <link rel="stylesheet" href="${ctxStaticCss }demo.css" />
 <!-- Bootstrap core CSS     -->
 <link rel="stylesheet" href="${ctxStaticCss }css-family=Roboto-300,400,500,700-Material+Icons.css" />
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="${ctxStaticCss }font-awesome.min.css" />
 
 <link rel="stylesheet" href="${ctxStaticCss }custom.css" />
 

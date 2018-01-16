@@ -837,3 +837,43 @@ http = {
 		}
 	}
 }
+
+constants = {
+		bindCheckBoxStatus: function(status){
+			status = comm.isEmpty(status)?"0":status;
+			return status=="1"?"checked":"";
+		},
+		buildGenCodeQueryTypeHtm: function(index, selectValue){
+			selectValue = comm.isEmpty(selectValue)?"":selectValue;
+			var htm = new StringBuffer();
+			htm.append('<select id="queryType" name="queryType['+index+']" class="form-control" title="查询方式">');
+			htm.append('<option></option>');
+			// (selectValue=="eq"?"selected=\"selected\"":"")
+			htm.append('<option value="eq" '+(selectValue=="eq"?"selected=\"selected\"":"")+'>等于</option>');
+			htm.append('<option value="neq" '+(selectValue=="neq"?"selected=\"selected\"":"")+'>不等于</option>');
+			htm.append('<option value="gt" '+(selectValue=="gt"?"selected=\"selected\"":"")+'>大于</option>');
+			htm.append('<option value="lt" '+(selectValue=="lt"?"selected=\"selected\"":"")+'>小于</option>');
+			htm.append('<option value="between" '+(selectValue=="between"?"selected=\"selected\"":"")+'>范围</option>');
+			htm.append('<option value="like" '+(selectValue=="like"?"selected=\"selected\"":"")+'>模糊</option>');
+			htm.append('</select>');
+			return htm.toString();
+		},
+		buildGenCodeShowTypeHtm: function(index, selectValue){
+			selectValue = comm.isEmpty(selectValue)?"":selectValue;
+			var htm = new StringBuffer();
+			htm.append('<select id="showType" name="showType['+index+']" class="form-control" title="生成类型">');
+			htm.append('<option></option>');
+			// (selectValue=="eq"?"selected=\"selected\"":"")
+			htm.append('<option value="input" '+(selectValue=="input"?"selected=\"selected\"":"")+'>input</option>');
+			htm.append('<option value="textarea" '+(selectValue=="textarea"?"selected=\"selected\"":"")+'>textarea</option>');
+			htm.append('<option value="select" '+(selectValue=="select"?"selected=\"selected\"":"")+'>select</option>');
+			htm.append('<option value="checkbox" '+(selectValue=="checkbox"?"selected=\"selected\"":"")+'>checkbox</option>');
+			htm.append('<option value="radio" '+(selectValue=="radio"?"selected=\"selected\"":"")+'>radio</option>');
+			htm.append('<option value="dialog" '+(selectValue=="dialog"?"selected=\"selected\"":"")+'>dialog</option>');
+			htm.append('</select>');
+			return htm.toString();
+		},
+
+
+
+}

@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card">
+                            <div class="card" style="height: 80vh">
                                 <div class="card-header card-header-icon" data-background-color="blue">
                                     <i class="material-icons">assignment</i>
                                 </div>
@@ -52,7 +52,8 @@
                                 <div class="card-content">
                                     <h4 class="card-title">字段设计</h4>
                                     <div class="material-datatables">
-                                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                        <form class="form-horizontal">
+                                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%; max-height: 800px;">
                                             <thead>
                                                 <tr>
                                                     <th>列名</th>
@@ -60,31 +61,18 @@
                                                     <th>是否插入</th>
                                                     <th>是否编辑</th>
                                                     <th>是否列表</th>
+                                                    <th>显示类型</th>
                                                     <th>是否查询</th>
                                                     <th>查询类型</th>
-                                                    <th>显示类型</th>
                                                     <th>字典类型</th>
-                                                    <th class="disabled-sorting text-right">排序</th>
+                                                    <th class="disabled-sorting">排序</th>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>列名</th>
-                                                    <th>描述</th>
-                                                    <th>是否插入</th>
-                                                    <th>是否编辑</th>
-                                                    <th>是否列表</th>
-                                                    <th>是否查询</th>
-                                                    <th>查询类型</th>
-                                                    <th>显示类型</th>
-                                                    <th>字典类型</th>
-                                                    <th class="disabled-sorting text-right">排序</th>
-                                                </tr>
-                                            </tfoot>
                                         </table>
+                                        </form>
                                     </div>
-                                    <div class="toolbar">
+                                    <div class="toolbar text-right">
                                         <button id="submitBtn" class="btn btn-twitter" disabled>保存</button>
                                     </div>
                                 </div>
@@ -104,6 +92,8 @@
 <%@include file="/include/scriptLib.jsp" %>
 <script src="${ctxStatic }/jstree/3.3.5/dist/jstree.min.js"></script>
 <script src="${ctxStatic }/jquery-plugs/footable.all.min.js"></script>
+<script src="${ctxStatic }/form-plugs/addclear.min.js"></script>
+
 <script type="text/javascript">
     // html demo
     $(function () {
@@ -123,6 +113,7 @@
 
         $("#leftDatatables").footable();
 
+        $("#globalSearch").addClear();
     });
 
     var __table = null;
@@ -132,6 +123,7 @@
             __table.destroy();
         $("#submitBtn").prop("disabled", false);
         __table = $('#datatables').DataTable({
+            scrollY: "600px",
             responsive: true,   //响应式
             paging: false,
             ordering: false,
@@ -160,33 +152,58 @@
             ],
             "columnDefs": [
                 {
-                    // "visible": false,
-                    //"targets": 0
+                    "render": function(name, type, row, meta) {
+                        return '<input name="column['+meta.row+']" class="form-control" type="text" value="' + row.column + '" />';
+                    },"targets": 0 //指定列
                 },
                 {
-                    "render": function(data, type, row, meta) {
-                        return '<a href="' + data + '" target="_blank">' + row.isInsert + '</a>';
+                    "render": function(name, type, row, meta) {
+                        return '<input name="columnName['+meta.row+']" class="form-control" type="text" value="' + row.columnName + '" />';
+                    },"targets": 1 //指定列
+                },
+                {
+                    "render": function(name, type, row, meta) {
+                        return '<div class="checkbox"><label><input type="checkbox" name="isInsert['+meta.row+']" '+constants.bindCheckBoxStatus(row.isInsert)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                     },"targets": 2 //指定列
                 },
                 {
-                    "render": function(data, type, row, meta) {
-                        return '<span class="red">' + row.isEdit + '</span>';
+                    "render": function(name, type, row, meta) {
+                        return '<div class="checkbox"><label><input type="checkbox" name="isEdit['+meta.row+']" '+constants.bindCheckBoxStatus(row.isEdit)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                     },"targets": 3 //指定列
-                }
+                },
+                {
+                    "render": function(name, type, row, meta) {
+                        return '<div class="checkbox"><label><input type="checkbox" name="isList['+meta.row+']" '+constants.bindCheckBoxStatus(row.isList)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    },"targets": 4 //指定列
+                },
+                {
+                    "render": function(name, type, row, meta) {
+                        return constants.buildGenCodeShowTypeHtm(meta.row, row.showType);
+                    },"targets": 5 //指定列
+                },
+                {
+                    "render": function(name, type, row, meta) {
+                        return '<div class="checkbox"><label><input type="checkbox" name="isQuery['+meta.row+']" '+constants.bindCheckBoxStatus(row.isQuery)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    },"targets": 6//指定列
+                },
+                {
+                    "render": function(name, type, row, meta) {
+                        return constants.buildGenCodeQueryTypeHtm(meta.row, row.queryType);
+                    },"targets": 7 //指定列
+                },
+
+                {
+                    "render": function(name, type, row, meta) {
+                        return '<input name="dicType['+meta.row+']" class="form-control" type="text" value="' + row.dicType + '" />';
+                    },"targets": 8 //指定列
+                },
+                {
+                    "render": function(name, type, row, meta) {
+                        return '<input name="sort['+meta.row+']" class="form-control text-center" type="text" value="' + row.sort + '" style="width: 50px;" />';
+                    },"targets": 9 //指定列
+                },
             ]
         });
-//        /**  ID */
-//        private String id;
-//        /**  表 */
-//        private String table;
-//        /**  查询方式：（eq，neq，gt，lt，between，like） */
-//        private String queryType;
-//        /**  字段生成方案: （input、textarea、select、checkbox、radio、dialog） */
-//        private String showType;
-//        /**  字典类型 */
-//        private String dicType;
-//        /**  排序 */
-//        private Integer sort;
 
         // Edit record
         __table.on('click', '.edit', function() {

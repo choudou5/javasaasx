@@ -4784,11 +4784,11 @@ select.selectpicker {
   width: 100%;
 }
 
-.bootstrap-select.form-control {
+/*.bootstrap-select.form-control {
   margin-bottom: 0;
   padding: 0;
   border: none;
-}
+}*/
 
 .bootstrap-select.form-control:not([class*="col-"]) {
   width: 100%;
@@ -5265,6 +5265,8 @@ select.selectpicker {
 html * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: Roboto,Helvetica Neue,Arial,sans-serif;
+  font-weight: 400;
 }
 
 h1, .h1 {
@@ -5661,6 +5663,12 @@ h2.title {
 .off-canvas-sidebar[data-background-color="white"]:before {
   background: #FFFFFF;
 }
+.sidebar[data-active-color="grey"] li.active > a,
+.off-canvas-sidebar[data-active-color="grey"] li.active > a {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+  background-blend-mode: multiply,multiply;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0,0,0,0.15);
+}
 .sidebar[data-active-color="purple"] li.active > a,
 .off-canvas-sidebar[data-active-color="purple"] li.active > a {
   background-color: #9c27b0;
@@ -5835,6 +5843,11 @@ h2.title {
   .sidebar-mini .sidebar .nav [data-toggle="collapse"] ~ div > ul > li > a {
     padding: 10px 15px;
     border-radius: 3px;
+  }
+  .sidebar-mini .sidebar[data-active-color="grey"] .nav li.active > [data-toggle="collapse"] {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+    background-blend-mode: multiply,multiply;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0,0,0,0.15);
   }
   .sidebar-mini .sidebar[data-active-color="purple"] .nav li.active > [data-toggle="collapse"] {
     background-color: #9c27b0;
@@ -6953,13 +6966,13 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
   border-bottom-right-radius: 6px;
 }
 
-a {
+/*a {
   color: #9c27b0;
-}
+}*/
 a:hover, a:focus {
-  color: #89229b;
   text-decoration: none;
 }
+
 a.text-info:hover, a.text-info:focus {
   color: #00a5bb;
 }
@@ -7188,8 +7201,8 @@ output {
 }
 
 .form-group-sm .form-control {
-  height: 24px;
-  padding: 3px 0;
+ /* height: 24px;
+  padding: 3px 0;*/
   font-size: 11px;
   line-height: 1.5;
 }
@@ -7305,8 +7318,10 @@ output {
 
 .form-control,
 .form-group .form-control {
-  border: 0;
+  /*border: 0;
   background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+  border-radius: 0;
+  */
   background-size: 0 2px, 100% 1px;
   background-repeat: no-repeat;
   background-position: center bottom, center calc(100% - 1px);
@@ -7314,7 +7329,7 @@ output {
   transition: background 0s ease-out;
   float: none;
   box-shadow: none;
-  border-radius: 0;
+
   font-weight: 400;
 }
 .form-control::-moz-placeholder,
@@ -7682,11 +7697,12 @@ label.control-label {
   line-height: 1.0;
 }
 
-select.form-control {
+/*select.form-control {
   border: 0;
   box-shadow: none;
   border-radius: 0;
-}
+}*/
+
 .form-group.is-focused select.form-control {
   box-shadow: none;
   border-color: #D2D2D2;
@@ -8235,6 +8251,15 @@ fieldset[disabled] .form-group.is-focused .checkbox label {
   position: relative;
   top: 3px;
   padding-right: 5px;
+}
+
+@media (max-width: 991px) {
+  .checkbox .checkbox-material {
+    vertical-align: middle;
+    position: relative;
+    top: 3px;
+    padding-right: 5px;
+  }
 }
 .checkbox .checkbox-material:before {
   display: block;
@@ -9628,8 +9653,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 .navbar .navbar-form .form-group .form-control,
 .navbar .navbar-form .form-control {
-  border-color: inherit;
-  color: inherit;
+  /*border-color: inherit;
+  color: inherit;*/
   padding: 0;
   margin: 0;
   height: 28px;

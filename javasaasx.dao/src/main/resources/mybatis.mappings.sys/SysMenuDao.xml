@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.sys.SysMenuDao" >
+    <resultMap id="RM_SysMenu" type="com.choudou5.javasaasx.dao.sys.po.SysMenuPo">
+        <result property="id" column="id"/>
+        <result property="pid" column="p_id"/>
+        <result property="ppath" column="p_path"/>
+        <result property="depth" column="depth"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="sort" column="sort"/>
+        <result property="href" column="href"/>
+        <result property="icon" column="icon"/>
+        <result property="permission" column="permission"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remarks" column="remarks"/>
+        <result property="isMobileShow" column="is_mobile_show"/>
+        <result property="status" column="status"/>
+        <result property="isSysData" column="is_sys_data"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `p_id`, `p_path`, `depth`, `name`, `type`, `sort`, `href`, `icon`, `permission`, `create_by`, `create_time`, `update_by`, `update_time`, `remarks`, `is_mobile_show`, `status`, `is_sys_data`, `del_flag`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            <!--
+            eg: AND a.title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null and paramBean.id != null and paramBean.id != ''">
+                AND `id` = #{paramBean.id}
+            </if>
+            <if test="paramBean != null and paramBean.pid != null and paramBean.pid != ''">
+                AND `p_id` = #{paramBean.pid}
+            </if>
+            <if test="paramBean != null and paramBean.ppath != null and paramBean.ppath != ''">
+                AND `p_path` = #{paramBean.ppath}
+            </if>
+            <if test="paramBean != null and paramBean.depth != null ">
+                AND `depth` = #{paramBean.depth}
+            </if>
+            <if test="paramBean != null and paramBean.name != null and paramBean.name != ''">
+                AND `name` = #{paramBean.name}
+            </if>
+            <if test="paramBean != null and paramBean.type != null and paramBean.type != ''">
+                AND `type` = #{paramBean.type}
+            </if>
+            <if test="paramBean != null and paramBean.sort != null ">
+                AND `sort` = #{paramBean.sort}
+            </if>
+            <if test="paramBean != null and paramBean.href != null and paramBean.href != ''">
+                AND `href` = #{paramBean.href}
+            </if>
+            <if test="paramBean != null and paramBean.icon != null and paramBean.icon != ''">
+                AND `icon` = #{paramBean.icon}
+            </if>
+            <if test="paramBean != null and paramBean.permission != null and paramBean.permission != ''">
+                AND `permission` = #{paramBean.permission}
+            </if>
+            <if test="paramBean != null and paramBean.createBy != null and paramBean.createBy != ''">
+                AND `create_by` = #{paramBean.createBy}
+            </if>
+            <if test="paramBean != null and paramBean.createTime != null ">
+                AND `create_time` = #{paramBean.createTime}
+            </if>
+            <if test="paramBean != null and paramBean.updateBy != null and paramBean.updateBy != ''">
+                AND `update_by` = #{paramBean.updateBy}
+            </if>
+            <if test="paramBean != null and paramBean.updateTime != null ">
+                AND `update_time` = #{paramBean.updateTime}
+            </if>
+            <if test="paramBean != null and paramBean.remarks != null and paramBean.remarks != ''">
+                AND `remarks` = #{paramBean.remarks}
+            </if>
+            <if test="paramBean != null and paramBean.isMobileShow != null and paramBean.isMobileShow != ''">
+                AND `is_mobile_show` = #{paramBean.isMobileShow}
+            </if>
+            <if test="paramBean != null and paramBean.status != null and paramBean.status != ''">
+                AND `status` = #{paramBean.status}
+            </if>
+            <if test="paramBean != null and paramBean.isSysData != null and paramBean.isSysData != ''">
+                AND `is_sys_data` = #{paramBean.isSysData}
+            </if>
+            <if test="paramBean != null and paramBean.delFlag != null and paramBean.delFlag != ''">
+                AND `del_flag` = #{paramBean.delFlag}
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO sys_menu (
+        <if test="id != null">`id`</if>
+        <if test="pid != null">,`p_id`</if>
+        <if test="ppath != null">,`p_path`</if>
+        <if test="depth != null">,`depth`</if>
+        <if test="name != null">,`name`</if>
+        <if test="type != null">,`type`</if>
+        <if test="sort != null">,`sort`</if>
+        <if test="href != null">,`href`</if>
+        <if test="icon != null">,`icon`</if>
+        <if test="permission != null">,`permission`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+        <if test="updateBy != null">,`update_by`</if>
+        <if test="updateTime != null">,`update_time`</if>
+        <if test="remarks != null">,`remarks`</if>
+        <if test="isMobileShow != null">,`is_mobile_show`</if>
+        <if test="status != null">,`status`</if>
+        <if test="isSysData != null">,`is_sys_data`</if>
+        <if test="delFlag != null">,`del_flag`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="pid != null">,#{pid}</if>
+        <if test="ppath != null">,#{ppath}</if>
+        <if test="depth != null">,#{depth}</if>
+        <if test="name != null">,#{name}</if>
+        <if test="type != null">,#{type}</if>
+        <if test="sort != null">,#{sort}</if>
+        <if test="href != null">,#{href}</if>
+        <if test="icon != null">,#{icon}</if>
+        <if test="permission != null">,#{permission}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+        <if test="updateBy != null">,#{updateBy}</if>
+        <if test="updateTime != null">,#{updateTime}</if>
+        <if test="remarks != null">,#{remarks}</if>
+        <if test="isMobileShow != null">,#{isMobileShow}</if>
+        <if test="status != null">,#{status}</if>
+        <if test="isSysData != null">,#{isSysData}</if>
+        <if test="delFlag != null">,#{delFlag}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO sys_menu (
+        `id`
+        ,`p_id`
+        ,`p_path`
+        ,`depth`
+        ,`name`
+        ,`type`
+        ,`sort`
+        ,`href`
+        ,`icon`
+        ,`permission`
+        ,`create_by`
+        ,`create_time`
+        ,`update_by`
+        ,`update_time`
+        ,`remarks`
+        ,`is_mobile_show`
+        ,`status`
+        ,`is_sys_data`
+        ,`del_flag`
+        ) VALUES
+        <foreach collection="entities" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.pid}
+        ,#{entity.ppath}
+        ,#{entity.depth}
+        ,#{entity.name}
+        ,#{entity.type}
+        ,#{entity.sort}
+        ,#{entity.href}
+        ,#{entity.icon}
+        ,#{entity.permission}
+        ,#{entity.createBy}
+        ,#{entity.createTime}
+        ,#{entity.updateBy}
+        ,#{entity.updateTime}
+        ,#{entity.remarks}
+        ,#{entity.isMobileShow}
+        ,#{entity.status}
+        ,#{entity.isSysData}
+        ,#{entity.delFlag}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE sys_menu SET
+            `p_id` = #{pid} ,
+            `p_path` = #{ppath} ,
+            `depth` = #{depth} ,
+            `name` = #{name} ,
+            `type` = #{type} ,
+            `sort` = #{sort} ,
+            `href` = #{href} ,
+            `icon` = #{icon} ,
+            `permission` = #{permission} ,
+            `create_by` = #{createBy} ,
+            `create_time` = #{createTime} ,
+            `update_by` = #{updateBy} ,
+            `update_time` = #{updateTime} ,
+            `remarks` = #{remarks} ,
+            `is_mobile_show` = #{isMobileShow} ,
+            `status` = #{status} ,
+            `is_sys_data` = #{isSysData} ,
+            `del_flag` = #{delFlag} 
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM sys_menu
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM sys_menu
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM sys_menu
+        <include refid="where"/>
+    </delete>
+
+    <select id="findById" resultMap="RM_SysMenu">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM sys_menu
+            WHEREid = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM sys_menu
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_SysMenu">
+        SELECT <include refid="columns"/>
+        FROM sys_menu
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql' or dbName == 'sqlite'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_SysMenu">
+        SELECT <include refid="columns"/>
+        FROM sys_menu
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_SysMenu">
+        SELECT <include refid="columns"/>
+        FROM sys_menu
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql' or dbName == 'sqlite'">limit 1</if>
+    </select>
+
+
+</mapper>
+
+

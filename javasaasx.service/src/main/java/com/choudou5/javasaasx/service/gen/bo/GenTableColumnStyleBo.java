@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * @Name：生成表字段样式 业务对象
  * @Author：xuhaowende@sina.cn
- * @Date：2018-01-14
+ * @Date：2018-01-17
  * @Site：http://solrhome.com
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
@@ -20,24 +20,24 @@ public class GenTableColumnStyleBo implements BaseBo {
 	private String id;
     /**  表 */
 	private String table;
-    /**  表描述 */
-	private String tableName;
     /**  字段 */
 	private String column;
     /**  字段描述 */
 	private String columnName;
+    /**  字段名 */
+	private String fieldName;
     /**  是否为插入字段 */
 	private String isInsert = CommonConstant.DATA_STATUS_NO;
     /**  是否编辑字段: 0=否，1=是 */
 	private String isEdit = CommonConstant.DATA_STATUS_NO;
     /**  是否列表字段: 0=否，1=是 */
-	private String isList= CommonConstant.DATA_STATUS_OK;
+	private String isList = CommonConstant.DATA_STATUS_OK;
     /**  是否查询字段: 0=否，1=是 */
 	private String isQuery = CommonConstant.DATA_STATUS_NO;
     /**  查询方式：（eq，neq，gt，lt，between，like） */
-	private String queryType= "eq";
+	private String queryType = "eq";
     /**  字段生成方案: （input、textarea、select、checkbox、radio、dialog） */
-	private String showType= "input";
+	private String showType = "input";
     /**  字典类型 */
 	private String dicType = "";
     /**  排序 */
@@ -65,13 +65,6 @@ public class GenTableColumnStyleBo implements BaseBo {
 		this.table = table;
 	}
 
-	public String getTableName() {
-		return this.tableName;
-	}
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
-	}
-
 	public String getColumn() {
 		return this.column;
 	}
@@ -85,6 +78,13 @@ public class GenTableColumnStyleBo implements BaseBo {
 	}
 	public void setColumnName(String columnName) {
 		this.columnName = columnName;
+	}
+
+	public String getFieldName() {
+		return this.fieldName;
+	}
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
 	}
 
 	public String getIsInsert() {

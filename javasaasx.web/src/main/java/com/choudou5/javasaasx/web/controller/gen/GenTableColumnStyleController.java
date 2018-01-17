@@ -1,14 +1,7 @@
 package com.choudou5.javasaasx.web.controller.gen;
 
-import cn.org.rapid_framework.generator.GeneratorConstants;
-import cn.org.rapid_framework.generator.GeneratorProperties;
-import cn.org.rapid_framework.generator.provider.db.DataCollectionInfo;
-import com.choudou5.javasaasx.common.util.JsonUtil;
 import com.choudou5.javasaasx.framework.bean.SelectBo;
-import com.choudou5.javasaasx.framework.bean.TableDataBo;
-import com.choudou5.javasaasx.framework.page.PageResult;
 import com.choudou5.javasaasx.framework.util.AssertUtil;
-import com.choudou5.javasaasx.framework.util.ToolkitUtil;
 import com.choudou5.javasaasx.service.gen.GenTableColumnStyleService;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleQueryParam;
@@ -18,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -73,8 +66,8 @@ public class GenTableColumnStyleController extends BaseController {
     @ResponseBody
     public String getGenTableColumnStyleList(String table, HttpServletRequest req, RedirectAttributes attributes) {
         try {
-            TableDataBo tableDataBo =  genTableColumnStyleService.getGenTableColumnStyleList(table);
-            return JsonUtil.toString(tableDataBo);
+            List<GenTableColumnStyleBo> list =  genTableColumnStyleService.getGenTableColumnStyleList(table);
+            return returnTableData(list);
         } catch (Exception e) {
             return returnFail(e, "表字段样式列表失败.");
         }

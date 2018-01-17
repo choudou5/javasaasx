@@ -5,7 +5,7 @@ import com.choudou5.javasaasx.framework.bean.AbstractBasePo;
 /**
  * @Name：生成表字段样式 Po
  * @Author：xuhaowende@sina.cn
- * @Date：2018-01-14
+ * @Date：2018-01-17
  * @Site：http://solrhome.com
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
@@ -17,10 +17,6 @@ public class GenTableColumnStylePo extends AbstractBasePo{
      */
     private String table;
     /**
-     * 数据库字段：table_name 表描述
-     */
-    private String tableName;
-    /**
      * 数据库字段：column 字段
      */
     private String column;
@@ -28,6 +24,10 @@ public class GenTableColumnStylePo extends AbstractBasePo{
      * 数据库字段：column_name 字段描述
      */
     private String columnName;
+    /**
+     * 数据库字段：field_name 字段名
+     */
+    private String fieldName;
     /**
      * 数据库字段：is_insert 是否为插入字段
      */
@@ -74,12 +74,6 @@ public class GenTableColumnStylePo extends AbstractBasePo{
     public void setTable(String table) {
         this.table = table;
     }
-    public String getTableName() {
-        return this.tableName;
-    }
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
     public String getColumn() {
         return this.column;
     }
@@ -91,6 +85,12 @@ public class GenTableColumnStylePo extends AbstractBasePo{
     }
     public void setColumnName(String columnName) {
         this.columnName = columnName;
+    }
+    public String getFieldName() {
+        return this.fieldName;
+    }
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
     }
     public String getIsInsert() {
         return this.isInsert;

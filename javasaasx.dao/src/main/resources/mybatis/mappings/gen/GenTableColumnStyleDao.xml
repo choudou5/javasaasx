@@ -5,9 +5,9 @@
     <resultMap id="RM_GenTableColumnStyle" type="com.choudou5.javasaasx.dao.gen.po.GenTableColumnStylePo">
         <result property="id" column="id"/>
         <result property="table" column="table"/>
-        <result property="tableName" column="table_name"/>
         <result property="column" column="column"/>
         <result property="columnName" column="column_name"/>
+        <result property="fieldName" column="field_name"/>
         <result property="isInsert" column="is_insert"/>
         <result property="isEdit" column="is_edit"/>
         <result property="isList" column="is_list"/>
@@ -20,7 +20,7 @@
 
     <sql id="columns">
     <![CDATA[
-        `id`, `table`, `table_name`, `column`, `column_name`, `is_insert`, `is_edit`, `is_list`, `is_query`, `query_type`, `show_type`, `dic_type`, `sort`
+        `id`, `table`, `column`, `column_name`, `field_name`, `is_insert`, `is_edit`, `is_list`, `is_query`, `query_type`, `show_type`, `dic_type`, `sort`
     ]]>
     </sql>
 
@@ -35,14 +35,14 @@
             <if test="paramBean != null and paramBean.table != null and paramBean.table != ''">
                 AND `table` = #{paramBean.table}
             </if>
-            <if test="paramBean != null and paramBean.tableName != null and paramBean.tableName != ''">
-                AND `table_name` = #{paramBean.tableName}
-            </if>
             <if test="paramBean != null and paramBean.column != null and paramBean.column != ''">
                 AND `column` = #{paramBean.column}
             </if>
             <if test="paramBean != null and paramBean.columnName != null and paramBean.columnName != ''">
                 AND `column_name` = #{paramBean.columnName}
+            </if>
+            <if test="paramBean != null and paramBean.fieldName != null and paramBean.fieldName != ''">
+                AND `field_name` = #{paramBean.fieldName}
             </if>
             <if test="paramBean != null and paramBean.isInsert != null and paramBean.isInsert != ''">
                 AND `is_insert` = #{paramBean.isInsert}
@@ -75,9 +75,9 @@
         INSERT INTO gen_table_column_style (
         <if test="id != null">`id`</if>
         <if test="table != null">,`table`</if>
-        <if test="tableName != null">,`table_name`</if>
         <if test="column != null">,`column`</if>
         <if test="columnName != null">,`column_name`</if>
+        <if test="fieldName != null">,`field_name`</if>
         <if test="isInsert != null">,`is_insert`</if>
         <if test="isEdit != null">,`is_edit`</if>
         <if test="isList != null">,`is_list`</if>
@@ -89,9 +89,9 @@
         ) VALUES (
         <if test="id != null">#{id}</if>
         <if test="table != null">,#{table}</if>
-        <if test="tableName != null">,#{tableName}</if>
         <if test="column != null">,#{column}</if>
         <if test="columnName != null">,#{columnName}</if>
+        <if test="fieldName != null">,#{fieldName}</if>
         <if test="isInsert != null">,#{isInsert}</if>
         <if test="isEdit != null">,#{isEdit}</if>
         <if test="isList != null">,#{isList}</if>
@@ -107,9 +107,9 @@
         INSERT INTO gen_table_column_style (
         `id`
         ,`table`
-        ,`table_name`
         ,`column`
         ,`column_name`
+        ,`field_name`
         ,`is_insert`
         ,`is_edit`
         ,`is_list`
@@ -123,9 +123,9 @@
         (
         #{entity.id}
         ,#{entity.table}
-        ,#{entity.tableName}
         ,#{entity.column}
         ,#{entity.columnName}
+        ,#{entity.fieldName}
         ,#{entity.isInsert}
         ,#{entity.isEdit}
         ,#{entity.isList}
@@ -142,9 +142,9 @@
     <![CDATA[
         UPDATE gen_table_column_style SET
             `table` = #{table} ,
-            `table_name` = #{tableName} ,
             `column` = #{column} ,
             `column_name` = #{columnName} ,
+            `field_name` = #{fieldName} ,
             `is_insert` = #{isInsert} ,
             `is_edit` = #{isEdit} ,
             `is_list` = #{isList} ,

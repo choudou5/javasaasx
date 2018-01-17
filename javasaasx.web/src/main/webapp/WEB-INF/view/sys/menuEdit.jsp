@@ -18,11 +18,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card card-profile">
-                                <div class="card-content">
+                            <div class="card card-profile" style="height: 80vh">
+                                <div class="card-content text-left">
                                     <%--<h6 class="category text-gray">CEO / Co-Founder</h6>
                                     <h4 class="card-title">Alec Thompson</h4>--%>
-                                    <input type="text" id="html_q" value="" class="input">
+                                    <input type="text" id="html_q" value="" class="form-control input" placeholder="搜索菜单">
                                     <div id="html" class="demo">
                                         <ul>
                                             <li data-jstree='{ "opened" : true }'>Root node

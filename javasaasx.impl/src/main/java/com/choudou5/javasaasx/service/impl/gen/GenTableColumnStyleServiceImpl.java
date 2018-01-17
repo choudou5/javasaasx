@@ -65,7 +65,7 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
     }
 
     @Override
-    public TableDataBo getGenTableColumnStyleList(String table) {
+    public List<GenTableColumnStyleBo> getGenTableColumnStyleList(String table) {
         List<GenTableColumnStyleBo> list = new ArrayList<>();
         for (Table tbl : tables) {
             if(tbl.getSqlName().equals(table)){
@@ -74,10 +74,11 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
                     GenTableColumnStyleBo columnStyleBo = new GenTableColumnStyleBo();
                     columnStyleBo.setColumn(column.getSqlName());
                     columnStyleBo.setColumnName(column.getRemarks());
+                    columnStyleBo.setFieldName(column.getColumnNameFirstLower());
                     list.add(columnStyleBo);
                 }
             }
         }
-        return new TableDataBo(list);
+        return list;
     }
 }

@@ -58,6 +58,7 @@
                                                 <tr>
                                                     <th>列名</th>
                                                     <th>描述</th>
+                                                    <th>字段</th>
                                                     <th>是否插入</th>
                                                     <th>是否编辑</th>
                                                     <th>是否列表</th>
@@ -92,28 +93,12 @@
 <%@include file="/include/scriptLib.jsp" %>
 <script src="${ctxStatic }/jstree/3.3.5/dist/jstree.min.js"></script>
 <script src="${ctxStatic }/jquery-plugs/footable.all.min.js"></script>
-<script src="${ctxStatic }/form-plugs/addclear.min.js"></script>
+<script src="${ctxStatic }/js/biz/gen/GenTableColumnStyle.js"></script>
 
 <script type="text/javascript">
-    // html demo
     $(function () {
         $('.card .material-datatables label').addClass('form-group');
-
-        //初始化 下拉框值
-//        http.ajaxAsyncJsonPost("/gen/genTableColumnStyle/getTableList", {}, function(selectBos){
-//            var opts = select.buildSelectOptsHtml(selectBos);
-//            $('#dbTableSelect').html(opts);
-//            $('#dbTableSelect').selectpicker('refresh');
-//        });
-
-        $('#dbTableSelect').on('changed.bs.select', function (e, index) {
-            var table = e.target.value;
-            log(index);
-        });
-
         $("#leftDatatables").footable();
-
-        $("#globalSearch").addClear();
     });
 
     var __table = null;
@@ -163,44 +148,48 @@
                 },
                 {
                     "render": function(name, type, row, meta) {
+                        return '<input name="fieldName['+meta.row+']" class="form-control" type="text" value="' + row.fieldName + '" />';
+                    },"targets": 2
+                },
+                {
+                    "render": function(name, type, row, meta) {
                         return '<div class="checkbox"><label><input type="checkbox" name="isInsert['+meta.row+']" '+constants.bindCheckBoxStatus(row.isInsert)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
-                    },"targets": 2 //指定列
+                    },"targets": 3
                 },
                 {
                     "render": function(name, type, row, meta) {
                         return '<div class="checkbox"><label><input type="checkbox" name="isEdit['+meta.row+']" '+constants.bindCheckBoxStatus(row.isEdit)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
-                    },"targets": 3 //指定列
+                    },"targets": 4
                 },
                 {
                     "render": function(name, type, row, meta) {
                         return '<div class="checkbox"><label><input type="checkbox" name="isList['+meta.row+']" '+constants.bindCheckBoxStatus(row.isList)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
-                    },"targets": 4 //指定列
+                    },"targets": 5
                 },
                 {
                     "render": function(name, type, row, meta) {
                         return constants.buildGenCodeShowTypeHtm(meta.row, row.showType);
-                    },"targets": 5 //指定列
+                    },"targets": 6
                 },
                 {
                     "render": function(name, type, row, meta) {
                         return '<div class="checkbox"><label><input type="checkbox" name="isQuery['+meta.row+']" '+constants.bindCheckBoxStatus(row.isQuery)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
-                    },"targets": 6//指定列
+                    },"targets": 7
                 },
                 {
                     "render": function(name, type, row, meta) {
                         return constants.buildGenCodeQueryTypeHtm(meta.row, row.queryType);
-                    },"targets": 7 //指定列
+                    },"targets":  8
                 },
-
                 {
                     "render": function(name, type, row, meta) {
                         return '<input name="dicType['+meta.row+']" class="form-control" type="text" value="' + row.dicType + '" />';
-                    },"targets": 8 //指定列
+                    },"targets": 9
                 },
                 {
                     "render": function(name, type, row, meta) {
                         return '<input name="sort['+meta.row+']" class="form-control text-center" type="text" value="' + row.sort + '" style="width: 50px;" />';
-                    },"targets": 9 //指定列
+                    },"targets": 10
                 },
             ]
         });

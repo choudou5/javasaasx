@@ -3,8 +3,10 @@ package com.choudou5.javasaasx.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.choudou5.javasaasx.common.util.JsonUtil;
 import com.choudou5.javasaasx.common.util.SysUtil;
+import com.choudou5.javasaasx.framework.bean.TableDataBo;
 import com.choudou5.javasaasx.framework.exception.BizException;
 import com.choudou5.javasaasx.framework.util.ToolkitUtil;
+import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
 import com.choudou5.javasaasx.web.beanvalidator.BeanValidators;
 import com.xiaoleilu.hutool.date.DateUtil;
 import org.slf4j.Logger;
@@ -285,6 +287,10 @@ public abstract class BaseController {
 			}
 		}
 		return JSON.toJSONString(result);
+	}
+
+	protected String returnTableData(List list){
+		return JsonUtil.toString(new TableDataBo(list));
 	}
 
 }

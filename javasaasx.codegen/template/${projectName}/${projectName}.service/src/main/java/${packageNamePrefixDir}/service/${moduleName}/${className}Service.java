@@ -5,7 +5,7 @@ package ${packageNamePrefix}.service.${moduleName};
 
 import ${packageNamePrefix}.framework.bean.BaseBo;
 import ${packageNamePrefix}.framework.service.BaseService;
-import ${packageNamePrefix}.service.gen.bo.${classBOName};
+import ${packageNamePrefix}.service.${moduleName}.bo.${classBOName};
 
 /**
  * @Name：${table.remarks} 接口

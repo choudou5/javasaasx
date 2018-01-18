@@ -1,8 +1,10 @@
 package com.choudou5.javasaasx.service.gen;
 
 import com.choudou5.javasaasx.framework.bean.BaseBo;
+import com.choudou5.javasaasx.framework.bean.BasePo;
 import com.choudou5.javasaasx.framework.bean.SelectBo;
 import com.choudou5.javasaasx.framework.bean.TableDataBo;
+import com.choudou5.javasaasx.framework.exception.BizException;
 import com.choudou5.javasaasx.framework.service.BaseService;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
 
@@ -17,6 +19,8 @@ import java.util.List;
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 public interface GenTableColumnStyleService extends BaseService<GenTableColumnStyleBo> {
+
+    void save(boolean isNew, List<GenTableColumnStyleBo> columnStyleBoList) throws BizException;
 
     List<SelectBo> getTableList();
 

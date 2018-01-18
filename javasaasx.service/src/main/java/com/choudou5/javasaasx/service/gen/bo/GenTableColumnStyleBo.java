@@ -23,7 +23,7 @@ public class GenTableColumnStyleBo implements BaseBo {
     /**  字段 */
 	private String column;
     /**  字段描述 */
-	private String columnName;
+	private String desc;
     /**  字段名 */
 	private String fieldName;
     /**  是否为插入字段 */
@@ -73,11 +73,11 @@ public class GenTableColumnStyleBo implements BaseBo {
 		this.column = column;
 	}
 
-	public String getColumnName() {
-		return this.columnName;
+	public String getDesc() {
+		return this.desc;
 	}
-	public void setColumnName(String columnName) {
-		this.columnName = columnName;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 	public String getFieldName() {
@@ -143,6 +143,5 @@ public class GenTableColumnStyleBo implements BaseBo {
 		this.sort = sort;
 	}
 
-	
 }
 

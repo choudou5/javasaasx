@@ -26,6 +26,46 @@ public class AbstractBasePo implements BasePo {
     protected static final String DEL_FLAG_YES = "0";
     protected static final String DEL_FLAG_NO = "1";
 
+    public boolean isNew(){
+        return id==null||id.length()==0;
+    }
+
+
+    /**
+     * 插入之前执行方法，需要手动调用
+     */
+    public void preInsert(){
+//        Long id = SysSeqUtil.generateId(SystemNames.SYSTEM, SystemNames.SUB_SYSTEM_ADMIN, TableNames.MODULE, getSqlTableName());
+//        setId(id);
+//        User user = UserUtils.getUser();
+//        if (0 != user.getId()){
+//            this.updateBy = user;
+//            this.createBy = user;
+//        }
+//        this.updateDate = new Date();
+//        this.createDate = this.updateDate;
+//        setActonInfo(true, user.getId());
+    }
+
+    /**
+     * 更新之前执行方法，需要手动调用
+     */
+    public void preUpdate(){
+//        User user = UserUtils.getUser();
+//        //if (StringUtils.isNotBlank(user.getId())){
+//        if (0!=user.getId()){
+//            this.updateBy = user;
+//        }
+//        this.updateDate = new Date();
+//        setActonInfo(false, user.getId());
+//        if(this.recordModify){
+//            Session session = UserUtils.getSession();
+//            if(session != null)
+//                this.ip = session.getHost();
+//        }
+    }
+
+
     public String getId() {
         return id;
     }

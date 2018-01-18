@@ -7,11 +7,14 @@ import cn.org.rapid_framework.generator.provider.db.table.model.Table;
 import com.choudou5.javasaasx.common.constants.SysPropConsts;
 import com.choudou5.javasaasx.common.properties.PropertiesUtil;
 import com.choudou5.javasaasx.dao.gen.GenTableColumnStyleDao;
+import com.choudou5.javasaasx.dao.gen.po.GenTableColumnStylePo;
 import com.choudou5.javasaasx.framework.bean.SelectBo;
 import com.choudou5.javasaasx.framework.bean.TableDataBo;
 import com.choudou5.javasaasx.framework.dao.BaseDao;
+import com.choudou5.javasaasx.framework.exception.BizException;
 import com.choudou5.javasaasx.service.gen.GenTableColumnStyleService;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
+import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleQueryParam;
 import com.choudou5.javasaasx.service.impl.BaseServiceImpl;
 import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +27,14 @@ import java.util.List;
 
 /**
  * @Name：生成表字段样式 接口实现类
- * @Author：xuhaowende@sina.cn
+ * @Author：xuhaowen
  * @Date：2018-01-14
  * @Site：http://solrhome.com
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 @Service("genTableColumnStyleService")
-public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColumnStyleBo> implements GenTableColumnStyleService {
+public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColumnStylePo, GenTableColumnStyleBo> implements GenTableColumnStyleService {
 
     @Autowired
     private GenTableColumnStyleDao dao;
@@ -52,6 +55,14 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
         collectionInfo.setDriverClass(PropertiesUtil.getString(SysPropConsts.JDBC_DRIVER));
     }
 
+    public void save(boolean isNew, List<GenTableColumnStyleBo> columnStyleBoList) throws BizException {
+        if(isNew){
+            batchInsert(columnStyleBoList);
+        }else{
+            batchUpdate(columnStyleBoList);
+        }
+    }
+
     @Override
     public List<SelectBo> getTableList() {
         tables = TableFactory.getInstance().getAllTables(collectionInfo);
@@ -64,21 +75,32 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
         return list;
     }
 
+    public List<GenTableColumnStyleBo> findByTable(String table) {
+        GenTableColumnStyleQueryParam queryParam = new GenTableColumnStyleQueryParam();
+        GenTableColumnStyleBo bo = new GenTableColumnStyleBo();
+        bo.setTable(table);
+        queryParam.setGenTableColumnStyleBo(bo);
+        return findList(queryParam);
+    }
+
     @Override
     public List<GenTableColumnStyleBo> getGenTableColumnStyleList(String table) {
-        List<GenTableColumnStyleBo> list = new ArrayList<>();
-        for (Table tbl : tables) {
-            if(tbl.getSqlName().equals(table)){
-                LinkedHashSet<Column> columnLinkedHashMap = tbl.getColumns();
-                for (Column column : columnLinkedHashMap) {
-                    GenTableColumnStyleBo columnStyleBo = new GenTableColumnStyleBo();
-                    columnStyleBo.setColumn(column.getSqlName());
-                    columnStyleBo.setColumnName(column.getRemarks());
-                    columnStyleBo.setFieldName(column.getColumnNameFirstLower());
-                    list.add(columnStyleBo);
+        List<GenTableColumnStyleBo> list = findByTable(table);
+        if(CollectionUtil.isEmpty(list)){
+            for (Table tbl : tables) {
+                if(tbl.getSqlName().equals(table)){
+                    LinkedHashSet<Column> columnLinkedHashMap = tbl.getColumns();
+                    for (Column column : columnLinkedHashMap) {
+                        GenTableColumnStyleBo columnStyleBo = new GenTableColumnStyleBo();
+                        columnStyleBo.setColumn(column.getSqlName());
+                        columnStyleBo.setDesc(column.getRemarks());
+                        columnStyleBo.setFieldName(column.getColumnNameFirstLower());
+                        list.add(columnStyleBo);
+                    }
                 }
             }
         }
         return list;
     }
+
 }

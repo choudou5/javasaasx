@@ -4,8 +4,8 @@ import com.choudou5.javasaasx.framework.bean.AbstractBasePo;
 
 /**
  * @Name：生成表字段样式 Po
- * @Author：xuhaowende@sina.cn
- * @Date：2018-01-17
+ * @Author：xuhaowen
+ * @Date：2018-01-18
  * @Site：http://solrhome.com
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
@@ -21,9 +21,9 @@ public class GenTableColumnStylePo extends AbstractBasePo{
      */
     private String column;
     /**
-     * 数据库字段：column_name 字段描述
+     * 数据库字段：desc 字段描述
      */
-    private String columnName;
+    private String desc;
     /**
      * 数据库字段：field_name 字段名
      */
@@ -80,11 +80,11 @@ public class GenTableColumnStylePo extends AbstractBasePo{
     public void setColumn(String column) {
         this.column = column;
     }
-    public String getColumnName() {
-        return this.columnName;
+    public String getDesc() {
+        return this.desc;
     }
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
     public String getFieldName() {
         return this.fieldName;

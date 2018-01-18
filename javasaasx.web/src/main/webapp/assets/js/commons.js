@@ -874,6 +874,56 @@ constants = {
 			return htm.toString();
 		},
 
+}
 
+tbl = {
+
+
+	/**
+	 * 向上 移动行
+	 * @param thisEle 当前元素
+	 */
+	trMoveUp: function (thisEle){
+		resetField = resetField == undefined ? false : resetField;
+		//当前单元格
+		var thisParent = $(thisEle).closest("tr");
+		//当前单元格下标
+		var thisIndex = $(thisParent).index();
+		if(thisIndex != 1){
+			//上一个单元格
+			var prev = thisParent.prev();
+			//克隆当前单元格
+			var thisParentClone = thisParent.clone();
+			thisParent.remove();
+			prev.before(thisParentClone);
+			if(resetField)
+				tbl.trMoveAfterResetFieldIndex();//重置 字段下班
+		}
+	},
+	/**
+	 * 向下 移动行
+	 * @param thisEle 当前元素
+	 */
+	trMoveDown: function (thisEle, resetField){
+		resetField = resetField == undefined ? false : resetField;
+		//当前单元格
+		var thisParent = $(thisEle).closest("tr");
+		//当前单元格下标
+		var thisIndex = $(thisParent).index();
+		var parentSibCount = thisParent.siblings().length;
+		if(thisIndex != parentSibCount){
+			//下一个单元格
+			var next = thisParent.next();
+			//克隆当前单元格
+			var thisParentClone = thisParent.clone();
+			thisParent.remove();
+			next.after(thisParentClone);
+			if(resetField)
+				tbl.trMoveAfterResetFieldIndex();//重置 字段下班
+		}
+	},
+	trMoveAfterResetFieldIndex : function(){
+
+	}
 
 }

@@ -66,7 +66,6 @@
                                                     <th>是否查询</th>
                                                     <th>查询类型</th>
                                                     <th>字典类型</th>
-                                                    <th class="disabled-sorting">排序</th>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -125,7 +124,7 @@
             },
             columns: [
                 {"data": "column"},
-                {"data": "columnName"},
+                {"data": "desc"},
                 {"data": "isInsert"},
                 {"data": "isEdit"},
                 {"data": "isList"},
@@ -138,12 +137,13 @@
             "columnDefs": [
                 {
                     "render": function(name, type, row, meta) {
-                        return '<input name="column['+meta.row+']" class="form-control" type="text" value="' + row.column + '" />';
+                        return '<input name="id['+meta.row+']" class="form-control" readonly type="hidden" value="' + row.id + '" />' +
+                                '<input name="column['+meta.row+']" class="form-control" readonly type="text" value="' + row.column + '" />';
                     },"targets": 0 //指定列
                 },
                 {
                     "render": function(name, type, row, meta) {
-                        return '<input name="columnName['+meta.row+']" class="form-control" type="text" value="' + row.columnName + '" />';
+                        return '<input name="desc['+meta.row+']" class="form-control" type="text" value="' + row.desc + '" />';
                     },"targets": 1 //指定列
                 },
                 {
@@ -185,12 +185,7 @@
                     "render": function(name, type, row, meta) {
                         return '<input name="dicType['+meta.row+']" class="form-control" type="text" value="' + row.dicType + '" />';
                     },"targets": 9
-                },
-                {
-                    "render": function(name, type, row, meta) {
-                        return '<input name="sort['+meta.row+']" class="form-control text-center" type="text" value="' + row.sort + '" style="width: 50px;" />';
-                    },"targets": 10
-                },
+                }
             ]
         });
 

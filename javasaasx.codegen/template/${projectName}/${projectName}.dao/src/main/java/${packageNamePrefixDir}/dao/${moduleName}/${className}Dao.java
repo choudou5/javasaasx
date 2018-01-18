@@ -7,7 +7,6 @@ package ${packageNamePrefix}.dao.${moduleName};
 import ${packageNamePrefix}.dao.orm.mybatis.MyBatisDao;
 import ${packageNamePrefix}.dao.${moduleName}.po.${classPOName};
 import ${packageNamePrefix}.framework.dao.BaseDao;
-import ${packageNamePrefix}.framework.dao.CrudDao;
 
 /**
  * @Name：${table.remarks} Dao
@@ -18,6 +17,6 @@ import ${packageNamePrefix}.framework.dao.CrudDao;
  * @Copyright：${copyright}
  */
 @MyBatisDao
-public interface ${className}Dao extends CrudDao<${classPOName}, ${pkJavaType}> {
+public interface ${className}Dao extends BaseDao<${classPOName}, ${pkJavaType}> {
 
 }

@@ -1,9 +1,11 @@
 <#assign className = table.className>
+<#assign classPOName = table.className + 'Po'>
 <#assign classBOName = table.className + 'Bo'>
 <#assign classNameLower = className?uncap_first>
 package ${packageNamePrefix}.service.impl.${moduleName};
 
 import ${packageNamePrefix}.dao.${moduleName}.${className}Dao;
+import ${packageNamePrefix}.dao.${moduleName}.po.${classPOName};
 import ${packageNamePrefix}.service.${moduleName}.bo.${classBOName};
 import ${packageNamePrefix}.framework.dao.BaseDao;
 import ${packageNamePrefix}.service.impl.BaseServiceImpl;
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Service;
  * @Copyright：${copyright}
  */
 @Service("${classNameLower}Service")
-public class ${className}ServiceImpl extends BaseServiceImpl<${classBOName}> implements ${className}Service {
+public class ${className}ServiceImpl extends BaseServiceImpl<${classPOName}, ${classBOName}> implements ${className}Service {
 
     @Autowired
     private ${className}Dao dao;

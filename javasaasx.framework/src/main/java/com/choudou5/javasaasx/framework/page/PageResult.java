@@ -18,7 +18,7 @@ public class PageResult<T extends BaseBo> implements Serializable{
     protected int pageNo = 1;
     protected int pageSize = 10;
     protected List<T> result = null;
-    protected int totalCount = 0;
+    protected long totalCount = 0;
 
     public PageResult() {
     }
@@ -93,11 +93,11 @@ public class PageResult<T extends BaseBo> implements Serializable{
         this.result = result;
     }
 
-    public int getTotalCount() {
+    public long getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount(final int totalCount) {
+    public void setTotalCount(final long totalCount) {
         this.totalCount = totalCount;
     }
 

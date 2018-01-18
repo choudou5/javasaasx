@@ -1,6 +1,7 @@
 package com.choudou5.javasaasx.service.impl.sys;
 
 import com.choudou5.javasaasx.dao.sys.SysMenuDao;
+import com.choudou5.javasaasx.dao.sys.po.SysMenuPo;
 import com.choudou5.javasaasx.service.sys.bo.SysMenuBo;
 import com.choudou5.javasaasx.framework.dao.BaseDao;
 import com.choudou5.javasaasx.service.impl.BaseServiceImpl;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Service;
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 @Service("sysMenuService")
-public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuBo> implements SysMenuService {
+public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuPo, SysMenuBo> implements SysMenuService {
 
     @Autowired
     private SysMenuDao dao;

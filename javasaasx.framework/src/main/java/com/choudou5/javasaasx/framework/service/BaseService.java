@@ -12,33 +12,31 @@ import java.util.List;
 
 /**
  * @Name：基础 接口
- * @Author：xuhaowende@sina.cn
+ * @Author：xuhaowende
  * @Date：2018-01-13 16:22
  * @Site：http://solrhome.com
  * @License：MIT
  */
-public interface BaseService <T extends BaseBo>{
+public interface BaseService <B extends BaseBo>{
 
     /**
      * 保存
      * @param bo
      * @throws BizException
      */
-    void save(T bo) throws BizException;
+    void save(B bo) throws BizException;
 
     /**
-     * 更新状态
-     * @param id
-     * @param status
-     * @throws BizException
+     * 批量新增
+     * @param list 实体集合
      */
-    void updateStatus(Serializable id, String status) throws BizException;
+    int batchInsert(List<B> list);
 
     /**
      * 批量更新
      * @param list
      */
-    void batchUpdate(List<T> list) throws BizException;
+    void batchUpdate(List<B> list) throws BizException;
 
     /**
      * 主键删除
@@ -52,7 +50,7 @@ public interface BaseService <T extends BaseBo>{
      * @param idList
      * @throws BizException
      */
-    void batchDelete(List<String> idList) throws BizException;
+    void deleteByIds(List<String> idList) throws BizException;
 
 
     /***********************查询*************************************/
@@ -62,14 +60,14 @@ public interface BaseService <T extends BaseBo>{
      * @param id
      * @return
      */
-    T get(Serializable id);
+    B get(Serializable id);
 
     /**
      * 查询 单条记录
      * @param queryBean
      * @return
      */
-    T findOne(QueryParam queryBean) throws BizException;
+    B findOne(QueryParam queryBean) throws BizException;
 
     /**
      * 查询 数量
@@ -84,7 +82,7 @@ public interface BaseService <T extends BaseBo>{
      * @return
      * @throws BizException
      */
-    List<T> findList(QueryParam queryBean) throws BizException;
+    List<B> findList(QueryParam queryBean) throws BizException;
 
     /**
      * 查询所有
@@ -92,13 +90,13 @@ public interface BaseService <T extends BaseBo>{
      * @return
      * @throws BizException
      */
-    List<T> findAll(OrderBean orderBean) throws BizException;
+    List<B> findAll(OrderBean orderBean) throws BizException;
 
     /**
      * 分页查询
      * @param queryBean
      * @return
      */
-    public PageResult<T> findPage(QueryParam queryBean) throws BizException;
+    public PageResult<B> findPage(QueryParam queryBean) throws BizException;
 
 }

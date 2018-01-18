@@ -1,12 +1,10 @@
 package com.choudou5.javasaasx.service.impl.sys;
 
 import com.choudou5.javasaasx.api.sys.SysUserApi;
-import com.choudou5.javasaasx.dao.sys.SysUserDao;
 import com.choudou5.javasaasx.framework.dao.BaseDao;
 import com.choudou5.javasaasx.service.impl.BaseServiceImpl;
 import com.choudou5.javasaasx.service.sys.SysUserService;
 import com.choudou5.javasaasx.service.sys.bo.SysUserBo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,12 +17,10 @@ import org.springframework.stereotype.Service;
 @Service("sysUserService")
 public class SysUserServiceImpl extends BaseServiceImpl implements SysUserService, SysUserApi {
 
-    @Autowired
-    private SysUserDao dao;
 
     @Override
     protected BaseDao getDao() {
-        return dao;
+        return null;
     }
 
     @Override

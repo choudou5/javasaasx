@@ -6,6 +6,7 @@ import com.choudou5.javasaasx.service.gen.GenTableColumnStyleService;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleQueryParam;
 import com.choudou5.javasaasx.web.controller.BaseController;
+import com.choudou5.javasaasx.web.util.RequestUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -128,7 +129,7 @@ public class GenTableColumnStyleController extends BaseController {
 
     /**
      * 保存记录
-     * @param genTableColumnStyleBo
+     * @param list
      * @param req
      * @param attributes
      * @return
@@ -136,12 +137,13 @@ public class GenTableColumnStyleController extends BaseController {
     @RequiresPermissions("gen:genTableColumnStyle:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(GenTableColumnStyleBo genTableColumnStyleBo, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(List<GenTableColumnStyleBo> list, HttpServletRequest req, RedirectAttributes attributes) {
+        boolean isNew = RequestUtil.getBoolParameter(req, "isNew", false);
         //数据 验证
-        if (!beanValidator(attributes, genTableColumnStyleBo))
+        if (!beanValidator(attributes, list))
             return returnFail(attributes);
         try {
-            genTableColumnStyleService.save(genTableColumnStyleBo);
+            genTableColumnStyleService.save(isNew, list);
             return returnOK("保存成功！");
         } catch (Exception e) {
             return returnFail(e, "保存失败！");

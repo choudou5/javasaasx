@@ -38,25 +38,14 @@ public class BeanMapper {
 
     /**
      * 基于Dozer转换Collection中对象的类型.
+     * @param sourceList
+     * @param destinationClass
      */
-    public static <T> List<T> mapList(Collection<Object> sourceList, Class<T> destinationClass) {
-        List<T> destinationList = new ArrayList<T>();
+    public static <T> List<T> mapList(Collection sourceList, Class<T> destinationClass) {
+        List<T> destinationList = new ArrayList<>();
         if(sourceList == null) return destinationList;
         for (Object sourceObject : sourceList) {
             T destinationObject = dozer.map(sourceObject, destinationClass);
-            destinationList.add(destinationObject);
-        }
-        return destinationList;
-    }
-
-    /**
-     * 基于Dozer转换Collection中对象的类型.
-     */
-    public static <T> List<T> mapList2(Collection<Map> sourceList, Class<T> destinationClass) {
-        List<T> destinationList = new ArrayList<T>();
-        if(sourceList == null) return destinationList;
-        for (Map map : sourceList) {
-            T destinationObject = dozer.map(map, destinationClass);
             destinationList.add(destinationObject);
         }
         return destinationList;

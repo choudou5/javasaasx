@@ -3,7 +3,6 @@ package com.choudou5.javasaasx.dao.sys;
 import com.choudou5.javasaasx.dao.orm.mybatis.MyBatisDao;
 import com.choudou5.javasaasx.dao.sys.po.SysMenuPo;
 import com.choudou5.javasaasx.framework.dao.BaseDao;
-import com.choudou5.javasaasx.framework.dao.CrudDao;
 
 /**
  * @Name：菜单表 Dao
@@ -14,6 +13,6 @@ import com.choudou5.javasaasx.framework.dao.CrudDao;
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 @MyBatisDao
-public interface SysMenuDao extends CrudDao<SysMenuPo, String> {
+public interface SysMenuDao extends BaseDao<SysMenuPo, String> {
 
 }

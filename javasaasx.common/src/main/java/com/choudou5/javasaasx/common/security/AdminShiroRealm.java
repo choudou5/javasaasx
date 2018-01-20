@@ -1,6 +1,7 @@
 package com.choudou5.javasaasx.common.security;
 
 import com.choudou5.javasaasx.common.constants.SysConsts;
+import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.service.sys.bo.LoginUserBo;
 import com.choudou5.javasaasx.service.sys.SysUserService;
 import com.choudou5.javasaasx.service.sys.bo.SysUserBo;

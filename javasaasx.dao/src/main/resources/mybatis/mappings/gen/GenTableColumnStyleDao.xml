@@ -119,7 +119,7 @@
         ,`dic_type`
         ,`sort`
         ) VALUES
-        <foreach collection="entities" item="entity" index="index" separator="," >
+        <foreach collection="list" item="entity" index="index" separator="," >
         (
         #{entity.id}
         ,#{entity.table}

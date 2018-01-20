@@ -170,7 +170,7 @@ $().ready(function(){
         },1000);
 
     });
-
+/*
     $('#twitter').sharrre({
       share: {
         twitter: true
@@ -183,7 +183,7 @@ $().ready(function(){
         api.openPopup('twitter');
       },
       template: '<i class="fa fa-twitter"></i> &middot; 45',
-      url: 'http://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
+      url: 'test.html'
     });
 
     $('#facebook').sharrre({
@@ -197,8 +197,8 @@ $().ready(function(){
         api.openPopup('facebook');
       },
       template: '<i class="fa fa-facebook-square"></i> &middot; 50',
-      url: 'http://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
-    });
+      url: 'dashboard.html'
+    });*/
 
 
 });
@@ -1133,17 +1133,17 @@ demo = {
                     className: 'event-azure'
 				},
 				{
-					title: 'Click for Creative Tim',
+					title: 'Click for Test',
 					start: new Date(y, m, 21),
 					end: new Date(y, m, 22),
-					url: 'http://www.creative-tim.com/',
+					url: 'test.html',
 					className: 'event-orange'
 				},
 				{
 					title: 'Click for Google',
 					start: new Date(y, m, 21),
 					end: new Date(y, m, 22),
-					url: 'http://www.creative-tim.com/',
+					url: 'test.html',
 					className: 'event-orange'
 				}
 			]

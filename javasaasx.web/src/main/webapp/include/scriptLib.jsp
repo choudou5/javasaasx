@@ -43,5 +43,6 @@
 <script src="${ctxStatic }/js/material-dashboard.js"></script>
 <script src="${ctxStatic }/js/commons.js"></script>
 <script src="${ctxStatic }/layer/3.1.1/layer.js"></script>
+<script src="${ctxStatic }/store/1.3.20/store.min.js"></script>
 <script src="${ctxStatic }/js/dialogUtil.js"></script>
 <script src="${ctxStatic }/js/demo.js"></script>

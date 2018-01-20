@@ -3,6 +3,13 @@ package com.choudou5.javasaasx.common.constants;
 public interface SysConsts {
 	
 	String ENCODING = "UTF-8";
+
+	String PROJECT_NAME = "JavaSaasX";
+
+	String GEN_CODE_OUT = "/data/code_out";
+
+//	JavaSaasX
+
 	/** 系统超级管理员*/
 	String SYS_SUPER_ADMIN_ID = "999999999";
 	/** 系统管理员角色*/

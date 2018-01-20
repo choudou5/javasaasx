@@ -5,11 +5,10 @@ import cn.org.rapid_framework.generator.provider.db.table.TableFactory;
 import cn.org.rapid_framework.generator.provider.db.table.model.Column;
 import cn.org.rapid_framework.generator.provider.db.table.model.Table;
 import com.choudou5.javasaasx.common.constants.SysPropConsts;
-import com.choudou5.javasaasx.common.properties.PropertiesUtil;
+import com.choudou5.javasaasx.common.util.PropertiesUtil;
 import com.choudou5.javasaasx.dao.gen.GenTableColumnStyleDao;
 import com.choudou5.javasaasx.dao.gen.po.GenTableColumnStylePo;
 import com.choudou5.javasaasx.framework.bean.SelectBo;
-import com.choudou5.javasaasx.framework.bean.TableDataBo;
 import com.choudou5.javasaasx.framework.dao.BaseDao;
 import com.choudou5.javasaasx.framework.exception.BizException;
 import com.choudou5.javasaasx.service.gen.GenTableColumnStyleService;
@@ -17,11 +16,11 @@ import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleQueryParam;
 import com.choudou5.javasaasx.service.impl.BaseServiceImpl;
 import com.xiaoleilu.hutool.util.CollectionUtil;
+import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -55,7 +54,9 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
         collectionInfo.setDriverClass(PropertiesUtil.getString(SysPropConsts.JDBC_DRIVER));
     }
 
-    public void save(boolean isNew, List<GenTableColumnStyleBo> columnStyleBoList) throws BizException {
+    @Override
+    public void save(List<GenTableColumnStyleBo> columnStyleBoList) throws BizException {
+        boolean isNew = StrUtil.isBlank(columnStyleBoList.get(0).getId());
         if(isNew){
             batchInsert(columnStyleBoList);
         }else{
@@ -69,7 +70,7 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
         List<SelectBo> list = new ArrayList<>();
         if(CollectionUtil.isNotEmpty(tables)){
             for (Table table : tables) {
-                list.add(new SelectBo(table.getSqlName()+"  "+table.getRemarks(), table.getSqlName()));
+                list.add(new SelectBo(table.getRemarks(), table.getSqlName()));
             }
         }
         return list;
@@ -95,6 +96,7 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
                         columnStyleBo.setColumn(column.getSqlName());
                         columnStyleBo.setDesc(column.getRemarks());
                         columnStyleBo.setFieldName(column.getColumnNameFirstLower());
+                        columnStyleBo.setTable(table);
                         list.add(columnStyleBo);
                     }
                 }

@@ -1,6 +1,9 @@
 package com.choudou5.javasaasx.framework.bean;
 
+import com.choudou5.javasaasx.framework.util.SysSeqUtil;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Name：抽象 基础Po类
@@ -35,6 +38,8 @@ public class AbstractBasePo implements BasePo {
      * 插入之前执行方法，需要手动调用
      */
     public void preInsert(){
+        String id = SysSeqUtil.getNextId();
+        setId(id);
 //        Long id = SysSeqUtil.generateId(SystemNames.SYSTEM, SystemNames.SUB_SYSTEM_ADMIN, TableNames.MODULE, getSqlTableName());
 //        setId(id);
 //        User user = UserUtils.getUser();
@@ -46,6 +51,7 @@ public class AbstractBasePo implements BasePo {
 //        this.createDate = this.updateDate;
 //        setActonInfo(true, user.getId());
     }
+
 
     /**
      * 更新之前执行方法，需要手动调用

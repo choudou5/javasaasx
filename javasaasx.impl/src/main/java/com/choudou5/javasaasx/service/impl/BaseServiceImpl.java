@@ -7,6 +7,7 @@ import com.choudou5.javasaasx.framework.exception.BizException;
 import com.choudou5.javasaasx.framework.page.PageResult;
 import com.choudou5.javasaasx.framework.service.BaseService;
 import com.choudou5.javasaasx.framework.util.ReflectionUtil;
+import com.choudou5.javasaasx.framework.util.SysSeqUtil;
 import com.choudou5.javasaasx.service.impl.util.SysExceptionUtil;
 import com.xiaoleilu.hutool.util.CollectionUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
@@ -53,11 +54,19 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
             if (CollectionUtil.isEmpty(list))
                 return 0;
             List<P> poList = BeanMapper.mapList(list, getPoClazz());
+            preBatchInsert(poList);
             getDao().batchInsert(poList);
             return poList.size();
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.batchUpdate fail", e);
             throw new BizException("批量更新失败！", e);
+        }
+    }
+
+    protected void preBatchInsert(List<P> list){
+        for (P po : list) {
+            String id = SysSeqUtil.getNextId();
+            po.setId(id);
         }
     }
 

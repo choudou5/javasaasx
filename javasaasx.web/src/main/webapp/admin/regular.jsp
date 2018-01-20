@@ -200,6 +200,7 @@
                                     <div class="card-content">
                                         <div class="row">
                                             <label class="col-sm-2 label-on-left">Custom Checkboxes &amp; radios</label>
+
                                             <div class="col-sm-4 col-sm-offset-1 checkbox-radios">
                                                 <div class="checkbox">
                                                     <label>

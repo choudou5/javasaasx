@@ -1,5 +1,6 @@
 package com.choudou5.javasaasx.common.util;
 
+import com.choudou5.javasaasx.common.constants.SysConsts;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -21,11 +22,11 @@ public class SysUtil {
 		String siteNameKey = "system.site.name";
 		String siteName = null;
 		try {
-//			siteName = PropertiesUtil.getString(siteNameKey);
+			siteName = PropertiesUtil.getString(siteNameKey);
 		} catch (Exception e) {
 			logger.error(siteNameKey+" properties is undefined.", e);
 		}
-		return siteName==null?"Solr\u7ba1\u7406\u7cfb\u7edf":siteName;
+		return siteName==null? SysConsts.PROJECT_NAME:siteName;
 	}
 	
 	
@@ -37,7 +38,7 @@ public class SysUtil {
 		String modelKey = "sys.model";
 		String model = null;
 		try {
-//			model = PropertiesUtil.getString(modelKey);
+			model = PropertiesUtil.getString(modelKey);
 		} catch (Exception e) {
 			logger.error(modelKey+" properties is undefined.", e);
 		}
@@ -50,14 +51,13 @@ public class SysUtil {
 	 */
 	public static String getGenCodePath(){
 		String GEN_CODE_PATH = "gen.code.path";
-		String GEN_CODE_DEF_PATH = "/data/solrhome/gencode";
 		String codePath = null;
 		try {
-//			codePath = PropertiesUtil.getString(GEN_CODE_PATH);
+			codePath = PropertiesUtil.getString(GEN_CODE_PATH);
 		} catch (Exception e) {
 			logger.error(GEN_CODE_PATH+" properties is undefined.", e);
 		}
-		return codePath==null?GEN_CODE_DEF_PATH:codePath;
+		return codePath==null?SysConsts.GEN_CODE_OUT:codePath;
 	}
 	
 	public static void setLocalPort(HttpServletRequest request){

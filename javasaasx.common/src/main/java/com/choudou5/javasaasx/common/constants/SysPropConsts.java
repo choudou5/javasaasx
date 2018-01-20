@@ -1,7 +1,7 @@
 package com.choudou5.javasaasx.common.constants;
 
 
-import com.choudou5.javasaasx.common.properties.PropertiesUtil;
+import com.choudou5.javasaasx.common.util.PropertiesUtil;
 
 /**
  * @Name：系统属性配置 常量

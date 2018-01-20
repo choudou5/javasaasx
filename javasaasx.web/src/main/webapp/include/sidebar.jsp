@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!--sidebar-menu-->
 <div class="sidebar" data-active-color="grey" data-background-color="black" data-image="${ossImg }sidebar-4.jpg">
@@ -9,7 +8,7 @@
     Tip 3: you can change the color of the sidebar with data-background-color="white | black"
 -->
     <div class="logo">
-        <a href="#" class="simple-text">java saas系统</a>
+        <a href="#" class="simple-text">${siteName}</a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
@@ -160,7 +159,7 @@
                     <p>文档</p>
                 </a>
             </li>
-            <li>
+            <li class="hide">
                 <a data-toggle="collapse" href="#pagesExamples">
                     <i class="material-icons">image</i>
                     <p>页面
@@ -268,7 +267,7 @@
                     </ul>
                 </div>
             </li>
-            <li>
+            <li class="hide">
                 <a data-toggle="collapse" href="#mapsExamples">
                     <i class="material-icons">place</i>
                     <p>地图
@@ -289,19 +288,19 @@
                     </ul>
                 </div>
             </li>
-            <li>
+            <li class="hide">
                 <a href="${ctxStaticPage }widgets.jsp">
                     <i class="material-icons">widgets</i>
                     <p>小工具</p>
                 </a>
             </li>
-            <li>
+            <li class="hide">
                 <a href="${ctxStaticPage }charts.jsp">
                     <i class="material-icons">timeline</i>
                     <p>图表</p>
                 </a>
             </li>
-            <li>
+            <li class="hide">
                 <a href="${ctxStaticPage }calendar.jsp">
                     <i class="material-icons">date_range</i>
                     <p>日期</p>

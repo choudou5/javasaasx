@@ -10,7 +10,33 @@ package com.choudou5.javasaasx.framework.constant;
  */
 public interface CommonConstant {
 
-    String DATA_STATUS_NO = "0";
-    String DATA_STATUS_OK = "1";
+    enum DataStatusEnum {
+        NO("0", "禁用"),
+        OK("1", "正常"),
+        ;
+
+        DataStatusEnum(String code, String desc) {
+            this.code = code;
+            this.desc = desc;
+        }
+
+        private String code;
+        private String desc;
+
+        public static String getCodeByCheckBoxOrRadio(String code){
+            if("on".equals(code))
+                return OK.getCode();
+            if("off".equals(code))
+                return NO.getCode();
+            return code;
+        }
+
+        public String getCode() {
+            return code;
+        }
+        public String getDesc() {
+            return desc;
+        }
+    }
 
 }

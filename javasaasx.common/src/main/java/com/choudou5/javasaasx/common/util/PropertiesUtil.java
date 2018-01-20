@@ -1,4 +1,4 @@
-package com.choudou5.javasaasx.common.properties;
+package com.choudou5.javasaasx.common.util;
 
 import java.util.ResourceBundle;
 

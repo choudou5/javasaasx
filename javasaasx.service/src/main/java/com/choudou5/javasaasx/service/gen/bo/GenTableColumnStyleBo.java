@@ -27,13 +27,13 @@ public class GenTableColumnStyleBo implements BaseBo {
     /**  字段名 */
 	private String fieldName;
     /**  是否为插入字段 */
-	private String isInsert = CommonConstant.DATA_STATUS_NO;
+	private String isInsert = CommonConstant.DataStatusEnum.NO.getCode();
     /**  是否编辑字段: 0=否，1=是 */
-	private String isEdit = CommonConstant.DATA_STATUS_NO;
+	private String isEdit = CommonConstant.DataStatusEnum.NO.getCode();
     /**  是否列表字段: 0=否，1=是 */
-	private String isList = CommonConstant.DATA_STATUS_OK;
+	private String isList = CommonConstant.DataStatusEnum.OK.getCode();
     /**  是否查询字段: 0=否，1=是 */
-	private String isQuery = CommonConstant.DATA_STATUS_NO;
+	private String isQuery = CommonConstant.DataStatusEnum.NO.getCode();
     /**  查询方式：（eq，neq，gt，lt，between，like） */
 	private String queryType = "eq";
     /**  字段生成方案: （input、textarea、select、checkbox、radio、dialog） */
@@ -57,18 +57,18 @@ public class GenTableColumnStyleBo implements BaseBo {
 		this.id = id;
 	}
 
+	@Length(min=0, max=64, message="表长度必须介于 0 和 64 之间")
 	public String getTable() {
 		return this.table;
 	}
-	@Length(min=0, max=64, message="表长度必须介于 0 和 64 之间")
 	public void setTable(String table) {
 		this.table = table;
 	}
 
+	@Length(min=0, max=64, message="字段长度必须介于 0 和 64 之间")
 	public String getColumn() {
 		return this.column;
 	}
-	@Length(min=0, max=64, message="字段长度必须介于 0 和 64 之间")
 	public void setColumn(String column) {
 		this.column = column;
 	}
@@ -91,28 +91,28 @@ public class GenTableColumnStyleBo implements BaseBo {
 		return this.isInsert;
 	}
 	public void setIsInsert(String isInsert) {
-		this.isInsert = isInsert;
+		this.isInsert = CommonConstant.DataStatusEnum.getCodeByCheckBoxOrRadio(isInsert);
 	}
 
 	public String getIsEdit() {
 		return this.isEdit;
 	}
 	public void setIsEdit(String isEdit) {
-		this.isEdit = isEdit;
+		this.isEdit = CommonConstant.DataStatusEnum.getCodeByCheckBoxOrRadio(isEdit);
 	}
 
 	public String getIsList() {
 		return this.isList;
 	}
 	public void setIsList(String isList) {
-		this.isList = isList;
+		this.isList = CommonConstant.DataStatusEnum.getCodeByCheckBoxOrRadio(isList);
 	}
 
 	public String getIsQuery() {
 		return this.isQuery;
 	}
 	public void setIsQuery(String isQuery) {
-		this.isQuery = isQuery;
+		this.isQuery = CommonConstant.DataStatusEnum.getCodeByCheckBoxOrRadio(isQuery);
 	}
 
 	public String getQueryType() {

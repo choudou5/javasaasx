@@ -20,7 +20,7 @@ import java.util.List;
  */
 public interface GenTableColumnStyleService extends BaseService<GenTableColumnStyleBo> {
 
-    void save(boolean isNew, List<GenTableColumnStyleBo> columnStyleBoList) throws BizException;
+    void save(List<GenTableColumnStyleBo> columnStyleBoList) throws BizException;
 
     List<SelectBo> getTableList();
 

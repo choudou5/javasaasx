@@ -35,14 +35,14 @@ public class ${classBOName} implements BaseBo {
 
 <#macro generateJavaColumns>
 	<#list table.columns as column>
-	public ${column.javaType} get${column.columnName}() {
-		return this.${column.columnNameFirstLower};
-	}
 	<#if isAddValidAnnotationToBo=='true'>
 	<#list column.simpleAnnotationList as annotation>
 	@${annotation}
 	</#list>
 	</#if>
+	public ${column.javaType} get${column.columnName}() {
+		return this.${column.columnNameFirstLower};
+	}
 	public void set${column.columnName}(${column.javaType} ${column.columnNameFirstLower}) {
 		this.${column.columnNameFirstLower} = ${column.columnNameFirstLower};
 	}

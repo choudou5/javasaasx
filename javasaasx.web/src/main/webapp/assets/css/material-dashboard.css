@@ -5726,12 +5726,13 @@ h2.title {
   transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
 .main-panel > .content {
-  margin-top: 70px;
-  padding: 30px 15px;
+  margin-top: 50px;
+  padding: 15px;
   min-height: calc(100vh - 123px);
 }
 .main-panel > .footer {
   border-top: 1px solid #e7e7e7;
+  margin-top: -15px;
 }
 .main-panel > .navbar {
   margin-bottom: 0;
@@ -7351,7 +7352,8 @@ output {
 .form-group .form-control[readonly],
 .form-group .form-control[disabled], fieldset[disabled]
 .form-group .form-control {
-  background-color: transparent;
+  background-color: #DDDDDD;
+  cursor: not-allowed;
 }
 .form-control[disabled], fieldset[disabled] .form-control,
 .form-group .form-control[disabled], fieldset[disabled]
@@ -10050,6 +10052,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 footer {
   padding: 15px 0;
+  height: 25px;
 }
 footer ul {
   margin-bottom: 0;
@@ -10074,7 +10077,7 @@ footer ul li a:hover {
   text-decoration: none;
 }
 footer .copyright {
-  padding: 15px;
+  padding: 15px 18px;
   margin: 0;
 }
 footer .copyright .material-icons {

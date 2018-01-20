@@ -117,7 +117,7 @@ comm = {
 		return selectItem;
 	},
 	toText: function(obj){
-		if(isEmpty(obj))
+		if(this.isEmpty(obj))
 			return "";
 		return obj;
 	},
@@ -145,7 +145,17 @@ comm = {
 	 */
 	scrollDown: function(scrollNum){
 		$(window).scrollTop(scrollNum);
-	}
+	},
+	getMainPanelHeight: function(){
+		var outerHeight = top.window.outerHeight;
+		var footerHeight = 250;
+		return (outerHeight-footerHeight-this.getMainContentOffsetTop())+"px";
+	},
+	getMainContentOffsetTop: function(id){
+		var mTop = $('#main-content')[0].offsetTop;
+		var sTop = $(window).scrollTop();
+		return mTop - sTop;
+	},
 
 }
 
@@ -846,7 +856,7 @@ constants = {
 		buildGenCodeQueryTypeHtm: function(index, selectValue){
 			selectValue = comm.isEmpty(selectValue)?"":selectValue;
 			var htm = new StringBuffer();
-			htm.append('<select id="queryType" name="queryType['+index+']" class="form-control" title="查询方式">');
+			htm.append('<select  name="columnStyleList['+index+'].queryType" class="form-control" title="查询方式">');
 			htm.append('<option></option>');
 			// (selectValue=="eq"?"selected=\"selected\"":"")
 			htm.append('<option value="eq" '+(selectValue=="eq"?"selected=\"selected\"":"")+'>等于</option>');
@@ -861,7 +871,7 @@ constants = {
 		buildGenCodeShowTypeHtm: function(index, selectValue){
 			selectValue = comm.isEmpty(selectValue)?"":selectValue;
 			var htm = new StringBuffer();
-			htm.append('<select id="showType" name="showType['+index+']" class="form-control" title="生成类型">');
+			htm.append('<select name="columnStyleList['+index+'].showType" class="form-control" title="生成类型">');
 			htm.append('<option></option>');
 			// (selectValue=="eq"?"selected=\"selected\"":"")
 			htm.append('<option value="input" '+(selectValue=="input"?"selected=\"selected\"":"")+'>input</option>');
@@ -877,8 +887,16 @@ constants = {
 }
 
 tbl = {
-
-
+	/**
+	 * 绑定 tr菜单选中
+	 * @param tableId
+	 */
+	bingdTrMenuActive: function(tableId){
+		$(tableId).find("tr").on("click", function(){
+			$(this).siblings().removeClass("active");//移除兄弟标记样式
+			$(this).addClass("active");
+		});
+	},
 	/**
 	 * 向上 移动行
 	 * @param thisEle 当前元素
@@ -926,4 +944,17 @@ tbl = {
 
 	}
 
+}
+
+
+cache = {
+	get: function(key){
+		return store.get(key);
+	},
+	set: function(key, value){
+		return store.set(key, val);
+	},
+	exist: function(key){
+		return store.get(key)!=null;
+	},
 }

@@ -89,20 +89,20 @@ public class SysMenuBo implements BaseBo {
 		this.depth = depth;
 	}
 
-	public String getName() {
-		return this.name;
-	}
 	@Length(min=0, max=100, message="名称长度必须介于 0 和 100 之间")
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getType() {
-		return this.type;
+	public String getName() {
+		return this.name;
 	}
+
 	@Length(min=0, max=18, message="类型：menu=菜单，button=按钮长度必须介于 0 和 18 之间")
 	public void setType(String type) {
 		this.type = type;
+	}
+	public String getType() {
+		return this.type;
 	}
 
 	public Integer getSort() {
@@ -168,12 +168,12 @@ public class SysMenuBo implements BaseBo {
 		this.remarks = remarks;
 	}
 
-	public String getIsMobileShow() {
-		return this.isMobileShow;
-	}
 	@Length(min=0, max=1, message="是否在手机端显示长度必须介于 0 和 1 之间")
 	public void setIsMobileShow(String isMobileShow) {
 		this.isMobileShow = isMobileShow;
+	}
+	public String getIsMobileShow() {
+		return this.isMobileShow;
 	}
 
 	public String getStatus() {

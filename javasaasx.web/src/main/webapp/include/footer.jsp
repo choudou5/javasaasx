@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
-<footer class="footer" style="display: none;">
+<footer class="footer">
     <div class="container-fluid">
-        <nav class="pull-left">
+       <%-- <nav class="pull-left">
             <ul>
                 <li>
                     <a href="#">Home</a>
@@ -18,13 +18,13 @@
                     <a href="#">Blog</a>
                 </li>
             </ul>
-        </nav>
-        <p class="copyright pull-right">
-            &copy;
+        </nav>--%>
+        <p class="copyright text-center">
+            All rights reserved &copy;
             <script>
                 document.write(new Date().getFullYear())
             </script>
-            <a href="#">Creative Tim</a>, made with love for a better web
+            <a href="#">choudou5</a>
         </p>
     </div>
 </footer>

@@ -47,8 +47,8 @@ public class AbstractBasePo implements BasePo {
 //            this.updateBy = user;
 //            this.createBy = user;
 //        }
-//        this.updateDate = new Date();
-//        this.createDate = this.updateDate;
+        this.createBy = "1";
+        this.createTime = new Date();
 //        setActonInfo(true, user.getId());
     }
 

@@ -3,6 +3,7 @@ package com.choudou5.javasaasx.framework.bean;
 import com.choudou5.javasaasx.framework.page.PageBean;
 import com.choudou5.javasaasx.framework.util.ToolkitUtil;
 
+import java.beans.Transient;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class QueryParam implements Serializable {
     private Object paramBean;
     private PageBean pageBean;
     private OrderBean orderBean;
+    private static String dbName;
     private Map<String, Object> extendParams = new HashMap();
 
 
@@ -44,6 +46,15 @@ public class QueryParam implements Serializable {
 
     public void setOrderBean(OrderBean orderBean) {
         this.orderBean = orderBean;
+    }
+
+    @Transient
+    public String getDbName() {
+        return QueryParam.dbName;
+    }
+
+    public static void setDbName(String dbName) {
+        QueryParam.dbName = dbName;
     }
 
     public Map<String, Object> getExtendParams() {
@@ -73,6 +84,13 @@ public class QueryParam implements Serializable {
         if(pageBean == null) {
             pageBean = new PageBean(pageNo, pageSize);
             this.setPageBean(pageBean);
+        }
+    }
+
+    public void setDefaultPage() {
+        PageBean pageBean = this.getPageBean();
+        if(pageBean == null) {
+            this.setPageBean(new PageBean(1, PageBean.DEF_PAGE_SIZE));
         }
     }
 

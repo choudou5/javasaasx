@@ -27,13 +27,13 @@ public class GenTableColumnStyleBo implements BaseBo {
     /**  字段名 */
 	private String fieldName;
     /**  是否为插入字段 */
-	private String isInsert = CommonConstant.DataStatusEnum.NO.getCode();
+	private String isInsert = CommonConstant.DataStatusEnum.N.getCode();
     /**  是否编辑字段: 0=否，1=是 */
-	private String isEdit = CommonConstant.DataStatusEnum.NO.getCode();
+	private String isEdit = CommonConstant.DataStatusEnum.N.getCode();
     /**  是否列表字段: 0=否，1=是 */
-	private String isList = CommonConstant.DataStatusEnum.OK.getCode();
+	private String isList = CommonConstant.DataStatusEnum.Y.getCode();
     /**  是否查询字段: 0=否，1=是 */
-	private String isQuery = CommonConstant.DataStatusEnum.NO.getCode();
+	private String isQuery = CommonConstant.DataStatusEnum.N.getCode();
     /**  查询方式：（eq，neq，gt，lt，between，like） */
 	private String queryType = "eq";
     /**  字段生成方案: （input、textarea、select、checkbox、radio、dialog） */

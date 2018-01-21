@@ -37,7 +37,7 @@
                                                     <div class="form-group scroll-y h-max-580 h-min-450">
                                                         <table id="leftDatatables" class="table table-bordered table-hover"  data-filter="#filter" data-page-size="100" cellspacing="0" width="100%" style="width:100%">
                                                             <tbody>
-                                                            <c:forEach items="${tableList}" var="table">
+                                                            <c:forEach items="${leftDataList}" var="table">
                                                                 <tr>
                                                                     <td onclick="ajaxRightDataTable('${table.value}')" title="${table.text}"><a href="javascript:;">${table.value}</a></td>
                                                                 </tr>
@@ -75,7 +75,7 @@
                                                     </table>
                                                 </div>
 
-                                                <div class="row bg-grey">
+                                                <div class="row">
                                                     <label class="col-sm-4 label-on-left"></label>
                                                     <div class="col-sm-8 pull-right">
                                                         <div class="col-md-6">
@@ -125,14 +125,13 @@
 </body>
 <%@include file="/include/scriptLib.jsp" %>
 <%@include file="/include/validScriptLib.jsp" %>
-<script src="${ctxStatic }/jstree/3.3.5/dist/jstree.min.js"></script>
 <script src="${ctxStatic }/jquery-plugs/footable.all.min.js"></script>
 <script src="${ctxStatic }/js/biz/gen/GenTableColumnStyle.js"></script>
 <script type="text/javascript">
     $(function () {
         $('.card .material-datatables label').addClass('form-group');
         $("#leftDatatables").footable();
-        tbl.bingdTrMenuActive("#leftDatatables");
+        TableUtil.bingdTrMenuActive("#leftDatatables");
     });
 </script>
 </html>

@@ -89,32 +89,32 @@ function ajaxRightDataTable(table){
             },
             {
                 "render": function(name, type, row, meta) {
-                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isInsert" '+constants.bindCheckBoxStatus(row.isInsert)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isInsert" '+BindUtil.bindCheckBoxStatus(row.isInsert)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                 },"targets": 3
             },
             {
                 "render": function(name, type, row, meta) {
-                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isEdit" '+constants.bindCheckBoxStatus(row.isEdit)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isEdit" '+BindUtil.bindCheckBoxStatus(row.isEdit)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                 },"targets": 4
             },
             {
                 "render": function(name, type, row, meta) {
-                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isList" '+constants.bindCheckBoxStatus(row.isList)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isList" '+BindUtil.bindCheckBoxStatus(row.isList)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                 },"targets": 5
             },
             {
                 "render": function(name, type, row, meta) {
-                    return constants.buildGenCodeShowTypeHtm(meta.row, row.showType);
+                    return buildGenCodeShowTypeHtm(meta.row, row.showType);
                 },"targets": 6
             },
             {
                 "render": function(name, type, row, meta) {
-                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isQuery" '+constants.bindCheckBoxStatus(row.isQuery)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isQuery" '+BindUtil.bindCheckBoxStatus(row.isQuery)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                 },"targets": 7
             },
             {
                 "render": function(name, type, row, meta) {
-                    return constants.buildGenCodeQueryTypeHtm(meta.row, row.queryType);
+                    return buildGenCodeQueryTypeHtm(meta.row, row.queryType);
                 },"targets":  8
             },
             {
@@ -124,4 +124,37 @@ function ajaxRightDataTable(table){
             }
         ]
     });
+}
+
+
+function buildGenCodeQueryTypeHtm(index, selectValue){
+    selectValue = comm.isEmpty(selectValue)?"":selectValue;
+    var htm = new StringBuffer();
+    htm.append('<select  name="columnStyleList['+index+'].queryType" class="form-control" title="查询方式">');
+    htm.append('<option></option>');
+    // (selectValue=="eq"?"selected=\"selected\"":"")
+    htm.append('<option value="eq" '+(selectValue=="eq"?"selected=\"selected\"":"")+'>等于</option>');
+    htm.append('<option value="neq" '+(selectValue=="neq"?"selected=\"selected\"":"")+'>不等于</option>');
+    htm.append('<option value="gt" '+(selectValue=="gt"?"selected=\"selected\"":"")+'>大于</option>');
+    htm.append('<option value="lt" '+(selectValue=="lt"?"selected=\"selected\"":"")+'>小于</option>');
+    htm.append('<option value="between" '+(selectValue=="between"?"selected=\"selected\"":"")+'>范围</option>');
+    htm.append('<option value="like" '+(selectValue=="like"?"selected=\"selected\"":"")+'>模糊</option>');
+    htm.append('</select>');
+    return htm.toString();
+}
+
+function buildGenCodeShowTypeHtm(index, selectValue){
+    selectValue = comm.isEmpty(selectValue)?"":selectValue;
+    var htm = new StringBuffer();
+    htm.append('<select name="columnStyleList['+index+'].showType" class="form-control" title="生成类型">');
+    htm.append('<option></option>');
+    // (selectValue=="eq"?"selected=\"selected\"":"")
+    htm.append('<option value="input" '+(selectValue=="input"?"selected=\"selected\"":"")+'>input</option>');
+    htm.append('<option value="textarea" '+(selectValue=="textarea"?"selected=\"selected\"":"")+'>textarea</option>');
+    htm.append('<option value="select" '+(selectValue=="select"?"selected=\"selected\"":"")+'>select</option>');
+    htm.append('<option value="checkbox" '+(selectValue=="checkbox"?"selected=\"selected\"":"")+'>checkbox</option>');
+    htm.append('<option value="radio" '+(selectValue=="radio"?"selected=\"selected\"":"")+'>radio</option>');
+    htm.append('<option value="dialog" '+(selectValue=="dialog"?"selected=\"selected\"":"")+'>dialog</option>');
+    htm.append('</select>');
+    return htm.toString();
 }

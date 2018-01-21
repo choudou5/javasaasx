@@ -90,6 +90,7 @@ function dialogCloseLoading(){
 
 /**
  * 弹出 新页面
+ * @param iframeId
  * @param title
  * @param url
  * @param width
@@ -98,17 +99,20 @@ function dialogCloseLoading(){
  * @param cancelCall
  * @param initCall
  */
-function dialogOpenPage(title, url, width, height, okCall, cancelCall, initCall){
+function dialogOpenPage(iframeId, title, url, width, height, okCall, cancelCall, initCall){
 	//layer.closeAll();
-	width = width==undefined?'450px':width+'px';
-	height = height==undefined?'350px':height+'px';
-	
+	width = width==undefined?450:width;
+	height = height==undefined?350:height;
+	width = comm.getResponsiveWidth(width)+'px';
+	height = comm.getResponsiveHeight(height)+'px';
+
 	//单窗口模式，层叠置顶
 	layer.open({
+	  id: iframeId,
 	  type: 2 //此处以iframe举例
 	  ,title: title
 	  ,area: [width, height]
-	  ,closeBtn: 0
+	  ,closeBtn: 1
 	  ,shadeClose: true
 	  ,maxmin: true
 	  ,content: url
@@ -131,6 +135,43 @@ function dialogOpenPage(title, url, width, height, okCall, cancelCall, initCall)
 	  }
 	});
 }
+
+/**
+ * 获得 IFrame 索引
+ * @param index
+ */
+function dialogGetIFrameIndex(){
+	return parent.layer.getFrameIndex(window.name); //获取窗口索引
+}
+
+/**
+ * 关闭IFrame
+ * @param index
+ */
+function dialogCloseIFrame(){
+	var index = dialogGetIFrameIndex();
+	return parent.layer.close(index);
+}
+
+/**
+ * 关闭
+ * @param index
+ */
+function dialogClose(){
+	var index = dialogGetIFrameIndex();
+	return layer.close(index);
+}
+
+/**
+ * 获得 IFrame对象
+ * @param iframeId
+ * @returns iframe
+ */
+function dialogGetIFrame(iframeId){
+	var iframe = $("#"+iframeId+" iframe")[0];
+	return iframe;
+}
+
 
 /**
  * @param type success/error/warning/md5/bad/nice

@@ -7,23 +7,21 @@ package ${packageNamePrefix}.web.controller.${moduleName};
 
 import ${packageNamePrefix}.framework.page.PageResult;
 import ${packageNamePrefix}.framework.util.AssertUtil;
-import ${packageNamePrefix}.framework.util.ToolkitUtil;
 import ${packageNamePrefix}.service.${moduleName}.${className}Service;
 import ${packageNamePrefix}.service.${moduleName}.bo.${classBOName};
 import ${packageNamePrefix}.service.${moduleName}.bo.${className}QueryParam;
 import ${packageNamePrefix}.web.controller.BaseController;
+import com.xiaoleilu.hutool.util.StrUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * @Name：${table.remarks} Controller
@@ -41,6 +39,20 @@ public class ${className}Controller extends BaseController {
     @Autowired
     private ${className}Service ${classService};
 
+
+    /**
+     * 对象绑定（表单提交时）
+     * @param id
+     * @return
+     */
+    @ModelAttribute
+    public ${classBOName} get(@RequestParam(required=false) String id) {
+        if (StrUtil.isNotBlank(id)){
+            return ${classService}.get(id);
+        }else{
+            return new ${classBOName}();
+        }
+    }
 
     /**
      * 列表
@@ -80,8 +92,8 @@ public class ${className}Controller extends BaseController {
      * @return
      */
     @RequiresPermissions("${moduleName}:${classNameLower}:edit")
-    @RequestMapping(value = "edit", method = RequestMethod.GET)
-    public String edit(String id, HttpServletRequest req, Model model) {
+    @RequestMapping(value = "form", method = RequestMethod.GET)
+    public String form(String id, HttpServletRequest req, Model model) {
         try {
             ${classBOName} bo = ${classService}.get(id);
             AssertUtil.isNotNull(bo, "数据不存在！");
@@ -89,7 +101,7 @@ public class ${className}Controller extends BaseController {
         } catch (Exception e) {
             addMessage(model, e);
         }
-        return "/${moduleName}/${classNameLower}Edit";
+        return "/${moduleName}/${classNameLower}Form";
     }
 
     /**

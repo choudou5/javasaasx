@@ -37,7 +37,7 @@
         <!-- 设置但JDBC类型为空时,某些驱动程序 要指定值,default:OTHER，插入空值时不需要指定类型 -->
         <setting name="jdbcTypeForNull" value="NULL"/>
 
-        <setting name="logPrefix" value="dao."/>
+        <setting name="logPrefix" value="mybatis_log."/>
 
     </settings>
 

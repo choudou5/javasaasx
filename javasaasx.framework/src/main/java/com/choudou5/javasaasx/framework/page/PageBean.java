@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class PageBean implements Serializable {
 
     public static final Integer MAX_PAGE_SIZE = 100;	// 每页最大分页数大小限制
+    public static final Integer DEF_PAGE_SIZE = 10;
 
     private int pageNo = 1;
     private int pageSize = 10;

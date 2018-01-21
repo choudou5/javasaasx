@@ -20,11 +20,9 @@
             </ul>
         </nav>--%>
         <p class="copyright text-center">
-            All rights reserved &copy;
-            <script>
-                document.write(new Date().getFullYear())
-            </script>
+            Copyright &copy; <script>document.write(new Date().getFullYear())</script>
             <a href="#">choudou5</a>
+            All rights reserved
         </p>
     </div>
 </footer>

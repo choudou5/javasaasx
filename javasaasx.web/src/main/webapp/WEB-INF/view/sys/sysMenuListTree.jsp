@@ -22,16 +22,16 @@
                                 <div class="card-content text-left">
                                     <%--<h6 class="category text-gray">CEO / Co-Founder</h6>
                                     <h4 class="card-title">Alec Thompson</h4>--%>
-                                    <input type="text" id="html_q" value="" class="form-control input" placeholder="搜索菜单">
-                                    <div id="html" class="demo">
-                                        <ul>
-                                            <li data-jstree='{ "opened" : true }'>Root node
+                                    <input type="text" id="leftTree_q" value="" class="form-control input" placeholder="搜索菜单">
+                                    <div id="leftTree" class="demo">
+                                        <%--<ul>
+                                            <li data-jstree='{"opened":true }'>Root node
                                                 <ul>
                                                     <li data-jstree='{ "selected" : true }'>Child node 1</li>
                                                     <li>Child node 2</li>
                                                 </ul>
                                             </li>
-                                        </ul>
+                                        </ul>--%>
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
 
                         <div class="col-md-9">
                             <div class="card">
-                                <div class="card-header card-header-icon" data-background-color="purple">
+                                <div class="card-header card-header-icon" data-background-color="green">
                                     <i class="material-icons">assignment</i>
                                 </div>
                                 <div class="card-content">
@@ -72,51 +72,14 @@
                                             <tbody>
                                             <c:forEach begin="10" end="25" var="varDex">
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>System Architect</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>61</td>
-                                                    <td>2011/04/${varDex}</td>
-                                                    <td class="text-right">
-                                                        <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-                                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-                                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Garrett Winters</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>63</td>
-                                                    <td>2011/07/25</td>
-                                                    <td class="text-right">
-                                                        <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-                                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-                                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Cedric Kelly</td>
-                                                    <td>Senior Javascript Developer</td>
-                                                    <td>Edinburgh</td>
-                                                    <td>22</td>
-                                                    <td>2012/03/29</td>
-                                                    <td class="text-right">
-                                                        <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-                                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-                                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
                                                     <td>Airi Satou</td>
                                                     <td>Accountant</td>
                                                     <td>Tokyo</td>
                                                     <td>33</td>
                                                     <td>2008/11/28</td>
                                                     <td class="text-right">
-                                                        <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-                                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-                                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+                                                        <a href="#" class="btn btn-success btn-sm edit"><i class="material-icons">edit</i></a>
+                                                        <a href="#" class="btn btn-danger btn-sm remove"><i class="material-icons">close</i></a>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -152,36 +115,36 @@
 <%@include file="/include/scriptLib.jsp" %>
 <script src="${ctxStatic }/jstree/3.3.5/dist/jstree.min.js"></script>
 <script type="text/javascript">
-    // html demo
     $(function () {
-        $("#html").jstree({
+        $("#leftTree").jstree({
             "core" : {
-                // so that create works
                 "check_callback" : true,
                 "multiple": false,
+                "data" : {
+                    url : ctx+'/sys/sysMenu/ajaxParentTree',
+                    dataType : "json"
+                }
             },
             "contextmenu" : {
                 "items" : {
                     "create" : {
                         "separator_before"	: false,
                         "separator_after"	: false,
-                        "_disabled"			: false, //(this.check("create_node", data.reference, {}, "last")),
+                        "_disabled"			: false,
                         "label"				: "创建子菜单",
                         "action"			: function (data) {
-                            var inst = $.jstree.reference(data.reference),
-                            obj = inst.get_node(data.reference);
-                            dialogOpenPage("test", "//www.baidu.com", 400, 500, function(){
-                                log(111111);
-                            })
-                            //弹窗 创建菜单，成功后 创建节点
-
-//                            inst.create_node(obj, {}, "last", function (new_node) {
-//                                try {
-//                                    inst.edit(new_node);
-//                                } catch (ex) {
-//                                    setTimeout(function () { inst.edit(new_node); },0);
-//                                }
-//                            });
+                            var inst = $.jstree.reference(data.reference);
+                            var obj = inst.get_node(data.reference);
+                            var pid = obj.id;
+                            var iframeId = "sysMenuFormIFrame";
+                            dialogOpenPage(iframeId, "新增菜单", "/sys/sysMenu/form?pid="+pid, 500, 550, function(){
+                                var iframe = dialogGetIFrame(iframeId);
+                                iframe.contentWindow.ajaxSubmitIframeForm(function(){
+                                    log("start refresh tree");
+                                    //创建菜单，成功后 刷新节点
+                                    inst.refresh();
+                                });
+                            });
                         }
                     },
                 }
@@ -197,11 +160,11 @@
         });
 
         var to = false;
-        $('#html_q').keyup(function () {
+        $('#leftTree_q').keyup(function () {
             if(to) { clearTimeout(to); }
             to = setTimeout(function () {
-                var v = $('#html_q').val();
-                $('#html').jstree(true).search(v);
+                var v = $('#leftTree_q').val();
+                $('#leftTree').jstree(true).search(v);
             }, 250);
         });
 

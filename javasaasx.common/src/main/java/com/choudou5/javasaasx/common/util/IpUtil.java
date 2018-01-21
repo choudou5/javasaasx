@@ -47,7 +47,8 @@ public class IpUtil {
      */ 
      public static String getLocalHostIP() { 
           String ip; 
-          try { 
+          try {
+
                InetAddress addr = InetAddress.getLocalHost();
                ip = addr.getHostAddress();  
           } catch(Exception ex) {

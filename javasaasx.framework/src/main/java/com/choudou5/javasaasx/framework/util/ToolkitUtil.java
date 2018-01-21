@@ -1,5 +1,8 @@
 package com.choudou5.javasaasx.framework.util;
 
+import com.xiaoleilu.hutool.util.EscapeUtil;
+import com.xiaoleilu.hutool.util.StrUtil;
+
 import java.util.Collection;
 
 /**

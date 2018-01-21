@@ -146,7 +146,7 @@ comm = {
 	scrollDown: function(scrollNum){
 		$(window).scrollTop(scrollNum);
 	},
-	getMainPanelHeight: function(){
+	/*getMainPanelHeight: function(){
 		var outerHeight = top.window.outerHeight;
 		var footerHeight = 250;
 		return (outerHeight-footerHeight-this.getMainContentOffsetTop())+"px";
@@ -155,6 +155,36 @@ comm = {
 		var mTop = $('#main-content')[0].offsetTop;
 		var sTop = $(window).scrollTop();
 		return mTop - sTop;
+	},*/
+	/**
+	 * 获取 响应式 宽度
+	 * @param def
+	 * @returns {number}
+	 */
+	getResponsiveWidth: function(def){
+		var inWidth = top.window.innerWidth;
+		var outWidth = top.window.outerWidth;
+		//移动端
+		if(outWidth < 768){
+			def = outWidth-40;
+		}
+		//log("inWidth:"+inWidth+", outWidth:"+outWidth);
+		return def;
+	},
+	/**
+	 * 获取 响应式 高度
+	 * @param def
+	 * @returns {number}
+	 */
+	getResponsiveHeight: function(def){
+		var inHeight = top.window.innerHeight;
+		var outHeight = top.window.outerHeight;
+		//移动端
+		if(outHeight < 1024){
+			def = outHeight-150;
+		}
+		//log("inHeight:"+inHeight+", outHeight:"+outHeight);
+		return def;
 	},
 
 }
@@ -304,9 +334,11 @@ String.prototype.endWith=function(str){
 	var reg=new RegExp(str+"$");
 	return reg.test(this);
 }
+/*
 String.prototype.replaceAll = function(s1, s2){
 	return this.replace(new RegExp(s1,"gm"), s2);
 }
+*/
 
 
 /*
@@ -848,45 +880,15 @@ http = {
 	}
 }
 
-constants = {
+BindUtil = {
 		bindCheckBoxStatus: function(status){
 			status = comm.isEmpty(status)?"0":status;
 			return status=="1"?"checked":"";
 		},
-		buildGenCodeQueryTypeHtm: function(index, selectValue){
-			selectValue = comm.isEmpty(selectValue)?"":selectValue;
-			var htm = new StringBuffer();
-			htm.append('<select  name="columnStyleList['+index+'].queryType" class="form-control" title="查询方式">');
-			htm.append('<option></option>');
-			// (selectValue=="eq"?"selected=\"selected\"":"")
-			htm.append('<option value="eq" '+(selectValue=="eq"?"selected=\"selected\"":"")+'>等于</option>');
-			htm.append('<option value="neq" '+(selectValue=="neq"?"selected=\"selected\"":"")+'>不等于</option>');
-			htm.append('<option value="gt" '+(selectValue=="gt"?"selected=\"selected\"":"")+'>大于</option>');
-			htm.append('<option value="lt" '+(selectValue=="lt"?"selected=\"selected\"":"")+'>小于</option>');
-			htm.append('<option value="between" '+(selectValue=="between"?"selected=\"selected\"":"")+'>范围</option>');
-			htm.append('<option value="like" '+(selectValue=="like"?"selected=\"selected\"":"")+'>模糊</option>');
-			htm.append('</select>');
-			return htm.toString();
-		},
-		buildGenCodeShowTypeHtm: function(index, selectValue){
-			selectValue = comm.isEmpty(selectValue)?"":selectValue;
-			var htm = new StringBuffer();
-			htm.append('<select name="columnStyleList['+index+'].showType" class="form-control" title="生成类型">');
-			htm.append('<option></option>');
-			// (selectValue=="eq"?"selected=\"selected\"":"")
-			htm.append('<option value="input" '+(selectValue=="input"?"selected=\"selected\"":"")+'>input</option>');
-			htm.append('<option value="textarea" '+(selectValue=="textarea"?"selected=\"selected\"":"")+'>textarea</option>');
-			htm.append('<option value="select" '+(selectValue=="select"?"selected=\"selected\"":"")+'>select</option>');
-			htm.append('<option value="checkbox" '+(selectValue=="checkbox"?"selected=\"selected\"":"")+'>checkbox</option>');
-			htm.append('<option value="radio" '+(selectValue=="radio"?"selected=\"selected\"":"")+'>radio</option>');
-			htm.append('<option value="dialog" '+(selectValue=="dialog"?"selected=\"selected\"":"")+'>dialog</option>');
-			htm.append('</select>');
-			return htm.toString();
-		},
 
 }
 
-tbl = {
+TableUtil = {
 	/**
 	 * 绑定 tr菜单选中
 	 * @param tableId
@@ -946,6 +948,49 @@ tbl = {
 
 }
 
+FormUtil = {
+	/**
+	 * 过滤 空参数
+	 * @param params
+	 */
+	filterNullParam: function(serializeArray){
+		log(serializeArray);
+		var newParams = {};
+		var obj = null;
+		for(var i=0; i<serializeArray.length; i++){
+			obj = serializeArray[i];
+			if(comm.isNotEmpty(obj.value)){
+				newParams[obj.name] = obj.value;
+			}
+		}
+		log(newParams);
+		return newParams;
+	},
+	paramToObject: function(paramStr){
+		log(paramStr);
+		var paramArray = paramStr.split("&");
+		var params = {};
+		var param = null;
+		for(var i=0; i<paramArray.length; i++){
+			param = paramArray[i].split("=");
+			params[param[0]] = param[1];
+		}
+		log(params);
+		return params;
+	},
+	/**
+	 * 设置 输入值
+	 * @param inputId
+	 * @param formId
+	 */
+	setInputVal: function(inputId, value, formId){
+		if(comm.isNotEmpty(formId)){
+			$(formId).find(inputId).val(value);
+		}else{
+			$(inputId).val(value);
+		}
+	}
+}
 
 cache = {
 	get: function(key){

@@ -47,6 +47,9 @@
                 <div class="collapse" id="sysExamples">
                     <ul class="nav">
                         <li>
+                            <a href="${ctx }/sys/sysMenu">菜单管理</a>
+                        </li>
+                        <li>
                             <a href="${ctxStaticPage }pricing.jsp">系统设置</a>
                         </li>
                         <li>
@@ -57,9 +60,6 @@
                         </li>
                         <li>
                             <a href="${ctx }/console/sys/menu2">角色管理</a>
-                        </li>
-                        <li>
-                            <a href="${ctx }/viewPage/sys/menuList">菜单管理</a>
                         </li>
                         <li>
                             <a href="${ctxStaticPage }login.jsp">机构管理</a>
@@ -288,7 +288,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="hide">
+            <li class="">
                 <a href="${ctxStaticPage }widgets.jsp">
                     <i class="material-icons">widgets</i>
                     <p>小工具</p>

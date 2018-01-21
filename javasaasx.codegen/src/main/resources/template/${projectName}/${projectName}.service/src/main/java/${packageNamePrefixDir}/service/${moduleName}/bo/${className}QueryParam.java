@@ -23,6 +23,13 @@ public class ${className}QueryParam extends QueryParam {
 		return ${classNameLowerBo};
 	}
 
+	public ${className}QueryParam() {
+	}
+
+	public ${className}QueryParam(${classBOName} ${classNameLowerBo}) {
+		this.${classNameLowerBo} = ${classNameLowerBo};
+	}
+
 	public void set${classBOName}(${classBOName} ${classNameLowerBo}) {
 		this.${classNameLowerBo} = ${classNameLowerBo};
 		setParamBean(${classNameLowerBo});

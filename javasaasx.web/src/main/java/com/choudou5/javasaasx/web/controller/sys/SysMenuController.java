@@ -1,24 +1,25 @@
 package com.choudou5.javasaasx.web.controller.sys;
 
+import com.choudou5.javasaasx.common.util.JsonUtil;
 import com.choudou5.javasaasx.framework.page.PageResult;
 import com.choudou5.javasaasx.framework.util.AssertUtil;
-import com.choudou5.javasaasx.framework.util.ToolkitUtil;
 import com.choudou5.javasaasx.service.sys.SysMenuService;
 import com.choudou5.javasaasx.service.sys.bo.SysMenuBo;
 import com.choudou5.javasaasx.service.sys.bo.SysMenuQueryParam;
 import com.choudou5.javasaasx.web.controller.BaseController;
+import com.choudou5.javasaasx.web.util.RequestUtil;
+import com.xiaoleilu.hutool.json.JSON;
+import com.xiaoleilu.hutool.util.StrUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import java.util.Map;
 
 /**
  * @Name：菜单表 Controller
@@ -36,6 +37,20 @@ public class SysMenuController extends BaseController {
     @Autowired
     private SysMenuService sysMenuService;
 
+    /**
+     * 对象绑定（表单提交时）
+     * @param id
+     * @return
+     */
+    @ModelAttribute
+    public SysMenuBo get(@RequestParam(required=false) String id) {
+        if (StrUtil.isNotBlank(id)){
+            return sysMenuService.get(id);
+        }else{
+            return new SysMenuBo();
+        }
+    }
+
 
     /**
      * 列表
@@ -49,8 +64,18 @@ public class SysMenuController extends BaseController {
     public String list(SysMenuQueryParam queryParam, HttpServletRequest req, Model model) {
         PageResult<SysMenuBo> pageResult = sysMenuService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
-        return "/sys/sysMenuList";
+        return "/sys/sysMenuListTree";
     }
+
+    @RequiresPermissions("sys:sysMenu:view")
+    @RequestMapping(value = {"ajaxParentTree"}, method = RequestMethod.GET)
+    @ResponseBody
+    public String ajaxParentTree(HttpServletRequest req, Model model) {
+        int showLevel = RequestUtil.getIntParameter(req, "showLevel", 2);
+        Map tree = sysMenuService.getParentTree(showLevel);
+        return JsonUtil.toString(new Object[]{tree});
+    }
+
 
     /**
      * 查看
@@ -75,16 +100,12 @@ public class SysMenuController extends BaseController {
      * @return
      */
     @RequiresPermissions("sys:sysMenu:edit")
-    @RequestMapping(value = "edit", method = RequestMethod.GET)
-    public String edit(String id, HttpServletRequest req, Model model) {
-        try {
-            SysMenuBo bo = sysMenuService.get(id);
-            AssertUtil.isNotNull(bo, "数据不存在！");
-            model.addAttribute("sysMenuBo", bo);
-        } catch (Exception e) {
-            addMessage(model, e);
-        }
-        return "/sys/sysMenuEdit";
+    @RequestMapping(value = "form", method = RequestMethod.GET)
+    public String form(String id, HttpServletRequest req, Model model) {
+        String pid = RequestUtil.getStrParameter(req, "pid");
+        model.addAttribute("pid", pid);
+        model.addAttribute("isShowParent", (StrUtil.isNotBlank(id) && StrUtil.isNotBlank(pid)));
+        return "/sys/sysMenuForm";
     }
 
     /**

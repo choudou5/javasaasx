@@ -24,11 +24,18 @@
             <!--
             eg: AND a.title LIKE concat('%',${"#"}{paramBean.title},'%')
             -->
+            <if test="paramBean != null">
             <#list table.columns as column>
-            <if test="paramBean != null and paramBean.${column.columnNameFirstLower} != null <#if column.isStringColumn>and paramBean.${column.columnNameFirstLower} != ''</#if>">
-                AND `${column.sqlName}` = <@mapperEl 'paramBean.${column.columnNameFirstLower}'/>
+                <if test="paramBean.${column.columnNameFirstLower} != null <#if column.isStringColumn>and paramBean.${column.columnNameFirstLower} != ''</#if>">
+                    AND `${column.sqlName}` = <@mapperEl 'paramBean.${column.columnNameFirstLower}'/>
+                </if>
+            </#list>
             </if>
-        </#list>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${"$"}{key} ${"$"}{value}
+                </foreach>
+            </if>
         </where>
     </sql>
 
@@ -95,7 +102,7 @@
         SELECT <include refid="columns"/>
         <![CDATA[
             FROM ${table.sqlName}
-            WHERE<#list table.compositeIdColumns as column>${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next> AND </#if></#list>
+            WHERE <#list table.compositeIdColumns as column>${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next> AND </#if></#list>
         ]]>
     </select>
 

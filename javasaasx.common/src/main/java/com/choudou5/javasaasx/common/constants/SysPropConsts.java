@@ -18,7 +18,7 @@ public interface SysPropConsts {
 	String KEY_ADMIN_EMAIL = "system.admin.email";
 	String SESSION_KEY_USER = "sess_key";
 
-
+	String JDBC_TPYE = PropertiesUtil.getString("jdbc.type");
 	String JDBC_DRIVER = "jdbc.driver";
 	String JDBC_URL = "jdbc.url";
 	String JDBC_USERNAME = "jdbc.username";

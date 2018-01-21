@@ -1,6 +1,7 @@
 package com.choudou5.javasaasx.framework.exception;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -10,6 +11,21 @@ import java.io.StringWriter;
  * @date 2017年4月30日
  */
 public class Exceptions {
+
+	/**
+	 * 在request中获取异常类
+	 * @param request
+	 * @return
+	 */
+	public static Throwable getThrowable(HttpServletRequest request){
+		Throwable ex = null;
+		if (request.getAttribute("exception") != null) {
+			ex = (Throwable) request.getAttribute("exception");
+		} else if (request.getAttribute("javax.servlet.error.exception") != null) {
+			ex = (Throwable) request.getAttribute("javax.servlet.error.exception");
+		}
+		return ex;
+	}
 
 	/**
 	 * 将CheckedException转换为UncheckedException.

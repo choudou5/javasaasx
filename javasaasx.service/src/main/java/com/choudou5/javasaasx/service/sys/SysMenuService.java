@@ -4,6 +4,9 @@ import com.choudou5.javasaasx.framework.bean.BaseBo;
 import com.choudou5.javasaasx.framework.service.BaseService;
 import com.choudou5.javasaasx.service.sys.bo.SysMenuBo;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @Name：菜单表 接口
  * @Author：xuhaowen
@@ -14,5 +17,7 @@ import com.choudou5.javasaasx.service.sys.bo.SysMenuBo;
  */
 public interface SysMenuService extends BaseService<SysMenuBo> {
 
+
+    Map<String, Object> getParentTree(Integer showLevel);
 
 }

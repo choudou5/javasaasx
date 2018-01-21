@@ -50,9 +50,9 @@ public class GenTableColumnStyleController extends BaseController {
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String list(HttpServletRequest req, Model model) {
         List<SelectBo> list = genTableColumnStyleService.getTableList();
-        model.addAttribute("tableList", list);
+        model.addAttribute("leftDataList", list);
         model.addAttribute("genCodePath", SysUtil.getGenCodePath());
-        return "/gen/genTableColumnStyleListTree";
+        return "/gen/genTableColumnStyleListListEdit";
     }
 
 

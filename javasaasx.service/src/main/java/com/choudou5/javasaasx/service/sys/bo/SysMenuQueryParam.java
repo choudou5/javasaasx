@@ -19,6 +19,13 @@ public class SysMenuQueryParam extends QueryParam {
 		return sysMenuBo;
 	}
 
+	public SysMenuQueryParam() {
+	}
+
+	public SysMenuQueryParam(SysMenuBo sysMenuBo) {
+		this.sysMenuBo = sysMenuBo;
+	}
+
 	public void setSysMenuBo(SysMenuBo sysMenuBo) {
 		this.sysMenuBo = sysMenuBo;
 		setParamBean(sysMenuBo);

@@ -10,9 +10,12 @@ package com.choudou5.javasaasx.framework.constant;
  */
 public interface CommonConstant {
 
+    final String STATUS_N = "0";
+    final String STATUS_Y = "1";
+
     enum DataStatusEnum {
-        NO("0", "禁用"),
-        OK("1", "正常"),
+        N(STATUS_N, "禁用"),
+        Y(STATUS_Y, "正常"),
         ;
 
         DataStatusEnum(String code, String desc) {
@@ -24,11 +27,15 @@ public interface CommonConstant {
         private String desc;
 
         public static String getCodeByCheckBoxOrRadio(String code){
+            return getCodeByCheckBoxOrRadio(code, code);
+        }
+
+        public static String getCodeByCheckBoxOrRadio(String code, String def){
             if("on".equals(code))
-                return OK.getCode();
+                return Y.getCode();
             if("off".equals(code))
-                return NO.getCode();
-            return code;
+                return N.getCode();
+            return def;
         }
 
         public String getCode() {

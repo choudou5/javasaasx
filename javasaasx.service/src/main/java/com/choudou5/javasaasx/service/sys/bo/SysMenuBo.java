@@ -1,19 +1,21 @@
 package com.choudou5.javasaasx.service.sys.bo;
 
+import com.choudou5.javasaasx.framework.bean.TreeNodeBo;
 import org.hibernate.validator.constraints.Length;
 import com.choudou5.javasaasx.framework.bean.BaseBo;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 
 /**
  * @Name：菜单表 业务对象
  * @Author：xuhaowen
- * @Date：2018-01-18
+ * @Date：2018-01-21
  * @Site：http://solrhome.com
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
-public class SysMenuBo implements BaseBo {
+public class SysMenuBo implements BaseBo, TreeNodeBo {
 
     /**  id */
 	private String id;
@@ -83,26 +85,33 @@ public class SysMenuBo implements BaseBo {
 	}
 
 	public Integer getDepth() {
-		return this.depth;
+		return this.depth==null?0:depth;
 	}
 	public void setDepth(Integer depth) {
 		this.depth = depth;
 	}
 
 	@Length(min=0, max=100, message="名称长度必须介于 0 和 100 之间")
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getName() {
 		return this.name;
 	}
 
-	@Length(min=0, max=18, message="类型：menu=菜单，button=按钮长度必须介于 0 和 18 之间")
-	public void setType(String type) {
-		this.type = type;
+	@Override
+	public String getParentId() {
+		return getPid();
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Length(min=0, max=18, message="类型：menu=菜单，button=按钮长度必须介于 0 和 18 之间")
+	@NotBlank(message = "类型不能为空")
 	public String getType() {
 		return this.type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public Integer getSort() {
@@ -169,11 +178,11 @@ public class SysMenuBo implements BaseBo {
 	}
 
 	@Length(min=0, max=1, message="是否在手机端显示长度必须介于 0 和 1 之间")
-	public void setIsMobileShow(String isMobileShow) {
-		this.isMobileShow = isMobileShow;
-	}
 	public String getIsMobileShow() {
 		return this.isMobileShow;
+	}
+	public void setIsMobileShow(String isMobileShow) {
+		this.isMobileShow = isMobileShow;
 	}
 
 	public String getStatus() {

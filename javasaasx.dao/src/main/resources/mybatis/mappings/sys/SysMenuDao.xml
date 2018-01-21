@@ -92,6 +92,11 @@
             <if test="paramBean != null and paramBean.delFlag != null and paramBean.delFlag != ''">
                 AND `del_flag` = #{paramBean.delFlag}
             </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
         </where>
     </sql>
 
@@ -234,7 +239,7 @@
         SELECT <include refid="columns"/>
         <![CDATA[
             FROM sys_menu
-            WHEREid = #{id} 
+            WHERE id = #{id} 
         ]]>
     </select>
 

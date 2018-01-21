@@ -142,10 +142,11 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
 
     @Override
     public PageResult<B> findPage(QueryParam queryBean) throws BizException {
+        queryBean.setDefaultPage();
         PageResult<B> pageResult = new PageResult<>();
         long count = count(queryBean);
         pageResult.setTotalCount(count);
-        if(count > queryBean.getPageBean().getStart()){
+        if(count > 0 && count > queryBean.getPageBean().getStart()){
             pageResult.setResult(findList(queryBean));
         }
         return pageResult;

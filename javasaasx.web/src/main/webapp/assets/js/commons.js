@@ -989,17 +989,38 @@ FormUtil = {
 		}else{
 			$(inputId).val(value);
 		}
+	},
+	tryLockSubmit: function(){
+		var key = "lockSubmit";
+		var value = CacheUtil.get(key);
+		var now = comm.getTime();
+		var timeout = 3000;
+		if(value != null && ((now-value) < timeout)){
+			throw new Error('请勿重复提交!');
+		}else{
+			CacheUtil.set(key, comm.getTime());
+			setTimeout(function(){
+				CacheUtil.remove(key);
+			}, timeout);
+		}
 	}
+
 }
 
-cache = {
+CacheUtil = {
 	get: function(key){
 		return store.get(key);
 	},
 	set: function(key, value){
 		return store.set(key, val);
 	},
-	exist: function(key){
-		return store.get(key)!=null;
+	has: function(key){
+		return store.has(key);
 	},
+	remove: function del(key){
+		store.remove(key);
+	},
+	clear: function clear(){
+		store.clear();
+	}
 }

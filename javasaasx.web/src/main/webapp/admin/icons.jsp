@@ -9,37 +9,27 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <%@include file="/include/sidebar.jsp" %>
-        <div class="main-panel">
-            <%@include file="/include/sidebarHead.jsp" %>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="header text-center">
-                        <h3 class="title"><a href="javascript:;" id="IconToogle">图片库（点击切换）</a></h3>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-plain">
-                                <div class="card-content">
-                                    <div class="iframe-container hidden-sm hidden-xs">
-                                        <iframe id="materialIco" src="https://material.io/icons/" style="height: 600px;">
-                                            <p>Your browser does not support iframes.</p>
-                                        </iframe>
-                                        <iframe id="fontawesomeIco" src="http://fontawesome.io/icons/#icons " style="height: 600px;display: none;">
-                                            <p>Your browser does not support iframes.</p>
-                                        </iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<div class="container-fluid">
+    <div class="header text-center">
+        <h3 class="title"><a href="javascript:;" id="IconToogle">图片库（点击切换）</a></h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-content">
+                    <div class="iframe-container hidden-sm hidden-xs">
+                        <iframe id="materialIco" src="https://material.io/icons/" style="height: 600px;">
+                            <p>Your browser does not support iframes.</p>
+                        </iframe>
+                        <iframe id="fontawesomeIco" src="http://fontawesome.io/icons/#icons " style="height: 600px;display: none;">
+                            <p>Your browser does not support iframes.</p>
+                        </iframe>
                     </div>
                 </div>
             </div>
-			<%@include file="/include/footer.jsp" %>
         </div>
     </div>
-    <%@include file="/include/sidebarRight.jsp" %>
+</div>
 </body>
 <%@include file="/include/scriptLib.jsp" %>
 <script type="text/javascript">

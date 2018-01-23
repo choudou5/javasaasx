@@ -10,107 +10,94 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <%@include file="/include/sidebar.jsp" %>
-        <div class="main-panel">
-            <%@include file="/include/sidebarHead.jsp" %>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card card-profile" style="height: 80vh">
-                                <div class="card-content text-left">
-                                    <%--<h6 class="category text-gray">CEO / Co-Founder</h6>
-                                    <h4 class="card-title">Alec Thompson</h4>--%>
-                                    <input type="text" id="leftTree_q" value="" class="form-control input" placeholder="搜索菜单">
-                                    <div id="leftTree" class="demo">
-                                        <%--<ul>
-                                            <li data-jstree='{"opened":true }'>Root node
-                                                <ul>
-                                                    <li data-jstree='{ "selected" : true }'>Child node 1</li>
-                                                    <li>Child node 2</li>
-                                                </ul>
-                                            </li>
-                                        </ul>--%>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-9">
-                            <div class="card">
-                                <div class="card-header card-header-icon" data-background-color="green">
-                                    <i class="material-icons">assignment</i>
-                                </div>
-                                <div class="card-content">
-                                    <h4 class="card-title">DataTables.net</h4>
-                                    <div class="toolbar">
-                                        <!--        Here you can write extra buttons/actions for the toolbar              -->
-                                    </div>
-                                    <div class="material-datatables">
-                                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Date</th>
-                                                <th class="disabled-sorting text-right">Actions</th>
-                                            </tr>
-                                            </thead>
-                                            <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th class="text-right">Actions</th>
-                                            </tr>
-                                            </tfoot>
-                                            <tbody>
-                                            <c:forEach begin="10" end="25" var="varDex">
-                                                <tr>
-                                                    <td>Airi Satou</td>
-                                                    <td>Accountant</td>
-                                                    <td>Tokyo</td>
-                                                    <td>33</td>
-                                                    <td>2008/11/28</td>
-                                                    <td class="text-right">
-                                                        <a href="#" class="btn btn-success btn-sm edit"><i class="material-icons">edit</i></a>
-                                                        <a href="#" class="btn btn-danger btn-sm remove"><i class="material-icons">close</i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Brielle Williamson</td>
-                                                    <td>Integration Specialist</td>
-                                                    <td>New York</td>
-                                                    <td>61</td>
-                                                    <td>2012/12/02</td>
-                                                    <td class="text-right">
-                                                        <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-                                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-                                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- end content-->
-                            </div>
-                            <!--  end card  -->
-                        </div>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-profile" style="height: 80vh">
+                <div class="card-content text-left">
+                    <%--<h6 class="category text-gray">CEO / Co-Founder</h6>
+                    <h4 class="card-title">Alec Thompson</h4>--%>
+                    <input type="text" id="leftTree_q" value="" class="form-control input" placeholder="搜索菜单">
+                    <div id="leftTree" class="demo">
+                        <%--<ul>
+                            <li data-jstree='{"opened":true }'>Root node
+                                <ul>
+                                    <li data-jstree='{ "selected" : true }'>Child node 1</li>
+                                    <li>Child node 2</li>
+                                </ul>
+                            </li>
+                        </ul>--%>
                     </div>
                 </div>
             </div>
-            <%@include file="/include/footer.jsp" %>
         </div>
+
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-content">
+                    <h4 class="card-title">DataTables.net</h4>
+                    <div class="toolbar">
+                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                    </div>
+                    <div class="material-datatables">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Age</th>
+                                <th>Date</th>
+                                <th class="disabled-sorting text-right">Actions</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Age</th>
+                                <th>Start date</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <c:forEach begin="10" end="25" var="varDex">
+                                <tr>
+                                    <td>Airi Satou</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>33</td>
+                                    <td>2008/11/28</td>
+                                    <td class="text-right">
+                                        <a href="#" class="btn btn-success btn-sm edit"><i class="material-icons">edit</i></a>
+                                        <a href="#" class="btn btn-danger btn-sm remove"><i class="material-icons">close</i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Brielle Williamson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>New York</td>
+                                    <td>61</td>
+                                    <td>2012/12/02</td>
+                                    <td class="text-right">
+                                        <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
+                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
+                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end content-->
+            </div>
+            <!--  end card  -->
+        </div>
+
     </div>
-    <%@include file="/include/sidebarRight.jsp" %>
+</div>
 </body>
 <%@include file="/include/scriptLib.jsp" %>
 <script src="${ctxStatic }/jstree/3.3.5/dist/jstree.min.js"></script>

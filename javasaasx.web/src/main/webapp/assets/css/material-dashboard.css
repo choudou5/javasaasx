@@ -5731,8 +5731,7 @@ h2.title {
   min-height: calc(100vh - 123px);
 }
 .main-panel > .footer {
-  border-top: 1px solid #e7e7e7;
-  margin-top: -15px;
+  margin-top: 10px;
 }
 .main-panel > .navbar {
   margin-bottom: 0;

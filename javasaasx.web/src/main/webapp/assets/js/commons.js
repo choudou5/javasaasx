@@ -121,9 +121,6 @@ comm = {
 			return "";
 		return obj;
 	},
-	getTime: function(){
-		return new Date().getTime();
-	},
 	getRandom: function (){
 		return Math.ceil(Math.random()*1000000000000);
 	},
@@ -189,6 +186,75 @@ comm = {
 
 }
 
+StrUtil = {
+	isEmpty: function(str) {
+		return (str == undefined || str == null || str.length == 0 || str == "undefined");
+	},
+	isNotEmpty: function(str) {
+		return !this.isEmpty(str);
+	},
+	trim: function (str) {
+		return str.replace(/^\s+|\s+$/g, "");
+	},
+}
+
+/**
+ * 日志工具类
+ * @type {getTime, now, getDateStr, getTimeStr}
+ */
+DateUtil = {
+	/**
+	 * @returns 毫秒
+	 */
+	getTime: function(){
+		return new Date().getTime();
+	},
+	/**
+	 * @returns yyyy-MM-dd HH:mm:ss
+	 */
+	now: function(){
+		var date = new Date();
+		var y = date.getFullYear();
+		var m = date.getMonth() + 1;
+		m = m < 10 ? ('0' + m) : m;
+		var d = date.getDate();
+		d = d < 10 ? ('0' + d) : d;
+		var h = date.getHours();
+		h = h < 10 ? ('0' + h) : h;
+		var minute = date.getMinutes();
+		minute = minute < 10 ? ('0' + minute) : minute;
+		var second = date.getSeconds();
+		second=second < 10 ? ('0' + second) : second;
+		return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
+	},
+	/**
+	 * @returns yyyy-MM-dd
+	 */
+	getDateStr: function(){
+		var date = new Date();
+		var y = date.getFullYear();
+		var m = date.getMonth() + 1;
+		m = m < 10 ? '0' + m : m;
+		var d = date.getDate();
+		d = d < 10 ? ('0' + d) : d;
+		return y + '-' + m + '-' + d;
+	},
+	/**
+	 * @returns HH:mm:ss
+	 */
+	getTimeStr: function(){
+		var date = new Date();
+		var h = date.getHours();
+		h = h < 10 ? ('0' + h) : h;
+		var minute = date.getMinutes();
+		minute = minute < 10 ? ('0' + minute) : minute;
+		var second = date.getSeconds();
+		second = second < 10 ? ('0' + second) : second;
+		return h+':'+minute+':'+second;
+	},
+
+
+}
 
 /**
  * 绑定高亮搜索
@@ -244,21 +310,6 @@ function getInputGroupVal(inputId) {
 }
 
 
-
-/**
- * 睡眠（建议不超过1秒，慎用，会导致页面卡死）
- * @param milliseconds
- */
-function common_sleep(milliseconds) {
-	console.log("begin sleep:"+milliseconds);
-	var start = new Date().getTime();
-	for (var i = 0; i < 1e7; i++) {
-		if ((new Date().getTime() - start) > milliseconds){
-			break;
-		}
-	}
-	console.log("end sleep:"+milliseconds);
-}
 
 /**
  * 打印日志
@@ -888,6 +939,9 @@ BindUtil = {
 
 }
 
+
+//https://github.com/montagejs/collections
+
 TableUtil = {
 	/**
 	 * 绑定 tr菜单选中
@@ -1007,6 +1061,11 @@ FormUtil = {
 
 }
 
+/**
+ * 缓存工具类
+ * @ref store.js
+ * @type {{get, set, has, remove}}
+ */
 CacheUtil = {
 	get: function(key){
 		return store.get(key);
@@ -1019,8 +1078,5 @@ CacheUtil = {
 	},
 	remove: function del(key){
 		store.remove(key);
-	},
-	clear: function clear(){
-		store.clear();
 	}
 }

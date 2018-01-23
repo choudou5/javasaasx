@@ -9,34 +9,24 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <%@include file="/include/sidebar.jsp" %>
-        <div class="main-panel">
-            <%@include file="/include/sidebarHead.jsp" %>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="header text-center">
-                        <h3 class="title">FullCalendar.io</h3>
-                        <p class="category">Handcrafted by our friends from
-                            <a target="_blank" href="javascript:if(confirm(%27https://fullcalendar.io/  \n\nThis file was not retrieved by Teleport Ultra, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27https://fullcalendar.io/%27" tppabs="https://fullcalendar.io/">FullCalendar.io</a>. Please checkout their
-                            <a href="javascript:if(confirm(%27https://fullcalendar.io/docs/  \n\nThis file was not retrieved by Teleport Ultra, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27https://fullcalendar.io/docs/%27" tppabs="https://fullcalendar.io/docs/" target="_blank">full documentation.</a>
-                        </p>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="card card-calendar">
-                                <div class="card-content" class="ps-child">
-                                    <div id="fullCalendar"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="container-fluid">
+    <div class="header text-center">
+        <h3 class="title">FullCalendar.io</h3>
+        <p class="category">Handcrafted by our friends from
+            <a target="_blank" href="javascript:if(confirm(%27https://fullcalendar.io/  \n\nThis file was not retrieved by Teleport Ultra, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27https://fullcalendar.io/%27" tppabs="https://fullcalendar.io/">FullCalendar.io</a>. Please checkout their
+            <a href="javascript:if(confirm(%27https://fullcalendar.io/docs/  \n\nThis file was not retrieved by Teleport Ultra, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27https://fullcalendar.io/docs/%27" tppabs="https://fullcalendar.io/docs/" target="_blank">full documentation.</a>
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="card card-calendar">
+                <div class="card-content" class="ps-child">
+                    <div id="fullCalendar"></div>
                 </div>
             </div>
-            <%@include file="/include/footer.jsp" %>
         </div>
     </div>
-    <%@include file="/include/sidebarRight.jsp" %>
+</div>
 </body>
 <%@include file="/include/scriptLib.jsp" %>
 <script type="text/javascript">

@@ -9,12 +9,7 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <%@include file="/include/sidebar.jsp" %>
-        <div class="main-panel">
-            <%@include file="/include/sidebarHead.jsp" %>
-            <div class="content">
-                <div class="container-fluid">
+<div class="container-fluid">
                     <div class="header text-center">
                         <h3 class="title">World Map</h3>
                         <p class="category">Looks great on any resolution. Made by our friends from
@@ -30,11 +25,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <%@include file="/include/footer.jsp" %>
-        </div>
-    </div>
-    <%@include file="/include/sidebarRight.jsp" %>
 </body>
 <%@include file="/include/scriptLib.jsp" %>
 <script>

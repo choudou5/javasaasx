@@ -18,7 +18,7 @@
             <a class="navbar-brand" href="#">【控制台】 </a>
         </div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" lay-filter="side-top">
                 <li>
                     <a href="#pablo" class="dropdown-toggle" title="备忘录" data-toggle="modal" data-target="#nemoModal">
                         <i class="material-icons">local_offer</i>

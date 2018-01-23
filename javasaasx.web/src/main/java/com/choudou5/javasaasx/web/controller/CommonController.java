@@ -48,6 +48,7 @@ public class CommonController extends BaseController{
 		return module+"/"+page;
 	}
 
+
 	/**
 	 * 新增 留言
 	 * @param message

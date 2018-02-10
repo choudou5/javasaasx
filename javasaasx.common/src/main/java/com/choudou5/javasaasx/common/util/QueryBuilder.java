@@ -1,6 +1,6 @@
 package com.choudou5.javasaasx.common.util;
 
-import com.choudou5.javasaasx.common.mapper.BeanMapper;
+import com.choudou5.base.mapper.BeanMapper;
 import com.choudou5.javasaasx.framework.bean.BasePo;
 import org.apache.commons.lang.StringUtils;
 

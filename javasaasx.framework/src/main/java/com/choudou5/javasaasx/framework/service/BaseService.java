@@ -1,11 +1,10 @@
 package com.choudou5.javasaasx.framework.service;
 
+import com.choudou5.base.bean.OrderBean;
+import com.choudou5.base.bean.QueryParam;
+import com.choudou5.base.exception.BizException;
+import com.choudou5.base.page.PageResult;
 import com.choudou5.javasaasx.framework.bean.BaseBo;
-import com.choudou5.javasaasx.framework.bean.OrderBean;
-import com.choudou5.javasaasx.framework.bean.QueryParam;
-import com.choudou5.javasaasx.framework.bean.BasePo;
-import com.choudou5.javasaasx.framework.exception.BizException;
-import com.choudou5.javasaasx.framework.page.PageResult;
 
 import java.io.Serializable;
 import java.util.List;

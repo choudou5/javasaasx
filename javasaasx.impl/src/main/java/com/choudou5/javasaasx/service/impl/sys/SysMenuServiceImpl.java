@@ -1,12 +1,12 @@
 package com.choudou5.javasaasx.service.impl.sys;
 
-import com.choudou5.javasaasx.common.mapper.BeanMapper;
-import com.choudou5.javasaasx.common.util.tree.TreeHelper;
+import com.choudou5.base.exception.BizException;
+import com.choudou5.base.mapper.BeanMapper;
+import com.choudou5.base.util.tree.TreeHelper;
 import com.choudou5.javasaasx.dao.sys.SysMenuDao;
 import com.choudou5.javasaasx.dao.sys.po.SysMenuPo;
 import com.choudou5.javasaasx.framework.constant.CommonConstant;
 import com.choudou5.javasaasx.framework.dao.BaseDao;
-import com.choudou5.javasaasx.framework.exception.BizException;
 import com.choudou5.javasaasx.service.constants.SysConstants;
 import com.choudou5.javasaasx.service.impl.BaseServiceImpl;
 import com.choudou5.javasaasx.service.impl.util.SysExceptionUtil;

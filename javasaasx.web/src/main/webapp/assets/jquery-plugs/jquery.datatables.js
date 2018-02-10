@@ -10826,7 +10826,7 @@
                      *      } );
                      *    } );
                  */
-                "sFirst": "First",
+                "sFirst": "首页",
 
 
                 /**
@@ -10849,7 +10849,7 @@
                      *      } );
                      *    } );
                  */
-                "sLast": "Last",
+                "sLast": "尾页",
 
 
                 /**
@@ -10872,7 +10872,7 @@
                      *      } );
                      *    } );
                  */
-                "sNext": "Next",
+                "sNext": "下一页",
 
 
                 /**
@@ -10895,7 +10895,7 @@
                      *      } );
                      *    } );
                  */
-                "sPrevious": "Previous"
+                "sPrevious": "上一页"
             },
 
             /**
@@ -10918,7 +10918,7 @@
                  *      } );
                  *    } );
              */
-            "sEmptyTable": "No data available in table",
+            "sEmptyTable": "没有数据",
 
 
             /**
@@ -10950,7 +10950,7 @@
                  *      } );
                  *    } );
              */
-            "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+            "sInfo": "显示 _START_ to _END_ of _TOTAL_ 记录",
 
 
             /**
@@ -10971,7 +10971,7 @@
                  *      } );
                  *    } );
              */
-            "sInfoEmpty": "Showing 0 to 0 of 0 entries",
+            "sInfoEmpty": "显示 0 to 0 of 0 记录",
 
 
             /**
@@ -11111,7 +11111,7 @@
                  *      } );
                  *    } );
              */
-            "sLengthMenu": "Show _MENU_ entries",
+            "sLengthMenu": "显示 _MENU_ 记录",
 
 
             /**
@@ -11249,7 +11249,7 @@
                  *      } );
                  *    } );
              */
-            "sZeroRecords": "No matching records found"
+            "sZeroRecords": "没有匹配的记录"
         },
 
 

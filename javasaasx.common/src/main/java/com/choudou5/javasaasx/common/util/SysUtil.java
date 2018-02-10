@@ -1,5 +1,7 @@
 package com.choudou5.javasaasx.common.util;
 
+import com.choudou5.base.util.IpUtil;
+import com.choudou5.base.util.PropUtil;
 import com.choudou5.javasaasx.common.constants.SysConsts;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,7 +24,7 @@ public class SysUtil {
 		String siteNameKey = "system.site.name";
 		String siteName = null;
 		try {
-			siteName = PropertiesUtil.getString(siteNameKey);
+			siteName = PropUtil.getString(siteNameKey);
 		} catch (Exception e) {
 			logger.error(siteNameKey+" properties is undefined.", e);
 		}
@@ -38,7 +40,7 @@ public class SysUtil {
 		String modelKey = "sys.model";
 		String model = null;
 		try {
-			model = PropertiesUtil.getString(modelKey);
+			model = PropUtil.getString(modelKey);
 		} catch (Exception e) {
 			logger.error(modelKey+" properties is undefined.", e);
 		}
@@ -53,7 +55,7 @@ public class SysUtil {
 		String GEN_CODE_PATH = "gen.code.path";
 		String codePath = null;
 		try {
-			codePath = PropertiesUtil.getString(GEN_CODE_PATH);
+			codePath = PropUtil.getString(GEN_CODE_PATH);
 		} catch (Exception e) {
 			logger.error(GEN_CODE_PATH+" properties is undefined.", e);
 		}

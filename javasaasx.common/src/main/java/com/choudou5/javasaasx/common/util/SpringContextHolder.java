@@ -1,6 +1,5 @@
 package com.choudou5.javasaasx.common.util;
 
-import com.choudou5.javasaasx.framework.util.AssertUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;

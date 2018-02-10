@@ -4,13 +4,13 @@ import cn.org.rapid_framework.generator.provider.db.DataCollectionInfo;
 import cn.org.rapid_framework.generator.provider.db.table.TableFactory;
 import cn.org.rapid_framework.generator.provider.db.table.model.Column;
 import cn.org.rapid_framework.generator.provider.db.table.model.Table;
+import com.choudou5.base.bean.SelectBo;
+import com.choudou5.base.exception.BizException;
+import com.choudou5.base.util.PropUtil;
 import com.choudou5.javasaasx.common.constants.SysPropConsts;
-import com.choudou5.javasaasx.common.util.PropertiesUtil;
 import com.choudou5.javasaasx.dao.gen.GenTableColumnStyleDao;
 import com.choudou5.javasaasx.dao.gen.po.GenTableColumnStylePo;
-import com.choudou5.javasaasx.framework.bean.SelectBo;
 import com.choudou5.javasaasx.framework.dao.BaseDao;
-import com.choudou5.javasaasx.framework.exception.BizException;
 import com.choudou5.javasaasx.service.gen.GenTableColumnStyleService;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleQueryParam;
@@ -48,10 +48,10 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
     private static DataCollectionInfo collectionInfo = null;
     static {
         collectionInfo = new DataCollectionInfo();
-        collectionInfo.setUrl(PropertiesUtil.getString(SysPropConsts.JDBC_URL));
-        collectionInfo.setUsername(PropertiesUtil.getString(SysPropConsts.JDBC_USERNAME));
-        collectionInfo.setPassword(PropertiesUtil.getString(SysPropConsts.JDBC_PASSWORD));
-        collectionInfo.setDriverClass(PropertiesUtil.getString(SysPropConsts.JDBC_DRIVER));
+        collectionInfo.setUrl(PropUtil.getString(SysPropConsts.JDBC_URL));
+        collectionInfo.setUsername(PropUtil.getString(SysPropConsts.JDBC_USERNAME));
+        collectionInfo.setPassword(PropUtil.getString(SysPropConsts.JDBC_PASSWORD));
+        collectionInfo.setDriverClass(PropUtil.getString(SysPropConsts.JDBC_DRIVER));
     }
 
     @Override

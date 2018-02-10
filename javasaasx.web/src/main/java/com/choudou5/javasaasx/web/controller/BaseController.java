@@ -1,12 +1,10 @@
 package com.choudou5.javasaasx.web.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.choudou5.javasaasx.common.util.JsonUtil;
+import com.choudou5.base.exception.BizException;
+import com.choudou5.base.util.JsonUtil;
+import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.framework.bean.TableDataBo;
-import com.choudou5.javasaasx.framework.exception.BizException;
-import com.choudou5.javasaasx.framework.util.ToolkitUtil;
-import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
 import com.choudou5.javasaasx.web.beanvalidator.BeanValidators;
 import com.xiaoleilu.hutool.date.DateUtil;
 import org.slf4j.Logger;
@@ -15,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -222,7 +217,7 @@ public abstract class BaseController {
 	protected String redirect(HttpServletRequest request, String view, RedirectAttributes attributes, String message, Exception e) {
 		if(e != null)
 			logger.error("", e);
-		if(ToolkitUtil.isNotBlank(message))
+		if(StrUtil.isNotBlank(message))
 			attributes.addFlashAttribute("message", message);
 		String reqUrl = request.getRequestURI();
 		return "redirect: "+reqUrl+"/"+view;
@@ -286,11 +281,11 @@ public abstract class BaseController {
 				result.put("message", e.getMessage());
 			}
 		}
-		return JSON.toJSONString(result);
+		return JsonUtil.toStr(result);
 	}
 
 	protected String returnTableData(List list){
-		return JsonUtil.toString(new TableDataBo(list));
+		return JsonUtil.toStr(new TableDataBo(list));
 	}
 
 }

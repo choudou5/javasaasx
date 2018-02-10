@@ -1,7 +1,7 @@
 package com.choudou5.javasaasx.common.constants;
 
 
-import com.choudou5.javasaasx.common.util.PropertiesUtil;
+import com.choudou5.base.util.PropUtil;
 
 /**
  * @Name：系统属性配置 常量
@@ -13,12 +13,12 @@ import com.choudou5.javasaasx.common.util.PropertiesUtil;
  */
 public interface SysPropConsts {
 
-	String PROP_KEY_SIG = PropertiesUtil.getString("system.sig.key");
+	String PROP_KEY_SIG = PropUtil.getString("system.sig.key");
 	
 	String KEY_ADMIN_EMAIL = "system.admin.email";
 	String SESSION_KEY_USER = "sess_key";
 
-	String JDBC_TPYE = PropertiesUtil.getString("jdbc.type");
+	String JDBC_TPYE = PropUtil.getString("jdbc.type");
 	String JDBC_DRIVER = "jdbc.driver";
 	String JDBC_URL = "jdbc.url";
 	String JDBC_USERNAME = "jdbc.username";

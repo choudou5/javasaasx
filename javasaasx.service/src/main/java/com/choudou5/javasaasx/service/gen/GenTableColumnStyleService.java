@@ -1,10 +1,7 @@
 package com.choudou5.javasaasx.service.gen;
 
-import com.choudou5.javasaasx.framework.bean.BaseBo;
-import com.choudou5.javasaasx.framework.bean.BasePo;
-import com.choudou5.javasaasx.framework.bean.SelectBo;
-import com.choudou5.javasaasx.framework.bean.TableDataBo;
-import com.choudou5.javasaasx.framework.exception.BizException;
+import com.choudou5.base.bean.SelectBo;
+import com.choudou5.base.exception.BizException;
 import com.choudou5.javasaasx.framework.service.BaseService;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
 

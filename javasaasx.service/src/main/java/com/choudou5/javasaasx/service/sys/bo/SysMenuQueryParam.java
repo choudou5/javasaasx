@@ -1,7 +1,6 @@
 package com.choudou5.javasaasx.service.sys.bo;
 
-import com.choudou5.javasaasx.framework.bean.BaseBo;
-import com.choudou5.javasaasx.framework.bean.QueryParam;
+import com.choudou5.base.bean.QueryParam;
 
 /**
  * @Name：菜单表 查询对象

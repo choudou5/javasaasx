@@ -1,7 +1,7 @@
 package com.choudou5.javasaasx.common.security;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.StringEscapeUtils;
+import cn.hutool.core.util.EscapeUtil;
+import com.choudou5.base.util.EncryptUtil;
 
 /**
  * 密码 工具类
@@ -10,18 +10,14 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class PasswordUtil {
 
-	public static final String HASH_ALGORITHM = "SHA-1";
-	public static final String MD5_ALGORITHM = "MD5";
-	public static final int HASH_INTERATIONS = 1024;
-	
 	/**
-	 * 生成安全的密码，生成随机的16位salt并经过1024次 sha-1 hash
+	 * 生成安全的密码，组合密码
 	 */
 	public static String entryptPassword(String plainPassword) {
-		String plain = StringEscapeUtils.unescapeHtml(plainPassword);
-		byte[] salt = DigestUtils.md5(plain);
-		byte[] hashPassword = DigestUtils.sha1(plain.getBytes());
-		return DigestUtils.sha1Hex(salt)+DigestUtils.sha1Hex(hashPassword);
+		String plain = EscapeUtil.unescape(plainPassword);
+		String salt = EncryptUtil.md5(plain);
+		String hashPassword = EncryptUtil.sha1(plain);;
+		return EncryptUtil.sha1(salt)+hashPassword;
 	}
 	
 	/**
@@ -37,7 +33,7 @@ public class PasswordUtil {
 	/* ================= test ================= */
 	public static void main(String[] args) {
 		System.out.println(entryptPassword("111111"));
-		System.out.println(validatePassword("111111", "ac44151dd474f7ed99673cae636d45f34f714df36bb4837eb74329105ee4568dda7dc67ed2ca2ad9"));
+		System.out.println(validatePassword("111111", "29be0977d967fde83ce1b8657334ec4db7fdc8a53d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d"));
 	}
 	
 	

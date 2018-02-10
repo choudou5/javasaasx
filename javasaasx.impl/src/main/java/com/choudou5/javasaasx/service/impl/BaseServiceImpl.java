@@ -1,18 +1,18 @@
 package com.choudou5.javasaasx.service.impl;
 
-import com.choudou5.javasaasx.common.mapper.BeanMapper;
-import com.choudou5.javasaasx.framework.bean.*;
+import com.choudou5.base.bean.OrderBean;
+import com.choudou5.base.bean.QueryParam;
+import com.choudou5.base.exception.BizException;
+import com.choudou5.base.mapper.BeanMapper;
+import com.choudou5.base.page.PageResult;
+import com.choudou5.base.util.ReflectionUtil;
+import com.choudou5.javasaasx.framework.bean.AbstractBasePo;
+import com.choudou5.javasaasx.framework.bean.BaseBo;
 import com.choudou5.javasaasx.framework.dao.BaseDao;
-import com.choudou5.javasaasx.framework.exception.BizException;
-import com.choudou5.javasaasx.framework.page.PageResult;
 import com.choudou5.javasaasx.framework.service.BaseService;
-import com.choudou5.javasaasx.framework.util.ReflectionUtil;
 import com.choudou5.javasaasx.framework.util.SysSeqUtil;
 import com.choudou5.javasaasx.service.impl.util.SysExceptionUtil;
 import com.xiaoleilu.hutool.util.CollectionUtil;
-import com.xiaoleilu.hutool.util.StrUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -65,7 +65,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
 
     protected void preBatchInsert(List<P> list){
         for (P po : list) {
-            String id = SysSeqUtil.getNextId();
+            String id = SysSeqUtil.getIdStr();
             po.setId(id);
         }
     }

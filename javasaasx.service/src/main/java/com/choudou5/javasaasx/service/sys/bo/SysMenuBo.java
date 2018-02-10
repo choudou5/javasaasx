@@ -1,11 +1,9 @@
 package com.choudou5.javasaasx.service.sys.bo;
 
-import com.choudou5.javasaasx.framework.bean.TreeNodeBo;
-import org.hibernate.validator.constraints.Length;
+import com.choudou5.base.util.tree.model.TreeNodeBo;
 import com.choudou5.javasaasx.framework.bean.BaseBo;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-
-import java.io.Serializable;
 
 /**
  * @Name：菜单表 业务对象

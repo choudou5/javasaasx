@@ -1,11 +1,10 @@
 package com.choudou5.javasaasx.common.security;
 
+import cn.hutool.core.lang.Validator;
 import com.choudou5.javasaasx.common.constants.SysConsts;
-import com.choudou5.javasaasx.common.util.SysUtil;
-import com.choudou5.javasaasx.service.sys.bo.LoginUserBo;
 import com.choudou5.javasaasx.service.sys.SysUserService;
+import com.choudou5.javasaasx.service.sys.bo.LoginUserBo;
 import com.choudou5.javasaasx.service.sys.bo.SysUserBo;
-import com.xiaoleilu.hutool.lang.Validator;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

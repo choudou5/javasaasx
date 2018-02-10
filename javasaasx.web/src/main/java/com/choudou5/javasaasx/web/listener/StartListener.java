@@ -1,9 +1,8 @@
 package com.choudou5.javasaasx.web.listener;
 
-import com.choudou5.javasaasx.common.constants.SysConsts;
+import com.choudou5.base.bean.QueryParam;
 import com.choudou5.javasaasx.common.constants.SysPropConsts;
 import com.choudou5.javasaasx.common.util.SysUtil;
-import com.choudou5.javasaasx.framework.bean.QueryParam;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 

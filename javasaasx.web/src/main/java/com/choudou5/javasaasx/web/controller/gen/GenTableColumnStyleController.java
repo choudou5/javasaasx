@@ -1,15 +1,12 @@
 package com.choudou5.javasaasx.web.controller.gen;
 
+import com.choudou5.base.bean.SelectBo;
 import com.choudou5.javasaasx.common.util.SysUtil;
-import com.choudou5.javasaasx.framework.bean.SelectBo;
 import com.choudou5.javasaasx.service.gen.GenTableColumnStyleService;
 import com.choudou5.javasaasx.service.gen.bo.GenCodeBo;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
-import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleQueryParam;
 import com.choudou5.javasaasx.service.impl.util.GenUtil;
 import com.choudou5.javasaasx.web.controller.BaseController;
-import com.choudou5.javasaasx.web.util.RequestUtil;
-import com.xiaoleilu.hutool.util.StrUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

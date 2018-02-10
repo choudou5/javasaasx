@@ -1,10 +1,6 @@
 package com.choudou5.javasaasx.framework.util;
 
-import com.xiaoleilu.hutool.date.DatePattern;
-import com.xiaoleilu.hutool.date.DateUtil;
-import com.xiaoleilu.hutool.lang.Snowflake;
-
-import java.util.Date;
+import com.choudou5.base.util.IdSeqUtil;
 
 /**
  * @Name：系统序列工具类
@@ -14,24 +10,19 @@ import java.util.Date;
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
-public class SysSeqUtil {
+public class SysSeqUtil extends IdSeqUtil{
 
-    public static String getNextId() {
-        return getIdBySnowflake()+"";
+    public SysSeqUtil() {
+        super(1, 1, "javasaasx");
     }
 
-
-    private static String getTime(){
-        return DateUtil.format(new Date(), DatePattern.PURE_DATETIME_MS_PATTERN);
+    public SysSeqUtil(long dcId, long workerId, String signKey) {
+        super(dcId, workerId, signKey);
     }
 
-
-    private static final long workerId = 1;//终端ID
-    private static final long datacenterId = 1;//数据中心ID
-    private static final Snowflake snowflake = new Snowflake(workerId, datacenterId);
-
-    private static long getIdBySnowflake(){
-        return snowflake.nextId();
+    public static void main(String[] args) {
+        System.out.println(SysSeqUtil.getId());
+        System.out.println(SysSeqUtil.encryptId("962253286751289344"));
     }
 
 }

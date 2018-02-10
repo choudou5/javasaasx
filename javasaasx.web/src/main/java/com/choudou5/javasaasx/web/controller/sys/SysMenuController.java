@@ -1,14 +1,12 @@
 package com.choudou5.javasaasx.web.controller.sys;
 
-import com.choudou5.javasaasx.common.util.JsonUtil;
-import com.choudou5.javasaasx.framework.page.PageResult;
-import com.choudou5.javasaasx.framework.util.AssertUtil;
+import com.choudou5.base.page.PageResult;
+import com.choudou5.base.util.JsonUtil;
 import com.choudou5.javasaasx.service.sys.SysMenuService;
 import com.choudou5.javasaasx.service.sys.bo.SysMenuBo;
 import com.choudou5.javasaasx.service.sys.bo.SysMenuQueryParam;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import com.choudou5.javasaasx.web.util.RequestUtil;
-import com.xiaoleilu.hutool.json.JSON;
 import com.xiaoleilu.hutool.util.StrUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +71,7 @@ public class SysMenuController extends BaseController {
     public String ajaxParentTree(HttpServletRequest req, Model model) {
         int showLevel = RequestUtil.getIntParameter(req, "showLevel", 2);
         Map tree = sysMenuService.getParentTree(showLevel);
-        return JsonUtil.toString(new Object[]{tree});
+        return JsonUtil.toStr(new Object[]{tree});
     }
 
 

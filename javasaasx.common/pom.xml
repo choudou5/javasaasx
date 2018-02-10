@@ -19,6 +19,8 @@
 			<artifactId>javasaasx.framework</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+
 		<dependency>
 			<groupId>com.choudou5</groupId>
 			<artifactId>javasaasx.service</artifactId>
@@ -89,17 +91,6 @@
 			<version>${ehcache-core.version}</version>
 		</dependency>
 
-		<!-- pojo copy -->
-		<dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-			<version>${dozer.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
-		</dependency>
 
 		<!-- freemaker -->
 		<dependency>
@@ -108,12 +99,6 @@
 			<version>${freemarker.version}</version>
 		</dependency>
 
-		<!-- json -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>${fastjson.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>commons-io</groupId>

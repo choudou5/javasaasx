@@ -1,20 +1,19 @@
 package com.choudou5.javasaasx.common.cache;
 
-import com.choudou5.javasaasx.framework.exception.BizException;
-import com.choudou5.javasaasx.framework.util.AssertUtil;
+import com.choudou5.base.exception.BizException;
+import com.choudou5.base.helper.CacheHelper;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * @Name：本地 缓存API
+ * @Name：全局 缓存API
  * @Author：xuhaowende@sina.cn
  * @Date：2018-01-13 17:33
  * @Site：http://solrhome.com
  * @License：MIT
  */
-public class LocalCacheApi implements CacheApi {
-
+public class GlobalCacheHelper implements CacheHelper{
 
 
     @Override
@@ -24,7 +23,7 @@ public class LocalCacheApi implements CacheApi {
 
     @Override
     public void put(String cacheKey, Object object, int secondTimeout) throws BizException {
-        AssertUtil.outThrow("未实现此功能");
+
     }
 
     @Override

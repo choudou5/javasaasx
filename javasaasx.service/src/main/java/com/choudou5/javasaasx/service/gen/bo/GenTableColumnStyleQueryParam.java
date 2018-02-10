@@ -1,7 +1,6 @@
 package com.choudou5.javasaasx.service.gen.bo;
 
-import com.choudou5.javasaasx.framework.bean.BaseBo;
-import com.choudou5.javasaasx.framework.bean.QueryParam;
+import com.choudou5.base.bean.QueryParam;
 
 /**
  * @Name：生成表字段样式 查询对象

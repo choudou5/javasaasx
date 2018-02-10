@@ -426,11 +426,13 @@ pre{white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; w
 /** Tab选项卡 **/
 .layui-tab{margin: 10px 0; text-align: left !important;}
 .layui-tab[overflow]>.layui-tab-title{overflow: hidden;}
-.layui-tab-title{position: relative; left: 0; height: 40px; white-space: nowrap; font-size: 0; border-bottom: 1px solid #e2e2e2; transition: all .2s; -webkit-transition: all .2s;}
-.layui-tab-title li{display: inline-block; *display: inline; *zoom: 1; vertical-align: middle; font-size: 14px; transition: all .2s; -webkit-transition: all .2s;}
+.layui-tab-title{position: relative; left: 0; height: 42px; white-space: nowrap; font-size: 0; border-bottom: 1px solid #e2e2e2; transition: all .2s; -webkit-transition: all .2s;}
+.layui-tab-title li{display: inline-block; *display: inline; *zoom: 1; vertical-align: middle; font-size: 14px; transition: all .2s; -webkit-transition: all .2s; border-right: 1px solid #ddd;}
 .layui-tab-title li{position: relative; line-height: 40px; min-width: 65px; padding: 0 10px; text-align: center; cursor: pointer;}
+.layui-tab-title li:hover{color: #38adff;}
 .layui-tab-title li a{display: block;}
-.layui-tab-title .layui-this{color: #000;}
+.layui-tab-title .layui-this{color: #38adff;}
+
 
 .layui-tab-title .layui-this:after{position: absolute; left:0; top: 0; content: ''; width:100%; height: 41px; border: 1px solid #e2e2e2; border-bottom-color: #fff; border-radius: 2px 2px 0 0; -webkit-box-sizing: border-box !important; -moz-box-sizing: border-box !important; box-sizing: border-box !important; pointer-events: none;}
 .layui-tab-bar{position: absolute; right: 0; top: 0; z-index: 10; width: 30px; height: 39px; line-height: 39px; border: 1px solid #e2e2e2; border-radius: 2px; text-align: center; background-color: #fff; cursor: pointer;}
@@ -453,7 +455,7 @@ pre{white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; w
 
 /* Tab卡片风格 */.layui-tab-card{border: 1px solid #e2e2e2; border-radius: 2px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);}
 .layui-tab-card > .layui-tab-title{ background-color: #f2f2f2;}
-.layui-tab-card > .layui-tab-title li{margin-right: -1px; margin-left: -1px;}
+.layui-tab-card > .layui-tab-title li{margin-right: 4px; margin-left: -1px;}
 .layui-tab-card > .layui-tab-title .layui-this{background-color: #fff;     }
 .layui-tab-card > .layui-tab-title .layui-this:after{border-top: none; border-width: 1px; border-bottom-color: #fff;}
 .layui-tab-card > .layui-tab-title .layui-tab-bar{height: 40px; line-height: 40px; border-radius: 0; border-top: none; border-right: none;}

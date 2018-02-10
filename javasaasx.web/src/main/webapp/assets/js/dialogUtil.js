@@ -136,29 +136,63 @@ function dialogOpenPage(iframeId, title, url, width, height, okCall, cancelCall,
 	});
 }
 
+
+/**
+ * 弹出 新页面
+ * @param divId
+ * @param title
+ * @param htmlContent
+ * @param width
+ * @param height
+ * @param okCall
+ * @param initCall
+ */
+function dialogOpenHtmlContent(divId, title, htmlContent, width, height, okCall, initCall){
+	width = width==undefined?450:width;
+	height = height==undefined?350:height;
+	width = comm.getResponsiveWidth(width)+'px';
+	height = comm.getResponsiveHeight(height)+'px';
+
+	//单窗口模式，层叠置顶
+	layer.open({
+		id: divId,
+		type: 1
+		,title: title
+		,area: [width, height]
+		,closeBtn: 1
+		,shadeClose: true
+		,maxmin: true
+		,content: htmlContent
+		,btn: ['确定', '取消']
+		,yes: function(index){
+			if(typeof okCall == 'function'){
+				okCall(index);
+			}
+		}
+		,zIndex: layer.zIndex //重点1
+		,success: function(layero){
+			if(typeof initCall == 'function'){
+				initCall();
+			}
+		}
+	});
+}
 /**
  * 获得 IFrame 索引
- * @param index
+ * @param iframeId
  */
-function dialogGetIFrameIndex(){
-	return parent.layer.getFrameIndex(window.name); //获取窗口索引
+function dialogGetIFrameIndex(iframeId){
+	var index = layer.getFrameIndex(iframeId);
+	return index; //获取窗口索引
 }
 
 /**
  * 关闭IFrame
  * @param index
  */
-function dialogCloseIFrame(){
-	var index = dialogGetIFrameIndex();
-	return parent.layer.close(index);
-}
-
-/**
- * 关闭
- * @param index
- */
-function dialogClose(){
-	var index = dialogGetIFrameIndex();
+function dialogCloseIFrame(iframeId){
+	var index = dialogGetIFrameIndex(iframeId);
+	//log("dialogCloseIFrame index:"+index);
 	return layer.close(index);
 }
 

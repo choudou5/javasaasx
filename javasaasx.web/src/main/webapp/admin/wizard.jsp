@@ -42,7 +42,7 @@
                                 <div class="col-sm-4 col-sm-offset-1">
                                     <div class="picture-container">
                                         <div class="picture">
-                                            <img src="default-avatar.png" tppabs="http://demos.creative-tim.com/material-dashboard-pro/assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                            <img src="${ctxStaticImg}default-avatar.png"  class="picture-src" id="wizardPicturePreview" title="" />
                                             <input type="file" id="wizard-picture">
                                         </div>
                                         <h6>Choose Picture</h6>
@@ -182,6 +182,7 @@
 </div>
 </body>
 <%@include file="/include/scriptLib.jsp" %>
+<%@include file="/include/validScriptLib.jsp" %>
 <script type="text/javascript">
     $().ready(function() {
         demo.initMaterialWizard();

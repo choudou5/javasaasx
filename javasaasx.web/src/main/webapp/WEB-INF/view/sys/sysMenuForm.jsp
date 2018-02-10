@@ -18,6 +18,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <form:form id="inputForm" modelAttribute="sysMenuBo" action="" method="POST">
+                                <form:hidden path="id"/>
+                                <form:hidden path="type"/>
                                 <div class="card-content">
                                     <div class="form-group label-floating ${isShowParent?'':'hide'}">
                                         <form:hidden path="pid" value="${pid}"/>
@@ -73,22 +75,16 @@
                                         <div class="tab-pane" id="typeButton"></div>
                                     </div>
                                     <div class="form-group label-floating">
-                                        <label class="control-label">手机端显示</label>
                                         <div class="togglebutton">
-                                            <label>
-                                                <form:checkbox path="isMobileShow" value="1" />
-                                            </label>
+                                          <span>手机端显示:</span>
+                                          <label>
+                                              <form:checkbox path="isMobileShow" value="1" />
+                                          </label>
+                                          <span>状态:</span>
+                                          <label>
+                                              <form:checkbox path="status" checked="checked" value="1" />
+                                          </label>
                                         </div>
-                                    </div>
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">状态</label>
-                                        <div class="togglebutton">
-                                            <label>
-                                                <form:checkbox path="status" checked="checked" value="1" />
-                                            </label>
-                                        </div>
-                                        <form:hidden path="id"/>
-                                        <form:hidden path="type"/>
                                     </div>
                                 </div>
                             </form:form>

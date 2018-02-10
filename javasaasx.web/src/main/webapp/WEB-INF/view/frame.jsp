@@ -18,7 +18,7 @@
             <div class="layui-body my-body">
                 <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
                     <ul class="layui-tab-title">
-                        <li class="layui-this" lay-id="0"><span>首页</span></li>
+                        <li class="layui-this" lay-id="0" style="margin-left: -42px;"><span>首页</span></li>
                     </ul>
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
@@ -41,7 +41,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        notify.show( '进入框架页面');
+//        notify.show( '进入框架页面');
     });
 </script>
 

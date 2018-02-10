@@ -1,3 +1,8 @@
+//屏蔽浏览器原始右键
+window.document.body.oncontextmenu = function(event){
+	return false;
+}
+
 
 notify = {
 
@@ -390,6 +395,102 @@ String.prototype.replaceAll = function(s1, s2){
 	return this.replace(new RegExp(s1,"gm"), s2);
 }
 */
+
+
+Array.prototype.containKey = function(key) {
+	for (var k in this){
+		if (k == key){
+			return true;
+		}
+	}
+	return false;
+};
+
+
+function Map() {
+
+	/** Map 大小 **/
+	this.len = 0;
+	/** 对象 **/
+	this.entry = new Object();
+
+	/** 存 **/
+	this.put = function (key , value){
+		if(key == undefined)
+			return;
+		if(!this.containsKey(key)){
+			this.len ++ ;
+		}
+		this.entry[key] = value;
+	}
+
+	/** 取 **/
+	this.get = function (key){
+		return this.containsKey(key) ? this.entry[key] : null;
+	}
+
+	/** 删除 **/
+	this.remove = function ( key ){
+		if( this.containsKey(key) && ( delete this.entry[key] ) ){
+			this.len --;
+		}
+	}
+
+	/** 是否包含 Key **/
+	this.containsKey = function ( key ){
+		return (key in this.entry);
+	}
+
+	/** 是否包含 Value **/
+	this.containsValue = function ( value ){
+		for(var prop in this.entry){
+			if(this.entry[prop] == value){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/** 所有 Value **/
+	this.values = function (){
+		var values = new Array();
+		for(var prop in this.entry){
+			values.push(this.entry[prop]);
+		}
+		return values;
+	}
+
+	/** 所有 Key **/
+	this.keys = function (){
+		var keys = new Array();
+		for(var prop in this.entry){
+			keys.push(prop);
+		}
+		return keys;
+	}
+	/** Map Size **/
+	this.size = function (){
+		return this.len;
+	}
+	//判断MAP是否为空
+	this.isEmpty = function() {
+		return this.len < 1;
+	};
+	/* 清空 */
+	this.clear = function (){
+		this.len = 0;
+		this.entry = new Object();
+	}
+	this.toObject = function(){
+		var obj = {};
+		for(var key in this.entry){
+			if(typeof this.entry[key] != 'function' && key != '__proto__'){
+				obj[key] = this.entry[key];
+			}
+		}
+		return obj;
+	};
+}
 
 
 /*
@@ -876,16 +977,17 @@ select = {
 	}
 }
 
-http = {
+HttpUtil = {
 
 	/**
 	 * ajax 异步请求
 	 * @param url
 	 * @param paramArr
 	 * @param succCall 或消息
+	 * @param errorCall
 	 * @param beforeSendFun 非必填
 	 */
-	ajaxAsyncJsonPost: function (url, paramArr, succCall, beforeSendFun){
+	ajaxAsyncJsonPost: function (url, paramArr, succCall, errorCall, beforeSendFun){
 		$.ajax({
 			type: "post",
 			dataType: "json",
@@ -906,8 +1008,12 @@ http = {
 						notify.show("succCall参数不能为空", "error");
 					}
 				}else{
-					log("error:"+data.exception)
-					notify.show(data.message, "error");
+					log("error:"+data.exception);
+					if(typeof errorCall == 'function'){
+						errorCall();
+					}else{
+						notify.show(data.message, "error");
+					}
 				}
 			},
 			error: function(e){

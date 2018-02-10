@@ -7471,6 +7471,9 @@ output {
 .form-group select ~ .material-input:after {
   display: none;
 }
+.form-group span{
+  color: #AAAAAA;
+}
 
 .form-control::-moz-placeholder {
   font-size: 14px;

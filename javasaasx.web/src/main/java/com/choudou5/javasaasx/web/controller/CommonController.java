@@ -5,6 +5,7 @@ import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.framework.exception.BizException;
 import com.choudou5.javasaasx.framework.util.ToolkitUtil;
 import com.choudou5.javasaasx.web.beanvalidator.BeanValidators;
+import com.choudou5.javasaasx.web.util.RequestUtil;
 import com.xiaoleilu.hutool.date.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,15 @@ public class CommonController extends BaseController{
 	@RequestMapping(value="/viewPage/{module}/{page}",method= RequestMethod.GET)
 	public String viewPage(@PathVariable("module")String module, @PathVariable("page")String page, HttpServletRequest req){
 		return module+"/"+page;
+	}
+
+
+	@RequestMapping(value="/common/chooseTreeValue",method= RequestMethod.GET)
+	public String chooseTreeValue(String ajaxJsonUrl, HttpServletRequest req, Model model){
+		boolean multi = RequestUtil.getBoolParameter(req, "multi", false);
+		model.addAttribute("multi", multi);
+		model.addAttribute("ajaxJsonUrl", ajaxJsonUrl);
+		return "/common/chooseTreeValue";
 	}
 
 

@@ -1,0 +1,7 @@
+/*
+ * Powered By [rapid-framework]
+ * Web Site: http://www.freedom.org.cn
+ * Google Code: http://code.google.com/p/freedom/
+ * Since 2012 <#if now??>- ${now?string('yyyy')}</#if>
+ */
+

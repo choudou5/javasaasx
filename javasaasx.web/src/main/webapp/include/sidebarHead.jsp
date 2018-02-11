@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<nav class="navbar navbar-transparent navbar-absolute">
+<nav class="navbar navbar-transparent navbar-absolute" style="background-color: hsla(0,0%,100%,.96)">
     <div class="container-fluid">
         <div class="navbar-minimize">
             <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon">

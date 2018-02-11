@@ -18,10 +18,10 @@
             <div class="card card-plain">
                 <div class="card-content">
                     <div class="iframe-container hidden-sm hidden-xs">
-                        <iframe id="materialIco" src="https://material.io/icons/" style="height: 600px;">
+                        <iframe id="fontawesomeIco" src="http://fontawesome.io/icons/#icons " style="height: 600px;">
                             <p>Your browser does not support iframes.</p>
                         </iframe>
-                        <iframe id="fontawesomeIco" src="http://fontawesome.io/icons/#icons " style="height: 600px;display: none;">
+                        <iframe id="materialIco" src="https://material.io/icons/" style="height: 600px;display: none;">
                             <p>Your browser does not support iframes.</p>
                         </iframe>
                     </div>

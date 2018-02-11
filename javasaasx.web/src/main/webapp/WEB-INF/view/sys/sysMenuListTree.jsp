@@ -35,10 +35,7 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-content">
-                    <h4 class="card-title">DataTables.net</h4>
-                    <div class="toolbar">
-                        <!--        Here you can write extra buttons/actions for the toolbar              -->
-                    </div>
+                    <h4 class="card-title">功能权限</h4>
                     <div class="material-datatables">
                         <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                             <thead>
@@ -70,8 +67,8 @@
                                     <td>33</td>
                                     <td>2008/11/28</td>
                                     <td class="text-right">
-                                        <a href="#" class="btn btn-success btn-sm edit"><i class="material-icons">edit</i></a>
-                                        <a href="#" class="btn btn-danger btn-sm remove"><i class="material-icons">close</i></a>
+                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-remove"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -81,9 +78,8 @@
                                     <td>61</td>
                                     <td>2012/12/02</td>
                                     <td class="text-right">
-                                        <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-remove"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>

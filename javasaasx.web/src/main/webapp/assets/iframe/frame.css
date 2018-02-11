@@ -117,7 +117,7 @@
 }
 
 .my-body .layui-tab, .my-body .layui-tab .layui-tab-content, .my-body .layui-tab .layui-tab-item {
-    height: 95%;
+    height: 96%;
 }
 
 .my-body iframe {
@@ -274,10 +274,10 @@ input[type='checkbox'] {
 
 /* dblclick css */
 .layui-layer-tips .layui-layer-content{
-    background-color: #009688;
+    background-color: hsla(0,0%,100%,.96);
 }
 .layui-layer-tips i.layui-layer-TipsB{
-    border-right-color: #009688;
+    border-right-color: hsla(0,0%,100%,.96);
 }
 .dblclick-tab tr td {
     height: 30px;
@@ -285,11 +285,12 @@ input[type='checkbox'] {
     padding: 0 6px;
     border-radius: 2px;
     cursor: pointer;
+    color: #444444;
 }
 
 .dblclick-tab tr td:hover {
     color: black;
-    background: white;
+    background: #EEEEEE;
 }
 
 .dblclick-tab tr td i {
@@ -535,10 +536,6 @@ html body .layui-nav .layui-nav-bar {
 
     .my-header ul.my-header-user-nav:last-child a:first-child {
         padding-right: 20px;
-    }
-
-    .my-side, .layui-nav-tree, .my-btn-box input[type='text'] {
-        width: 150px;
     }
 
     .my-body {

@@ -5265,9 +5265,18 @@ select.selectpicker {
 html * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: Roboto,Helvetica Neue,Arial,sans-serif;
+  /*font-family: Roboto,Helvetica Neue,Arial,sans-serif;*/
   font-weight: 400;
 }
+
+
+/** 响应式 **/
+/*
+@media screen and (max-width: 450px) {
+  html *{font-family: Roboto,Helvetica Neue,Arial,sans-serif;}
+}
+*/
+
 
 h1, .h1 {
   font-size: 3.8em;
@@ -5562,7 +5571,7 @@ h2.title {
 }
 .sidebar .logo .simple-text,
 .off-canvas-sidebar .logo .simple-text {
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   padding: 5px 0px;
   display: block;
   font-size: 18px;
@@ -5606,8 +5615,8 @@ h2.title {
 }
 .sidebar .user .photo,
 .off-canvas-sidebar .user .photo {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   overflow: hidden;
   border-radius: 50%;
   margin: 0 auto;
@@ -5731,7 +5740,7 @@ h2.title {
   min-height: calc(100vh - 123px);
 }
 .main-panel > .footer {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .main-panel > .navbar {
   margin-bottom: 0;
@@ -7432,7 +7441,7 @@ output {
 }
 .form-group.has-error .form-control {
   background-image: linear-gradient(#f44336, #f44336), linear-gradient(#D2D2D2, #D2D2D2);
-  background-size: 100% 2px, 100% 1px;
+  background-size: 100% 1px, 100% 1px;
   transition-duration: 0.3s;
 }
 .form-group.has-error label.control-label,
@@ -9478,7 +9487,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   border-radius: 3px;
   margin-bottom: 0;
   border-bottom: 1px solid #ededf3;
-  padding: 10px 0;
+  padding: 0;
 }
 .navbar .navbar-brand {
   position: relative;
@@ -11119,7 +11128,7 @@ footer .btn {
 
   .navbar-form .btn {
     position: absolute;
-    top: 12px;
+    top: 0px;
     right: 15px;
   }
 

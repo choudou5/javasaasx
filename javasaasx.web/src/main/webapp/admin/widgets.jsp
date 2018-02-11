@@ -321,7 +321,7 @@
                         <h6 class="category">@alecthompson</h6>
                         <div class="card-avatar">
                             <a href="#pablo">
-                                <img class="img" src="card-profile1-square.jpg" tppabs="http://demos.creative-tim.com/material-dashboard-pro/assets/img/faces/card-profile1-square.jpg" />
+                                <img class="img" src="${ctxStaticImg}card-profile1-square.jpg"/>
                             </a>
                         </div>
                     </div>

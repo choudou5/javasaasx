@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!--sidebar-menu-->
-<div class="sidebar" data-active-color="grey" data-background-color="black" data-image="${ossImg }sidebar-4.jpg">
+<div class="sidebar" data-active-color="grey" data-background-color="black">
     <!--
     Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
     Tip 2: you can also add an image using data-image tag

@@ -70,7 +70,7 @@ function dialogPrompt(title, callBack, inputType){
 var __loadingIndex = 9999999999;
 /**
  * 加载提示框
- * @param text
+ * @param text 可为空
  * @param autoCloseTime
  */
 function dialogLoading(text, autoCloseTime){
@@ -103,8 +103,8 @@ function dialogOpenPage(iframeId, title, url, width, height, okCall, cancelCall,
 	//layer.closeAll();
 	width = width==undefined?450:width;
 	height = height==undefined?350:height;
-	width = comm.getResponsiveWidth(width)+'px';
-	height = comm.getResponsiveHeight(height)+'px';
+	width = CommUtil.getResponsiveWidth(width)+'px';
+	height = CommUtil.getResponsiveHeight(height)+'px';
 
 	//单窗口模式，层叠置顶
 	layer.open({
@@ -150,8 +150,8 @@ function dialogOpenPage(iframeId, title, url, width, height, okCall, cancelCall,
 function dialogOpenHtmlContent(divId, title, htmlContent, width, height, okCall, initCall){
 	width = width==undefined?450:width;
 	height = height==undefined?350:height;
-	width = comm.getResponsiveWidth(width)+'px';
-	height = comm.getResponsiveHeight(height)+'px';
+	width = CommUtil.getResponsiveWidth(width)+'px';
+	height = CommUtil.getResponsiveHeight(height)+'px';
 
 	//单窗口模式，层叠置顶
 	layer.open({

@@ -1,3 +1,4 @@
+<#include "/java_copyright.include"/>
 <#assign className = table.className>
 <#assign classBOName = table.className + 'Bo'>
 <#assign classNameLower = className?uncap_first>
@@ -11,7 +12,7 @@ import ${packageNamePrefix}.service.${moduleName}.${className}Service;
 import ${packageNamePrefix}.service.${moduleName}.bo.${classBOName};
 import ${packageNamePrefix}.service.${moduleName}.bo.${className}QueryParam;
 import ${packageNamePrefix}.web.controller.BaseController;
-import com.xiaoleilu.hutool.util.StrUtil;
+import com.choudou5.base.util.StrUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -27,9 +28,6 @@ import javax.servlet.http.HttpServletRequest;
  * @Name：${table.remarks} Controller
  * @Author：${author}
  * @Date：${createTime}
- * @Site：${site}
- * @License：${license}
- * @Copyright：${copyright}
  */
 @Controller
 @Scope("prototype")
@@ -138,7 +136,7 @@ public class ${className}Controller extends BaseController {
     @ResponseBody
     public String delete(String id, HttpServletRequest req, RedirectAttributes attributes) {
         try {
-            ${classService}.delete(id);
+            ${classService}.logicDeleteById(id);
             return returnOK("删除成功！");
         } catch (Exception e) {
             return returnFail(e, "删除失败！");

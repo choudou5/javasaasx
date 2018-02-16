@@ -1,3 +1,10 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.service.impl.util;
 
 import org.slf4j.Logger;
@@ -7,9 +14,6 @@ import org.slf4j.LoggerFactory;
  * @Name：系统异常 工具类
  * @Author：xuhaowende
  * @Date：2018-01-18
- * @Site：http://solrhome.com
- * @License：MIT
- * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 public class SysExceptionUtil {
 

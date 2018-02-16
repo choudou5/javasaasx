@@ -1,3 +1,4 @@
+<#include "/java_copyright.include"/>
 <#include "/macro.include"/>
 <#assign className = table.className> 
 <#assign classBOName = table.className + 'Bo'>
@@ -15,9 +16,6 @@ import java.io.Serializable;
  * @Name：${table.remarks} 业务对象
  * @Author：${author}
  * @Date：${createTime}
- * @Site：${site}
- * @License：${license}
- * @Copyright：${copyright}
  */
 public class ${classBOName} implements BaseBo {
 

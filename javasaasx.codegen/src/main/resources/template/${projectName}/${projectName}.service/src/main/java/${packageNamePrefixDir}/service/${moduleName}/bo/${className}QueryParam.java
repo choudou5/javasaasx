@@ -1,3 +1,4 @@
+<#include "/java_copyright.include"/>
 <#include "/macro.include"/>
 <#assign className = table.className> 
 <#assign classBOName = table.className + 'Bo'>
@@ -11,9 +12,6 @@ import ${packageNamePrefix}.framework.bean.QueryParam;
  * @Name：${table.remarks} 查询对象
  * @Author：${author}
  * @Date：${createTime}
- * @Site：${site}
- * @License：${license}
- * @Copyright：${copyright}
  */
 public class ${className}QueryParam extends QueryParam {
 
@@ -28,10 +26,16 @@ public class ${className}QueryParam extends QueryParam {
 
 	public ${className}QueryParam(${classBOName} ${classNameLowerBo}) {
 		this.${classNameLowerBo} = ${classNameLowerBo};
+		setParamBean(${classNameLowerBo});
 	}
 
 	public void set${classBOName}(${classBOName} ${classNameLowerBo}) {
 		this.${classNameLowerBo} = ${classNameLowerBo};
 		setParamBean(${classNameLowerBo});
 	}
+
+	public ${classBOName} setDefBo() {
+		return this.${classNameLowerBo}==null?new ${classBOName}():this.${classNameLowerBo};
+	}
+
 }

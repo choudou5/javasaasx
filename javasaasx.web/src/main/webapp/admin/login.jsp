@@ -21,7 +21,7 @@
                                 <div class="card card-login card-hidden">
                                     <div class="card-header text-center" data-background-color="rose">
                                         <h4 class="card-title">账号登录</h4>
-                                        <div class="social-line">
+                                        <%--<div class="social-line">
                                             <a href="#qq" title="QQ" class="btn btn-just-icon btn-simple">
                                                 <i class="fa fa-qq"></i>
                                             </a>
@@ -31,7 +31,7 @@
                                             <a href="#weibo" title="微博" class="btn btn-just-icon btn-simple">
                                                 <i class="fa fa-weibo"></i>
                                             </a>
-                                        </div>
+                                        </div>--%>
                                     </div>
                                     <p class="category text-center"></p>
                                     <div class="card-content">
@@ -103,22 +103,22 @@
             <li class="header-title">Background Images</li>
             <li class="active">
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="sidebar-1.jpg" />
+                    <img src="${ossImg}sidebar-1.jpg" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="sidebar-2.jpg" />
+                    <img src="${ossImg}sidebar-2.jpg" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="sidebar-3.jpg" />
+                    <img src="${ossImg}sidebar-3.jpg" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="sidebar-4.jpg" />
+                    <img src="${ossImg}sidebar-4.jpg" />
                 </a>
             </li>
             <li class="button-container">
@@ -158,8 +158,8 @@
 			return false;
 		}
 		var paramArr = $("#loginForm").serialize()
-		http.ajaxAsyncJsonPost("/sys/login/dologin.do", paramArr, function(message){
-			notify.show(message);
+        HttpUtil.ajaxAsyncJsonPost("/sys/login/dologin.do", paramArr, function(message){
+			dialogTip(message);
 			setTimeout(function() {
 	            window.location.href = ctx+"/sys/index";
 	        }, 500);

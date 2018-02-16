@@ -83,7 +83,7 @@ public class SysMenuBo implements BaseBo, TreeNodeBo {
 	}
 
 	public Integer getDepth() {
-		return this.depth==null?0:depth;
+		return this.depth;
 	}
 	public void setDepth(Integer depth) {
 		this.depth = depth;
@@ -204,6 +204,4 @@ public class SysMenuBo implements BaseBo, TreeNodeBo {
 		this.delFlag = delFlag;
 	}
 
-	
 }
-

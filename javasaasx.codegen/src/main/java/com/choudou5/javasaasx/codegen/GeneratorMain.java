@@ -3,7 +3,7 @@ package com.choudou5.javasaasx.codegen;
 import cn.org.rapid_framework.generator.Generator;
 import cn.org.rapid_framework.generator.GeneratorFacade;
 import cn.org.rapid_framework.generator.GeneratorProperties;
-import com.xiaoleilu.hutool.date.DateUtil;
+import com.choudou5.base.util.DateUtil;
 
 public class GeneratorMain {
 
@@ -11,7 +11,13 @@ public class GeneratorMain {
 	public static final String[] ABSTRAC_TFIELDS = new String[]{"id", "createBy", "createTime", "updateBy", "updateTime", "delFlag"};
 	/** 是否添加 验证注解到Bo */
 	public static final boolean IS_ADD_VALID_ANNOTATION_TO_BO = true;
-
+	public static final String DEL_FLAG_FIELD = "del_flag";
+	public static final int DEL_FLAG_DELETED = 0; //已删除
+	public static final int DEL_FLAG_NORMAL = 1; //正常
+	/** 忽略字段（新增）*/
+	public static final String[] IGNORE_FIELD_BY_CREATE = new String[]{"updateBy", "updateTime"};
+	/** 忽略字段（更新）*/
+	public static final String[] IGNORE_FIELD_BY_UPDATE = new String[]{"createBy", "createTime"};
 
 	/**
 	 * 请直接修改以下代码调用不同的方法以执行相关生成任务.
@@ -39,7 +45,7 @@ public class GeneratorMain {
 		busCodeGenerator.setOutRootDir(outDir);
 		GeneratorFacade generatorFacade = new GeneratorFacade();
 		generatorFacade.setGenerator(busCodeGenerator);
-//        generatorFacade.deleteOutRootDir();//删除生成目录
+        generatorFacade.deleteOutRootDir();//删除生成目录
 
 		//项目名
 		GeneratorProperties.setProperty("projectName", "javasaasx");

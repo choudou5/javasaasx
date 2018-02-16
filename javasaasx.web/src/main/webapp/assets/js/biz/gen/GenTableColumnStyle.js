@@ -16,8 +16,8 @@ function ajaxSubmitForm(){
     var form = $("#inputForm");
     if(form.valid()){
         var paramArr = form.serialize();
-        http.ajaxAsyncJsonPost("/gen/genTableColumnStyle/save", paramArr, function(message){
-            notify.show(message);
+        HttpUtil.ajaxAsyncJsonPost("/gen/genTableColumnStyle/save", paramArr, function(message){
+            dialogTip(message);
             setTimeout(function() {
                 window.location.href = window.location.href;
             }, 800);
@@ -70,7 +70,7 @@ function ajaxRightDataTable(table){
         "columnDefs": [
             {
                 "render": function(name, type, row, meta) {
-                    return '<input name="columnStyleList['+meta.row+'].id" class="form-control" type="hidden" value="' + comm.toText(row.id) + '" />' +
+                    return '<input name="columnStyleList['+meta.row+'].id" class="form-control" type="hidden" value="' + CommUtil.toText(row.id) + '" />' +
                         '<input name="columnStyleList['+meta.row+'].table" class="form-control" type="hidden" value="' + row.table + '" />' +
                         '<input name="columnStyleList['+meta.row+'].column" class="form-control" readonly type="text" value="' + row.column + '" />';
                 },"targets": 0 //指定列
@@ -128,7 +128,7 @@ function ajaxRightDataTable(table){
 
 
 function buildGenCodeQueryTypeHtm(index, selectValue){
-    selectValue = comm.isEmpty(selectValue)?"":selectValue;
+    selectValue = CommUtil.isEmpty(selectValue)?"":selectValue;
     var htm = new StringBuffer();
     htm.append('<select  name="columnStyleList['+index+'].queryType" class="form-control" title="查询方式">');
     htm.append('<option></option>');
@@ -144,7 +144,7 @@ function buildGenCodeQueryTypeHtm(index, selectValue){
 }
 
 function buildGenCodeShowTypeHtm(index, selectValue){
-    selectValue = comm.isEmpty(selectValue)?"":selectValue;
+    selectValue = CommUtil.isEmpty(selectValue)?"":selectValue;
     var htm = new StringBuffer();
     htm.append('<select name="columnStyleList['+index+'].showType" class="form-control" title="生成类型">');
     htm.append('<option></option>');

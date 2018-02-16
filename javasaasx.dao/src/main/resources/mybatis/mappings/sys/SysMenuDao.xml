@@ -32,65 +32,68 @@
 
     <sql id="where">
         <where>
+            `del_flag` = 1
             <!--
             eg: AND a.title LIKE concat('%',#{paramBean.title},'%')
             -->
-            <if test="paramBean != null and paramBean.id != null and paramBean.id != ''">
-                AND `id` = #{paramBean.id}
-            </if>
-            <if test="paramBean != null and paramBean.pid != null and paramBean.pid != ''">
-                AND `p_id` = #{paramBean.pid}
-            </if>
-            <if test="paramBean != null and paramBean.ppath != null and paramBean.ppath != ''">
-                AND `p_path` = #{paramBean.ppath}
-            </if>
-            <if test="paramBean != null and paramBean.depth != null ">
-                AND `depth` = #{paramBean.depth}
-            </if>
-            <if test="paramBean != null and paramBean.name != null and paramBean.name != ''">
-                AND `name` = #{paramBean.name}
-            </if>
-            <if test="paramBean != null and paramBean.type != null and paramBean.type != ''">
-                AND `type` = #{paramBean.type}
-            </if>
-            <if test="paramBean != null and paramBean.sort != null ">
-                AND `sort` = #{paramBean.sort}
-            </if>
-            <if test="paramBean != null and paramBean.href != null and paramBean.href != ''">
-                AND `href` = #{paramBean.href}
-            </if>
-            <if test="paramBean != null and paramBean.icon != null and paramBean.icon != ''">
-                AND `icon` = #{paramBean.icon}
-            </if>
-            <if test="paramBean != null and paramBean.permission != null and paramBean.permission != ''">
-                AND `permission` = #{paramBean.permission}
-            </if>
-            <if test="paramBean != null and paramBean.createBy != null and paramBean.createBy != ''">
-                AND `create_by` = #{paramBean.createBy}
-            </if>
-            <if test="paramBean != null and paramBean.createTime != null ">
-                AND `create_time` = #{paramBean.createTime}
-            </if>
-            <if test="paramBean != null and paramBean.updateBy != null and paramBean.updateBy != ''">
-                AND `update_by` = #{paramBean.updateBy}
-            </if>
-            <if test="paramBean != null and paramBean.updateTime != null ">
-                AND `update_time` = #{paramBean.updateTime}
-            </if>
-            <if test="paramBean != null and paramBean.remarks != null and paramBean.remarks != ''">
-                AND `remarks` = #{paramBean.remarks}
-            </if>
-            <if test="paramBean != null and paramBean.isMobileShow != null and paramBean.isMobileShow != ''">
-                AND `is_mobile_show` = #{paramBean.isMobileShow}
-            </if>
-            <if test="paramBean != null and paramBean.status != null and paramBean.status != ''">
-                AND `status` = #{paramBean.status}
-            </if>
-            <if test="paramBean != null and paramBean.isSysData != null and paramBean.isSysData != ''">
-                AND `is_sys_data` = #{paramBean.isSysData}
-            </if>
-            <if test="paramBean != null and paramBean.delFlag != null and paramBean.delFlag != ''">
-                AND `del_flag` = #{paramBean.delFlag}
+            <if test="paramBean != null">
+                <if test="paramBean.id != null and paramBean.id != ''">
+                    AND `id` = #{paramBean.id}
+                </if>
+                <if test="paramBean.pid != null and paramBean.pid != ''">
+                    AND `p_id` = #{paramBean.pid}
+                </if>
+                <if test="paramBean.ppath != null and paramBean.ppath != ''">
+                    AND `p_path` = #{paramBean.ppath}
+                </if>
+                <if test="paramBean.depth != null ">
+                    AND `depth` = #{paramBean.depth}
+                </if>
+                <if test="paramBean.name != null and paramBean.name != ''">
+                    AND `name` = #{paramBean.name}
+                </if>
+                <if test="paramBean.type != null and paramBean.type != ''">
+                    AND `type` = #{paramBean.type}
+                </if>
+                <if test="paramBean.sort != null ">
+                    AND `sort` = #{paramBean.sort}
+                </if>
+                <if test="paramBean.href != null and paramBean.href != ''">
+                    AND `href` = #{paramBean.href}
+                </if>
+                <if test="paramBean.icon != null and paramBean.icon != ''">
+                    AND `icon` = #{paramBean.icon}
+                </if>
+                <if test="paramBean.permission != null and paramBean.permission != ''">
+                    AND `permission` = #{paramBean.permission}
+                </if>
+                <if test="paramBean.createBy != null and paramBean.createBy != ''">
+                    AND `create_by` = #{paramBean.createBy}
+                </if>
+                <if test="paramBean.createTime != null ">
+                    AND `create_time` = #{paramBean.createTime}
+                </if>
+                <if test="paramBean.updateBy != null and paramBean.updateBy != ''">
+                    AND `update_by` = #{paramBean.updateBy}
+                </if>
+                <if test="paramBean.updateTime != null ">
+                    AND `update_time` = #{paramBean.updateTime}
+                </if>
+                <if test="paramBean.remarks != null and paramBean.remarks != ''">
+                    AND `remarks` = #{paramBean.remarks}
+                </if>
+                <if test="paramBean.isMobileShow != null and paramBean.isMobileShow != ''">
+                    AND `is_mobile_show` = #{paramBean.isMobileShow}
+                </if>
+                <if test="paramBean.status != null and paramBean.status != ''">
+                    AND `status` = #{paramBean.status}
+                </if>
+                <if test="paramBean.isSysData != null and paramBean.isSysData != ''">
+                    AND `is_sys_data` = #{paramBean.isSysData}
+                </if>
+                <if test="paramBean.delFlag != null and paramBean.delFlag != ''">
+                    AND `del_flag` = #{paramBean.delFlag}
+                </if>
             </if>
             <if test="extendParams.size() > 0">
                 <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
@@ -99,6 +102,22 @@
             </if>
         </where>
     </sql>
+
+    <update id="logicDeleteById">
+        UPDATE sys_menu SET `del_flag` = 0
+        WHERE id = #{id}
+    </update>
+
+    <update id="logicDeleteByIds">
+        UPDATE sys_menu SET `del_flag` = 0
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </update>
+
+    <update id="logicDeleteByPid">
+        UPDATE sys_menu SET `del_flag` = 0
+        WHERE p_id = #{pid}
+    </update>
 
     <insert id="insert" keyProperty="id">
         INSERT INTO sys_menu (
@@ -114,8 +133,6 @@
         <if test="permission != null">,`permission`</if>
         <if test="createBy != null">,`create_by`</if>
         <if test="createTime != null">,`create_time`</if>
-        <if test="updateBy != null">,`update_by`</if>
-        <if test="updateTime != null">,`update_time`</if>
         <if test="remarks != null">,`remarks`</if>
         <if test="isMobileShow != null">,`is_mobile_show`</if>
         <if test="status != null">,`status`</if>
@@ -134,8 +151,6 @@
         <if test="permission != null">,#{permission}</if>
         <if test="createBy != null">,#{createBy}</if>
         <if test="createTime != null">,#{createTime}</if>
-        <if test="updateBy != null">,#{updateBy}</if>
-        <if test="updateTime != null">,#{updateTime}</if>
         <if test="remarks != null">,#{remarks}</if>
         <if test="isMobileShow != null">,#{isMobileShow}</if>
         <if test="status != null">,#{status}</if>
@@ -158,8 +173,6 @@
         ,`permission`
         ,`create_by`
         ,`create_time`
-        ,`update_by`
-        ,`update_time`
         ,`remarks`
         ,`is_mobile_show`
         ,`status`
@@ -180,8 +193,6 @@
         ,#{entity.permission}
         ,#{entity.createBy}
         ,#{entity.createTime}
-        ,#{entity.updateBy}
-        ,#{entity.updateTime}
         ,#{entity.remarks}
         ,#{entity.isMobileShow}
         ,#{entity.status}
@@ -203,8 +214,6 @@
             `href` = #{href} ,
             `icon` = #{icon} ,
             `permission` = #{permission} ,
-            `create_by` = #{createBy} ,
-            `create_time` = #{createTime} ,
             `update_by` = #{updateBy} ,
             `update_time` = #{updateTime} ,
             `remarks` = #{remarks} ,
@@ -216,6 +225,15 @@
             id = #{id} 
     ]]>
     </update>
+
+    <update id="updateField" >
+        UPDATE sys_menu SET
+            <if test='sqlField == "is_mobile_show"'>`is_mobile_show` = #{value} </if>
+            <if test='sqlField == "status"'>`status` = #{value} </if>
+            <if test='sqlField == "is_sys_data"'>`is_sys_data` = #{value} </if>
+        WHERE id = #{id}
+    </update>
+
 
     <delete id="deleteById">
     <![CDATA[
@@ -256,7 +274,7 @@
             ORDER BY ${orderBean.orderBy} ${orderBean.order}
         </if>
         <if test="pageBean != null">
-            <if test="dbName == 'mysql' or dbName == 'sqlite'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
         </if>
     </select>
 
@@ -272,7 +290,7 @@
         <if test="orderBean != null and orderBean.orderBy != null">
             ORDER BY ${orderBean.orderBy} ${orderBean.order}
         </if>
-        <if test="dbName == 'mysql' or dbName == 'sqlite'">limit 1</if>
+        <if test="dbName == 'mysql'">limit 1</if>
     </select>
 
 

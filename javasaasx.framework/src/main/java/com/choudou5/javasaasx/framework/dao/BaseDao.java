@@ -21,6 +21,18 @@ public interface BaseDao<P extends BasePo, K extends Serializable> {
 
     void batchInsert(List<P> list);
 
+    /**
+     * 逻辑删除
+     * @param id
+     */
+    void logicDeleteById(K id);
+
+    /**
+     * 逻辑批量删除
+     * @param idList
+     */
+    void logicDeleteByIds(List<K> idList);
+
     void deleteById(K id);
 
     void deleteByIds(List<K> idList);

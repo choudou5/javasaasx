@@ -16,8 +16,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
-                            <form:form id="inputForm" modelAttribute="sysMenuBo" action="" method="POST">
+                        <div class="card" style="margin: 10px 0;">
+                            <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="sysMenuBo" action="" method="POST">
                                 <form:hidden path="id"/>
                                 <form:hidden path="type"/>
                                 <div class="card-content">
@@ -36,12 +36,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group label-floating">
-                                        <label class="control-label">名称<small class="red">*</small></label>
-                                        <form:input path="name" class="form-control" required="true"/>
+                                        <form:input path="name" class="form-control" required="true" placeholder="名称*"/>
                                     </div>
                                     <div class="form-group label-floating">
-                                        <label class="control-label">权限标识<small class="red">*</small></label>
-                                        <form:input path="permission" required="true" class="form-control"/>
+                                        <form:input path="permission" required="true" class="form-control" placeholder="权限标识*"/>
                                     </div>
                                     <div class="form-group label-floating">
                                         <ul class="nav nav-tabs" data-tabs="tabs">
@@ -56,20 +54,19 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="typeMenu">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">排序<small class="red">*</small></label>
-                                                <form:input path="sort" class="form-control" required="true"/>
+                                                <form:input path="href" class="form-control" required="true" placeholder="链接*"/>
                                             </div>
                                             <div class="form-group label-floating">
-                                                <label class="control-label">链接<small class="red">*</small></label>
-                                                <form:input path="href" class="form-control" required="true"/>
+                                                <form:input path="icon" class="form-control" placeholder="请使用 fa fa- "/>
                                             </div>
                                             <div class="form-group label-floating">
-                                                <label class="control-label">图标</label>
-                                                <form:input path="icon" class="form-control"/>
+                                                <form:textarea path="remarks" class="form-control" rows="1" placeholder="备注"/>
                                             </div>
                                             <div class="form-group label-floating">
-                                                <label class="control-label">备注</label>
-                                                <form:textarea path="remarks" class="form-control"/>
+                                                <div class="checkbox checkbox-inline">
+                                                    <label class="text-success">权限：</label>
+                                                </div>
+                                                <input type="text" name="perms" value="查看,新增,修改,删除" class="tagsinput" data-role="tagsinput" data-color="rose" />
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="typeButton"></div>
@@ -102,6 +99,10 @@
 <%@include file="/include/validScriptLib.jsp" %>
 <script src="${ctxStatic }/jstree/3.3.5/dist/jstree.min.js"></script>
 <script type="text/javascript">
+
+    //初始化
+    FormUtil.setInputVal('#type', 'menu');
+
     // html demo
     $(function () {
         $("#parentTree").jstree({
@@ -155,15 +156,13 @@
     function ajaxSubmitIframeForm(success){
         var form = $("#inputForm");
         if(form.valid()){
+            FormUtil.tryLockSubmit();
             var paramArr = form.serializeArray();
             paramArr = FormUtil.filterNullParam(paramArr);
-            http.ajaxAsyncJsonPost("/sys/sysMenu/save", paramArr, function(message){
-                notify.show(message);
+            HttpUtil.ajaxAsyncJsonPost("/sys/sysMenu/save", paramArr, function(message){
+                dialogTip(message);
                 if(typeof success == 'function'){
-                   setTimeout(function(){
-                       dialogCloseIFrame();
                        success();
-                   }, 1500);
                 }
             });
         }

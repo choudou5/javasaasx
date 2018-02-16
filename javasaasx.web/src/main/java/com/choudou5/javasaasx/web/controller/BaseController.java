@@ -1,12 +1,20 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.web.controller;
 
 import com.choudou5.base.exception.BizException;
+import com.choudou5.base.util.DateUtil;
 import com.choudou5.base.util.JsonUtil;
+import com.choudou5.base.util.ObjUtil;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.framework.bean.TableDataBo;
 import com.choudou5.javasaasx.web.beanvalidator.BeanValidators;
-import com.xiaoleilu.hutool.date.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,6 +147,19 @@ public abstract class BaseController {
 	 */
 	protected void beanValidator(Object object, Class<?>... groups) {
 		BeanValidators.validateWithException(validator, object, groups);
+	}
+
+	/**
+	 * 服务端参数有效性验证
+	 * @param params 参数
+	 */
+	protected boolean paramValidNull(Object ... params) {
+		for (Object param : params) {
+			if(ObjUtil.isNull(param)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -286,6 +307,10 @@ public abstract class BaseController {
 
 	protected String returnTableData(List list){
 		return JsonUtil.toStr(new TableDataBo(list));
+	}
+
+	protected String returnJson(Object object){
+		return JsonUtil.toStr(object);
 	}
 
 }

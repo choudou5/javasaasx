@@ -1,3 +1,10 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.service.impl;
 
 import com.choudou5.base.bean.OrderBean;
@@ -5,6 +12,7 @@ import com.choudou5.base.bean.QueryParam;
 import com.choudou5.base.exception.BizException;
 import com.choudou5.base.mapper.BeanMapper;
 import com.choudou5.base.page.PageResult;
+import com.choudou5.base.util.CollUtil;
 import com.choudou5.base.util.ReflectionUtil;
 import com.choudou5.javasaasx.framework.bean.AbstractBasePo;
 import com.choudou5.javasaasx.framework.bean.BaseBo;
@@ -12,7 +20,6 @@ import com.choudou5.javasaasx.framework.dao.BaseDao;
 import com.choudou5.javasaasx.framework.service.BaseService;
 import com.choudou5.javasaasx.framework.util.SysSeqUtil;
 import com.choudou5.javasaasx.service.impl.util.SysExceptionUtil;
-import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -21,9 +28,7 @@ import java.util.List;
 /**
  * @Name：基础接口 实现
  * @Author：xuhaowende
- * @Date：2018-01-13 17:15
- * @Site：http://solrhome.com
- * @License：MIT
+ * @Date：2018-01-13
  */
 public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo> implements BaseService<B> {
 
@@ -51,7 +56,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public int batchInsert(List<B> list) throws BizException {
         try {
-            if (CollectionUtil.isEmpty(list))
+            if (CollUtil.isEmpty(list))
                 return 0;
             List<P> poList = BeanMapper.mapList(list, getPoClazz());
             preBatchInsert(poList);
@@ -75,7 +80,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public void batchUpdate(List<B> list) throws BizException {
         try {
-            if (CollectionUtil.isEmpty(list))
+            if (CollUtil.isEmpty(list))
                 return;
             List<P> poList = BeanMapper.mapList(list, getPoClazz());
             for (P po : poList) {
@@ -84,6 +89,26 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.batchUpdate fail", e);
             throw new BizException("批量更新失败！", e);
+        }
+    }
+
+    @Override
+    public void logicDeleteById(String id) throws BizException {
+        try {
+            getDao().logicDeleteById(id);
+        } catch (Exception e) {
+            SysExceptionUtil.error("BaseServiceImpl.logicDeleteById fail", e);
+            throw new BizException("删除失败！", e);
+        }
+    }
+
+    @Override
+    public void logicDeleteByIds(List<String> idList) throws BizException {
+        try {
+            getDao().logicDeleteByIds(idList);
+        } catch (Exception e) {
+            SysExceptionUtil.error("BaseServiceImpl.logicDeleteByIds fail", e);
+            throw new BizException("批量删除失败！", e);
         }
     }
 
@@ -108,8 +133,6 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
             throw new BizException("批量删除失败！", e);
         }
     }
-
-
 
     @Override
     public B get(Serializable id) {

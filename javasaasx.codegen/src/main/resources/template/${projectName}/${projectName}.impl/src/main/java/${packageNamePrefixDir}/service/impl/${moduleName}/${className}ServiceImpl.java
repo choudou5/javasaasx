@@ -1,3 +1,4 @@
+<#include "/java_copyright.include"/>
 <#assign className = table.className>
 <#assign classPOName = table.className + 'Po'>
 <#assign classBOName = table.className + 'Bo'>
@@ -17,9 +18,6 @@ import org.springframework.stereotype.Service;
  * @Name：${table.remarks} 接口实现类
  * @Author：${author}
  * @Date：${createTime}
- * @Site：${site}
- * @License：${license}
- * @Copyright：${copyright}
  */
 @Service("${classNameLower}Service")
 public class ${className}ServiceImpl extends BaseServiceImpl<${classPOName}, ${classBOName}> implements ${className}Service {

@@ -1,3 +1,10 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.service.impl.sys;
 
 import com.choudou5.javasaasx.api.sys.SysUserApi;
@@ -10,9 +17,7 @@ import org.springframework.stereotype.Service;
 /**
  * @Name：系统用户接口 实现类
  * @Author：xuhaowende@sina.cn
- * @Date：2018-01-13 16:11
- * @Site：http://www.javasaas.top
- * @License：MIT
+ * @Date：2018-01-13
  */
 @Service("sysUserService")
 public class SysUserServiceImpl extends BaseServiceImpl implements SysUserService, SysUserApi {

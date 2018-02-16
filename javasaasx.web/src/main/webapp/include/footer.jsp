@@ -49,17 +49,19 @@
 <!-- 右键菜单 -->
 <div class="my-dblclick-box hide">
     <table class="layui-tab dblclick-tab">
-        <tbody><tr class="card-refresh">
-            <td><i class="layui-icon">ဂ</i>刷新当前标签</td>
-        </tr>
-        <tr class="card-close">
-            <td><i class="layui-icon">ဆ</i>关闭当前标签</td>
-        </tr>
-        <tr class="card-close-all">
-            <td><i class="layui-icon">ဆ</i>关闭所有标签</td>
-        </tr>
-        <tr class="card-cancel-menu">
-            <td><i class="layui-icon">ဆ</i>取消</td>
-        </tr>
-        </tbody></table>
+        <tbody>
+            <tr class="card-refresh">
+                <td><i class="layui-icon">ဂ</i>刷新当前标签</td>
+            </tr>
+            <tr class="card-close">
+                <td><i class="layui-icon">ဆ</i>关闭当前标签</td>
+            </tr>
+            <tr class="card-close-all">
+                <td><i class="layui-icon">ဆ</i>关闭所有标签</td>
+            </tr>
+            <tr class="card-cancel-menu">
+                <td><i class="layui-icon">ဆ</i>取消</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

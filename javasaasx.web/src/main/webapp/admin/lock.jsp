@@ -74,22 +74,22 @@
             <li class="header-title">Background Images</li>
             <li class="active">
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="sidebar-1.jpg" />
+                    <img src="${ossImg}sidebar-1.jpg" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="sidebar-2.jpg" />
+                    <img src="${ossImg}sidebar-2.jpg" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="sidebar-3.jpg" />
+                    <img src="${ossImg}sidebar-3.jpg" />
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="sidebar-4.jpg" />
+                    <img src="${ossImg}sidebar-4.jpg" />
                 </a>
             </li>
             <li class="button-container">

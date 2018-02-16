@@ -1,3 +1,10 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.web.listener;
 
 import com.choudou5.base.bean.QueryParam;

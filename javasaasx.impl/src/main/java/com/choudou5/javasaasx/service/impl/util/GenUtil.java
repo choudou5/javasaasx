@@ -1,3 +1,10 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.service.impl.util;
 
 import com.choudou5.javasaasx.codegen.GeneratorMain;
@@ -9,9 +16,6 @@ import com.choudou5.javasaasx.service.gen.bo.GenCodeBo;
  * @Name：生成 工具类
  * @Author：xuhaowende
  * @Date：2018-01-18
- * @Site：http://solrhome.com
- * @License：MIT
- * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 public class GenUtil {
 

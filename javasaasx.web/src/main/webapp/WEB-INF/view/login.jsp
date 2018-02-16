@@ -86,8 +86,8 @@
             return false;
         }
         var paramArr = $("#loginForm").serialize()
-        http.ajaxAsyncJsonPost("/dologin.do", paramArr, function(message){
-            notify.show(message);
+        HttpUtil.ajaxAsyncJsonPost("/dologin.do", paramArr, function(message){
+            dialogTip(message);
             setTimeout(function() {
                 window.location.href = ctx+"/sys/index";
             }, 500);

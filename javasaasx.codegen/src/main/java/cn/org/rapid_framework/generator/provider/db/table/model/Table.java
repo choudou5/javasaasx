@@ -8,6 +8,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import cn.org.rapid_framework.generator.util.StringHelper;
+import com.choudou5.javasaasx.codegen.GeneratorMain;
+
 /**
  * 用于生成代码的Table对象.对应数据库的table
  * @author badqiu
@@ -228,13 +230,38 @@ public class Table implements java.io.Serializable,Cloneable {
 	    return columns.getBySqlName(sqlName);
 	}
 	
-   public Column getRequiredColumnBySqlName(String sqlName) {
-       if(getColumnBySqlName(sqlName) == null) {
-           throw new IllegalArgumentException("not found column with sqlName:"+sqlName+" on table:"+getSqlName());
-       }
-       return getColumnBySqlName(sqlName);
-    }
-	
+	public Column getRequiredColumnBySqlName(String sqlName) {
+	   if(getColumnBySqlName(sqlName) == null) {
+		   throw new IllegalArgumentException("not found column with sqlName:"+sqlName+" on table:"+getSqlName());
+	   }
+	   return getColumnBySqlName(sqlName);
+	}
+
+	public boolean getExistsColumnBySqlName(String sqlName) {
+		return getColumnBySqlName(sqlName) != null;
+	}
+
+	/**
+	 * 是否 存在删除标识 字段
+	 * @return
+	 */
+	public boolean getExistsDelFlagField() {
+		return getExistsColumnBySqlName(GeneratorMain.DEL_FLAG_FIELD);
+	}
+
+	public String getDelFlagSqlField() {
+		return GeneratorMain.DEL_FLAG_FIELD;
+	}
+
+	public int getDelFlagDeleted() {
+		return GeneratorMain.DEL_FLAG_DELETED;
+	}
+
+	public int getDelFlagNormal() {
+		return GeneratorMain.DEL_FLAG_NORMAL;
+	}
+
+
 	/**
 	 * 忽略过滤掉某些关键字的列,关键字不区分大小写,以逗号分隔
 	 * @param ignoreKeywords

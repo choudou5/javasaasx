@@ -7481,7 +7481,7 @@ output {
   display: none;
 }
 .form-group span{
-  color: #AAAAAA;
+  color: #666;
 }
 
 .form-control::-moz-placeholder {
@@ -7556,7 +7556,7 @@ label.control-label {
 .form-group .label-on-right {
   font-size: 14px;
   line-height: 1.42857;
-  color: #AAAAAA;
+  color: #666;
   font-weight: 400;
 }
 .form-group label.control-label {
@@ -7571,12 +7571,12 @@ label.control-label {
   font-size: 11px;
 }
 .form-group.label-floating label.control-label, .form-group.label-placeholder label.control-label {
-  top: -7px;
+  top: 5px;
   font-size: 14px;
   line-height: 1.42857;
 }
 .form-group.label-static label.control-label, .form-group.label-floating.is-focused label.control-label, .form-group.label-floating:not(.is-empty) label.control-label {
-  top: -28px;
+  top: -20px;
   left: 0;
   font-size: 11px;
   line-height: 1.07143;
@@ -8605,10 +8605,10 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   left: 15px;
 }
 .togglebutton label input[type=checkbox]:checked + .toggle {
-  background-color: rgba(156, 39, 176, 0.7);
+  background-color: #5FB878;
 }
 .togglebutton label input[type=checkbox]:checked + .toggle:after {
-  border-color: #9c27b0;
+  border-color:#5FB878;
 }
 .togglebutton label input[type=checkbox]:checked + .toggle:active:after {
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(156, 39, 176, 0.1);
@@ -9294,8 +9294,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .pagination > .active > span,
 .pagination > .active > span:focus,
 .pagination > .active > span:hover {
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #5FB878;
+  border-color: #5FB878;
   color: #FFFFFF;
   box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
 }
@@ -10153,7 +10153,7 @@ footer .btn {
 .navbar.navbar-default .dropdown-menu li a:active, .bootstrap-table .dropdown-menu li a:hover,
 .bootstrap-table .dropdown-menu li a:focus,
 .bootstrap-table .dropdown-menu li a:active {
-  background-color: #9c27b0;
+  background-color: #AAAAAA;
   color: #FFFFFF;
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
@@ -10864,7 +10864,7 @@ footer .btn {
 }
 
 .nav-tabs {
-  background: #9c27b0;
+  background: #AAAAAA;
   border: 0;
   border-radius: 3px;
   padding: 0 15px;
@@ -10895,7 +10895,7 @@ footer .btn {
   margin: -1px 5px 0 0;
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #888;
   transition: background-color .1s .2s;
 }
 

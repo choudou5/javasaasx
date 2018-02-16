@@ -10950,7 +10950,7 @@
                  *      } );
                  *    } );
              */
-            "sInfo": "显示 _START_ to _END_ of _TOTAL_ 记录",
+            "sInfo": "_START_ / _END_ 共计 _TOTAL_",
 
 
             /**
@@ -10971,7 +10971,7 @@
                  *      } );
                  *    } );
              */
-            "sInfoEmpty": "显示 0 to 0 of 0 记录",
+            "sInfoEmpty": "0 to 0 of 0 记录",
 
 
             /**
@@ -11111,7 +11111,7 @@
                  *      } );
                  *    } );
              */
-            "sLengthMenu": "显示 _MENU_ 记录",
+            "sLengthMenu": "_MENU_ 记录",
 
 
             /**

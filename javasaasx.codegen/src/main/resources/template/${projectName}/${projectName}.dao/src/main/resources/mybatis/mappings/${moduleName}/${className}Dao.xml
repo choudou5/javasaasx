@@ -21,6 +21,7 @@
 
     <sql id="where">
         <where>
+            <#if table.existsDelFlagField>`${table.delFlagSqlField}` = ${table.delFlagNormal}</#if>
             <!--
             eg: AND a.title LIKE concat('%',${"#"}{paramBean.title},'%')
             -->
@@ -39,28 +40,41 @@
         </where>
     </sql>
 
+    <#if table.existsDelFlagField>
+    <update id="logicDeleteById">
+        UPDATE ${table.sqlName} SET `${table.delFlagSqlField}` = ${table.delFlagDeleted}
+        WHERE id = <@mapperEl 'id'/>
+    </update>
+
+    <update id="logicDeleteByIds">
+        UPDATE ${table.sqlName} SET `${table.delFlagSqlField}` = ${table.delFlagDeleted}
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," ><@mapperEl 'id'/> </foreach>
+    </update>
+    </#if>
+
     <insert id="insert" keyProperty="${table.idColumn.columnNameFirstLower}">
         INSERT INTO ${table.sqlName} (
-        <#list table.columns as column>
-        <if test="${column.columnNameFirstLower} != null"><#if column_index != 0>,</#if>`${column.sqlName}`</if>
-                </#list>
+        <#list table.columns as column><#if !column.isIgnoreFieldByCreate>
+        <if test="${column.columnNameFirstLower} != null"><#if column_index != 0>,</#if>`${column.sqlName}`</if></#if>
+        </#list>
         ) VALUES (
-        <#list table.columns as column>
-        <if test="${column.columnNameFirstLower} != null"><#if column_index != 0>,</#if><@mapperEl column.columnNameFirstLower/></if>
+        <#list table.columns as column><#if !column.isIgnoreFieldByCreate>
+        <if test="${column.columnNameFirstLower} != null"><#if column_index != 0>,</#if><@mapperEl column.columnNameFirstLower/></if></#if>
                 </#list>
         )
      </insert>
 
     <insert id="batchInsert" keyProperty="${table.idColumn.columnNameFirstLower}">
         INSERT INTO ${table.sqlName} (
-        <#list table.columns as column>
-        <#if column_index != 0>,</#if>`${column.sqlName}`
+        <#list table.columns as column><#if !column.isIgnoreFieldByCreate>
+        <#if column_index != 0>,</#if>`${column.sqlName}`</#if>
                 </#list>
         ) VALUES
         <foreach collection="entities" item="entity" index="index" separator="," >
         (
-        <#list table.columns as column>
-        <#if column_index != 0>,</#if><@mapperEl 'entity.${column.columnNameFirstLower}'/>
+        <#list table.columns as column><#if !column.isIgnoreFieldByCreate>
+        <#if column_index != 0>,</#if><@mapperEl 'entity.${column.columnNameFirstLower}'/></#if>
             </#list>
         )
         </foreach>
@@ -69,8 +83,8 @@
     <update id="update" >
     <![CDATA[
         UPDATE ${table.sqlName} SET
-            <#list table.notPkColumns as column>
-            `${column.sqlName}` = <@mapperEl column.columnNameFirstLower/> <#if column_has_next>,</#if>
+            <#list table.notPkColumns as column><#if !column.isIgnoreFieldByUpdate>
+            `${column.sqlName}` = <@mapperEl column.columnNameFirstLower/> <#if column_has_next>,</#if></#if>
             </#list>
         WHERE
             <#list table.compositeIdColumns as column>
@@ -119,7 +133,7 @@
             ORDER BY <@jspEl 'orderBean.orderBy'/> <@jspEl 'orderBean.order'/>
         </if>
         <if test="pageBean != null">
-            <if test="dbName == 'mysql' or dbName == 'sqlite'">limit <@jspEl 'pageBean.start'/>, <@jspEl 'pageBean.pageSize'/> </if>
+            <if test="dbName == 'mysql'">limit <@jspEl 'pageBean.start'/>, <@jspEl 'pageBean.pageSize'/> </if>
         </if>
     </select>
 
@@ -135,7 +149,7 @@
         <if test="orderBean != null and orderBean.orderBy != null">
             ORDER BY <@jspEl 'orderBean.orderBy'/> <@jspEl 'orderBean.order'/>
         </if>
-        <if test="dbName == 'mysql' or dbName == 'sqlite'">limit 1</if>
+        <if test="dbName == 'mysql'">limit 1</if>
     </select>
 
     <#list table.columns as column>

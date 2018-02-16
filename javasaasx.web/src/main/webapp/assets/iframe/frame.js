@@ -49,7 +49,7 @@ layui.use(['layer', 'element'], function () {
         // 切换相应的ID tab
         element.tabChange(card, id);
         // 提示信息
-        layer.msg(title);
+        dialogLoading();
     }
 
 	// 删除选项卡

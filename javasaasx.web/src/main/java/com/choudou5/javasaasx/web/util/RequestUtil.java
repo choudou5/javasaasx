@@ -1,9 +1,16 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.web.util;
 
-import com.xiaoleilu.hutool.date.DateUtil;
-import com.xiaoleilu.hutool.util.ArrayUtil;
-import com.xiaoleilu.hutool.util.CollectionUtil;
-import com.xiaoleilu.hutool.util.StrUtil;
+import com.choudou5.base.util.ArrayUtil;
+import com.choudou5.base.util.CollUtil;
+import com.choudou5.base.util.DateUtil;
+import com.choudou5.base.util.StrUtil;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -15,9 +22,6 @@ import java.util.*;
  * @Name：请求工具类
  * @Author：xuhaowende@sina.cn
  * @Date：2018-01-14
- * @Site：http://solrhome.com
- * @License：MIT
- * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 public class RequestUtil {
 
@@ -136,6 +140,13 @@ public class RequestUtil {
         return strValues;
     }
 
+    public static String[] getStrParameters(HttpServletRequest request, String paramName, String separator) {
+        String strValue = request.getParameter(paramName);
+        if(strValue != null)
+            return strValue.split(separator);
+        return null;
+    }
+
     public static List<String> getStrParameterList(HttpServletRequest request, String paramName) {
         List<String> list = new ArrayList<String>(5);
         String[] strs = request.getParameterValues(paramName + "[]");
@@ -246,7 +257,7 @@ public class RequestUtil {
      */
     public static MultipartFile getUploadFile(HttpServletRequest request) throws Exception{
         List<MultipartFile> list = getUploadFiles(request, true);
-        return CollectionUtil.isNotEmpty(list)?list.get(0):null;
+        return CollUtil.isNotEmpty(list)?list.get(0):null;
     }
 
     /**
@@ -269,7 +280,7 @@ public class RequestUtil {
             if(single)
                 break;
         }
-        if (CollectionUtil.isEmpty(result)) {
+        if (CollUtil.isEmpty(result)) {
             throw new Exception("没有上传文件！");
         }
         return result;

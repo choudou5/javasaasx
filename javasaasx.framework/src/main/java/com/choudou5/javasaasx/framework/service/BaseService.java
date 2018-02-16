@@ -37,6 +37,21 @@ public interface BaseService <B extends BaseBo>{
      */
     void batchUpdate(List<B> list) throws BizException;
 
+
+    /**
+     * 逻辑 主键删除
+     * @param id
+     * @throws BizException
+     */
+    void logicDeleteById(String id) throws BizException;
+
+    /**
+     * 逻辑 批量删除
+     * @param idList
+     * @throws BizException
+     */
+    void logicDeleteByIds(List<String> idList) throws BizException;
+
     /**
      * 主键删除
      * @param id

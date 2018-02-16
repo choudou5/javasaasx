@@ -226,6 +226,23 @@ public class Column implements java.io.Serializable,Cloneable{
 	}
 
 	/**
+	 * 新增 忽略字段
+	 * @return
+	 */
+	public boolean getIsIgnoreFieldByCreate() {
+		return ArrayHelper.contains(GeneratorMain.IGNORE_FIELD_BY_CREATE, getColumnNameFirstLower());
+	}
+
+	/**
+	 * 更新 忽略字段
+	 * @return
+	 */
+	public boolean getIsIgnoreFieldByUpdate() {
+		return ArrayHelper.contains(GeneratorMain.IGNORE_FIELD_BY_UPDATE, getColumnNameFirstLower());
+	}
+
+
+	/**
 	 * Gets the Fk attribute of the Column object
 	 * 
 	 * @return The Fk value

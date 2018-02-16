@@ -1,5 +1,6 @@
 package com.choudou5.javasaasx.dao.sys.po;
 
+import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.framework.bean.AbstractBasePo;
 
 /**
@@ -123,6 +124,15 @@ public class SysMenuPo extends AbstractBasePo{
     public String getPermission() {
         return this.permission;
     }
+
+
+    public String getPermissionSuffix() {
+        if(StrUtil.isNotBlank(this.permission)){
+            return StrUtil.subBefore(this.permission, ":", true);
+        }
+        return "";
+    }
+
     public void setPermission(String permission) {
         this.permission = permission;
     }

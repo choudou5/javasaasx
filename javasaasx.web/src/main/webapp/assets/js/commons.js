@@ -4,93 +4,7 @@ window.document.body.oncontextmenu = function(event){
 }
 
 
-notify = {
-
-	/**
-	 *
-	 * @param message
-	 * @param type 'info','success','warning','danger','rose','primary
-	 * @param timer 消失时间 默认2000
-	 * @param from
-	 * @param align
-	 */
-	show: function( message, type, timer, from, align){
-		type = comm.isEmpty(type) ? 'success' : type;
-		timer = comm.isEmpty(timer) ? 2000 : timer;
-		align = comm.isEmpty(align) ? 'center' : align;
-		$.notify({
-			icon: "notifications",
-			message: message
-
-		},{
-			type: this.getType(type),
-			timer: timer,
-			delay: 1,
-			placement: {
-				from: from,
-				align: align
-			}
-		});
-	},
-	autoShow: function(message, timer, from, align){
-		if(comm.isEmpty(message))
-			return;
-		var type = 'info';
-		if(message.indexOf("失败") != -1 || message.indexOf("错误") != -1 || message.indexOf("异常") != -1){
-			type = 'error';
-		}
-		if(message.indexOf("成功") != -1 || message.indexOf("完成") != -1){
-			type = 'success';
-		}
-		this.show(message, type, timer, from, align);
-	},
-	getType: function(type){
-		if("success" == type){
-			return "success";
-		}else if("error" == type){
-			return "danger";
-		}else if("warn" == type){
-			return "warning";
-		}
-		return type;
-	}
-}
-
-dialog = {
-	/**
-	 * 确认对话框
-	 * @param title
-	 * @param text
-	 * @param callback
-	 * @param confirmButtonText
-	 * @param cancelButtonText
-	 */
-	swalConfirm: function(title, text, callback, confirmButtonText, cancelButtonText){
-		confirmButtonText = comm.isEmpty(confirmButtonText)?"确定":confirmButtonText;
-		cancelButtonText = comm.isEmpty(cancelButtonText)?"取消":cancelButtonText;
-		swal({
-			title: title,
-			text: text,
-			showCancelButton: true,
-			confirmButtonClass: 'btn btn-success',
-			cancelButtonClass: 'btn btn-danger',
-			confirmButtonText: confirmButtonText,
-			cancelButtonText: cancelButtonText,
-			buttonsStyling: false
-		}).then(function() {
-			log("ok...");
-			if(typeof callback == "function"){
-				callback();
-			}else{
-				window.location.href = callback;
-			}
-		});
-		return false;
-	}
-
-}
-
-comm = {
+CommUtil = {
 	isEmpty: function(str) {
 		return (str == undefined || str == null || str.length == 0 || str == "undefined");
 	},
@@ -170,7 +84,7 @@ comm = {
 		if(outWidth < 768){
 			def = outWidth-40;
 		}
-		//log("inWidth:"+inWidth+", outWidth:"+outWidth);
+		log("inWidth:"+inWidth+", outWidth:"+outWidth);
 		return def;
 	},
 	/**
@@ -183,9 +97,9 @@ comm = {
 		var outHeight = top.window.outerHeight;
 		//移动端
 		if(outHeight < 1024){
-			def = outHeight-150;
+			def = outHeight-250;
 		}
-		//log("inHeight:"+inHeight+", outHeight:"+outHeight);
+		log("inHeight:"+inHeight+", outHeight:"+outHeight);
 		return def;
 	},
 
@@ -708,48 +622,6 @@ function bindBtnOperOneRow(btnId, checkBoxName, confirmTitle, actionTitle, url, 
 	});
 }
 
-/**
- * 异步提交 选中值
- * @param actionTitle
- * @param url
- * @param selectVals
- * @param succCall
- * @param beforeSendFun
- */
-function ajaxPostSelectVals(actionTitle, url, selectVals, succCall, beforeSendFun){
-	$.ajax({
-		type: "post",
-		dataType: "json",
-		url: ctx + url,
-		data: {"selectVals": selectVals},
-		beforeSend: function(){
-			if(typeof beforeSendFun == 'function'){
-				beforeSendFun();
-			}else{
-				loading("正在为您处理，请稍等...");
-			}
-		},
-		success: function (data) {;
-			if(data.statusCode == 200){
-				if(typeof succCall == 'function'){
-					succCall(data.obj);
-				}else{
-					layerTip(actionTitle+"成功！");
-					setTimeout(function(){
-						window.location.href = window.location.href;
-					}, 1500);
-				}
-			}else{
-				log(data.exception)
-				layerTip(data.message, "error");
-			}
-		},
-		error: function(e){
-			log_error("bindBtnBatchOperRows", e);
-			ajaxErrorTip(e, actionTitle+"失败，请联系管理员！");
-		}
-	});
-}
 
 /**
  * 绑定按钮 导出 Excel
@@ -860,113 +732,12 @@ function bindCheckBoxGroupSelectAll(checkBoxAllId, groupName){
 }
 //*****************************end 复选框***************************************//
 
-/**
- * 弹出窗口
- * @param btnId 按钮ID
- * @param title 标题
- * @param url 路径
- * @param width
- * @param height
- */
-function layerOpenWin(btnId, title, url, width, height) {
-	width = isEmpty(width)?500:width;
-	height = isEmpty(height)?500:height;
-	$("#" + btnId).click(function () {
-		title = title == undefined ? "操作" : title;
-		//打开窗口
-		layer.open({
-			type: 2,
-			title: title,
-			shadeClose: true,
-			shade: false,
-			maxmin: true, //开启最大化最小化按钮
-			area: [width+'px', height+'px'],
-			content: url/*,
-			 end: function () {
-			 location.reload();
-			 }*/   //end End
-		}); //layerEnd
-	});  //click End
-};
 
 
-/**
- *
- * @param btnId  按钮ID
- * @param cloumnNum 列的号码
- */
-function selectOneCloumn(btnId, cloumnNum) {
-	$("#" + btnId).click(function () {
-		if (this.checked) {
-			$("table tr td:nth-child(" + cloumnNum + ")").each(function () {
-				$(this).find("[type='checkbox']").prop("checked", true);
-			});
-		} else {
-			$("table tr td:nth-child(" + cloumnNum + ")").each(function () {
-				$(this).find("[type='checkbox']").prop("checked", false);
-			});
-		}
-	});
-};
-
-/**
- *  下拉框选项被选择时触发事件
- * @param url 地址
- * @param
- */
-function getData(url,inputID) {
-	var getdata = "";
-	//异步提交
-	$.ajax({
-		type: "get",
-		dataType: "json",
-		url:  url,
-		success: function (data) {
-			if(data.statusCode == 200){
-				//layerTip("成功！");
-				getdata = data.value;
-				//alert("getdata:"+getdata);
-				$("#"+inputID).val(getdata);
-			}
-		},
-		error: function(e){
-			layerTip("失败，请联系管理员！", "error");
-		} //error End
-	}); //ajax End
-}; //onselect End
-
-
-/**
- * 异步 初始化下拉框值
- * @param url
- * @param selectId
- * @param callBuildOptStr
- */
-function ajaxInitSelectVals(url, selectId, callBuildOptStr) {
-	ajaxAsyncJsonPost(url, {}, function(data){
-		var opts = callBuildOptStr(data);
-		$("#"+selectId).append(opts);
-	});
-};
-
-/**
- *  表单提交
- * @param btnId 提交按钮
- * @param url 提交地址
- * @param formId 表单Id
- * @param redirectUrl 重定向地址
- */
-function submitForm(btnId,url,formId,redirectUrl) {
-	$("#"+btnId).click(function () {
-		//异步提交
-		postAjaxForm(url,formId,redirectUrl);
-	});
-};
-
-select = {
+SelectUtil = {
 	buildSelectOptsHtml : function(selectBos){
 		var opts = new StringBuffer();
-		if(comm.isNotEmpty(selectBos)){
+		if(CommUtil.isNotEmpty(selectBos)){
 			var selectBo = null;
 			for(var i = 0; i < selectBos.length; i++){
 				selectBo = selectBos[i];
@@ -974,6 +745,12 @@ select = {
 			}
 		}
 		return opts.toString();
+	},
+	ajaxInitSelectVals : function (url, selectId, callBuildOptStr) {
+		HttpUtil.ajaxAsyncJsonPost(url, {}, function(data){
+			var opts = callBuildOptStr(data);
+			$("#"+selectId).append(opts);
+		});
 	}
 }
 
@@ -1001,45 +778,45 @@ HttpUtil = {
 			success: function (data) {
 				if(data.statusCode == 200){
 					if(typeof succCall == 'function'){
-						succCall(comm.isEmpty(data.obj)?data.message:data.obj);
+						succCall(CommUtil.isEmpty(data.obj)?data.message:data.obj);
 					}else if(typeof succCall == 'string'){
-						notify.show(succCall);
+						dialogTip(succCall);
 					}else{
-						notify.show("succCall参数不能为空", "error");
+						dialogTip("succCall参数不能为空", "error");
 					}
 				}else{
 					log("error:"+data.exception);
 					if(typeof errorCall == 'function'){
 						errorCall();
 					}else{
-						notify.show(data.message, "error");
+						dialogTip(data.message, "error");
 					}
 				}
 			},
 			error: function(e){
 				log(e)
-				http.ajaxErrorTip(e);
+				HttpUtil.ajaxErrorTip(e);
 			}
 		});
 	},
 	ajaxErrorTip: function (e, defMessage){
 		console.log(e);
 		if(e.status == 403){
-			notify.show("您没有操作权限，请联系管理员！", "error");
+			dialogTip("您没有操作权限，请联系管理员！", "error");
 		}else if(e.status == 404){
-			notify.show("请求不存在, 请联系管理员!", "error");
+			dialogTip("请求不存在, 请联系管理员!", "error");
 		}else if(e.status == 500) {
-			notify.show("服务器内部错误，请联系管理员！", "error");
+			dialogTip("服务器内部错误，请联系管理员！", "error");
 		}else{
-			if(comm.isNotEmpty(defMessage))
-				notify.show("服务器内部错误，请联系管理员！", "error");
+			if(CommUtil.isNotEmpty(defMessage))
+				dialogTip("服务器内部错误，请联系管理员！", "error");
 		}
 	}
 }
 
 BindUtil = {
 		bindCheckBoxStatus: function(status){
-			status = comm.isEmpty(status)?"0":status;
+			status = CommUtil.isEmpty(status)?"0":status;
 			return status=="1"?"checked":"";
 		},
 
@@ -1053,7 +830,7 @@ TableUtil = {
 	 * 绑定 tr菜单选中
 	 * @param tableId
 	 */
-	bingdTrMenuActive: function(tableId){
+	bingTrMenuActive: function(tableId){
 		$(tableId).find("tr").on("click", function(){
 			$(this).siblings().removeClass("active");//移除兄弟标记样式
 			$(this).addClass("active");
@@ -1119,7 +896,7 @@ FormUtil = {
 		var obj = null;
 		for(var i=0; i<serializeArray.length; i++){
 			obj = serializeArray[i];
-			if(comm.isNotEmpty(obj.value)){
+			if(CommUtil.isNotEmpty(obj.value)){
 				newParams[obj.name] = obj.value;
 			}
 		}
@@ -1144,7 +921,7 @@ FormUtil = {
 	 * @param formId
 	 */
 	setInputVal: function(inputId, value, formId){
-		if(comm.isNotEmpty(formId)){
+		if(CommUtil.isNotEmpty(formId)){
 			$(formId).find(inputId).val(value);
 		}else{
 			$(inputId).val(value);
@@ -1153,12 +930,13 @@ FormUtil = {
 	tryLockSubmit: function(){
 		var key = "lockSubmit";
 		var value = CacheUtil.get(key);
-		var now = comm.getTime();
+		var now = DateUtil.getTime();
 		var timeout = 3000;
 		if(value != null && ((now-value) < timeout)){
+			dialogTip("请勿重复提交!", "error");
 			throw new Error('请勿重复提交!');
 		}else{
-			CacheUtil.set(key, comm.getTime());
+			CacheUtil.set(key, DateUtil.getTime());
 			setTimeout(function(){
 				CacheUtil.remove(key);
 			}, timeout);
@@ -1176,7 +954,7 @@ CacheUtil = {
 	get: function(key){
 		return store.get(key);
 	},
-	set: function(key, value){
+	set: function(key, val){
 		return store.set(key, val);
 	},
 	has: function(key){

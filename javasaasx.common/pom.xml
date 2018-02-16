@@ -16,7 +16,7 @@
 
 		<dependency>
 			<groupId>com.choudou5</groupId>
-			<artifactId>javasaasx.framework</artifactId>
+			<artifactId>choudou5.base.common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

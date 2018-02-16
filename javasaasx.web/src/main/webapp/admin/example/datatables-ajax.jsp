@@ -189,8 +189,8 @@
 
 
         //初始化 下拉框值
-        http.ajaxAsyncJsonPost("/gen/genTableColumnStyle/getTableList", {}, function(selectBos){
-            var opts = select.buildSelectOptsHtml(selectBos);
+        HttpUtil.ajaxAsyncJsonPost("/gen/genTableColumnStyle/getTableList", {}, function(selectBos){
+            var opts = SelectUtil.buildSelectOptsHtml(selectBos);
             $('#dbTableSelect').html(opts);
             $('#dbTableSelect').selectpicker('refresh');
         });

@@ -14,6 +14,12 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>com.choudou5</groupId>
+			<artifactId>choudou5.base.common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.driver.version}</version>
@@ -44,12 +50,12 @@
 			<version>${freemarker.version}</version>
 		</dependency>
 
-		<!-- 工具类集合-->
+<!--		&lt;!&ndash; 工具类集合&ndash;&gt;
 		<dependency>
 			<groupId>com.xiaoleilu</groupId>
 			<artifactId>hutool-core</artifactId>
 			<version>3.2.3</version>
-		</dependency>
+		</dependency>-->
 
 	</dependencies>
 

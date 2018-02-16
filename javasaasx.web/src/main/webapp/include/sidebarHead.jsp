@@ -65,7 +65,7 @@
                             <a href="${ctxStaticPage }lock.jsp"><i class="material-icons material-icons-sm">lock outline</i>锁屏</a>
                         </li>
                         <li>
-                            <a href="javascript:;" onclick="dialog.swalConfirm('确认退出系统？', '请再次确认是否要退出系统！', '${ctx }/logout.do', '确定退出', '不，我点错了！')"><i class="material-icons material-icons-sm">close</i>退出登录</a>
+                            <a href="javascript:;" onclick="dialogConfirm('确认退出系统？','${ctx }/logout.do','提示', '确定退出', '不，我点错了！')"><i class="material-icons material-icons-sm">close</i>退出登录</a>
                         </li>
                     </ul>
                 </li>

@@ -41,7 +41,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-//        notify.show( '进入框架页面');
+//        dialogTip( '进入框架页面');
     });
 </script>
 

@@ -1,9 +1,16 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.web.util;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
-import com.xiaoleilu.hutool.util.StrUtil;
+import com.choudou5.base.util.StrUtil;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
@@ -12,9 +19,6 @@ import java.util.List;
  * @Name：日志助手
  * @Author：xuhaowen
  * @Date：2018-01-23
- * @Site：http://solrhome.com
- * @License：MIT
- * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 public class LogHelper {
 

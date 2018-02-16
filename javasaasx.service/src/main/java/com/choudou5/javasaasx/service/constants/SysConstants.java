@@ -37,4 +37,31 @@ public interface SysConstants {
         }
 
     }
+
+    enum MenuPermEnum {
+        VIEW("查看"),
+        ADD("新增"),
+        EDIT("修改"),
+        DEL("删除"),
+        ;
+        MenuPermEnum(String desc) {
+            this.desc = desc;
+        }
+
+        private String desc;
+        public String getDesc() {
+            return desc;
+        }
+
+        public static String getName(String key){
+            MenuPermEnum[] vals = values();
+            for (MenuPermEnum val : vals) {
+                if(val.getDesc().equals(key))
+                    return val.name().toLowerCase();
+            }
+            return null;
+        }
+
+    }
+
 }

@@ -1,3 +1,4 @@
+<#include "/java_copyright.include"/>
 <#assign classPOName = table.className + 'Po'>
 package ${packageNamePrefix}.dao.${moduleName}.po;
 
@@ -7,9 +8,6 @@ import ${packageNamePrefix}.framework.bean.AbstractBasePo;
  * @Name：${table.remarks} Po
  * @Author：${author}
  * @Date：${createTime}
- * @Site：${site}
- * @License：${license}
- * @Copyright：${copyright}
  */
 public class ${classPOName} extends AbstractBasePo{
 

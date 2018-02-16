@@ -123,7 +123,7 @@
     $(function () {
         $('.card .material-datatables label').addClass('form-group');
         $("#leftDatatables").footable();
-        TableUtil.bingdTrMenuActive("#leftDatatables");
+        TableUtil.bingTrMenuActive("#leftDatatables");
     });
 
 </script>

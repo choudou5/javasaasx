@@ -5,7 +5,7 @@
 <#assign classNameLower = className?uncap_first>
 
 
-/** {table.remarks} 业务JS  */
+/** ${table.remarks} 业务JS  */
 
 /**
  * 编辑

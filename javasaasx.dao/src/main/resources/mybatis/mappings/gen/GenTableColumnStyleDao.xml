@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.choudou5.javasaasx.dao.gen.GenTableColumnStyleDao" >
-    <resultMap id="RM_GenTableColumnStyle" type="com.choudou5.javasaasx.dao.gen.po.GenTableColumnStylePo">
+    <resultMap id="RM_GenTableColumnStyle" type="com.choudou5.javasaasx.codegen.model.GenTableColumnStyle">
         <result property="id" column="id"/>
         <result property="table" column="table"/>
         <result property="column" column="column"/>

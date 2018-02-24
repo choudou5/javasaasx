@@ -8,7 +8,7 @@ package ${packageNamePrefix}.service.${moduleName}.bo;
 <#if isAddValidAnnotationToBo=='true'>
 import org.hibernate.validator.constraints.Length;
 </#if>
-import ${packageNamePrefix}.framework.bean.BaseBo;
+import ${packageNamePrefix}.base.bean.BaseBo;
 
 import java.io.Serializable;
 

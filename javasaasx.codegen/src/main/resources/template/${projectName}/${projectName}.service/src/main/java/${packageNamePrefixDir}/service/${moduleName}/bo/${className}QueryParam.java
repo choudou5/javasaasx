@@ -5,8 +5,7 @@
 <#assign classNameLowerBo = classBOName?uncap_first>
 package ${packageNamePrefix}.service.${moduleName}.bo;
 
-import ${packageNamePrefix}.framework.bean.BaseBo;
-import ${packageNamePrefix}.framework.bean.QueryParam;
+import com.choudou5.base.bean.QueryParam;
 
 /**
  * @Name：${table.remarks} 查询对象

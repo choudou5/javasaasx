@@ -2,7 +2,7 @@
 <#assign classPOName = table.className + 'Po'>
 package ${packageNamePrefix}.dao.${moduleName}.po;
 
-import ${packageNamePrefix}.framework.bean.AbstractBasePo;
+import ${packageNamePrefix}.base.bean.AbstractBasePo;
 
 /**
  * @Name：${table.remarks} Po

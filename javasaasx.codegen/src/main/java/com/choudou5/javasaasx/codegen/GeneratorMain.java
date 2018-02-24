@@ -3,7 +3,14 @@ package com.choudou5.javasaasx.codegen;
 import cn.org.rapid_framework.generator.Generator;
 import cn.org.rapid_framework.generator.GeneratorFacade;
 import cn.org.rapid_framework.generator.GeneratorProperties;
+import cn.org.rapid_framework.generator.provider.db.table.TableFactory;
+import cn.org.rapid_framework.generator.provider.db.table.model.Table;
+import cn.org.rapid_framework.generator.util.BeanHelper;
 import com.choudou5.base.util.DateUtil;
+import com.choudou5.base.util.StrUtil;
+import com.choudou5.javasaasx.codegen.model.GenTableColumnStyle;
+
+import java.util.List;
 
 public class GeneratorMain {
 
@@ -26,7 +33,7 @@ public class GeneratorMain {
 		String outDir = "D:\\data\\code_out";
 		String author = "xuhaowen";
 		String moduleName = "sys";
-		String table = "sys_menu";
+		String table = "sys_user";
 		genCode(outDir, author, moduleName, table);
 	}
 
@@ -68,9 +75,20 @@ public class GeneratorMain {
 
 		//模块名
 		GeneratorProperties.setProperty("moduleName", moduleName);
+		GeneratorProperties.setProperty("lowerClassName", StrUtil.toCamelCase(table));
+//		GeneratorProperties.set("columnStyles", columnStyles);
+
 		//表名 sys_user  gen_table_column_style  sys_menu
-		String[] tables = new String[]{table};
-		generatorFacade.generateByTable(tables);
+//		String[] tables = new String[]{table};
+//		generatorFacade.generateByTable(tables);
+
+		//自定义 方式
+		Table tbl = TableFactory.getInstance().getTable(table);
+		Generator.GeneratorModel gm = GeneratorFacade.GeneratorModelUtils.newGeneratorModel("table", tbl);
+		gm.templateModel.put("table", tbl);
+		gm.templateModel.put("columnStyles", TableFactory.getInstance().getColumnStyleList(table));
+		gm.filePathModel.putAll(BeanHelper.describe(tbl));
+		generatorFacade.generateBy(gm);
 	}
 
 

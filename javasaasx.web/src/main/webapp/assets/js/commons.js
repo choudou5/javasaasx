@@ -964,3 +964,11 @@ CacheUtil = {
 		store.remove(key);
 	}
 }
+
+
+function refreshCache(){
+	var url = "/common/clearCache";
+	HttpUtil.ajaxAsyncJsonPost(url, {}, function(message){
+		dialogTip(message);
+	});
+}

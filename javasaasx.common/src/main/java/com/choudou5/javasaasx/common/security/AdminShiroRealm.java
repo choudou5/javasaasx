@@ -1,7 +1,7 @@
 package com.choudou5.javasaasx.common.security;
 
 import cn.hutool.core.lang.Validator;
-import com.choudou5.javasaasx.common.constants.SysConsts;
+import com.choudou5.javasaasx.common.constants.CommConsts;
 import com.choudou5.javasaasx.service.sys.SysUserService;
 import com.choudou5.javasaasx.service.sys.bo.LoginUserBo;
 import com.choudou5.javasaasx.service.sys.bo.SysUserBo;
@@ -30,7 +30,7 @@ public class AdminShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-        LoginUserBo user = (LoginUserBo) SecurityUtils.getSubject().getSession().getAttribute(SysConsts.USER_SESSION);
+        LoginUserBo user = (LoginUserBo) SecurityUtils.getSubject().getSession().getAttribute(CommConsts.USER_SESSION);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 //        info.addRole(StringUtils.join(user.getRoleIds()));
         return info;
@@ -63,7 +63,7 @@ public class AdminShiroRealm extends AuthorizingRealm {
         }
         // 设置session
         Session session = SecurityUtils.getSubject().getSession();
-        session.setAttribute(SysConsts.USER_SESSION, user.baseLoginInfo());
+//        session.setAttribute(CommConsts.USER_SESSION, user.baseLoginInfo());
         //当前 Realm 的 name
         String realmName = this.getName();
         //登陆的主要信息: 可以是一个实体类的对象, 但该实体类的对象一定是根据 token 的 username 查询得到的.

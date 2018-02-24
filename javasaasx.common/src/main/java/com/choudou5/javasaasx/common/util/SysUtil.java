@@ -2,7 +2,7 @@ package com.choudou5.javasaasx.common.util;
 
 import com.choudou5.base.util.IpUtil;
 import com.choudou5.base.util.PropUtil;
-import com.choudou5.javasaasx.common.constants.SysConsts;
+import com.choudou5.javasaasx.common.constants.CommConsts;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -28,7 +28,7 @@ public class SysUtil {
 		} catch (Exception e) {
 			logger.error(siteNameKey+" properties is undefined.", e);
 		}
-		return siteName==null? SysConsts.PROJECT_NAME:siteName;
+		return siteName==null? CommConsts.PROJECT_NAME:siteName;
 	}
 	
 	
@@ -59,7 +59,7 @@ public class SysUtil {
 		} catch (Exception e) {
 			logger.error(GEN_CODE_PATH+" properties is undefined.", e);
 		}
-		return codePath==null?SysConsts.GEN_CODE_OUT:codePath;
+		return codePath==null? CommConsts.GEN_CODE_OUT:codePath;
 	}
 	
 	public static void setLocalPort(HttpServletRequest request){

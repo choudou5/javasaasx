@@ -7,7 +7,7 @@
 */
 package com.choudou5.javasaasx.api.sys;
 
-import com.choudou5.javasaasx.framework.bean.BaseBo;
+import com.choudou5.javasaasx.base.bean.BaseBo;
 
 import java.io.Serializable;
 

@@ -35,6 +35,16 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.choudou5</groupId>
+			<artifactId>choudou5.message.dingtalk</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dingtalk.open</groupId>
+			<artifactId>client-sdk.api</artifactId>
+			<version>1.0.2</version>
+		</dependency>
 
 		<!-- Spring -->
 		<dependency>

@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  * copy from spring
  * 
  * Helper methods for named parameter parsing.
- * Only intended for internal use within Spring's JDBC framework.
+ * Only intended for internal use within Spring's JDBC base.
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller

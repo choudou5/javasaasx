@@ -15,7 +15,7 @@
 
 		<dependency>
 			<groupId>com.choudou5</groupId>
-			<artifactId>choudou5.base.common</artifactId>
+			<artifactId>javasaasx.base</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
@@ -33,13 +33,13 @@
 		-->
 	<!-- bug 获取不到 mysql表注释
 		<dependency>
-			<groupId>com.googlecode.rapid-framework</groupId>
+			<groupId>com.googlecode.rapid-base</groupId>
 			<artifactId>rapid-generator</artifactId>
 			<version>4.0.6</version>
 		</dependency>
 
 		<dependency>
-			<groupId>com.googlecode.rapid-framework</groupId>
+			<groupId>com.googlecode.rapid-base</groupId>
 			<artifactId>rapid-generator-template</artifactId>
 			<version>4.0.6</version>
 		</dependency>

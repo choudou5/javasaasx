@@ -14,11 +14,11 @@ import com.choudou5.base.mapper.BeanMapper;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.CollUtil;
 import com.choudou5.base.util.ReflectionUtil;
-import com.choudou5.javasaasx.framework.bean.AbstractBasePo;
-import com.choudou5.javasaasx.framework.bean.BaseBo;
-import com.choudou5.javasaasx.framework.dao.BaseDao;
-import com.choudou5.javasaasx.framework.service.BaseService;
-import com.choudou5.javasaasx.framework.util.SysSeqUtil;
+import com.choudou5.javasaasx.base.bean.AbstractBasePo;
+import com.choudou5.javasaasx.base.bean.BaseBo;
+import com.choudou5.javasaasx.base.dao.BaseDao;
+import com.choudou5.javasaasx.base.service.BaseService;
+import com.choudou5.javasaasx.base.util.SysSeqUtil;
 import com.choudou5.javasaasx.service.impl.util.SysExceptionUtil;
 import org.springframework.transaction.annotation.Transactional;
 

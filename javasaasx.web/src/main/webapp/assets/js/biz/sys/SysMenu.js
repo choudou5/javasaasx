@@ -41,7 +41,7 @@ function ajaxRightDataTable(menuId){
         },
         bInfo: false,//不显示信息
         language: {
-            "emptyTable": "暂无表字段数据，不科学！",
+            "emptyTable": "找不到记录！",
             "loadingRecords": "请等待，数据正在加载中......",
         },
         columns: [

@@ -7,10 +7,9 @@
 		<version>0.0.1-SNAPSHOT</version>
     </parent>
 
-	<artifactId>javasaasx.framework</artifactId>
-	<name>javasaasx.framework</name>
+	<artifactId>javasaasx.base</artifactId>
+	<name>javasaasx.base</name>
 	<packaging>jar</packaging>
-
 
 	<dependencies>
 

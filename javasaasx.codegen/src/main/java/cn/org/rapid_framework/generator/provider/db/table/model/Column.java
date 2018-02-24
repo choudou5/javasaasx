@@ -719,6 +719,7 @@ public class Column implements java.io.Serializable,Cloneable{
 		private String enumAlias;
 		private String enumKey;
 		private String enumDesc;
+
 		public EnumMetaDada(String enumAlias, String enumKey, String enumDesc) {
 			super();
 			this.enumAlias = enumAlias;

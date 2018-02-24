@@ -1,4 +1,4 @@
-package com.choudou5.javasaasx.framework.util;
+package com.choudou5.javasaasx.base.util;
 
 import javax.servlet.http.HttpServletRequest;
 

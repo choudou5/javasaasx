@@ -1,18 +1,19 @@
-<#include "/java_copyright.include"/>
-<#assign className = table.className>
-<#assign classBOName = table.className + 'Bo'>
-<#assign classNameLower = className?uncap_first>
-<#assign classService = classNameLower + 'Service'>
-<#assign classBONameLower = classBOName?uncap_first>
-package ${packageNamePrefix}.web.controller.${moduleName};
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
+package com.choudou5.javasaasx.web.controller.sys;
 
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
-import ${packageNamePrefix}.service.${moduleName}.${className}Service;
-import ${packageNamePrefix}.service.${moduleName}.bo.${classBOName};
-import ${packageNamePrefix}.service.${moduleName}.bo.${className}QueryParam;
-import ${packageNamePrefix}.web.controller.BaseController;
+import com.choudou5.javasaasx.service.sys.SysRoleService;
+import com.choudou5.javasaasx.service.sys.bo.SysRoleBo;
+import com.choudou5.javasaasx.service.sys.bo.SysRoleQueryParam;
+import com.choudou5.javasaasx.web.controller.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -21,21 +22,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @Name：${table.remarks} Controller
- * @Author：${author}
- * @Date：${createTime}
+ * @Name：系统角色 Controller
+ * @Author：xuhaowen
+ * @Date：2018-02-22
  */
 @Controller
 @Scope("prototype")
-@RequestMapping("/${moduleName}/${classNameLower}")
-public class ${className}Controller extends BaseController {
+@RequestMapping("/sys/sysRole")
+public class SysRoleController extends BaseController {
 
     @Autowired
-    private ${className}Service ${classService};
+    private SysRoleService sysRoleService;
 
 
     /**
@@ -44,11 +44,11 @@ public class ${className}Controller extends BaseController {
      * @return
      */
     @ModelAttribute
-    public ${classBOName} get(@RequestParam(required=false) String id) {
+    public SysRoleBo get(@RequestParam(required=false) String id) {
         if (StrUtil.isNotBlank(id)){
-            return ${classService}.get(id);
+            return sysRoleService.get(id);
         }else{
-            return new ${classBOName}();
+            return new SysRoleBo();
         }
     }
 
@@ -59,12 +59,12 @@ public class ${className}Controller extends BaseController {
      * @param model
      * @return
      */
-    @RequiresPermissions("${moduleName}:${classNameLower}:view")
+    @RequiresPermissions("sys:sysRole:view")
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
-    public String list(${className}QueryParam queryParam, HttpServletRequest req, Model model) {
-        PageResult<${classBOName}> pageResult = ${classService}.findPage(queryParam);
+    public String list(SysRoleQueryParam queryParam, HttpServletRequest req, Model model) {
+        PageResult<SysRoleBo> pageResult = sysRoleService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
-        return "/${moduleName}/${classNameLower}List";
+        return "/sys/sysRoleList";
     }
 
     /**
@@ -74,12 +74,12 @@ public class ${className}Controller extends BaseController {
      * @param model
      * @return
      */
-    @RequiresPermissions("${moduleName}:${classNameLower}:view")
+    @RequiresPermissions("sys:sysRole:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
-        ${classBOName} ${classBONameLower} = ${classService}.get(id);
-        model.addAttribute("${classBONameLower}", ${classBONameLower});
-        return "/${moduleName}/${classNameLower}View";
+        SysRoleBo sysRoleBo = sysRoleService.get(id);
+        model.addAttribute("sysRoleBo", sysRoleBo);
+        return "/sys/sysRoleView";
     }
 
     /**
@@ -89,35 +89,35 @@ public class ${className}Controller extends BaseController {
      * @param model
      * @return
      */
-    @RequiresPermissions("${moduleName}:${classNameLower}:edit")
+    @RequiresPermissions("sys:sysRole:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
     public String form(String id, HttpServletRequest req, Model model) {
         try {
-            ${classBOName} bo = ${classService}.get(id);
+            SysRoleBo bo = sysRoleService.get(id);
             AssertUtil.isNotNull(bo, "数据不存在！");
-            model.addAttribute("${classBONameLower}", bo);
+            model.addAttribute("sysRoleBo", bo);
         } catch (Exception e) {
             addMessage(model, e);
         }
-        return "/${moduleName}/${classNameLower}Form";
+        return "/sys/sysRoleForm";
     }
 
     /**
      * 保存记录
-     * @param ${classBONameLower}
+     * @param sysRoleBo
      * @param req
      * @param attributes
      * @return
      */
-    @RequiresPermissions("${moduleName}:${classNameLower}:edit")
+    @RequiresPermissions("sys:sysRole:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(${classBOName} ${classBONameLower}, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(SysRoleBo sysRoleBo, HttpServletRequest req, RedirectAttributes attributes) {
         //数据 验证
-        if (!beanValidator(attributes, ${classBONameLower}))
+        if (!beanValidator(attributes, sysRoleBo))
             return returnFail(attributes);
         try {
-            ${classService}.save(${classBONameLower});
+            sysRoleService.save(sysRoleBo);
             return returnOK("保存成功！");
         } catch (Exception e) {
             return returnFail(e, "保存失败！");
@@ -131,12 +131,12 @@ public class ${className}Controller extends BaseController {
      * @param attributes
      * @return
      */
-    @RequiresPermissions("${moduleName}:${classNameLower}:delete")
+    @RequiresPermissions("sys:sysRole:delete")
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
     public String delete(String id, HttpServletRequest req, RedirectAttributes attributes) {
         try {
-            ${classService}.logicDeleteById(id);
+            sysRoleService.logicDeleteById(id);
             return returnOK("删除成功！");
         } catch (Exception e) {
             return returnFail(e, "删除失败！");

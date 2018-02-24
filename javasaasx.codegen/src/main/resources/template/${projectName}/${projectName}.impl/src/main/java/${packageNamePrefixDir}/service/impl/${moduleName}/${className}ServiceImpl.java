@@ -8,7 +8,7 @@ package ${packageNamePrefix}.service.impl.${moduleName};
 import ${packageNamePrefix}.dao.${moduleName}.${className}Dao;
 import ${packageNamePrefix}.dao.${moduleName}.po.${classPOName};
 import ${packageNamePrefix}.service.${moduleName}.bo.${classBOName};
-import ${packageNamePrefix}.framework.dao.BaseDao;
+import ${packageNamePrefix}.base.dao.BaseDao;
 import ${packageNamePrefix}.service.impl.BaseServiceImpl;
 import ${packageNamePrefix}.service.${moduleName}.${className}Service;
 import org.springframework.beans.factory.annotation.Autowired;

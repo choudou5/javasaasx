@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.sys.SysUserRelThirdpartyDao" >
+    <resultMap id="RM_SysUserRelThirdparty" type="com.choudou5.javasaasx.dao.sys.po.SysUserRelThirdpartyPo">
+        <result property="userId" column="user_id"/>
+        <result property="dingUserId" column="ding_user_id"/>
+        <result property="dingUnionId" column="ding_union_id"/>
+        <result property="dingGlobalId" column="ding_global_id"/>
+        <result property="wwxUnionId" column="wwx_union_id"/>
+        <result property="wwxGlobalId" column="wwx_global_id"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `user_id`, `ding_user_id`, `ding_union_id`, `ding_global_id`, `wwx_union_id`, `wwx_global_id`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            
+            <!--
+            eg: AND a.title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+                <if test="paramBean.userId != null and paramBean.userId != ''">
+                    AND `user_id` = #{paramBean.userId}
+                </if>
+                <if test="paramBean.dingUserId != null and paramBean.dingUserId != ''">
+                    AND `ding_user_id` = #{paramBean.dingUserId}
+                </if>
+                <if test="paramBean.dingUnionId != null and paramBean.dingUnionId != ''">
+                    AND `ding_union_id` = #{paramBean.dingUnionId}
+                </if>
+                <if test="paramBean.dingGlobalId != null and paramBean.dingGlobalId != ''">
+                    AND `ding_global_id` = #{paramBean.dingGlobalId}
+                </if>
+                <if test="paramBean.wwxUnionId != null and paramBean.wwxUnionId != ''">
+                    AND `wwx_union_id` = #{paramBean.wwxUnionId}
+                </if>
+                <if test="paramBean.wwxGlobalId != null and paramBean.wwxGlobalId != ''">
+                    AND `wwx_global_id` = #{paramBean.wwxGlobalId}
+                </if>
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+
+    <insert id="insert" keyProperty="userId">
+        INSERT INTO sys_user_rel_thirdparty (
+        <if test="userId != null">`user_id`</if>
+        <if test="dingUserId != null">,`ding_user_id`</if>
+        <if test="dingUnionId != null">,`ding_union_id`</if>
+        <if test="dingGlobalId != null">,`ding_global_id`</if>
+        <if test="wwxUnionId != null">,`wwx_union_id`</if>
+        <if test="wwxGlobalId != null">,`wwx_global_id`</if>
+        ) VALUES (
+        <if test="userId != null">#{userId}</if>
+        <if test="dingUserId != null">,#{dingUserId}</if>
+        <if test="dingUnionId != null">,#{dingUnionId}</if>
+        <if test="dingGlobalId != null">,#{dingGlobalId}</if>
+        <if test="wwxUnionId != null">,#{wwxUnionId}</if>
+        <if test="wwxGlobalId != null">,#{wwxGlobalId}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="userId">
+        INSERT INTO sys_user_rel_thirdparty (
+        `user_id`
+        ,`ding_user_id`
+        ,`ding_union_id`
+        ,`ding_global_id`
+        ,`wwx_union_id`
+        ,`wwx_global_id`
+        ) VALUES
+        <foreach collection="entities" item="entity" index="index" separator="," >
+        (
+        #{entity.userId}
+        ,#{entity.dingUserId}
+        ,#{entity.dingUnionId}
+        ,#{entity.dingGlobalId}
+        ,#{entity.wwxUnionId}
+        ,#{entity.wwxGlobalId}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE sys_user_rel_thirdparty SET
+            `ding_user_id` = #{dingUserId} ,
+            `ding_union_id` = #{dingUnionId} ,
+            `ding_global_id` = #{dingGlobalId} ,
+            `wwx_union_id` = #{wwxUnionId} ,
+            `wwx_global_id` = #{wwxGlobalId} 
+        WHERE
+            user_id = #{userId} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM sys_user_rel_thirdparty
+        WHERE user_id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM sys_user_rel_thirdparty
+        WHERE user_id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM sys_user_rel_thirdparty
+        <include refid="where"/>
+    </delete>
+
+    <select id="findById" resultMap="RM_SysUserRelThirdparty">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM sys_user_rel_thirdparty
+            WHERE user_id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM sys_user_rel_thirdparty
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_SysUserRelThirdparty">
+        SELECT <include refid="columns"/>
+        FROM sys_user_rel_thirdparty
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_SysUserRelThirdparty">
+        SELECT <include refid="columns"/>
+        FROM sys_user_rel_thirdparty
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_SysUserRelThirdparty">
+        SELECT <include refid="columns"/>
+        FROM sys_user_rel_thirdparty
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql'">limit 1</if>
+    </select>
+
+
+</mapper>
+
+

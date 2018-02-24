@@ -1,7 +1,7 @@
 package com.choudou5.javasaasx.service.sys.bo;
 
 import com.choudou5.base.util.tree.model.TreeNodeBo;
-import com.choudou5.javasaasx.framework.bean.BaseBo;
+import com.choudou5.javasaasx.base.bean.BaseBo;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 

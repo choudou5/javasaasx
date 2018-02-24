@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.sys.SysRoleDao" >
+    <resultMap id="RM_SysRole" type="com.choudou5.javasaasx.dao.sys.po.SysRolePo">
+        <result property="id" column="id"/>
+        <result property="officeId" column="office_id"/>
+        <result property="groupName" column="group_name"/>
+        <result property="name" column="name"/>
+        <result property="dataScope" column="data_scope"/>
+        <result property="remarks" column="remarks"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="status" column="status"/>
+        <result property="isSysData" column="is_sys_data"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `office_id`, `group_name`, `name`, `data_scope`, `remarks`, `create_by`, `create_time`, `update_by`, `update_time`, `status`, `is_sys_data`, `del_flag`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            `del_flag` = 1
+            <!--
+            eg: AND a.title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+                <if test="paramBean.id != null and paramBean.id != ''">
+                    AND `id` = #{paramBean.id}
+                </if>
+                <if test="paramBean.officeId != null and paramBean.officeId != ''">
+                    AND `office_id` = #{paramBean.officeId}
+                </if>
+                <if test="paramBean.groupName != null and paramBean.groupName != ''">
+                    AND `group_name` = #{paramBean.groupName}
+                </if>
+                <if test="paramBean.name != null and paramBean.name != ''">
+                    AND `name` = #{paramBean.name}
+                </if>
+                <if test="paramBean.dataScope != null and paramBean.dataScope != ''">
+                    AND `data_scope` = #{paramBean.dataScope}
+                </if>
+                <if test="paramBean.remarks != null and paramBean.remarks != ''">
+                    AND `remarks` = #{paramBean.remarks}
+                </if>
+                <if test="paramBean.createBy != null and paramBean.createBy != ''">
+                    AND `create_by` = #{paramBean.createBy}
+                </if>
+                <if test="paramBean.createTime != null ">
+                    AND `create_time` = #{paramBean.createTime}
+                </if>
+                <if test="paramBean.updateBy != null and paramBean.updateBy != ''">
+                    AND `update_by` = #{paramBean.updateBy}
+                </if>
+                <if test="paramBean.updateTime != null ">
+                    AND `update_time` = #{paramBean.updateTime}
+                </if>
+                <if test="paramBean.status != null and paramBean.status != ''">
+                    AND `status` = #{paramBean.status}
+                </if>
+                <if test="paramBean.isSysData != null and paramBean.isSysData != ''">
+                    AND `is_sys_data` = #{paramBean.isSysData}
+                </if>
+                <if test="paramBean.delFlag != null and paramBean.delFlag != ''">
+                    AND `del_flag` = #{paramBean.delFlag}
+                </if>
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <update id="logicDeleteById">
+        UPDATE sys_role SET `del_flag` = 0
+        WHERE id = #{id}
+    </update>
+
+    <update id="logicDeleteByIds">
+        UPDATE sys_role SET `del_flag` = 0
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </update>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO sys_role (
+        <if test="id != null">`id`</if>
+        <if test="officeId != null">,`office_id`</if>
+        <if test="groupName != null">,`group_name`</if>
+        <if test="name != null">,`name`</if>
+        <if test="dataScope != null">,`data_scope`</if>
+        <if test="remarks != null">,`remarks`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+
+
+        <if test="status != null">,`status`</if>
+        <if test="isSysData != null">,`is_sys_data`</if>
+        <if test="delFlag != null">,`del_flag`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="officeId != null">,#{officeId}</if>
+        <if test="groupName != null">,#{groupName}</if>
+        <if test="name != null">,#{name}</if>
+        <if test="dataScope != null">,#{dataScope}</if>
+        <if test="remarks != null">,#{remarks}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+
+
+        <if test="status != null">,#{status}</if>
+        <if test="isSysData != null">,#{isSysData}</if>
+        <if test="delFlag != null">,#{delFlag}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO sys_role (
+        `id`
+        ,`office_id`
+        ,`group_name`
+        ,`name`
+        ,`data_scope`
+        ,`remarks`
+        ,`create_by`
+        ,`create_time`
+
+
+        ,`status`
+        ,`is_sys_data`
+        ,`del_flag`
+        ) VALUES
+        <foreach collection="entities" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.officeId}
+        ,#{entity.groupName}
+        ,#{entity.name}
+        ,#{entity.dataScope}
+        ,#{entity.remarks}
+        ,#{entity.createBy}
+        ,#{entity.createTime}
+
+
+        ,#{entity.status}
+        ,#{entity.isSysData}
+        ,#{entity.delFlag}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE sys_role SET
+            `office_id` = #{officeId} ,
+            `group_name` = #{groupName} ,
+            `name` = #{name} ,
+            `data_scope` = #{dataScope} ,
+            `remarks` = #{remarks} ,
+
+
+            `update_by` = #{updateBy} ,
+            `update_time` = #{updateTime} ,
+            `status` = #{status} ,
+            `is_sys_data` = #{isSysData} ,
+            `del_flag` = #{delFlag} 
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM sys_role
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM sys_role
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM sys_role
+        <include refid="where"/>
+    </delete>
+
+    <select id="findById" resultMap="RM_SysRole">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM sys_role
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM sys_role
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_SysRole">
+        SELECT <include refid="columns"/>
+        FROM sys_role
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_SysRole">
+        SELECT <include refid="columns"/>
+        FROM sys_role
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_SysRole">
+        SELECT <include refid="columns"/>
+        FROM sys_role
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql'">limit 1</if>
+    </select>
+
+
+</mapper>
+
+

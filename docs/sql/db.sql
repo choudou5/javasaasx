@@ -253,7 +253,6 @@ CREATE TABLE `sys_office` (
   `master` varchar(32) DEFAULT NULL COMMENT '负责人',
   `tel` varchar(64) DEFAULT NULL COMMENT '电话',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
-  `data_md5` varchar(32) DEFAULT NULL COMMENT '数据md5码(检测是否有变更)',
   `code` varchar(64) DEFAULT NULL COMMENT 'code标识',
   `create_by` varchar(32) NOT NULL COMMENT '创建者',
   `create_time` datetime NOT NULL COMMENT '创建时间',
@@ -319,22 +318,25 @@ CREATE TABLE `sys_remote_exception` (
 -- ----------------------------
 -- Table structure for `sys_role`
 -- ----------------------------
+
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
-  `id` varchar(32) NOT NULL COMMENT 'ID',
-  `office_id` varchar(32) NOT NULL COMMENT '归属机构',
-  `name` varchar(64) NOT NULL COMMENT '角色名称',
-  `data_scope` char(1) DEFAULT NULL COMMENT '数据范围: 0=个人，1=本机构，2=所有',
-  `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
-  `CREATE_BY` varchar(32) NOT NULL COMMENT '创建者',
-  `CREATE_TIME` datetime NOT NULL COMMENT '创建时间',
-  `UPDATE_BY` varchar(32) DEFAULT NULL COMMENT '创建者',
-  `UPDATE_TIME` datetime DEFAULT NULL COMMENT '更新时间',
-  `STATUS` char(1) DEFAULT '0' COMMENT '状态: 0=禁用，1=正常',
-  `IS_SYS_DATA` char(1) DEFAULT '0' COMMENT '是否系统数据: 0=否，1=是',
-  `DEL_FLAG` char(1) DEFAULT '1' COMMENT '删除标记：0=已删除,1=正常',
+  `id` VARCHAR(32) NOT NULL COMMENT 'id',
+  `office_id` VARCHAR(32) DEFAULT NULL COMMENT '归属机构',
+  `group_name` VARCHAR(32) NOT NULL COMMENT '分组名',
+  `name` VARCHAR(64) NOT NULL COMMENT '角色名称',
+  `data_scope` CHAR(1) DEFAULT NULL COMMENT '数据范围: 0=个人，1=本机构，2=所有',
+  `remarks` VARCHAR(255) DEFAULT NULL COMMENT '备注信息',
+  `create_by` VARCHAR(32) NOT NULL COMMENT '创建者',
+  `create_time` DATETIME NOT NULL COMMENT '创建时间',
+  `update_by` VARCHAR(32) DEFAULT NULL COMMENT '创建者',
+  `update_time` DATETIME DEFAULT NULL COMMENT '更新时间',
+  `status` CHAR(1) DEFAULT '0' COMMENT '状态: 0=禁用，1=正常',
+  `is_sys_data` CHAR(1) DEFAULT '0' COMMENT '是否系统数据: 0=否，1=是',
+  `del_flag` CHAR(1) DEFAULT '1' COMMENT '删除标记：0=已删除,1=正常',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统角色';
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='系统角色';
+
 
 -- ----------------------------
 -- Records of sys_role
@@ -362,6 +364,18 @@ CREATE TABLE `sys_seq` (
 -- ----------------------------
 -- Records of sys_seq
 -- ----------------------------
+
+
+DROP TABLE IF EXISTS `sys_user_role`;
+CREATE TABLE `sys_user_role` (
+  `id` VARCHAR(32) NOT NULL COMMENT 'id',
+  `user_id` VARCHAR(32) DEFAULT NULL COMMENT '用户ID',
+  `role_id` VARCHAR(32) NOT NULL COMMENT '角色ID',
+  `create_by` VARCHAR(32) NOT NULL COMMENT '创建者',
+  `create_time` DATETIME NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='系统用户角色';
+
 
 -- ----------------------------
 -- Table structure for `sys_setting`

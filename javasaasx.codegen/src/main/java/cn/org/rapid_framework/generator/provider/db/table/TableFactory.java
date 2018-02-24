@@ -1,21 +1,6 @@
 package cn.org.rapid_framework.generator.provider.db.table;
 
 
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import cn.org.rapid_framework.generator.GeneratorConstants;
 import cn.org.rapid_framework.generator.GeneratorProperties;
 import cn.org.rapid_framework.generator.provider.db.CommonDataSourceProvider;
@@ -23,13 +8,14 @@ import cn.org.rapid_framework.generator.provider.db.DataCollectionInfo;
 import cn.org.rapid_framework.generator.provider.db.DataSourceProvider;
 import cn.org.rapid_framework.generator.provider.db.table.model.Column;
 import cn.org.rapid_framework.generator.provider.db.table.model.Table;
-import cn.org.rapid_framework.generator.util.BeanHelper;
-import cn.org.rapid_framework.generator.util.DBHelper;
-import cn.org.rapid_framework.generator.util.FileHelper;
-import cn.org.rapid_framework.generator.util.GLogger;
-import cn.org.rapid_framework.generator.util.StringHelper;
-import cn.org.rapid_framework.generator.util.XMLHelper;
+import cn.org.rapid_framework.generator.util.*;
 import cn.org.rapid_framework.generator.util.XMLHelper.NodeData;
+import com.choudou5.javasaasx.codegen.model.GenTableColumnStyle;
+
+import java.io.File;
+import java.sql.*;
+import java.util.*;
+
 /**
  * 
  * 根据数据库表的元数据(metadata)创建Table对象
@@ -110,7 +96,7 @@ public class TableFactory {
 	public List getAllTables() {
 	    return getAllTables(null);
 	}
-	
+
 	private void dispatchOnTableCreatedEvent(Table t) {
 		for(TableFactoryListener listener : tableFactoryListeners) {
 			listener.onTableCreated(t);
@@ -120,6 +106,45 @@ public class TableFactory {
 	public Table getTable(String tableName) {
 		return getTable(getSchema(),tableName);
 	}
+
+	public List<GenTableColumnStyle> getColumnStyleList(String tableName) {
+		if(tableName== null || tableName.trim().length() == 0)
+		throw new IllegalArgumentException("tableName must be not empty");
+		Connection conn = DataSourceProvider.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<GenTableColumnStyle> result = new ArrayList<>();
+		try {
+			ps = conn.prepareStatement("select * from gen_table_column_style WHERE `table` = '" + tableName + "'");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				GenTableColumnStyle obj = new GenTableColumnStyle();
+				obj.setId(rs.getString("id"));
+				obj.setTable(rs.getString("table"));
+				obj.setColumn(rs.getString("column"));
+				obj.setDesc(rs.getString("desc"));
+				obj.setFieldName(rs.getString("field_name"));
+				obj.setIsInsert(rs.getString("is_insert"));
+				obj.setIsEdit(rs.getString("is_edit"));
+				obj.setIsList(rs.getString("is_list"));
+				obj.setIsQuery(rs.getString("is_query"));
+				obj.setQueryType(rs.getString("query_type"));
+				obj.setIsQuery(rs.getString("is_query"));
+				obj.setShowType(rs.getString("show_type"));
+				obj.setDicType(rs.getString("dic_type"));
+				obj.setSort(rs.getInt("sort"));
+				result.add(obj);
+			}
+		} catch (SQLException e) {
+			GLogger.error(e.getMessage(), e);
+			throw new RuntimeException("Exception in get getColumnStyleList fail");
+		} finally {
+			DBHelper.close(null,ps,rs);
+		}
+		return result;
+	}
+
+
 
 	private Table getTable(String schema,String tableName) {
 		return getTable(getCatalog(),schema,tableName);

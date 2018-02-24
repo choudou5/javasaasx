@@ -22,7 +22,12 @@
 
 		<dependency>
 			<groupId>com.choudou5</groupId>
-			<artifactId>javasaasx.framework</artifactId>
+			<artifactId>javasaasx.base</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.choudou5</groupId>
+			<artifactId>javasaasx.codegen</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

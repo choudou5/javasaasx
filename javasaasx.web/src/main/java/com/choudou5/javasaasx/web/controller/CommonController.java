@@ -7,13 +7,16 @@
 */
 package com.choudou5.javasaasx.web.controller;
 
+import com.choudou5.javasaasx.service.CommonService;
 import com.choudou5.javasaasx.web.util.RequestUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,6 +28,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/")
 public class CommonController extends BaseController{
 
+	@Autowired
+	private CommonService commonService;
 	/**
 	 * 页面跳转
 	 * @param module 模块文件目录名
@@ -44,6 +49,17 @@ public class CommonController extends BaseController{
 		model.addAttribute("multi", multi);
 		model.addAttribute("ajaxJsonUrl", ajaxJsonUrl);
 		return "/common/chooseTreeValue";
+	}
+
+	@RequestMapping(value="/common/clearCache",method= RequestMethod.POST)
+	@ResponseBody
+	public String clearCache(HttpServletRequest req){
+		try {
+			commonService.clearCache();
+		} catch (Exception e) {
+			return returnFail(e, "清理失败");
+		}
+		return returnOK("清理成功");
 	}
 
 

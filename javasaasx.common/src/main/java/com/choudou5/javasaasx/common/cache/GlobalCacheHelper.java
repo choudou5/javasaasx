@@ -1,10 +1,6 @@
 package com.choudou5.javasaasx.common.cache;
 
-import com.choudou5.base.exception.BizException;
-import com.choudou5.base.helper.CacheHelper;
-
-import java.io.Serializable;
-import java.util.List;
+import com.choudou5.cache.ehcache.EhCacheUtil;
 
 /**
  * @Name：全局 缓存API
@@ -13,51 +9,19 @@ import java.util.List;
  * @Site：http://solrhome.com
  * @License：MIT
  */
-public class GlobalCacheHelper implements CacheHelper{
+public class GlobalCacheHelper extends EhCacheUtil {
 
-
-    @Override
-    public void put(String cacheKey, Object object) throws BizException {
-
+    public GlobalCacheHelper(String path) {
+        super(path);
     }
 
-    @Override
-    public void put(String cacheKey, Object object, int secondTimeout) throws BizException {
+    private static GlobalCacheHelper ehCache;
 
+    public static GlobalCacheHelper getGlobalInstance() {
+        if (ehCache== null) {
+            ehCache= new GlobalCacheHelper(CONF_PATH);
+        }
+        return ehCache;
     }
 
-    @Override
-    public String get(String cacheKey) throws BizException {
-        return null;
-    }
-
-    @Override
-    public String getIntValue(String cacheKey) throws BizException {
-        return null;
-    }
-
-    @Override
-    public String getLongValue(String cacheKey) throws BizException {
-        return null;
-    }
-
-    @Override
-    public <T extends Serializable> T get(String cacheKey, Class<T> classz) throws BizException {
-        return null;
-    }
-
-    @Override
-    public <T extends Serializable> List<T> getList(String cacheKey, Class<T> classz) throws BizException {
-        return null;
-    }
-
-    @Override
-    public void remove(String cacheKey) throws BizException {
-
-    }
-
-    @Override
-    public void removes(String... cacheKeys) throws BizException {
-
-    }
 }

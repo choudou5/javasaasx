@@ -19,7 +19,7 @@
 
 		<dependency>
 			<groupId>${mavenGroup}</groupId>
-			<artifactId>javasaasx.framework</artifactId>
+			<artifactId>javasaasx.base</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

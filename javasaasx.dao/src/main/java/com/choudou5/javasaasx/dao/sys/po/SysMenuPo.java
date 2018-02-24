@@ -1,7 +1,7 @@
 package com.choudou5.javasaasx.dao.sys.po;
 
 import com.choudou5.base.util.StrUtil;
-import com.choudou5.javasaasx.framework.bean.AbstractBasePo;
+import com.choudou5.javasaasx.base.bean.AbstractBasePo;
 
 /**
  * @Name：菜单表 Po

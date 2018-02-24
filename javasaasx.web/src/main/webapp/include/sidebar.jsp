@@ -56,7 +56,7 @@
                             <a href="javascript:;" href-url="${ctxStaticPage }timeline.jsp">系统日志</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }login.jsp">用户管理</a>
+                            <a href="javascript:;" href-url="${ctx }/sys/sysUser">用户管理</a>
                         </li>
                         <li>
                             <a href="javascript:;" href-url="${ctx }/console/sys/menu2">角色管理</a>

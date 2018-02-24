@@ -7,8 +7,7 @@
 */
 package com.choudou5.javasaasx.service.sys;
 
-import com.choudou5.base.exception.BizException;
-import com.choudou5.javasaasx.framework.service.BaseService;
+import com.choudou5.javasaasx.base.service.BaseService;
 import com.choudou5.javasaasx.service.sys.bo.SysMenuBo;
 
 import java.util.List;

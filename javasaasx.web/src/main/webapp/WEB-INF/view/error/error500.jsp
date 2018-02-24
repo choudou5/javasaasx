@@ -23,10 +23,10 @@
   else {
 %>
 <%@page import="org.slf4j.Logger,org.slf4j.LoggerFactory"%>
-<%@page import="com.choudou5.javasaasx.framework.util.HttpInterceptUtil"%>
-<%@page import="com.choudou5.javasaasx.framework.exception.Exceptions"%>
-<%@ page import="com.xiaoleilu.hutool.util.StrUtil" %>
-<%@ page import="com.xiaoleilu.hutool.http.HtmlUtil" %>
+<%@page import="com.choudou5.javasaasx.base.util.HttpInterceptUtil"%>
+<%@page import="com.choudou5.base.exception.Exceptions"%>
+<%@ page import="com.choudou5.base.util.StrUtil" %>
+<%@ page import="cn.hutool.http.HtmlUtil" %>
 <%@page language="java" isErrorPage="true" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +67,6 @@
         </div>
       </div>
     </div>
-    <%@include file="/include/footer.jsp" %>
   </div>
 </div>
 </body>

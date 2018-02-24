@@ -43,14 +43,16 @@
 		<commons-codec.version>1.11</commons-codec.version>
 		<commons.email.version>1.2</commons.email.version>
 
+		<hutool.version>4.0.0</hutool.version>
+
 		<package.environment>dev</package.environment>
 		<package.warName>javasaasx</package.warName>
 
 	</properties>
 
 	<modules>
-		<module>javasaasx.framework</module>
 		<module>javasaasx.common</module>
+		<module>javasaasx.base</module>
 		<module>javasaasx.dao</module>
 		<module>javasaasx.impl</module>
 		<module>javasaasx.service</module>

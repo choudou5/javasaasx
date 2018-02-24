@@ -4,8 +4,8 @@
 <#assign classNameLower = className?uncap_first>
 package ${packageNamePrefix}.service.${moduleName};
 
-import ${packageNamePrefix}.framework.bean.BaseBo;
-import ${packageNamePrefix}.framework.service.BaseService;
+import ${packageNamePrefix}.base.bean.BaseBo;
+import ${packageNamePrefix}.base.service.BaseService;
 import ${packageNamePrefix}.service.${moduleName}.bo.${classBOName};
 
 /**

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.sys.SysOfficeDao" >
+    <resultMap id="RM_SysOffice" type="com.choudou5.javasaasx.dao.sys.po.SysOfficePo">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="pid" column="p_id"/>
+        <result property="ppath" column="p_path"/>
+        <result property="depth" column="depth"/>
+        <result property="sort" column="sort"/>
+        <result property="areaCode" column="area_code"/>
+        <result property="type" column="type"/>
+        <result property="address" column="address"/>
+        <result property="master" column="master"/>
+        <result property="tel" column="tel"/>
+        <result property="remarks" column="remarks"/>
+        <result property="code" column="code"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="status" column="status"/>
+        <result property="isSysData" column="is_sys_data"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `name`, `p_id`, `p_path`, `depth`, `sort`, `area_code`, `type`, `address`, `master`, `tel`, `remarks`, `code`, `create_by`, `create_time`, `update_by`, `update_time`, `status`, `is_sys_data`, `del_flag`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            `del_flag` = 1
+            <!--
+            eg: AND a.title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+                <if test="paramBean.id != null and paramBean.id != ''">
+                    AND `id` = #{paramBean.id}
+                </if>
+                <if test="paramBean.name != null and paramBean.name != ''">
+                    AND `name` = #{paramBean.name}
+                </if>
+                <if test="paramBean.pid != null and paramBean.pid != ''">
+                    AND `p_id` = #{paramBean.pid}
+                </if>
+                <if test="paramBean.ppath != null and paramBean.ppath != ''">
+                    AND `p_path` = #{paramBean.ppath}
+                </if>
+                <if test="paramBean.depth != null ">
+                    AND `depth` = #{paramBean.depth}
+                </if>
+                <if test="paramBean.sort != null ">
+                    AND `sort` = #{paramBean.sort}
+                </if>
+                <if test="paramBean.areaCode != null and paramBean.areaCode != ''">
+                    AND `area_code` = #{paramBean.areaCode}
+                </if>
+                <if test="paramBean.type != null and paramBean.type != ''">
+                    AND `type` = #{paramBean.type}
+                </if>
+                <if test="paramBean.address != null and paramBean.address != ''">
+                    AND `address` = #{paramBean.address}
+                </if>
+                <if test="paramBean.master != null and paramBean.master != ''">
+                    AND `master` = #{paramBean.master}
+                </if>
+                <if test="paramBean.tel != null and paramBean.tel != ''">
+                    AND `tel` = #{paramBean.tel}
+                </if>
+                <if test="paramBean.remarks != null and paramBean.remarks != ''">
+                    AND `remarks` = #{paramBean.remarks}
+                </if>
+                <if test="paramBean.code != null and paramBean.code != ''">
+                    AND `code` = #{paramBean.code}
+                </if>
+                <if test="paramBean.createBy != null and paramBean.createBy != ''">
+                    AND `create_by` = #{paramBean.createBy}
+                </if>
+                <if test="paramBean.createTime != null ">
+                    AND `create_time` = #{paramBean.createTime}
+                </if>
+                <if test="paramBean.updateBy != null and paramBean.updateBy != ''">
+                    AND `update_by` = #{paramBean.updateBy}
+                </if>
+                <if test="paramBean.updateTime != null ">
+                    AND `update_time` = #{paramBean.updateTime}
+                </if>
+                <if test="paramBean.status != null and paramBean.status != ''">
+                    AND `status` = #{paramBean.status}
+                </if>
+                <if test="paramBean.isSysData != null and paramBean.isSysData != ''">
+                    AND `is_sys_data` = #{paramBean.isSysData}
+                </if>
+                <if test="paramBean.delFlag != null and paramBean.delFlag != ''">
+                    AND `del_flag` = #{paramBean.delFlag}
+                </if>
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <update id="logicDeleteById">
+        UPDATE sys_office SET `del_flag` = 0
+        WHERE id = #{id}
+    </update>
+
+    <update id="logicDeleteByIds">
+        UPDATE sys_office SET `del_flag` = 0
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </update>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO sys_office (
+        <if test="id != null">`id`</if>
+        <if test="name != null">,`name`</if>
+        <if test="pid != null">,`p_id`</if>
+        <if test="ppath != null">,`p_path`</if>
+        <if test="depth != null">,`depth`</if>
+        <if test="sort != null">,`sort`</if>
+        <if test="areaCode != null">,`area_code`</if>
+        <if test="type != null">,`type`</if>
+        <if test="address != null">,`address`</if>
+        <if test="master != null">,`master`</if>
+        <if test="tel != null">,`tel`</if>
+        <if test="remarks != null">,`remarks`</if>
+        <if test="code != null">,`code`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+
+
+        <if test="status != null">,`status`</if>
+        <if test="isSysData != null">,`is_sys_data`</if>
+        <if test="delFlag != null">,`del_flag`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="name != null">,#{name}</if>
+        <if test="pid != null">,#{pid}</if>
+        <if test="ppath != null">,#{ppath}</if>
+        <if test="depth != null">,#{depth}</if>
+        <if test="sort != null">,#{sort}</if>
+        <if test="areaCode != null">,#{areaCode}</if>
+        <if test="type != null">,#{type}</if>
+        <if test="address != null">,#{address}</if>
+        <if test="master != null">,#{master}</if>
+        <if test="tel != null">,#{tel}</if>
+        <if test="remarks != null">,#{remarks}</if>
+        <if test="code != null">,#{code}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+
+
+        <if test="status != null">,#{status}</if>
+        <if test="isSysData != null">,#{isSysData}</if>
+        <if test="delFlag != null">,#{delFlag}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO sys_office (
+        `id`
+        ,`name`
+        ,`p_id`
+        ,`p_path`
+        ,`depth`
+        ,`sort`
+        ,`area_code`
+        ,`type`
+        ,`address`
+        ,`master`
+        ,`tel`
+        ,`remarks`
+        ,`code`
+        ,`create_by`
+        ,`create_time`
+        ,`status`
+        ,`is_sys_data`
+        ,`del_flag`
+        ) VALUES
+        <foreach collection="entities" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.name}
+        ,#{entity.pid}
+        ,#{entity.ppath}
+        ,#{entity.depth}
+        ,#{entity.sort}
+        ,#{entity.areaCode}
+        ,#{entity.type}
+        ,#{entity.address}
+        ,#{entity.master}
+        ,#{entity.tel}
+        ,#{entity.remarks}
+        ,#{entity.code}
+        ,#{entity.createBy}
+        ,#{entity.createTime}
+        ,#{entity.status}
+        ,#{entity.isSysData}
+        ,#{entity.delFlag}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE sys_office SET
+            `name` = #{name} ,
+            `p_id` = #{pid} ,
+            `p_path` = #{ppath} ,
+            `depth` = #{depth} ,
+            `sort` = #{sort} ,
+            `area_code` = #{areaCode} ,
+            `type` = #{type} ,
+            `address` = #{address} ,
+            `master` = #{master} ,
+            `tel` = #{tel} ,
+            `remarks` = #{remarks} ,
+            `code` = #{code} ,
+            `update_by` = #{updateBy} ,
+            `update_time` = #{updateTime} ,
+            `status` = #{status} ,
+            `is_sys_data` = #{isSysData} ,
+            `del_flag` = #{delFlag} 
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM sys_office
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM sys_office
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM sys_office
+        <include refid="where"/>
+    </delete>
+
+    <select id="findById" resultMap="RM_SysOffice">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM sys_office
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM sys_office
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_SysOffice">
+        SELECT <include refid="columns"/>
+        FROM sys_office
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_SysOffice">
+        SELECT <include refid="columns"/>
+        FROM sys_office
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_SysOffice">
+        SELECT <include refid="columns"/>
+        FROM sys_office
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql'">limit 1</if>
+    </select>
+
+
+</mapper>
+
+

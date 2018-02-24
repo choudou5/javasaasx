@@ -25,6 +25,23 @@ function dialogConfirm(content, href, title, okBtnText, noBtnText){
 	return false;
 }
 
+function dialogConfirmAjaxDel(href, table, tr, tip){
+	if(CommUtil.isEmpty(href)){
+		dialogTip("请求失败，地址有误！", "error");
+		return;
+	}
+	tip = tip==undefined?'确定删除记录？':tip;
+	layer.confirm(tip, {title: '提示', icon: 3, btn: ["确定", "取消"]}, function(index){
+		layer.close(index);
+		HttpUtil.ajaxAsyncJsonPost(href, {}, function(data){
+			dialogTip("删除成功！");
+			table.row(tr).remove().draw();
+		});
+	}, function(){
+		console.log("click cancel btn");
+	});
+}
+
 /**
  * 弹出框
  * @param title
@@ -38,7 +55,7 @@ function dialogAlert(title, type){
 /**
  * 提示框
  * @param title
- * @param type 类型：success/error/warning/md5/bad/nice
+ * @param type 类型：success/error/warning/md5/bad/nice/load
  * @param autoCloseTime 自动关闭时间（毫秒）
  * @param algin t/r/b/l/lt/lb/rt/rb  默认：auto
  */
@@ -46,7 +63,17 @@ function dialogTip(title, type, autoCloseTime, align){
 	type = type==undefined?"success":type;
 	autoCloseTime = autoCloseTime==undefined?3000:autoCloseTime;
 	align = align==undefined?"auto":align;
-	layer.msg(title, {icon: layerGetIcon(type), time: autoCloseTime, offset: '20px'});
+	return layer.msg(title, {icon: layerGetIcon(type), time: autoCloseTime, offset: '20px'});
+}
+
+/**
+ * 提示 文本
+ * @param title
+ * @param autoCloseTime 自动关闭时间（毫秒）
+ */
+function dialogTipText(title, autoCloseTime){
+	autoCloseTime = autoCloseTime==undefined?3000:autoCloseTime;
+	return layer.msg(title, {time: autoCloseTime, offset: '20px'});
 }
 
 
@@ -86,6 +113,13 @@ function dialogLoading(text, autoCloseTime){
  */
 function dialogCloseLoading(){
 	layer.close(__loadingIndex); 
+}
+
+/**
+ * 关闭提示框
+ */
+function dialogClose(index){
+	layer.close(index);
 }
 
 /**
@@ -136,6 +170,33 @@ function dialogOpenPage(iframeId, title, url, width, height, okCall, cancelCall,
 	});
 }
 
+/**
+ * 弹出 新页面
+ * @param iframeId
+ * @param title
+ * @param url
+ * @param width
+ * @param height
+ */
+function dialogOpenPageView(title, url, width, height){
+	//layer.closeAll();
+	width = width==undefined?450:width;
+	height = height==undefined?350:height;
+	width = CommUtil.getResponsiveWidth(width)+'px';
+	height = CommUtil.getResponsiveHeight(height)+'px';
+	//单窗口模式，层叠置顶
+	layer.open({
+		id: CommUtil.getRandom()+"-iframe",
+		type: 2 //此处以iframe举例
+		,title: title
+		,area: [width, height]
+		,closeBtn: 1
+		,shadeClose: true
+		,maxmin: true
+		,content: url
+		,zIndex: layer.zIndex //重点1
+	});
+}
 
 /**
  * 弹出 新页面
@@ -208,8 +269,8 @@ function dialogGetIFrame(iframeId){
 
 
 /**
- * @param type success/error/warning/md5/bad/nice
- * @returns {0=感叹号, 1=成功, 2=错误, 3=疑问, 4=加密, 5=坏脸, 6=笑脸}
+ * @param type success/error/warning/md5/bad/nice/load
+ * @returns {0=感叹号, 1=成功, 2=错误, 3=疑问, 4=加密, 5=坏脸, 6=笑脸, 7=加载}
  */
 function layerGetIcon(type){
 	log(type);
@@ -225,6 +286,8 @@ function layerGetIcon(type){
 		return 5;
 	}else if("nice" == type){
 		return 6;
+	}else if("load" == type){
+		return 7;
 	}else{
 		return 0;
 	}

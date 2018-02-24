@@ -2,7 +2,7 @@ package com.choudou5.javasaasx.service.gen;
 
 import com.choudou5.base.bean.SelectBo;
 import com.choudou5.base.exception.BizException;
-import com.choudou5.javasaasx.framework.service.BaseService;
+import com.choudou5.javasaasx.base.service.BaseService;
 import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
 
 import java.util.List;
@@ -23,4 +23,5 @@ public interface GenTableColumnStyleService extends BaseService<GenTableColumnSt
 
     List<GenTableColumnStyleBo>  getGenTableColumnStyleList(String table);
 
+    void refreshCache();
 }

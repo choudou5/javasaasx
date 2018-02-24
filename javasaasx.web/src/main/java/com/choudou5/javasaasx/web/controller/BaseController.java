@@ -13,7 +13,7 @@ import com.choudou5.base.util.JsonUtil;
 import com.choudou5.base.util.ObjUtil;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.common.util.SysUtil;
-import com.choudou5.javasaasx.framework.bean.TableDataBo;
+import com.choudou5.javasaasx.base.bean.TableDataBo;
 import com.choudou5.javasaasx.web.beanvalidator.BeanValidators;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

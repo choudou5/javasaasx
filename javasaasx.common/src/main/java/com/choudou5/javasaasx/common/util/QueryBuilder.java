@@ -1,7 +1,7 @@
 package com.choudou5.javasaasx.common.util;
 
 import com.choudou5.base.mapper.BeanMapper;
-import com.choudou5.javasaasx.framework.bean.BasePo;
+import com.choudou5.javasaasx.base.bean.BasePo;
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;

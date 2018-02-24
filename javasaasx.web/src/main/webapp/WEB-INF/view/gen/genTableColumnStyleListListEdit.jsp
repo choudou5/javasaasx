@@ -10,6 +10,7 @@
         .checkbox .checkbox-material{top: -5px;}
         .checkbox .checkbox-material:before {bottom: 5px;}
         .table .form-group{margin-top: 10px;}
+        .material-datatables .form-control[type=text]{width: 120px;}
     </style>
 </head>
 

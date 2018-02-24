@@ -9,11 +9,11 @@
 	<entry key="encoding">UTF-8</entry>
 	<entry key="dbName">javasaasx</entry><!-- 数据库名 -->
 
-	<!-- Mysql -->
-	<entry key="jdbc_url">jdbc:mysql://47.88.220.75:3306/${dbName}?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=true</entry>
+	<!-- Mysql 47.88.220.75-->
+	<entry key="jdbc_url">jdbc:mysql://localhost:3306/${dbName}?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=true</entry>
 	<entry key="jdbc_driver">com.mysql.jdbc.Driver</entry>
 	<entry key="jdbc_username">root</entry>
-	<entry key="jdbc_password">root</entry>
+	<entry key="jdbc_password">123456</entry>
 	<entry key="jdbc_remarks">false</entry><!-- 设置可以获取remarks信息 -->
 	<entry key="jdbc_useInformationSchema">true</entry><!-- 设置可以获取tables remarks信息 -->
 

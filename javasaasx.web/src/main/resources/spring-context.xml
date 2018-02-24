@@ -69,7 +69,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="typeAliasesPackage" value="com.choudou5.javasaasx.dao"/>
-		<property name="typeAliasesSuperType" value="com.choudou5.javasaasx.framework.bean.BasePo"/>
+		<property name="typeAliasesSuperType" value="com.choudou5.javasaasx.base.bean.BasePo"/>
 		<property name="mapperLocations" value="classpath*:mybatis/mappings/**/*.xml"/>
 		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></property>
 	</bean>
@@ -97,5 +97,9 @@
 		<property name="configLocation" value="classpath:cache/ehcache.xml" />
 	</bean>
 
+	<bean id="dingTalkService" class="com.choudou5.javasaasx.service.impl.sys.DingTalkServiceImpl" >
+		<constructor-arg name="corpId" value="${dingtalk.corpId}"/>
+		<constructor-arg name="corpSecret" value="${dingtalk.corpSecret}"/>
+	</bean>
 
 </beans>

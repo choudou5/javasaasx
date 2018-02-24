@@ -1,6 +1,13 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.api.sys;
 
-import com.choudou5.javasaasx.framework.bean.BaseBo;
+import com.choudou5.javasaasx.base.bean.BaseBo;
 
 import java.io.Serializable;
 
@@ -8,11 +15,8 @@ import java.io.Serializable;
 
 /**
  * @Name：系统用户 API
- * @Author：xuhaowende@sina.cn
- * @Date：2018-01-14
- * @Site：http://solrhome.com
- * @License：MIT
- * @Copyright：xuhaowende@sina.cn(@Copyright 2018-2020)
+ * @Author：菜单管理
+ * @Date：2018-02-18
  */
 public interface SysUserApi<B extends BaseBo> extends Serializable{
 

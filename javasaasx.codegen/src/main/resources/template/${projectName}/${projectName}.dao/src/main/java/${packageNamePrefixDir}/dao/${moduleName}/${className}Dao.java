@@ -7,7 +7,7 @@ package ${packageNamePrefix}.dao.${moduleName};
 
 import ${packageNamePrefix}.dao.orm.mybatis.MyBatisDao;
 import ${packageNamePrefix}.dao.${moduleName}.po.${classPOName};
-import ${packageNamePrefix}.framework.dao.BaseDao;
+import ${packageNamePrefix}.base.dao.BaseDao;
 
 /**
  * @Name：${table.remarks} Dao

@@ -1,10 +1,8 @@
 package com.choudou5.javasaasx.service.gen.bo;
 
-import com.choudou5.javasaasx.framework.constant.CommonConstant;
+import com.choudou5.javasaasx.base.constant.CommonConstant;
 import org.hibernate.validator.constraints.Length;
-import com.choudou5.javasaasx.framework.bean.BaseBo;
-
-import java.io.Serializable;
+import com.choudou5.javasaasx.base.bean.BaseBo;
 
 /**
  * @Name：生成表字段样式 业务对象
@@ -27,19 +25,19 @@ public class GenTableColumnStyleBo implements BaseBo {
     /**  字段名 */
 	private String fieldName;
     /**  是否为插入字段 */
-	private String isInsert = CommonConstant.DataStatusEnum.N.getCode();
+	private String isInsert;
     /**  是否编辑字段: 0=否，1=是 */
-	private String isEdit = CommonConstant.DataStatusEnum.N.getCode();
+	private String isEdit;
     /**  是否列表字段: 0=否，1=是 */
-	private String isList = CommonConstant.DataStatusEnum.Y.getCode();
+	private String isList;
     /**  是否查询字段: 0=否，1=是 */
-	private String isQuery = CommonConstant.DataStatusEnum.N.getCode();
+	private String isQuery;
     /**  查询方式：（eq，neq，gt，lt，between，like） */
-	private String queryType = "eq";
+	private String queryType;
     /**  字段生成方案: （input、textarea、select、checkbox、radio、dialog） */
-	private String showType = "input";
+	private String showType;
     /**  字典类型 */
-	private String dicType = "";
+	private String dicType;
     /**  排序 */
 	private Integer sort = 1;
 
@@ -61,8 +59,9 @@ public class GenTableColumnStyleBo implements BaseBo {
 	public String getTable() {
 		return this.table;
 	}
-	public void setTable(String table) {
+	public GenTableColumnStyleBo setTable(String table) {
 		this.table = table;
+		return this;
 	}
 
 	@Length(min=0, max=64, message="字段长度必须介于 0 和 64 之间")

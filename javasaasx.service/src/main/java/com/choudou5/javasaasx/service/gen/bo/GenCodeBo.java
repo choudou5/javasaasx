@@ -1,8 +1,6 @@
 package com.choudou5.javasaasx.service.gen.bo;
 
-import com.choudou5.javasaasx.framework.bean.BaseBo;
-import com.choudou5.javasaasx.framework.constant.CommonConstant;
-import org.hibernate.validator.constraints.Length;
+import com.choudou5.javasaasx.base.bean.BaseBo;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.List;

@@ -25,7 +25,7 @@ import java.net.URL;
 
 /**
  * Utility methods for resolving resource locations to files in the
- * file system. Mainly for internal use within the framework.
+ * file system. Mainly for internal use within the base.
  *
  * <p>Consider using Spring's Resource abstraction in the core package
  * for handling all kinds of file resources in a uniform manner.

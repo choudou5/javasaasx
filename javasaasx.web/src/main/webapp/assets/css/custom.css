@@ -17,6 +17,11 @@
 
 .card .card-content.pd-10{padding: 10px;}
 
+.head-r-menu li i{padding-right: 5px;}
+
+/** 图片 */
+img.img-small{width: 40px;height: 40px;}
+
 
 .footable tr.active{border-left: 5px solid grey;background: #CCCCCC;}
 .footable tr.active a{font-weight: bold;}

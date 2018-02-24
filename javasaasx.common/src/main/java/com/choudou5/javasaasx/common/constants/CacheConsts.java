@@ -7,6 +7,8 @@ public interface CacheConsts {
 	String CACHE_USER_SESSION = "userSession";
 	
 	String CACHE_TO_DISK = "persistentDisk";
+
+	String CACHE_KEY_GEN_TABLE = "genTable";
 	
 	
 }

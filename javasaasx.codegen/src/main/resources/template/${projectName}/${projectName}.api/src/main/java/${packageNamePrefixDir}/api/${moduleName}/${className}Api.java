@@ -3,7 +3,7 @@
 <#assign classNameLower = className?uncap_first>
 package ${packageNamePrefix}.api.${moduleName};
 
-import ${packageNamePrefix}.framework.bean.BaseBo;
+import ${packageNamePrefix}.base.bean.BaseBo;
 
 import java.io.Serializable;
 

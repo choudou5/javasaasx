@@ -35,6 +35,10 @@ public class GenTableColumnStyle extends AbstractBasePo {
      */
     private String fieldName;
     /**
+     * 数据库字段：fieldType 字段类型
+     */
+    private String fieldType;
+    /**
      * 数据库字段：is_insert 是否为插入字段
      */
     private String isInsert;
@@ -102,6 +106,12 @@ public class GenTableColumnStyle extends AbstractBasePo {
     }
     public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
+    }
+    public String getFieldType() {
+        return fieldType;
+    }
+    public void setFieldType(String fieldType) {
+        this.fieldType = fieldType;
     }
     public String getIsInsert() {
         return this.isInsert;

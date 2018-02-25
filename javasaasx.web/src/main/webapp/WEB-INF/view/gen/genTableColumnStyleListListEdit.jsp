@@ -83,14 +83,12 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group label-floating is-empty">
-                                                <label class="control-label">开发者<small>*</small></label>
-                                                <input type="text" required name="author" class="form-control">
+                                                <input type="text" required name="author" class="form-control" value="xuhaowen" placeholder="开发者">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group label-floating  is-empty">
-                                                <label class="control-label">模块(如sys)<small>*</small></label>
-                                                <input type="text" required name="moduleName" class="form-control">
+                                                <input type="text" required name="moduleName" class="form-control" placeholder="模块(如sys)">
                                             </div>
                                         </div>
                                         <div class="col-md-2">

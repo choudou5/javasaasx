@@ -124,6 +124,7 @@ public class TableFactory {
 				obj.setColumn(rs.getString("column"));
 				obj.setDesc(rs.getString("desc"));
 				obj.setFieldName(rs.getString("field_name"));
+				obj.setFieldType(rs.getString("field_type"));
 				obj.setIsInsert(rs.getString("is_insert"));
 				obj.setIsEdit(rs.getString("is_edit"));
 				obj.setIsList(rs.getString("is_list"));

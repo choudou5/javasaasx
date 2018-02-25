@@ -3,6 +3,8 @@
 <#-- 将value变成jsp el表达式,主要由于FreeMarker生成表达式不方便 -->
 <#macro jspEl value>${r"${"}${value}}</#macro>
 
+<#macro jspElVal type value>${r"${"}${value}}</#macro>
+
 <#macro jqEl>${r"$"}</#macro>
 
 <#-- 生成java构造函数 -->

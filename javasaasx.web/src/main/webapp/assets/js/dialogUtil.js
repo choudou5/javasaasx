@@ -55,7 +55,7 @@ function dialogAlert(title, type){
 /**
  * 提示框
  * @param title
- * @param type 类型：success/error/warning/md5/bad/nice/load
+ * @param type 类型：success/error/warning/md5/bad/nice
  * @param autoCloseTime 自动关闭时间（毫秒）
  * @param algin t/r/b/l/lt/lb/rt/rb  默认：auto
  */
@@ -75,7 +75,6 @@ function dialogTipText(title, autoCloseTime){
 	autoCloseTime = autoCloseTime==undefined?3000:autoCloseTime;
 	return layer.msg(title, {time: autoCloseTime, offset: '20px'});
 }
-
 
 /**
  * prompt层
@@ -195,6 +194,10 @@ function dialogOpenPageView(title, url, width, height){
 		,maxmin: true
 		,content: url
 		,zIndex: layer.zIndex //重点1
+		,btn: ['确定']
+		,yes: function(index){
+			layer.close(index);
+		}
 	});
 }
 
@@ -269,8 +272,8 @@ function dialogGetIFrame(iframeId){
 
 
 /**
- * @param type success/error/warning/md5/bad/nice/load
- * @returns {0=感叹号, 1=成功, 2=错误, 3=疑问, 4=加密, 5=坏脸, 6=笑脸, 7=加载}
+ * @param type success/error/warning/md5/bad/nice
+ * @returns {0=感叹号, 1=成功, 2=错误, 3=疑问, 4=加密, 5=坏脸, 6=笑脸}
  */
 function layerGetIcon(type){
 	log(type);
@@ -286,8 +289,6 @@ function layerGetIcon(type){
 		return 5;
 	}else if("nice" == type){
 		return 6;
-	}else if("load" == type){
-		return 7;
 	}else{
 		return 0;
 	}

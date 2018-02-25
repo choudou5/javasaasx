@@ -8,6 +8,7 @@
         <result property="column" column="column"/>
         <result property="desc" column="desc"/>
         <result property="fieldName" column="field_name"/>
+        <result property="fieldType" column="field_type"/>
         <result property="isInsert" column="is_insert"/>
         <result property="isEdit" column="is_edit"/>
         <result property="isList" column="is_list"/>
@@ -20,7 +21,7 @@
 
     <sql id="columns">
     <![CDATA[
-        `id`, `table`, `column`, `desc`, `field_name`, `is_insert`, `is_edit`, `is_list`, `is_query`, `query_type`, `show_type`, `dic_type`, `sort`
+        `id`, `table`, `column`, `desc`, `field_name`, `field_type`, `is_insert`, `is_edit`, `is_list`, `is_query`, `query_type`, `show_type`, `dic_type`, `sort`
     ]]>
     </sql>
 
@@ -78,6 +79,7 @@
         <if test="column != null">,`column`</if>
         <if test="desc != null">,`desc`</if>
         <if test="fieldName != null">,`field_name`</if>
+        <if test="fieldType != null">,`field_type`</if>
         <if test="isInsert != null">,`is_insert`</if>
         <if test="isEdit != null">,`is_edit`</if>
         <if test="isList != null">,`is_list`</if>
@@ -92,6 +94,7 @@
         <if test="column != null">,#{column}</if>
         <if test="desc != null">,#{desc}</if>
         <if test="fieldName != null">,#{fieldName}</if>
+        <if test="fieldType != null">,#{fieldType}</if>
         <if test="isInsert != null">,#{isInsert}</if>
         <if test="isEdit != null">,#{isEdit}</if>
         <if test="isList != null">,#{isList}</if>
@@ -110,6 +113,7 @@
         ,`column`
         ,`desc`
         ,`field_name`
+        ,`field_type`
         ,`is_insert`
         ,`is_edit`
         ,`is_list`
@@ -126,6 +130,7 @@
         ,#{entity.column}
         ,#{entity.desc}
         ,#{entity.fieldName}
+        ,#{entity.fieldType}
         ,#{entity.isInsert}
         ,#{entity.isEdit}
         ,#{entity.isList}
@@ -145,6 +150,7 @@
             `column` = #{column} ,
             `desc` = #{desc} ,
             `field_name` = #{fieldName} ,
+            `field_type` = #{fieldType} ,
             `is_insert` = #{isInsert} ,
             `is_edit` = #{isEdit} ,
             `is_list` = #{isList} ,

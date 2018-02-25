@@ -19,6 +19,9 @@
 
 .head-r-menu li i{padding-right: 5px;}
 
+/** 内容自动换行*/
+.word-break{word-break: break-all;  word-wrap: break-word;}
+
 /** 图片 */
 img.img-small{width: 40px;height: 40px;}
 
@@ -27,15 +30,23 @@ img.img-small{width: 40px;height: 40px;}
 .footable tr.active a{font-weight: bold;}
 
 
+/** 详情页面 */
+.page-detail > .row > label{min-width: 100px;text-align: right;}
+.page-detail > .row > div{display: inline-block}
+
 small.red{color: #f44336;}
 
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
-::-webkit-scrollbar {
+::-webkit-scrollbar{
 	width: 8px;
-	height: 16px;
+	height: 8px;
 	background-color: #F5F5F5;
 }
+::-webkit-scrollbar-track-piece {
+	background: #F5F5F5;
+}
+
 /*定义滚动条轨道 内阴影+圆角*/
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -47,4 +58,7 @@ small.red{color: #f44336;}
 	border-radius: 8px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #AAAAAA;
+}
+::-webkit-scrollbar-corner {
+	background:#888;
 }

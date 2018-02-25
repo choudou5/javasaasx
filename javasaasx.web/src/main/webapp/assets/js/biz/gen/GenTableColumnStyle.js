@@ -73,6 +73,7 @@ function ajaxRightDataTable(table){
                 "render": function(name, type, row, meta) {
                     return '<input name="columnStyleList['+meta.row+'].id" class="form-control" type="hidden" value="' + CommUtil.toText(row.id) + '" />' +
                         '<input name="columnStyleList['+meta.row+'].table" class="form-control" type="hidden" value="' + row.table + '" />' +
+                        '<input name="columnStyleList['+meta.row+'].fieldType" class="form-control" type="hidden" value="' + row.fieldType + '" />' +
                         '<input name="columnStyleList['+meta.row+'].column" class="form-control" readonly type="text" value="' + row.column + '" />';
                 },"targets": 0 //指定列
             },
@@ -120,7 +121,7 @@ function ajaxRightDataTable(table){
             },
             {
                 "render": function(name, type, row, meta) {
-                    return '<input name="columnStyleList['+meta.row+'].dicType" class="form-control" type="text" value="' + row.dicType + '" />';
+                    return '<input name="columnStyleList['+meta.row+'].dicType" class="form-control" type="text" value="' + CommUtil.toText(row.dicType) + '" />';
                 },"targets": 9
             }
         ]
@@ -132,7 +133,6 @@ function buildGenCodeQueryTypeHtm(index, selectValue){
     selectValue = CommUtil.isEmpty(selectValue)?"":selectValue;
     var htm = new StringBuffer();
     htm.append('<select  name="columnStyleList['+index+'].queryType" class="form-control" title="查询方式">');
-    htm.append('<option></option>');
     // (selectValue=="eq"?"selected=\"selected\"":"")
     htm.append('<option value="eq" '+(selectValue=="eq"?"selected=\"selected\"":"")+'>等于</option>');
     htm.append('<option value="neq" '+(selectValue=="neq"?"selected=\"selected\"":"")+'>不等于</option>');
@@ -148,7 +148,6 @@ function buildGenCodeShowTypeHtm(index, selectValue){
     selectValue = CommUtil.isEmpty(selectValue)?"":selectValue;
     var htm = new StringBuffer();
     htm.append('<select name="columnStyleList['+index+'].showType" class="form-control" title="生成类型">');
-    htm.append('<option></option>');
     // (selectValue=="eq"?"selected=\"selected\"":"")
     htm.append('<option value="input" '+(selectValue=="input"?"selected=\"selected\"":"")+'>input</option>');
     htm.append('<option value="textarea" '+(selectValue=="textarea"?"selected=\"selected\"":"")+'>textarea</option>');

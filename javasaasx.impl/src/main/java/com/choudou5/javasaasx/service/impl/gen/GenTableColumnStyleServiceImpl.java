@@ -129,9 +129,11 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
                     LinkedHashSet<Column> columnLinkedHashMap = tbl.getColumns();
                     for (Column column : columnLinkedHashMap) {
                         GenTableColumnStyleBo columnStyleBo = new GenTableColumnStyleBo();
+                        columnStyleBo.setIsList(CommonConstant.DataStatusEnum.Y.getCode());
                         columnStyleBo.setColumn(column.getSqlName());
                         columnStyleBo.setDesc(column.getRemarks());
                         columnStyleBo.setFieldName(column.getColumnNameFirstLower());
+                        columnStyleBo.setFieldType(column.getSimpleJavaType());
                         columnStyleBo.setTable(table);
                         list.add(columnStyleBo);
                     }

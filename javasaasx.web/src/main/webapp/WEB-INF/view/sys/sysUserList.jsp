@@ -47,12 +47,12 @@
                                 <td>${item.officeId} </td>
                                 <td>${item.jobNumber} </td>
                                 <td>
-                                    <shiro:hasPermission name="sys:sysUser:view">
-                                        <a href="javascript:;" onclick="dialogOpenPageView('详情', '${ctx}/sys/sysUser/view?id=${item.id}');" class="btn btn-simple btn-facebook">${item.name}</a>
-                                    </shiro:hasPermission>
                                     <shiro:lacksPermission name="sys:sysUser:view">
-                                        ${item.name}
+                                        <a href="javascript:;" onclick="dialogOpenPageView('详情', '${ctx}/sys/sysUser/view?id=${item.id}');" class="btn btn-simple btn-facebook">${item.name}</a>
                                     </shiro:lacksPermission>
+                                    <shiro:hasPermission name="sys:sysUser:view">
+                                        ${item.name}
+                                    </shiro:hasPermission>
                                 </td>
                                 <td><sys:flagLabel value="${item.isAdmin}"/> </td>
                                 <td><sys:flagLabel value="${item.isBoss}"/> </td>

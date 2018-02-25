@@ -40,11 +40,11 @@
                                         <a href="javascript:;" onclick="dialogOpenPageView('详情', '${"$"}{ctx}/${moduleName}/${classNameLower}/view?id=${"$"}{item.id}');" class="btn btn-simple btn-facebook">${"$"}{item.name}</a>
                                     </shiro:hasPermission>
                                     <shiro:lacksPermission name="${moduleName}:${classNameLower}:view">
-                                        ${"$"}{item.name}
+                                        <@jspEl 'item.name'/>
                                     </shiro:lacksPermission>
                                 </td>
                                         <#else>
-                                <td>${"$"}{item.${column.javaColumn}} </td>
+                                <td><@jspEl 'item.${column.javaColumn}'/></td>
                                         </#if>
                                     </#if>
                                 </#list>

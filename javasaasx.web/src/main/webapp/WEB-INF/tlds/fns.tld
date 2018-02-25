@@ -54,6 +54,27 @@
 
   <!-- StrUtil -->
 
+  <!-- DateUtil -->
+  <function>
+    <description>格式化时间 yyyy-MM-dd HH:mm:ss</description>
+    <name>formatDateTime</name>
+    <function-class>cn.hutool.core.date.DateUtil</function-class>
+    <function-signature>java.lang.String formatDateTime(java.util.Date)</function-signature>
+    <example>${fns:formatDateTime(date)}</example>
+  </function>
+  <function>
+    <description>格式化时间 yyyy-MM-dd</description>
+    <name>formatDate</name>
+    <function-class>cn.hutool.core.date.DateUtil</function-class>
+    <function-signature>java.lang.String formatDate(java.util.Date)</function-signature>
+    <example>${fns:formatDate(date)}</example>
+  </function>
+  <function>
+    <description>格式化时间 HH:mm:ss</description>
+    <name>formatTime</name>
+    <function-class>cn.hutool.core.date.DateUtil</function-class>
+    <function-signature>java.lang.String formatTime(java.util.Date)</function-signature>
+    <example>${fns:formatTime(date)}</example>
+  </function>
 
-  
 </taglib>

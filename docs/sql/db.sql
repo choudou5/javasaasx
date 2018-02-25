@@ -89,12 +89,16 @@ CREATE TABLE `dic_sensitive_word` (
 -- Table structure for `gen_table_column_style`
 -- ----------------------------
 DROP TABLE IF EXISTS `gen_table_column_style`;
+
+Create Table
+
 CREATE TABLE `gen_table_column_style` (
   `id` varchar(32) NOT NULL COMMENT 'ID',
   `table` varchar(64) NOT NULL COMMENT '表',
-  `column` varchar(64) NOT NULL COMMENT '字段',
+  `column` varchar(64) NOT NULL COMMENT '列名',
   `desc` varchar(64) DEFAULT NULL COMMENT '字段描述',
   `field_name` varchar(64) DEFAULT NULL COMMENT '字段名',
+  `field_type` varchar(32) DEFAULT NULL COMMENT '字段类型',
   `is_insert` char(1) DEFAULT '1' COMMENT '是否为插入字段',
   `is_edit` char(1) DEFAULT '0' COMMENT '是否编辑字段: 0=否，1=是',
   `is_list` char(1) DEFAULT '1' COMMENT '是否列表字段: 0=否，1=是',
@@ -104,7 +108,8 @@ CREATE TABLE `gen_table_column_style` (
   `dic_type` varchar(128) DEFAULT NULL COMMENT '字典类型',
   `sort` int(11) DEFAULT '1' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='生成表字段样式';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='生成表字段样式'
+
 
 -- ----------------------------
 -- Records of gen_table_column_style

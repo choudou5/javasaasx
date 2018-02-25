@@ -1,8 +1,8 @@
 package com.choudou5.javasaasx.service.gen.bo;
 
+import com.choudou5.javasaasx.base.bean.BaseBo;
 import com.choudou5.javasaasx.base.constant.CommonConstant;
 import org.hibernate.validator.constraints.Length;
-import com.choudou5.javasaasx.base.bean.BaseBo;
 
 /**
  * @Name：生成表字段样式 业务对象
@@ -24,6 +24,8 @@ public class GenTableColumnStyleBo implements BaseBo {
 	private String desc;
     /**  字段名 */
 	private String fieldName;
+	/** 字段类型 */
+	private String fieldType;
     /**  是否为插入字段 */
 	private String isInsert;
     /**  是否编辑字段: 0=否，1=是 */
@@ -84,6 +86,13 @@ public class GenTableColumnStyleBo implements BaseBo {
 	}
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
+	}
+
+	public String getFieldType() {
+		return fieldType;
+	}
+	public void setFieldType(String fieldType) {
+		this.fieldType = fieldType;
 	}
 
 	public String getIsInsert() {

@@ -92,6 +92,24 @@
 	<!-- 配置 JSR303 Bean Validator 定义 -->
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
+
+	<!-- 线程池 -->
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="${task.corePoolSize}" /><!-- 核心线程数 -->
+		<property name="maxPoolSize" value="${task.maxPoolSize}" /><!-- 最大线程数 -->
+		<property name="queueCapacity" value="${task.queueCapacity}" /><!-- 队列最大长度  -->
+		<property name="keepAliveSeconds" value="${task.keepAliveSeconds}" /><!-- 线程池维护线程所允许的空闲时间 (秒)， 即 线程空闲时间超过n秒会关闭-->
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+		</property>
+		<!-- 线程池对拒绝任务(无线程可用)的处理策略：
+			 AbortPolicy （默认）中，处理程序遭到拒绝将抛出运行时RejectedExecutionException。
+			 CallerRunsPolicy 中，线程调用运行该任务的execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。
+			 DiscardPolicy 中，不能执行的任务将被删除。
+			 DiscardOldestPolicy 中，如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则
+		-->
+	</bean>
+
 	<!-- 缓存配置-->
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:cache/ehcache.xml" />
@@ -101,5 +119,7 @@
 		<constructor-arg name="corpId" value="${dingtalk.corpId}"/>
 		<constructor-arg name="corpSecret" value="${dingtalk.corpSecret}"/>
 	</bean>
+
+	<bean id="springContextHolder" class="com.choudou5.javasaasx.common.util.SpringContextHolder" lazy-init="false" destroy-method="destroy" autowire="byType"  />
 
 </beans>

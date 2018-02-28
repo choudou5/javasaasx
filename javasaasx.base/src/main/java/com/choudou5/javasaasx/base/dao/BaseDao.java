@@ -8,10 +8,8 @@ import java.util.List;
 
 /**
  * @Name：基础 Dao
- * @Author：xuhaowende
- * @Date：2018-01-13 17:51
- * @Site：http://solrhome.com
- * @License：MIT
+ * @Author：xuhaowen
+ * @Date：2018-01-13
  */
 public interface BaseDao<P extends BasePo, K extends Serializable> {
 

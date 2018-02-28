@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.sys.SysOperationLogDao" >
+    <resultMap id="RM_SysOperationLog" type="com.choudou5.javasaasx.dao.sys.po.SysOperationLogPo">
+        <result property="id" column="id"/>
+        <result property="optType" column="opt_type"/>
+        <result property="desc" column="desc"/>
+        <result property="ip" column="ip"/>
+        <result property="userAgent" column="user_agent"/>
+        <result property="requestUri" column="request_uri"/>
+        <result property="method" column="method"/>
+        <result property="params" column="params"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `opt_type`, `desc`, `ip`, `user_agent`, `request_uri`, `method`, `params`, `create_by`, `create_time`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            
+            <!--
+            eg: AND a.title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+                <if test="paramBean.id != null and paramBean.id != ''">
+                    AND `id` = #{paramBean.id}
+                </if>
+                <if test="paramBean.optType != null and paramBean.optType != ''">
+                    AND `opt_type` = #{paramBean.optType}
+                </if>
+                <if test="paramBean.desc != null and paramBean.desc != ''">
+                    AND `desc` = #{paramBean.desc}
+                </if>
+                <if test="paramBean.ip != null and paramBean.ip != ''">
+                    AND `ip` = #{paramBean.ip}
+                </if>
+                <if test="paramBean.userAgent != null and paramBean.userAgent != ''">
+                    AND `user_agent` = #{paramBean.userAgent}
+                </if>
+                <if test="paramBean.requestUri != null and paramBean.requestUri != ''">
+                    AND `request_uri` = #{paramBean.requestUri}
+                </if>
+                <if test="paramBean.method != null and paramBean.method != ''">
+                    AND `method` = #{paramBean.method}
+                </if>
+                <if test="paramBean.params != null and paramBean.params != ''">
+                    AND `params` = #{paramBean.params}
+                </if>
+                <if test="paramBean.createBy != null and paramBean.createBy != ''">
+                    AND `create_by` = #{paramBean.createBy}
+                </if>
+                <if test="paramBean.createTime != null ">
+                    AND `create_time` = #{paramBean.createTime}
+                </if>
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO sys_operation_log (
+        <if test="id != null">`id`</if>
+        <if test="optType != null">,`opt_type`</if>
+        <if test="desc != null">,`desc`</if>
+        <if test="ip != null">,`ip`</if>
+        <if test="userAgent != null">,`user_agent`</if>
+        <if test="requestUri != null">,`request_uri`</if>
+        <if test="method != null">,`method`</if>
+        <if test="params != null">,`params`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="optType != null">,#{optType}</if>
+        <if test="desc != null">,#{desc}</if>
+        <if test="ip != null">,#{ip}</if>
+        <if test="userAgent != null">,#{userAgent}</if>
+        <if test="requestUri != null">,#{requestUri}</if>
+        <if test="method != null">,#{method}</if>
+        <if test="params != null">,#{params}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO sys_operation_log (
+        `id`
+        ,`opt_type`
+        ,`desc`
+        ,`ip`
+        ,`user_agent`
+        ,`request_uri`
+        ,`method`
+        ,`params`
+        ,`create_by`
+        ,`create_time`
+        ) VALUES
+        <foreach collection="list" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.optType}
+        ,#{entity.desc}
+        ,#{entity.ip}
+        ,#{entity.userAgent}
+        ,#{entity.requestUri}
+        ,#{entity.method}
+        ,#{entity.params}
+        ,#{entity.createBy}
+        ,#{entity.createTime}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE sys_operation_log SET
+            `opt_type` = #{optType} ,
+            `desc` = #{desc} ,
+            `ip` = #{ip} ,
+            `user_agent` = #{userAgent} ,
+            `request_uri` = #{requestUri} ,
+            `method` = #{method} ,
+            `params` = #{params} ,
+
+
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM sys_operation_log
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM sys_operation_log
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM sys_operation_log
+        <include refid="where"/>
+    </delete>
+
+    <select id="findById" resultMap="RM_SysOperationLog">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM sys_operation_log
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM sys_operation_log
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_SysOperationLog">
+        SELECT <include refid="columns"/>
+        FROM sys_operation_log
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_SysOperationLog">
+        SELECT <include refid="columns"/>
+        FROM sys_operation_log
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_SysOperationLog">
+        SELECT <include refid="columns"/>
+        FROM sys_operation_log
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql'">limit 1</if>
+    </select>
+
+
+</mapper>
+
+

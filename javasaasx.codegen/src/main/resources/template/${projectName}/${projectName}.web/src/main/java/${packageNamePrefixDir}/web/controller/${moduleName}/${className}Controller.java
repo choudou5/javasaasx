@@ -6,6 +6,7 @@
 <#assign classBONameLower = classBOName?uncap_first>
 package ${packageNamePrefix}.web.controller.${moduleName};
 
+import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
@@ -53,12 +54,12 @@ public class ${className}Controller extends BaseController {
     }
 
     /**
-     * 列表
      * @param queryParam
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "查看${table.remarks}-列表", optType = "view")
     @RequiresPermissions("${moduleName}:${classNameLower}:view")
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String list(${className}QueryParam queryParam, HttpServletRequest req, Model model) {
@@ -68,12 +69,12 @@ public class ${className}Controller extends BaseController {
     }
 
     /**
-     * 查看
      * @param id
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "查看${table.remarks}-详情", optType = "view")
     @RequiresPermissions("${moduleName}:${classNameLower}:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
@@ -83,12 +84,12 @@ public class ${className}Controller extends BaseController {
     }
 
     /**
-     * 编辑记录
      * @param id
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "编辑${table.remarks}", optType = "edit")
     @RequiresPermissions("${moduleName}:${classNameLower}:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
     public String form(String id, HttpServletRequest req, Model model) {
@@ -103,12 +104,12 @@ public class ${className}Controller extends BaseController {
     }
 
     /**
-     * 保存记录
      * @param ${classBONameLower}
      * @param req
      * @param attributes
      * @return
      */
+    @ControllerDesc(desc = "保存${table.remarks}", optType = "save")
     @RequiresPermissions("${moduleName}:${classNameLower}:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
@@ -125,12 +126,12 @@ public class ${className}Controller extends BaseController {
     }
 
     /**
-     * 删除记录
      * @param id
      * @param req
      * @param attributes
      * @return
      */
+    @ControllerDesc(desc = "删除${table.remarks}", optType = "delete")
     @RequiresPermissions("${moduleName}:${classNameLower}:delete")
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody

@@ -7,6 +7,7 @@
 */
 package com.choudou5.javasaasx.web.controller.gen;
 
+import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.bean.SelectBo;
 import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.service.gen.GenTableColumnStyleService;
@@ -42,11 +43,11 @@ public class GenTableColumnStyleController extends BaseController {
 
 
     /**
-     * 列表
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "查看生成表字段样式-列表", optType = "view")
     @RequiresPermissions("gen:genTableColumnStyle:view")
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String list(HttpServletRequest req, Model model) {
@@ -58,10 +59,10 @@ public class GenTableColumnStyleController extends BaseController {
 
 
     /**
-     * 编辑
      * @param table
      * @return
      */
+    @ControllerDesc(desc = "编辑生成表字段样式", optType = "edit")
     @RequiresPermissions("gen:genTableColumnStyle:edit")
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     @ResponseBody
@@ -76,11 +77,11 @@ public class GenTableColumnStyleController extends BaseController {
 
 
     /**
-     * 保存记录
      * @param req
      * @param attributes
      * @return
      */
+    @ControllerDesc(desc = "保存生成表字段样式", optType = "save")
     @RequiresPermissions("gen:genTableColumnStyle:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody

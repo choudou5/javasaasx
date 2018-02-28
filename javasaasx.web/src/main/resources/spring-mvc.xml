@@ -100,7 +100,21 @@
 	-->
 	<!-- 定义无Controller的path<->view直接映射 -->
 	<mvc:view-controller path="/" view-name="redirect:/"/>
-	
+
+	<!-- 拦截器配置，拦截顺序：先执行后定义的，排在第一位的最后执行。-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/sys/login"/>
+			<bean class="com.choudou5.javasaasx.web.interceptor.LogInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 支持Shiro对Controller的方法级AOP安全控制 begin-->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>

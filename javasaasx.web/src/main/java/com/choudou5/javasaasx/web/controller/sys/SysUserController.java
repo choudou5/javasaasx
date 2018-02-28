@@ -7,6 +7,7 @@
 */
 package com.choudou5.javasaasx.web.controller.sys;
 
+import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
@@ -52,12 +53,12 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 列表
      * @param queryParam
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "查看系统用户-列表", optType = "view")
     @RequiresPermissions("sys:sysUser:view")
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String list(SysUserQueryParam queryParam, HttpServletRequest req, Model model) {
@@ -67,12 +68,12 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 查看
      * @param id
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "查看系统用户-详情", optType = "view")
     @RequiresPermissions("sys:sysUser:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
@@ -82,12 +83,12 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 编辑记录
      * @param id
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "编辑系统用户", optType = "edit")
     @RequiresPermissions("sys:sysUser:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
     public String form(String id, HttpServletRequest req, Model model) {
@@ -102,12 +103,12 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 保存记录
      * @param sysUserBo
      * @param req
      * @param attributes
      * @return
      */
+    @ControllerDesc(desc = "保存系统用户", optType = "save")
     @RequiresPermissions("sys:sysUser:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
@@ -124,12 +125,12 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 删除记录
      * @param id
      * @param req
      * @param attributes
      * @return
      */
+    @ControllerDesc(desc = "删除系统用户", optType = "delete")
     @RequiresPermissions("sys:sysUser:delete")
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody

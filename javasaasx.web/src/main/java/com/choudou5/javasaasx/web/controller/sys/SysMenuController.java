@@ -7,6 +7,7 @@
 */
 package com.choudou5.javasaasx.web.controller.sys;
 
+import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.service.constants.SysConstants;
@@ -28,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Name：菜单表 Controller
+ * @Name：系统菜单 Controller
  * @Author：xuhaowen
  * @Date：2018-01-18
  */
@@ -62,6 +63,7 @@ public class SysMenuController extends BaseController {
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "查看系统菜单-列表", optType = "view")
     @RequiresPermissions("sys:sysMenu:view")
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String list(SysMenuQueryParam queryParam, HttpServletRequest req, Model model) {
@@ -103,12 +105,12 @@ public class SysMenuController extends BaseController {
     }
 
     /**
-     * 编辑记录
      * @param id
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "编辑系统菜单", optType = "edit")
     @RequiresPermissions("sys:sysMenu:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
     public String form(String id, HttpServletRequest req, Model model) {
@@ -119,12 +121,12 @@ public class SysMenuController extends BaseController {
     }
 
     /**
-     * 保存记录
      * @param sysMenuBo
      * @param req
      * @param attributes
      * @return
      */
+    @ControllerDesc(desc = "保存系统菜单", optType = "save")
     @RequiresPermissions("sys:sysMenu:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
@@ -142,6 +144,7 @@ public class SysMenuController extends BaseController {
     }
 
 
+    @ControllerDesc(desc = "更新系统菜单", optType = "update")
     @RequiresPermissions("sys:sysMenu:edit")
     @RequestMapping(value = "ajaxUpdate", method = RequestMethod.POST)
     @ResponseBody
@@ -160,12 +163,12 @@ public class SysMenuController extends BaseController {
 
 
     /**
-     * 删除记录
      * @param id
      * @param req
      * @param attributes
      * @return
      */
+    @ControllerDesc(desc = "删除系统菜单", optType = "delete")
     @RequiresPermissions("sys:sysMenu:delete")
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody

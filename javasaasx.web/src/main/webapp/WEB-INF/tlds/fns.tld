@@ -54,14 +54,6 @@
 
 
   <!-- UIUtil -->
-  <function>
-    <description>字段 sort样式</description>
-    <name>fieldOrderCss</name>
-    <function-class>com.choudou5.javasaasx.web.util.UIUtil</function-class>
-    <function-signature>java.lang.String fieldOrderCss(java.lang.String,com.choudou5.base.bean.OrderBean)</function-signature>
-    <example>${fns:fieldOrderCss('field', orderBean)}</example>
-  </function>
-
 
   <!-- GenUtil -->
   <function>

@@ -40,6 +40,11 @@ CommUtil = {
 			return "";
 		return obj;
 	},
+	setDefValue: function(obj, def){
+		if(this.isEmpty(obj))
+			return def;
+		return obj;
+	},
 	getRandom: function (){
 		return Math.ceil(Math.random()*1000000000000);
 	},
@@ -946,6 +951,21 @@ FormUtil = {
 	bindOrder: function (searchFormId){
 		if(CommUtil.isEmpty(searchFormId))
 			searchFormId = "searchForm";
+
+		var form = $("#"+searchFormId);
+		var orderBy = CommUtil.setDefValue(form.find("#orderBy").val(), "");
+		var order = CommUtil.setDefValue(form.find("#order").val(), "");
+		//绑定样式
+		$("th[sort-field]").each(function(){
+			var field = $(this).attr("sort-field");
+			if(orderBy===field){
+				$(this).addClass("sorting_"+order);
+			}else{
+				$(this).addClass("sorting");
+			}
+		});
+
+		//绑定click
 		$("th[sort-field]").bind("click", function(event){
 			var field = $(this).attr("sort-field");
 			var orderStr = $(this).attr("class");
@@ -955,7 +975,6 @@ FormUtil = {
 				order = arr[1];
 			}
 			order = order==="asc"?"desc":"asc";
-			var form = $("#"+searchFormId);
 			form.find("#orderBy").val(field);
 			form.find("#order").val(order);
 			form.submit();

@@ -53,8 +53,8 @@
                                 <button type="submit" class="btn btn-twitter"><i class="fa fa-search"></i></button>
                                 <input type="hidden" id="pageNo" name="pageBean.pageNo"/>
                                 <input type="hidden" id="pageSize" name="pageBean.pageSize" />
-                                <input type="hidden" id="orderBy" name="orderBean.orderBy" />
-                                <input type="hidden" id="order" name="orderBean.order" />
+                                <input type="hidden" id="orderBy" name="orderBean.orderBy" value="${sysOperationLogQueryParam.orderBean.orderBy}"/>
+                                <input type="hidden" id="order" name="orderBean.order" value="${sysOperationLogQueryParam.orderBean.order}"/>
                             </div>
                         </form:form>
                     </div>
@@ -66,9 +66,9 @@
                             <th>说明</th>
                             <th>ip地址</th>
                             <th>请求uri</th>
-                            <th class="${fns:fieldOrderCss('method', sysOperationLogQueryParam.orderBean)}" sort-field="method">方法</th>
+                            <th sort-field="method">方法</th>
                             <th>操作人</th>
-                            <th class="${fns:fieldOrderCss('create_time', sysOperationLogQueryParam.orderBean)}" sort-field="create_time">操作时间</th>
+                            <th sort-field="create_time">操作时间</th>
                         </tr>
                         </thead>
                         <tbody>

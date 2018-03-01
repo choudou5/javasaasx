@@ -72,7 +72,7 @@
         ,`create_by`
         ,`create_time`
         ) VALUES
-        <foreach collection="entities" item="entity" index="index" separator="," >
+        <foreach collection="list" item="entity" index="index" separator="," >
         (
         #{entity.id}
         ,#{entity.userId}
@@ -88,8 +88,6 @@
         UPDATE sys_user_role SET
             `user_id` = #{userId} ,
             `role_id` = #{roleId} ,
-
-
         WHERE
             id = #{id} 
     ]]>

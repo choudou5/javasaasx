@@ -35,7 +35,7 @@
                     AND `opt_type` = #{paramBean.optType}
                 </if>
                 <if test="paramBean.desc != null and paramBean.desc != ''">
-                    AND `desc` = #{paramBean.desc}
+                    AND `desc` LIKE concat('%',#{paramBean.desc},'%')
                 </if>
                 <if test="paramBean.ip != null and paramBean.ip != ''">
                     AND `ip` = #{paramBean.ip}
@@ -133,8 +133,6 @@
             `request_uri` = #{requestUri} ,
             `method` = #{method} ,
             `params` = #{params} ,
-
-
         WHERE
             id = #{id} 
     ]]>
@@ -186,6 +184,9 @@
     <select id="findAll" resultMap="RM_SysOperationLog">
         SELECT <include refid="columns"/>
         FROM sys_operation_log
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
     </select>
 
     <select id="findUniqueBy" resultMap="RM_SysOperationLog">

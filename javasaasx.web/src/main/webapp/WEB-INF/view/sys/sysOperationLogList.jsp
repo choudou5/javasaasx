@@ -13,17 +13,62 @@
     <div class="row">
         <div class="card">
             <div class="card-content">
-                <div class="toolbar"></div>
-                <div class="material-datatables">
-                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                <div class="toolbar">
+                    <div class="row">
+                        <form:form id="searchForm" modelAttribute="sysOperationLogQueryParam" action="${ctx}/sys/sysOperationLog/list" method="post">
+                            <div class="col-md-1">
+                                <form:select path="sysOperationLogBo.method" class="selectpicker" data-style="select-with-transition">
+                                    <form:option value="">方法类型</form:option>
+                                    <form:option value="GET">GET</form:option>
+                                    <form:option value="POST">POST</form:option>
+                                    <form:option value="DELETE">DELETE</form:option>
+                                    <form:option value="PUT">PUT</form:option>
+                                </form:select>
+                            </div>
+                            <div class="col-md-1">
+                                <form:select path="sysOperationLogBo.optType" class="selectpicker" data-style="select-with-transition">
+                                    <form:option value="">操作类型</form:option>
+                                    <form:option value="view">查看</form:option>
+                                    <form:option value="edit">编辑</form:option>
+                                    <form:option value="save">保存</form:option>
+                                    <form:option value="delete">删除</form:option>
+                                </form:select>
+                            </div>
+                            <div class="col-md-1">
+                                <form:select path="sysOperationLogBo.createBy" class="selectpicker" data-style="select-with-transition" data-live-search="true">
+                                    <form:option value="">操作人</form:option>
+                                    <c:forEach items="${fns:getUserSelectListData('${sysOperationLogBo.createBy}')}" var="selectBo">
+                                        <form:option value="${selectBo.value}">${selectBo.text}</form:option>
+                                    </c:forEach>
+                                </form:select>
+                            </div>
+                            <div class="col-md-2">
+
+                                <form:input type="text" path="sysOperationLogBo.ip" class="form-control" placeholder=" ip地址"/>
+                            </div>
+                            <div class="col-md-2">
+                                <form:input type="text" path="sysOperationLogBo.desc" class="form-control" placeholder=" 操作说明"/>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="submit" class="btn btn-twitter"><i class="fa fa-search"></i></button>
+                                <input type="hidden" id="pageNo" name="pageBean.pageNo"/>
+                                <input type="hidden" id="pageSize" name="pageBean.pageSize" />
+                                <input type="hidden" id="orderBy" name="orderBean.orderBy" />
+                                <input type="hidden" id="order" name="orderBean.order" />
+                            </div>
+                        </form:form>
+                    </div>
+                </div>
+                <div class="material-datatables table-responsive">
+                    <table id="datatables" class="table table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                         <tr>
                             <th>说明</th>
                             <th>ip地址</th>
                             <th>请求uri</th>
-                            <th>方法</th>
-                            <th>创建者</th>
-                            <th>创建时间</th>
+                            <th class="${fns:fieldOrderCss('method', sysOperationLogQueryParam.orderBean)}" sort-field="method">方法</th>
+                            <th>操作人</th>
+                            <th class="${fns:fieldOrderCss('create_time', sysOperationLogQueryParam.orderBean)}" sort-field="create_time">操作时间</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,6 +85,7 @@
                         </tbody>
                     </table>
                 </div>
+                <sys:paging page="${pageResult}"/>
             </div>
             <!-- end content-->
         </div>
@@ -50,26 +96,8 @@
 <%@include file="/include/scriptLib.jsp" %>
 <script type="text/javascript">
     $(function () {
-        var datatables = $('#datatables').DataTable({
-            "pagingType": "full_numbers",
-            "lengthMenu": [
-                [10, 25, 50, -1],
-                [10, 25, 50, "All"]
-            ],
-            responsive: true,
-            language: {
-                search: "_INPUT_",
-                searchPlaceholder: "Search",
-            }
-        });
-
-        // Delete a record
-        datatables.on('click', '.remove', function(e) {
-            var href = $(this).data("href");
-            tr = $(this).closest('tr');
-            dialogConfirmAjaxDel(href, datatables, tr);
-            e.preventDefault();
-        });
+        //绑定排序
+        FormUtil.bindOrder();
     });
 </script>
 </html>

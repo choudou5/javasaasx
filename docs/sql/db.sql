@@ -475,6 +475,7 @@ CREATE TABLE `sys_user_login_hi` (
 DROP TABLE IF EXISTS `sys_user_rel_thirdparty`;
 CREATE TABLE `sys_user_rel_thirdparty` (
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `ding_user_id` varchar(64) DEFAULT NULL COMMENT '钉钉用户ID',
   `ding_union_id` varchar(64) DEFAULT NULL COMMENT '钉钉唯一标识',
   `ding_global_id` varchar(64) DEFAULT NULL COMMENT '钉钉全局标识',
   `wwx_union_id` varchar(64) DEFAULT NULL COMMENT '企业微信唯一标识',

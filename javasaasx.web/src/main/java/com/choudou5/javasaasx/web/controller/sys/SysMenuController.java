@@ -65,7 +65,7 @@ public class SysMenuController extends BaseController {
      */
     @ControllerDesc(desc = "查看系统菜单-列表", optType = "view")
     @RequiresPermissions("sys:sysMenu:view")
-    @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"list", ""})
     public String list(SysMenuQueryParam queryParam, HttpServletRequest req, Model model) {
         queryParam.setDefBo().setType(SysConstants.MenuTypeEnum.MENU.getType());
         PageResult<SysMenuBo> pageResult = sysMenuService.findPage(queryParam);

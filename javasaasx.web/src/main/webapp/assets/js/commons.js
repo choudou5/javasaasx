@@ -941,6 +941,35 @@ FormUtil = {
 				CacheUtil.remove(key);
 			}, timeout);
 		}
+	},
+	//绑定排序
+	bindOrder: function (searchFormId){
+		if(CommUtil.isEmpty(searchFormId))
+			searchFormId = "searchForm";
+		$("th[sort-field]").bind("click", function(event){
+			var field = $(this).attr("sort-field");
+			var orderStr = $(this).attr("class");
+			var order = "asc";
+			var arr = orderStr.split("_");
+			if(orderStr.length > 1){
+				order = arr[1];
+			}
+			order = order==="asc"?"desc":"asc";
+			var form = $("#"+searchFormId);
+			form.find("#orderBy").val(field);
+			form.find("#order").val(order);
+			form.submit();
+			event.stopPropagation();
+		});
+	},
+	//搜索表单
+	searchForm: function (searchFormId, pageNo, pageSize){
+		if(CommUtil.isEmpty(searchFormId))
+			searchFormId = "searchForm";
+		var form = $("#"+searchFormId);
+		form.find("#pageNo").val(pageNo);
+		form.find("#pageSize").val(pageSize);
+		form.submit();
 	}
 
 }

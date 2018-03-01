@@ -60,7 +60,7 @@ public class SysRoleController extends BaseController {
      * @return
      */
     @RequiresPermissions("sys:sysRole:view")
-    @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"list", ""})
     public String list(SysRoleQueryParam queryParam, HttpServletRequest req, Model model) {
         PageResult<SysRoleBo> pageResult = sysRoleService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);

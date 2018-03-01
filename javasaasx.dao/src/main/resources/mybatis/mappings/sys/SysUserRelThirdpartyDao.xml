@@ -79,7 +79,7 @@
         ,`wwx_union_id`
         ,`wwx_global_id`
         ) VALUES
-        <foreach collection="entities" item="entity" index="index" separator="," >
+        <foreach collection="list" item="entity" index="index" separator="," >
         (
         #{entity.userId}
         ,#{entity.dingUserId}

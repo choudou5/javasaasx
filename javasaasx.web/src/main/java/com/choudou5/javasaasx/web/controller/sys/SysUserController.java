@@ -60,7 +60,7 @@ public class SysUserController extends BaseController {
      */
     @ControllerDesc(desc = "查看系统用户-列表", optType = "view")
     @RequiresPermissions("sys:sysUser:view")
-    @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"list", ""})
     public String list(SysUserQueryParam queryParam, HttpServletRequest req, Model model) {
         PageResult<SysUserBo> pageResult = sysUserService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);

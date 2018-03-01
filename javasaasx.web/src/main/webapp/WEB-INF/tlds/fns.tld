@@ -12,6 +12,15 @@
   <uri>http://java.sun.com/jsp/jstl/functionss</uri>
 
   <!-- UserUtil -->
+  <function>
+    <description>获取 用户下拉列表数据</description>
+    <name>getUserSelectListData</name>
+    <function-class>com.choudou5.javasaasx.service.impl.util.UserUtil</function-class>
+    <function-signature>java.util.List getUserSelectListData(java.lang.String))</function-signature>
+    <example>${fns:getUserSelectListData(userId)}</example>
+  </function>
+
+
   <!--<function>
     <description>获得当前用户名</description>
     <name>getSessionUserName</name>
@@ -42,6 +51,17 @@
     <example>${fns:getRoleName(roleId)}</example>  
   </function>
 -->
+
+
+  <!-- UIUtil -->
+  <function>
+    <description>字段 sort样式</description>
+    <name>fieldOrderCss</name>
+    <function-class>com.choudou5.javasaasx.web.util.UIUtil</function-class>
+    <function-signature>java.lang.String fieldOrderCss(java.lang.String,com.choudou5.base.bean.OrderBean)</function-signature>
+    <example>${fns:fieldOrderCss('field', orderBean)}</example>
+  </function>
+
 
   <!-- GenUtil -->
   <function>

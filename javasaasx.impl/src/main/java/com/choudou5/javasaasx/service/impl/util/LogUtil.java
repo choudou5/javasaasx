@@ -1,6 +1,6 @@
 package com.choudou5.javasaasx.service.impl.util;
 
-import com.choudou5.base.annotation.ControllerOperation;
+import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.util.CollUtil;
 import com.choudou5.base.util.IpUtil;
 import com.choudou5.base.util.MapUtil;
@@ -59,7 +59,7 @@ public class LogUtil {
         if (handler != null){
             if (handler instanceof HandlerMethod){
                 Method m = ((HandlerMethod)handler).getMethod();
-                ControllerOperation annotation = m.getAnnotation(ControllerOperation.class);
+                ControllerDesc annotation = m.getAnnotation(ControllerDesc.class);
                 if(annotation != null){
                     log.setOptType(annotation.optType());
                     log.setDesc(annotation.desc());

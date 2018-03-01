@@ -105,6 +105,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/assets/*"/>
 			<mvc:exclude-mapping path="/sys/login"/>
 			<bean class="com.choudou5.javasaasx.web.interceptor.LogInterceptor" />
 		</mvc:interceptor>

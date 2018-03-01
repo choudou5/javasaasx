@@ -1,5 +1,6 @@
 package com.choudou5.javasaasx.base.dao;
 
+import com.choudou5.base.bean.OrderBean;
 import com.choudou5.base.bean.QueryParam;
 import com.choudou5.javasaasx.base.bean.BasePo;
 
@@ -45,6 +46,6 @@ public interface BaseDao<P extends BasePo, K extends Serializable> {
 
     List<P> findList(QueryParam queryBean);
 
-    List<P> findAll();
+    List<P> findAll(OrderBean orderBean);
 
 }

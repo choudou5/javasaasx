@@ -159,14 +159,21 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
 
     @Override
     public List<B> findAll(OrderBean orderBean) throws BizException {
-        List<P> list = getDao().findAll();
+        List<P> list = getDao().findAll(orderBean);
         return BeanMapper.mapList(list, getBoClazz());
     }
 
     @Override
+    public List<B> findAll() throws BizException {
+        List<P> list = getDao().findAll(null);
+        return BeanMapper.mapList(list, getBoClazz());
+    }
+
+
+    @Override
     public PageResult<B> findPage(QueryParam queryBean) throws BizException {
-        queryBean.setDefaultPage();
-        PageResult<B> pageResult = new PageResult<>();
+        queryBean.setDefPage();
+        PageResult<B> pageResult = new PageResult<>(queryBean.getPageBean().getPageSize(), queryBean.getPageBean().getPageNo());
         long count = count(queryBean);
         pageResult.setTotalCount(count);
         if(count > 0 && count > queryBean.getPageBean().getStart()){

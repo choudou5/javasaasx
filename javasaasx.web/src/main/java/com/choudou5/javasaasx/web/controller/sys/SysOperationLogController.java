@@ -62,8 +62,9 @@ public class SysOperationLogController extends BaseController {
      */
     @ControllerDesc(desc = "查看系统操作日志-列表", optType = "view")
     @RequiresPermissions("sys:sysOperationLog:view")
-    @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"list", ""})
     public String list(SysOperationLogQueryParam queryParam, HttpServletRequest req, Model model) {
+        queryParam.setDefOrder("create_time", "desc");
         PageResult<SysOperationLogBo> pageResult = sysOperationLogService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         return "/sys/sysOperationLogList";

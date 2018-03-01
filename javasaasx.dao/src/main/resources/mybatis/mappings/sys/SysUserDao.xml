@@ -223,13 +223,11 @@
         ,`source`
         ,`create_by`
         ,`create_time`
-
-
         ,`status`
         ,`is_sys_data`
         ,`del_flag`
         ) VALUES
-        <foreach collection="entities" item="entity" index="index" separator="," >
+        <foreach collection="list" item="entity" index="index" separator="," >
         (
         #{entity.id}
         ,#{entity.companyId}
@@ -252,8 +250,6 @@
         ,#{entity.source}
         ,#{entity.createBy}
         ,#{entity.createTime}
-
-
         ,#{entity.status}
         ,#{entity.isSysData}
         ,#{entity.delFlag}

@@ -8058,7 +8058,8 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 .table > thead > tr > th {
   border-bottom-width: 1px;
   font-size: 1.25em;
-  font-weight: 300;
+  font-weight: 600;
+  color: #676a6c;
 }
 .table .radio,
 .table .checkbox {

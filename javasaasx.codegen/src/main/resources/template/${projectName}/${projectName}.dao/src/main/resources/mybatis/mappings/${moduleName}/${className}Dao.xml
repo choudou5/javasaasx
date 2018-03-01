@@ -71,7 +71,7 @@
         <#if column_index != 0>,</#if>`${column.sqlName}`</#if>
                 </#list>
         ) VALUES
-        <foreach collection="entities" item="entity" index="index" separator="," >
+        <foreach collection="list" item="entity" index="index" separator="," >
         (
         <#list table.columns as column><#if !column.isIgnoreFieldByCreate>
         <#if column_index != 0>,</#if><@mapperEl 'entity.${column.columnNameFirstLower}'/></#if>
@@ -140,6 +140,9 @@
     <select id="findAll" resultMap="RM_${className}">
         SELECT <include refid="columns"/>
         FROM ${table.sqlName}
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY <@jspEl 'orderBean.orderBy'/> <@jspEl 'orderBean.order'/>
+        </if>
     </select>
 
     <select id="findUniqueBy" resultMap="RM_${className}">

@@ -61,7 +61,7 @@ public class ${className}Controller extends BaseController {
      */
     @ControllerDesc(desc = "查看${table.remarks}-列表", optType = "view")
     @RequiresPermissions("${moduleName}:${classNameLower}:view")
-    @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"list", ""})
     public String list(${className}QueryParam queryParam, HttpServletRequest req, Model model) {
         PageResult<${classBOName}> pageResult = ${classService}.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);

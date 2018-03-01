@@ -60,7 +60,7 @@ public class SysOfficeController extends BaseController {
      * @return
      */
     @RequiresPermissions("sys:sysOffice:view")
-    @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"list", ""})
     public String list(SysOfficeQueryParam queryParam, HttpServletRequest req, Model model) {
         PageResult<SysOfficeBo> pageResult = sysOfficeService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);

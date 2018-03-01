@@ -107,6 +107,13 @@ public interface BaseService <B extends BaseBo>{
     List<B> findAll(OrderBean orderBean) throws BizException;
 
     /**
+     * 查询所有
+     * @return
+     * @throws BizException
+     */
+    List<B> findAll() throws BizException;
+
+    /**
      * 分页查询
      * @param queryBean
      * @return

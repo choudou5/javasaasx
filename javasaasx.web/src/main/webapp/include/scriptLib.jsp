@@ -23,7 +23,8 @@
 <!--   Sharrre Library    -->
 <script src="https://cdn.bootcss.com/Sharrre/1.3.5/js/jquery.sharrre.js"></script>
 <!-- DateTimePicker Plugin -->
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<%--<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>--%>
+<script type="text/javascript" src="${ctxStatic }/jquery-plugs/bootstrap-datetimepicker.js"></script>
 <!-- Vector Map plugin -->
 <script src="${ctxStatic }/jquery-plugs/jquery-jvectormap.js"></script>
 <!-- Sliders Plugin -->

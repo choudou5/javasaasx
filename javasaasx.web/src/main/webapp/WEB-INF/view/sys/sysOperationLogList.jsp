@@ -49,6 +49,9 @@
                             <div class="col-md-2">
                                 <form:input type="text" path="sysOperationLogBo.desc" class="form-control" placeholder=" 操作说明"/>
                             </div>
+                            <div class="col-md-2">
+                                <input type="text" name="beginTime" class="form-control datepicker" value="10/10/2016" placeholder=" 操作说明"/>
+                            </div>
                             <div class="col-md-1">
                                 <button type="submit" class="btn btn-twitter"><i class="fa fa-search"></i></button>
                                 <input type="hidden" id="pageNo" name="pageBean.pageNo"/>
@@ -98,6 +101,7 @@
     $(function () {
         //绑定排序
         FormUtil.bindOrder();
+        DateUtil.initFormDateTimePickers();
     });
 </script>
 </html>

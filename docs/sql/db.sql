@@ -89,9 +89,6 @@ CREATE TABLE `dic_sensitive_word` (
 -- Table structure for `gen_table_column_style`
 -- ----------------------------
 DROP TABLE IF EXISTS `gen_table_column_style`;
-
-Create Table
-
 CREATE TABLE `gen_table_column_style` (
   `id` varchar(32) NOT NULL COMMENT 'ID',
   `table` varchar(64) NOT NULL COMMENT '表',

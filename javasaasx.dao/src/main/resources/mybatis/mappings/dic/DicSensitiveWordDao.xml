@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.dic.DicSensitiveWordDao" >
+    <resultMap id="RM_DicSensitiveWord" type="com.choudou5.javasaasx.dao.dic.po.DicSensitiveWordPo">
+        <result property="id" column="id"/>
+        <result property="word" column="word"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `word`, `create_by`, `create_time`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            <if test="paramBean != null">
+                <if test="paramBean.id != null ">
+                    AND `id` = #{paramBean.id}
+                </if>
+                <if test="paramBean.word != null and paramBean.word != ''">
+                    AND `word` LIKE concat('%',#{paramBean.word},'%')
+                </if>
+                <if test="paramBean.createBy != null and paramBean.createBy != ''">
+                    AND `create_by` = #{paramBean.createBy}
+                </if>
+                <if test="paramBean.createTime != null ">
+                    AND `create_time` = #{paramBean.createTime}
+                </if>
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO dic_sensitive_word (
+        <if test="id != null">`id`</if>
+        <if test="word != null">,`word`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="word != null">,#{word}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO dic_sensitive_word (
+        `id`
+        ,`word`
+        ,`create_by`
+        ,`create_time`
+        ) VALUES
+        <foreach collection="list" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.word}
+        ,#{entity.createBy}
+        ,#{entity.createTime}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE dic_sensitive_word SET
+            `word` = #{word} ,
+
+
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM dic_sensitive_word
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM dic_sensitive_word
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM dic_sensitive_word
+        <include refid="where"/>
+    </delete>
+
+    <select id="findById" resultMap="RM_DicSensitiveWord">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM dic_sensitive_word
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM dic_sensitive_word
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_DicSensitiveWord">
+        SELECT <include refid="columns"/>
+        FROM dic_sensitive_word
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_DicSensitiveWord">
+        SELECT <include refid="columns"/>
+        FROM dic_sensitive_word
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_DicSensitiveWord">
+        SELECT <include refid="columns"/>
+        FROM dic_sensitive_word
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql'">limit 1</if>
+    </select>
+
+    <select id="getByWord" resultMap="RM_DicSensitiveWord" parameterType="java.lang.String">
+        SELECT *
+        <![CDATA[
+                    FROM dic_sensitive_word where word = #{word}
+                ]]>
+    </select>
+
+    <select id="findAllWord" resultType="java.lang.String">
+        SELECT `word` FROM dic_sensitive_word
+    </select>
+
+</mapper>
+
+

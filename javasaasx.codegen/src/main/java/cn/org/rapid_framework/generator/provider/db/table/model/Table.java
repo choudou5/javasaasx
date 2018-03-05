@@ -261,6 +261,13 @@ public class Table implements java.io.Serializable,Cloneable {
 		return GeneratorMain.DEL_FLAG_NORMAL;
 	}
 
+	public boolean isFieldNotNull(String field){
+		Column column = this.columns.getByColumnName(field);
+		if(column != null){
+			return !column.isNullable();
+		}
+		return true;
+	}
 
 	/**
 	 * 忽略过滤掉某些关键字的列,关键字不区分大小写,以逗号分隔

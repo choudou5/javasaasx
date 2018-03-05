@@ -1,6 +1,7 @@
 package cn.org.rapid_framework.generator.provider.db.table;
 
 
+import cn.hutool.cache.impl.TimedCache;
 import cn.org.rapid_framework.generator.GeneratorConstants;
 import cn.org.rapid_framework.generator.GeneratorProperties;
 import cn.org.rapid_framework.generator.provider.db.CommonDataSourceProvider;
@@ -10,6 +11,8 @@ import cn.org.rapid_framework.generator.provider.db.table.model.Column;
 import cn.org.rapid_framework.generator.provider.db.table.model.Table;
 import cn.org.rapid_framework.generator.util.*;
 import cn.org.rapid_framework.generator.util.XMLHelper.NodeData;
+import com.choudou5.base.util.CacheUtil;
+import com.choudou5.base.util.CollUtil;
 import com.choudou5.javasaasx.codegen.model.GenTableColumnStyle;
 
 import java.io.File;
@@ -34,7 +37,7 @@ public class TableFactory {
 	private String schema;
 	private String catalog;
 	private List<TableFactoryListener> tableFactoryListeners = new ArrayList<TableFactoryListener>();
-	
+
 	private TableFactory(String schema,String catalog) {
 		this.schema = schema;
 		this.catalog = catalog;
@@ -110,6 +113,7 @@ public class TableFactory {
 	public List<GenTableColumnStyle> getColumnStyleList(String tableName) {
 		if(tableName== null || tableName.trim().length() == 0)
 		throw new IllegalArgumentException("tableName must be not empty");
+		Table table = getTable(tableName);
 		Connection conn = DataSourceProvider.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -134,6 +138,7 @@ public class TableFactory {
 				obj.setShowType(rs.getString("show_type"));
 				obj.setDicType(rs.getString("dic_type"));
 				obj.setSort(rs.getInt("sort"));
+				obj.setNotNull(table.isFieldNotNull(rs.getString("field_name")));
 				result.add(obj);
 			}
 		} catch (SQLException e) {

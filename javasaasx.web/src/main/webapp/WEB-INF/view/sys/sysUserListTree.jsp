@@ -56,7 +56,7 @@
                                             <h4 class="card-title">系统用户-编辑</h4>
                                             <form id="inputForm" class="form-horizontal" onsubmit="return ajaxSubmitForm()">
                                                 <div class="material-datatables">
-                                                    <table id="datatables" class="table table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%; max-height: 600px;">
+                                                    <table id="datatables" class="table table-bordered table-hover" cellspacing="0" width="100%" style="width:100%; max-height: 600px;">
                                                         <thead>
                                                             <tr>
                                                                 <th>归属公司<small class="red">*</small></th>

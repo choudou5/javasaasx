@@ -76,11 +76,11 @@
                                                 <label class="control-label">代码生成地址：${genCodePath}</label>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                       <%-- <div class="col-md-2">
                                             <div class="form-group label-floating is-empty">
                                                 <sys:treeselect name="menuId" value="" labelValue="" dialogTitle="挑选挂载菜单" ajaxJsonUrl="/sys/sysMenu/ajaxParentTree"/>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                         <div class="col-md-2">
                                             <div class="form-group label-floating is-empty">
                                                 <input type="text" required name="author" class="form-control" value="xuhaowen" placeholder="开发者">
@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group label-floating  is-empty">
-                                                <input type="text" required name="moduleName" class="form-control" placeholder="模块(如sys)">
+                                                <input type="text" required name="moduleName" class="form-control input-required" placeholder="模块(如sys)">
                                             </div>
                                         </div>
                                         <div class="col-md-2">

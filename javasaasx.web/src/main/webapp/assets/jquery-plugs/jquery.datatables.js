@@ -10950,7 +10950,7 @@
                  *      } );
                  *    } );
              */
-            "sInfo": "_START_ / _END_ 共计 _TOTAL_",
+            "sInfo": "_START_ / _END_ &nbsp;&nbsp;共计 _TOTAL_",
 
 
             /**
@@ -10971,7 +10971,7 @@
                  *      } );
                  *    } );
              */
-            "sInfoEmpty": "0 to 0 of 0 记录",
+            "sInfoEmpty": "找不到记录",
 
 
             /**
@@ -10993,7 +10993,7 @@
                  *      } );
                  *    } );
              */
-            "sInfoFiltered": "(filtered from _MAX_ total entries)",
+            "sInfoFiltered": "(从 _MAX_ 条里过滤)",
 
 
             /**

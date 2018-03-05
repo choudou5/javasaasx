@@ -34,7 +34,7 @@
                                         <div class="card-content bd-grey pd-10">
                                             <h4 class="card-title">${table.remarks}</h4>
                                             <div class="material-datatables">
-                                                <input type="text" class="form-control input-sm" id="filter" placeholder="搜索...">
+                                                <input type="text" class="form-control clearable input-sm" id="filter" placeholder="搜索...">
                                                 <div class="form-group scroll-y h-max-580 h-min-450">
                                                     <table id="leftDatatables" class="table table-bordered table-hover"  data-filter="#filter" data-page-size="100" cellspacing="0" width="100%" style="width:100%">
                                                         <tbody>

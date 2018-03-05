@@ -1,10 +1,7 @@
 package com.choudou5.javasaasx.service.impl.util;
 
 import com.choudou5.base.annotation.ControllerDesc;
-import com.choudou5.base.util.CollUtil;
-import com.choudou5.base.util.IpUtil;
-import com.choudou5.base.util.MapUtil;
-import com.choudou5.base.util.StrUtil;
+import com.choudou5.base.util.*;
 import com.choudou5.javasaasx.common.util.SpringContextHolder;
 import com.choudou5.javasaasx.dao.sys.SysOperationLogDao;
 import com.choudou5.javasaasx.dao.sys.po.SysOperationLogPo;
@@ -73,7 +70,8 @@ public class LogUtil {
         log.setIp(IpUtil.getIpAddr(request));
         log.setUserAgent(request.getHeader("user-agent"));
         log.setRequestUri(request.getRequestURI());
-        log.setParams(MapUtil.join(request.getParameterMap(), ";", "="));
+        String params = MapUtil.join(request.getParameterMap(), ",", "=");
+        log.setParams(GzipUtil.compress(params)); //gzip压缩内容
         log.setMethod(request.getMethod());
         try {
             log.preInsert();

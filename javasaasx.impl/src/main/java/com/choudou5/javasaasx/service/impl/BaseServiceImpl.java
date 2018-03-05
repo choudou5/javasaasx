@@ -12,6 +12,7 @@ import com.choudou5.base.bean.QueryParam;
 import com.choudou5.base.exception.BizException;
 import com.choudou5.base.mapper.BeanMapper;
 import com.choudou5.base.page.PageResult;
+import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.CollUtil;
 import com.choudou5.base.util.ReflectionUtil;
 import com.choudou5.javasaasx.base.bean.AbstractBasePo;
@@ -20,6 +21,7 @@ import com.choudou5.javasaasx.base.dao.BaseDao;
 import com.choudou5.javasaasx.base.service.BaseService;
 import com.choudou5.javasaasx.base.util.SysSeqUtil;
 import com.choudou5.javasaasx.service.impl.util.SysExceptionUtil;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -48,7 +50,12 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
             }
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.save fail", e);
-            throw new BizException("保存失败！", e);
+            if(e instanceof DuplicateKeyException){
+                throw new BizException("已存在，请勿重复添加！", e);
+            }
+            else{
+                throw new BizException("保存失败！", e);
+            }
         }
     }
 
@@ -136,6 +143,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
 
     @Override
     public B get(Serializable id) {
+        AssertUtil.isNotEmpty(id, "请求ID为空！");
         P po = getDao().findById(id);
         return po==null?null:BeanMapper.map(po, getBoClazz());
     }

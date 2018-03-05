@@ -1,3 +1,4 @@
+small.red{color: #f44336;}
 
 .bd-grey{border-radius: 10px;}
 .bd-grey{border: 1px solid #DDD;}
@@ -26,81 +27,45 @@
 img.img-small{width: 40px;height: 40px;}
 
 
+
+/*--------------按钮----------------*/
 button[type=submit]{margin: 4px 0;}
 
-.footable tr.active{border-left: 5px solid grey;background: #CCCCCC;}
-.footable tr.active a{font-weight: bold;}
+.input-required::-webkit-input-placeholder{color: #f44336;} /* WebKit, Blink, Edge */
+.input-required::-moz-placeholder{color: #f44336;opacity:1;} /* Mozilla Firefox 19+ */
+.input-required:-moz-placeholder{color: #f44336;opacity:1;} /* Mozilla Firefox 4 to 18 */
+.input-required:-ms-input-placeholder{color: #f44336;} /* Internet Explorer 10-11 */
+.input-required::-ms-input-placeholder{color: #f44336;} /* Microsoft Edge */
+.input-required::placeholder{color: #f44336;}  /* Most modern browsers support this now. */
 
 
+/*--------------表格----------------*/
 /** sort */
 table thead .sorting,
 table thead .sorting_asc,
-table thead .sorting_desc{
-	cursor: pointer;
-	position: relative;
-}
-
+table thead .sorting_desc{cursor: pointer;position: relative;}
 table thead .sorting:after,
 table thead .sorting_asc:after,
-table thead .sorting_desc:after{
-	position: relative;
-	display: inline-block;
-	bottom: 1px;
-	right: -7px;
-	font-family: 'FontAwesome';
-	opacity: 0.8;
-	font-size: 14px;
-}
+table thead .sorting_desc:after{position: relative;display: inline-block;bottom: 1px;right: -7px;font-family: 'FontAwesome';opacity: 0.8;font-size: 14px;}
+table thead .sorting:after{opacity: 0.2;content: "\f0dc";/* sort */}
+table thead .sorting_asc:after{content: "\f0de";top: 2px;color: #FF5722;}
+table thead .sorting_desc:after{content: "\f0dd";top: -3px;color: #FF5722;}
 
-table thead .sorting:after {
-	opacity: 0.2;
-	content: "\f0dc";
-	/* sort */
-}
-
-table thead .sorting_asc:after {
-	content: "\f0de";
-	top: 2px;
-	color: #FF5722;
-}
-
-table thead .sorting_desc:after {
-	content: "\f0dd";
-	top: -3px;
-	color: #FF5722;
-}
-
+.footable tr.active{border-left: 5px solid grey;background: #CCCCCC;}
+.footable tr.active a{font-weight: bold;}
 
 
 /** 详情页面 */
 .page-detail > .row > label{min-width: 100px;text-align: right;}
 .page-detail > .row > div{display: inline-block}
 
-small.red{color: #f44336;}
 
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
-::-webkit-scrollbar{
-	width: 8px;
-	height: 8px;
-	background-color: #F5F5F5;
-}
-::-webkit-scrollbar-track-piece {
-	background: #F5F5F5;
-}
-
+::-webkit-scrollbar{width: 8px;height: 8px;background-color: #F5F5F5;}
+::-webkit-scrollbar-track-piece{background: #F5F5F5;}
 /*定义滚动条轨道 内阴影+圆角*/
-::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 8px;
-	background-color: #F5F5F5;
-}
+::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border-radius: 8px;background-color: #F5F5F5;}
 /*定义滑块 内阴影+圆角*/
-::-webkit-scrollbar-thumb {
-	border-radius: 8px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #AAAAAA;
-}
-::-webkit-scrollbar-corner {
-	background:#888;
-}
+::-webkit-scrollbar-thumb{border-radius: 8px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);background-color: #AAAAAA;}
+::-webkit-scrollbar-corner{background:#888;}

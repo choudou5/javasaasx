@@ -11,7 +11,6 @@
 
 <body>
     <div class="wrapper">
-        <%@include file="/include/sidebar.jsp" %>
         <div class="main-panel">
             <div class="container-fluid">
                 <div class="row">
@@ -36,10 +35,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group label-floating">
-                                        <form:input path="name" class="form-control" required="true" placeholder="名称*"/>
+                                        <form:input path="name" class="form-control input-required" required="true" placeholder="名称*"/>
                                     </div>
                                     <div class="form-group label-floating">
-                                        <form:input path="permission" required="true" class="form-control" placeholder="权限标识*"/>
+                                        <form:input path="permission" required="true" class="form-control input-required" placeholder="权限标识*"/>
                                     </div>
                                     <div class="form-group label-floating">
                                         <ul class="nav nav-tabs" data-tabs="tabs">
@@ -54,7 +53,7 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="typeMenu">
                                             <div class="form-group label-floating">
-                                                <form:input path="href" class="form-control" required="true" placeholder="链接*"/>
+                                                <form:input path="href" class="form-control input-required" required="true" placeholder="链接*"/>
                                             </div>
                                             <div class="form-group label-floating">
                                                 <form:input path="icon" class="form-control" placeholder="请使用 fa fa- "/>

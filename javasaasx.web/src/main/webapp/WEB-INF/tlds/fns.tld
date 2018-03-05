@@ -66,6 +66,15 @@
 
   <!-- StrUtil -->
 
+  <!-- GzipUtil -->
+  <function>
+    <description>Gzip解压</description>
+    <name>gzipUnCompress</name>
+    <function-class>com.choudou5.base.util.GzipUtil</function-class>
+    <function-signature>java.lang.String uncompress(java.lang.String)</function-signature>
+    <example>${fns:gzipUnCompress(str)}</example>
+  </function>
+
   <!-- DateUtil -->
   <function>
     <description>格式化时间 yyyy-MM-dd HH:mm:ss</description>

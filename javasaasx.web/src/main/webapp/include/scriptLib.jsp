@@ -12,8 +12,6 @@
 <script src="${ctxStatic }/js/material.min.js"></script>
 <script src="${ctxStatic }/jquery-plugs/perfect-scrollbar.jquery.min.js"></script>
 
-<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-<script src="${ctxStatic }/jquery-plugs/moment.min.js"></script>
 <!--  Charts Plugin -->
 <script src="${ctxStatic }/jquery-plugs/chartist.min.js"></script>
 <!--  Plugin for the Wizard -->
@@ -22,9 +20,18 @@
 <script src="${ctxStatic }/jquery-plugs/bootstrap-notify.js"></script>
 <!--   Sharrre Library    -->
 <script src="https://cdn.bootcss.com/Sharrre/1.3.5/js/jquery.sharrre.js"></script>
+
+<%--
 <!-- DateTimePicker Plugin -->
-<%--<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>--%>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+<script src="${ctxStatic }/jquery-plugs/moment.min.js"></script>
+&lt;%&ndash;<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>&ndash;%&gt;
 <script type="text/javascript" src="${ctxStatic }/jquery-plugs/bootstrap-datetimepicker.js"></script>
+<script src="${ctxStatic }/jquery-plugs/fullcalendar.min.js"></script>
+--%>
+
+<script src="${ctxStatic }/layer/laydate/5.0.9/laydate.js"></script>
+
 <!-- Vector Map plugin -->
 <script src="${ctxStatic }/jquery-plugs/jquery-jvectormap.js"></script>
 <!-- Sliders Plugin -->
@@ -39,7 +46,6 @@
 <!-- Sweet Alert 2 plugin -->
 <script src="${ctxStatic }/jquery-plugs/sweetalert2.js"></script>
 <script src="${ctxStatic }/jquery-plugs/jasny-bootstrap.min.js"></script>
-<script src="${ctxStatic }/jquery-plugs/fullcalendar.min.js"></script>
 <script src="${ctxStatic }/jquery-plugs/jquery.tagsinput.js"></script>
 <script src="${ctxStatic }/jquery-plugs/jquery.clearsearch.js"></script>
 <script src="${ctxStatic }/js/material-dashboard.js"></script>

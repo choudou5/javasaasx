@@ -7,6 +7,7 @@
 */
 package com.choudou5.javasaasx.web.controller.sys;
 
+import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @Name：系统角色 Controller
  * @Author：xuhaowen
- * @Date：2018-02-22
+ * @Date：2018-03-03
  */
 @Controller
 @Scope("prototype")
@@ -53,27 +54,28 @@ public class SysRoleController extends BaseController {
     }
 
     /**
-     * 列表
      * @param queryParam
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "查看系统角色-列表", optType = "view")
     @RequiresPermissions("sys:sysRole:view")
     @RequestMapping(value = {"list", ""})
     public String list(SysRoleQueryParam queryParam, HttpServletRequest req, Model model) {
+        queryParam.setPageParam(1, 500);
         PageResult<SysRoleBo> pageResult = sysRoleService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         return "/sys/sysRoleList";
     }
 
     /**
-     * 查看
      * @param id
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "查看系统角色-详情", optType = "view")
     @RequiresPermissions("sys:sysRole:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
@@ -83,17 +85,16 @@ public class SysRoleController extends BaseController {
     }
 
     /**
-     * 编辑记录
-     * @param id
+     * @param bo
      * @param req
      * @param model
      * @return
      */
+    @ControllerDesc(desc = "编辑系统角色", optType = "edit")
     @RequiresPermissions("sys:sysRole:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
-    public String form(String id, HttpServletRequest req, Model model) {
+    public String form(SysRoleBo bo, HttpServletRequest req, Model model) {
         try {
-            SysRoleBo bo = sysRoleService.get(id);
             AssertUtil.isNotNull(bo, "数据不存在！");
             model.addAttribute("sysRoleBo", bo);
         } catch (Exception e) {
@@ -103,12 +104,12 @@ public class SysRoleController extends BaseController {
     }
 
     /**
-     * 保存记录
      * @param sysRoleBo
      * @param req
      * @param attributes
      * @return
      */
+    @ControllerDesc(desc = "保存系统角色", optType = "save")
     @RequiresPermissions("sys:sysRole:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
@@ -125,12 +126,12 @@ public class SysRoleController extends BaseController {
     }
 
     /**
-     * 删除记录
      * @param id
      * @param req
      * @param attributes
      * @return
      */
+    @ControllerDesc(desc = "删除系统角色", optType = "delete")
     @RequiresPermissions("sys:sysRole:delete")
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody

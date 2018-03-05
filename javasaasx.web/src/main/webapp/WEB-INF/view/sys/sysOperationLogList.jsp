@@ -50,7 +50,7 @@
                                 <form:input type="text" path="sysOperationLogBo.desc" class="form-control" placeholder=" 操作说明"/>
                             </div>
                             <div class="col-md-2">
-                                <input type="text" name="beginTime" class="form-control datepicker" value="10/10/2016" placeholder=" 操作说明"/>
+                                <input type="text" id="rangeCreateDate" name="rangeCreateDate" value="${rangeCreateDate}" class="form-control" placeholder=" 范围时间"/>
                             </div>
                             <div class="col-md-1">
                                 <button type="submit" class="btn btn-twitter"><i class="fa fa-search"></i></button>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="material-datatables table-responsive">
-                    <table id="datatables" class="table table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                    <table id="datatables" class="table table-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                         <tr>
                             <th>说明</th>
@@ -101,7 +101,15 @@
     $(function () {
         //绑定排序
         FormUtil.bindOrder();
-        DateUtil.initFormDateTimePickers();
+
+        //日期时间范围
+        laydate.render({
+            elem: '#rangeCreateDate'
+            ,type: 'datetime'
+            ,max: 0
+            ,range: true
+        });
+
     });
 </script>
 </html>

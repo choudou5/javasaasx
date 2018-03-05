@@ -32,8 +32,8 @@ public class GeneratorMain {
 	public static void main(String[] args) throws Exception {
 		String outDir = "D:\\data\\code_out";
 		String author = "xuhaowen";
-		String moduleName = "sys";
-		String table = "sys_user";
+		String moduleName = "dic";
+		String table = "dic_sensitive_word";
 		genCode(outDir, author, moduleName, table);
 	}
 

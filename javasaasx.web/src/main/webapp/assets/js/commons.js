@@ -1,3 +1,15 @@
+//var __width = top.window.innerWidth;
+var __winOutWidth = top.window.outerWidth;
+//移动端
+var __isMobileModel = __winOutWidth < 768;
+
+$(function(){
+
+	//输入框 x
+	$('.clearable').clearSearch({ callback: function() { console.log("cleared"); } } );
+});
+
+
 //屏蔽浏览器原始右键
 window.document.body.oncontextmenu = function(event){
 	return false;
@@ -89,7 +101,7 @@ CommUtil = {
 		if(outWidth < 768){
 			def = outWidth-40;
 		}
-		log("inWidth:"+inWidth+", outWidth:"+outWidth);
+		//dialogTip("inWidth:"+inWidth+", outWidth:"+outWidth);
 		return def;
 	},
 	/**
@@ -102,9 +114,9 @@ CommUtil = {
 		var outHeight = top.window.outerHeight;
 		//移动端
 		if(outHeight < 1024){
-			def = outHeight-250;
+			def = outHeight-300;
 		}
-		log("inHeight:"+inHeight+", outHeight:"+outHeight);
+		//dialogTip("inHeight:"+inHeight+", outHeight:"+outHeight);
 		return def;
 	},
 
@@ -175,57 +187,7 @@ DateUtil = {
 		var second = date.getSeconds();
 		second = second < 10 ? ('0' + second) : second;
 		return h+':'+minute+':'+second;
-	},
-	initFormDateTimePickers: function(){
-		$('.datetimepicker').datetimepicker({
-			icons: {
-				time: "fa fa-clock-o",
-				date: "fa fa-calendar",
-				up: "fa fa-chevron-up",
-				down: "fa fa-chevron-down",
-				previous: 'fa fa-chevron-left',
-				next: 'fa fa-chevron-right',
-				today: 'fa fa-screenshot',
-				clear: 'fa fa-trash',
-				close: 'fa fa-remove',
-				inline: true
-			}
-		});
-
-		$('.datepicker').datetimepicker({
-			format: 'YYYY-MM-DD',
-			icons: {
-				time: "fa fa-clock-o",
-				date: "fa fa-calendar",
-				up: "fa fa-chevron-up",
-				down: "fa fa-chevron-down",
-				previous: 'fa fa-chevron-left',
-				next: 'fa fa-chevron-right',
-				today: 'fa fa-screenshot',
-				clear: 'fa fa-trash',
-				close: 'fa fa-remove',
-				inline: true
-			}
-		});
-		$('.timepicker').datetimepicker({
-//          format: 'H:mm',    // use this format if you want the 24hours timepicker
-			format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
-			icons: {
-				time: "fa fa-clock-o",
-				date: "fa fa-calendar",
-				up: "fa fa-chevron-up",
-				down: "fa fa-chevron-down",
-				previous: 'fa fa-chevron-left',
-				next: 'fa fa-chevron-right',
-				today: 'fa fa-screenshot',
-				clear: 'fa fa-trash',
-				close: 'fa fa-remove',
-				inline: true
-
-			}
-		});
 	}
-
 }
 
 /**
@@ -1002,7 +964,7 @@ FormUtil = {
 
 		var form = $("#"+searchFormId);
 		var orderBy = CommUtil.setDefValue(form.find("#orderBy").val(), "");
-		var order = CommUtil.setDefValue(form.find("#order").val(), "");
+		var order = CommUtil.setDefValue(form.find("#order").val(), "").toLowerCase();
 		//绑定样式
 		$("th[sort-field]").each(function(){
 			var field = $(this).attr("sort-field");
@@ -1037,6 +999,34 @@ FormUtil = {
 		form.find("#pageNo").val(pageNo);
 		form.find("#pageSize").val(pageSize);
 		form.submit();
+	},
+	bindFormAddBtn: function(title, width, height, btnId){
+		btnId = CommUtil.setDefValue(btnId, "#addBtn")
+		var url = $(btnId).data("href");
+		var iframeId = CommUtil.getRandom();
+		dialogOpenPage(iframeId, title, url, width, height, function(){
+			var iframe = dialogGetIFrame(iframeId);
+			iframe.contentWindow.ajaxSubmitIframeForm(function(){
+				setTimeout(function(){
+					dialogCloseIFrame(iframeId);
+				}, 1000);
+			});
+		});
+	},
+	bindPromptAddBtn: function(title, isRefreshPage, type, btnId){
+		btnId = CommUtil.setDefValue(btnId, "#addBtn");
+		isRefreshPage = CommUtil.setDefValue(isRefreshPage, true);
+		var url = $(btnId).data("href");
+		dialogPrompt(title, function(content){
+			HttpUtil.ajaxAsyncJsonPost(url, {text: content}, function(data){
+				dialogTip(title+"成功");
+				if(isRefreshPage){
+					setTimeout(function(){
+						window.location.href = window.location.href;
+					}, 1000);
+				}
+			});
+		}, type);
 	}
 
 }

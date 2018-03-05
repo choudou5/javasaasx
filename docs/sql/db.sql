@@ -75,8 +75,10 @@ CREATE TABLE `dic_biz_tree` (
 -- ----------------------------
 DROP TABLE IF EXISTS `dic_sensitive_word`;
 CREATE TABLE `dic_sensitive_word` (
-  `id` varchar(36) NOT NULL COMMENT 'id',
+  `id` BIGINT NOT NULL COMMENT 'id',
   `word` varchar(32) NOT NULL COMMENT '敏感词',
+  `create_by` varchar(32) NOT NULL COMMENT '创建者',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_key_word` (`word`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='敏感词库';
@@ -101,7 +103,7 @@ CREATE TABLE `gen_table_column_style` (
   `is_list` char(1) DEFAULT '1' COMMENT '是否列表字段: 0=否，1=是',
   `is_query` char(1) DEFAULT '0' COMMENT '是否查询字段: 0=否，1=是',
   `query_type` varchar(32) DEFAULT NULL COMMENT '查询方式：（eq，neq，gt，lt，between，like）',
-  `show_type` varchar(32) DEFAULT 'input' COMMENT '字段生成方案: （input、textarea、select、checkbox、radio、dialog）',
+  `show_type` varchar(32) DEFAULT 'input' COMMENT '字段生成方案: （input、textarea、select、checkbox、radio、switch、dialog）',
   `dic_type` varchar(128) DEFAULT NULL COMMENT '字典类型',
   `sort` int(11) DEFAULT '1' COMMENT '排序',
   PRIMARY KEY (`id`)
@@ -282,7 +284,7 @@ CREATE TABLE `sys_operation_log` (
   `user_agent` varchar(255) DEFAULT NULL COMMENT '用户代理',
   `request_uri` varchar(255) DEFAULT NULL COMMENT '请求uri',
   `method` varchar(8) NOT NULL COMMENT '方法',
-  `params` varchar(1024) DEFAULT NULL COMMENT '请求参数',
+  `params` varchar(2048) DEFAULT NULL COMMENT '请求参数',
   `create_by` varchar(32) DEFAULT NULL COMMENT '创建者',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)

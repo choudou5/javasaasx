@@ -77,7 +77,7 @@
                             </legend>
                             <div class="row">
                                 <div class="col-lg-5 col-md-6 col-sm-3">
-                                    <select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
+                                    <select class="selectpicker" data-style="btn btn-simple btn-round" title="Single Select" data-size="7">
                                         <option disabled selected>Choose city</option>
                                         <option value="2">Foobar</option>
                                         <option value="3">Is great</option>

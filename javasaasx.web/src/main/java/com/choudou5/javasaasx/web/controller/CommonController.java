@@ -30,6 +30,7 @@ public class CommonController extends BaseController{
 
 	@Autowired
 	private CommonService commonService;
+
 	/**
 	 * 页面跳转
 	 * @param module 模块文件目录名

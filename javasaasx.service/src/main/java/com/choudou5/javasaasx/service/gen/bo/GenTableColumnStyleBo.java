@@ -36,7 +36,7 @@ public class GenTableColumnStyleBo implements BaseBo {
 	private String isQuery;
     /**  查询方式：（eq，neq，gt，lt，between，like） */
 	private String queryType;
-    /**  字段生成方案: （input、textarea、select、checkbox、radio、dialog） */
+    /**  字段生成方案: （input、textarea、select、checkbox、radio、switch、dialog） */
 	private String showType;
     /**  字典类型 */
 	private String dicType;

@@ -1,10 +1,6 @@
 package cn.org.rapid_framework.generator.provider.db.table.model;
 
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 import cn.org.rapid_framework.generator.GeneratorProperties;
 import cn.org.rapid_framework.generator.provider.db.table.model.ForeignKey.ReferenceKey;
 import cn.org.rapid_framework.generator.provider.db.table.model.util.ColumnHelper;
@@ -17,7 +13,9 @@ import cn.org.rapid_framework.generator.util.typemapping.DatabaseDataTypesUtils;
 import cn.org.rapid_framework.generator.util.typemapping.JavaPrimitiveTypeMapping;
 import cn.org.rapid_framework.generator.util.typemapping.JdbcType;
 import com.choudou5.javasaasx.codegen.GeneratorMain;
-import com.sun.deploy.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用于生成代码的Columb对象.对应数据库表column
@@ -767,10 +765,9 @@ public class Column implements java.io.Serializable,Cloneable{
 			list.add("com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd HH:mm:ss\")");
 		}else{
 			if(!isNullable() && getSize() != 0){
+				list.add("org.hibernate.validator.constraints.NotBlank(message=\""+getRemarks()+"不能为空\")");
 				if("java.lang.String".equals(getJavaType())){
-					list.add("org.hibernate.validator.constraints.Length(min=0, max="+getSize()+", message=\""+getRemarks() +"长度必须介于 0 和 "+getSize()+" 之间\")");
-				}else{
-					list.add("javax.validation.constraints.NotNull(message=\""+getRemarks()+"不能为空\")");
+					list.add("org.hibernate.validator.constraints.Length(min=1, max="+getSize()+", message=\""+getRemarks() +"长度必须介于 1 和 "+getSize()+" 之间\")");
 				}
 			}
 		}

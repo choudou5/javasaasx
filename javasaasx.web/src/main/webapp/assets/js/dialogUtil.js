@@ -80,10 +80,10 @@ function dialogTipText(title, autoCloseTime){
  * prompt层
  * @param title
  * @param callBack 回调函数
- * @param inputType 输入类型 0=text, 1=password, 2=textarea 默认 0
+ * @param inputType 输入类型 text, password, textarea 默认 text
  */
 function dialogPrompt(title, callBack, inputType){
-	inputType = inputType==undefined?0:inputType;
+	inputType = layerGetInputType();
 	layer.prompt({title: title, formType: inputType}, function(content, index){
 	  layer.close(index);
 	  if(typeof callBack == 'function'){
@@ -91,6 +91,7 @@ function dialogPrompt(title, callBack, inputType){
 	  }
 	});
 }
+
 
 
 var __loadingIndex = 9999999999;
@@ -134,11 +135,10 @@ function dialogClose(index){
  */
 function dialogOpenPage(iframeId, title, url, width, height, okCall, cancelCall, initCall){
 	//layer.closeAll();
-	width = width==undefined?450:width;
-	height = height==undefined?350:height;
+	width = width==undefined?550:width;
+	height = height==undefined?450:height;
 	width = CommUtil.getResponsiveWidth(width)+'px';
 	height = CommUtil.getResponsiveHeight(height)+'px';
-
 	//单窗口模式，层叠置顶
 	layer.open({
 	  id: iframeId,
@@ -179,8 +179,8 @@ function dialogOpenPage(iframeId, title, url, width, height, okCall, cancelCall,
  */
 function dialogOpenPageView(title, url, width, height){
 	//layer.closeAll();
-	width = width==undefined?450:width;
-	height = height==undefined?350:height;
+	width = width==undefined?600:width;
+	height = height==undefined?500:height;
 	width = CommUtil.getResponsiveWidth(width)+'px';
 	height = CommUtil.getResponsiveHeight(height)+'px';
 	//单窗口模式，层叠置顶
@@ -289,6 +289,19 @@ function layerGetIcon(type){
 		return 5;
 	}else if("nice" == type){
 		return 6;
+	}else{
+		return 0;
+	}
+}
+
+
+function layerGetInputType(type){
+	if("text" == type){
+		return 0;
+	}else if("password" == type){
+		return 1;
+	}else if("textarea" == type){
+		return 2;
 	}else{
 		return 0;
 	}

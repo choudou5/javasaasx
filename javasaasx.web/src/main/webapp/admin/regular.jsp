@@ -182,6 +182,26 @@ j<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">Inline radios</label>
+                            <div class="col-sm-10">
+                                <div class="radio checkbox-inline">
+                                    <label>
+                                        <input type="radio" name="optionsInlineRadios">A
+                                    </label>
+                                </div>
+                                <div class="radio checkbox-inline">
+                                    <label>
+                                        <input type="radio" name="optionsInlineRadios">B
+                                    </label>
+                                </div>
+                                <div class="radio checkbox-inline">
+                                    <label>
+                                        <input type="radio" name="optionsInlineRadios">C
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

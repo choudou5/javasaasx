@@ -50,7 +50,7 @@
                             <a href="javascript:;" href-url="${ctx }/sys/sysMenu">菜单管理</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">系统设置</a>
+                            <a href="javascript:;" href-url="${ctx }/sys/sysSetting">系统设置</a>
                         </li>
                         <li>
                             <a href="javascript:;" href-url="${ctx }/sys/sysOperationLog">系统日志</a>
@@ -59,10 +59,10 @@
                             <a href="javascript:;" href-url="${ctx }/sys/sysUser">用户管理</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctx }/console/sys/menu2">角色管理</a>
+                            <a href="javascript:;" href-url="${ctx }/sys/sysRole">角色管理</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }login.jsp">机构管理</a>
+                            <a href="javascript:;" href-url="${ctx }/sys/sysOffice">机构管理</a>
                         </li>
                     </ul>
                 </div>
@@ -75,7 +75,7 @@
                 <div class="collapse" id="safeExamples">
                     <ul class="nav layui-nav-child">
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }timeline.jsp">屏蔽词管理</a>
+                            <a href="javascript:;" href-url="${ctx }/dic/dicSensitiveWord">屏蔽词管理</a>
                         </li>
                         <li>
                             <a href="javascript:;" href-url="${ctxStaticPage }login.jsp">黑名单</a>
@@ -108,7 +108,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item hide">
                 <a data-toggle="collapse" href="#statExamples">
                     <i class="material-icons">assessment</i>
                     <p>统计管理<b class="caret"></b></p>
@@ -121,7 +121,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item hide">
                 <a data-toggle="collapse" href="#messageExamples">
                     <i class="material-icons">message</i>
                     <p>消息管理<b class="caret"></b></p>
@@ -152,12 +152,6 @@
                         </li>
                     </ul>
                 </div>
-            </li>
-            <li class="layui-nav-item">
-                <a target="_blank" href="http://md-pro-angular.creative-tim.com/documentation">
-                    <i class="material-icons">description</i>
-                    <p>文档</p>
-                </a>
             </li>
             <li class="hide">
                 <a data-toggle="collapse" href="#pagesExamples">
@@ -304,6 +298,12 @@
                 <a href="javascript:;" href-url="${ctxStaticPage }calendar.jsp">
                     <i class="material-icons">date_range</i>
                     <p>日期</p>
+                </a>
+            </li>
+            <li class="layui-nav-item">
+                <a target="_blank" href="http://md-pro-angular.creative-tim.com/documentation">
+                    <i class="material-icons">description</i>
+                    <p>文档</p>
                 </a>
             </li>
         </ul>

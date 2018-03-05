@@ -3,6 +3,9 @@ layui.use(['layer', 'element'], function () {
     var element = layui.element(), layer = layui.layer, $ = layui.jquery; //导航的hover效果、二级菜单等功能，需要依赖element模块
     var body = $('.my-body');
 
+    // http://demo.vip-admin.com/
+    // http://fslayuiplugin.fallsea.com/
+
     // 监听导航(side)点击切换页面
     element.on('nav(side)', function (elem) {
         // 添加tab方法
@@ -70,12 +73,56 @@ layui.use(['layer', 'element'], function () {
         });
     };
 
+    // 删除其他选项卡
+    window.delOhterlTab = function () {
+        // 选项卡对象
+        layui.each($('.my-body .layui-tab-title > li'), function (k, v) {
+            var layId = $(v).attr('lay-id');
+            if (layId > 1 && layId != cardLayId) {
+                // 删除
+                element.tabDelete('card', layId);
+            }
+        });
+    };
+
     // 获取当前选中选项卡lay-id
     window.getThisTabID = function () {
         // 当前选中的选项卡id
         return $(document).find('body .my-body .layui-tab-card > .layui-tab-title .layui-this').attr('lay-id');
     };
 
+
+    // 双击 刷新相应选项卡
+    $(document).on('dblclick', '.my-body .layui-tab-card > .layui-tab-title li', function () {
+        var cardIdx = $(this).index();
+        var cardLayId = $(this).attr('lay-id');
+        // 窗体对象
+        var ifr = $(document).find('.my-body .layui-tab-content .layui-tab-item iframe').eq(cardIdx);
+        // 刷新当前页
+        ifr.attr('src', ifr.attr('src'));
+        // 切换到当前选项卡
+        element.tabChange('card', cardLayId);
+    });
+
+    //手机端 双击事件
+    var mobileClickCount = 0;
+    $(document).on('click', '.my-body .layui-tab-card > .layui-tab-title li', function () {
+        mobileClickCount++;
+        setTimeout(function () {
+            mobileClickCount = 0;
+        }, 500);
+        if (mobileClickCount > 1) {
+            var cardIdx = $(this).index();
+            var cardLayId = $(this).attr('lay-id');
+            // 窗体对象
+            var ifr = $(document).find('.my-body .layui-tab-content .layui-tab-item iframe').eq(cardIdx);
+            // 刷新当前页
+            ifr.attr('src', ifr.attr('src'));
+            // 刷新当前选项卡
+            element.tabChange('card', cardLayId);
+            mobileClickCount = 0;
+        }
+    });
 
     // 选项卡右键事件阻止
     $(document).on("contextmenu", '.my-body .layui-tab-card > .layui-tab-title li', function () {
@@ -99,11 +146,18 @@ layui.use(['layer', 'element'], function () {
         }
     });
 
+
+    var tabTipStr = __isMobileModel?"双击刷新":"双击刷新，右键关闭更多";
+    var home = $(document).find('body .my-body .layui-tab-card > .layui-tab-title li:eq(0)');
+    layer.tips(tabTipStr, home, {
+        tips: [2, '#3595CC'],
+        time: 4000
+    });
+
     // 点击body关闭tips
     $(document).on('click', 'html', function () {
         layer.closeAll('tips');
     });
-
 
     // 右键提示框菜单操作-刷新页面
     $(document).on('click', '.card-refresh', function () {
@@ -116,12 +170,10 @@ layui.use(['layer', 'element'], function () {
     });
 
     // 右键提示框菜单操作-关闭页面
-    $(document).on('click', '.card-close', function () {
-        // 删除
-        window.delTab(cardLayId);
+    $(document).on('click', '.card-close-other', function () {
+        window.delOhterlTab();
     });
 
-	
 
     // 右键提示框菜单操作-关闭所有页面
     $(document).on('click', '.card-close-all', function () {
@@ -129,10 +181,17 @@ layui.use(['layer', 'element'], function () {
         window.delAllTab();
     });
 
-	//取消菜单
-	$(document).on('click', '.card-cancel-menu', function () {
-       layer.closeAll('tips');
+    // 右键提示框菜单操作-关闭所有页面
+    $(document).on('click', '.card-open-new', function () {
+        // 窗体对象
+        var ifr = $(document).find('.my-body .layui-tab-content .layui-tab-item iframe').eq(cardIdx);
+        // 刷新当前页
+        var url = ifr.attr('src');
+        log(url);
+        top.window.open(url);
     });
+
+
 
     // 根据导航栏text获取lay-id
     function getTitleId(card,title){
@@ -157,7 +216,5 @@ layui.use(['layer', 'element'], function () {
 
     // 初始化
     init();
-
-
 
 });

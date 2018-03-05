@@ -18,7 +18,6 @@
 <!-- Bootstrap core CSS     -->
 <link rel="stylesheet" href="${ctxStaticCss }css-family=Roboto-300,400,500,700-Material+Icons.css" />
 <link rel="stylesheet" href="${ctxStaticCss }font-awesome.min.css" />
-
 <link rel="stylesheet" href="${ctxStaticCss }custom.css" />
 
 <script type="text/javascript">

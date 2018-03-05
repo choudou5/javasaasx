@@ -6735,8 +6735,9 @@ h2.title {
 }
 .btn:not(.btn-just-icon):not(.btn-fab) .fa,
 .navbar .navbar-nav > li > a.btn:not(.btn-just-icon):not(.btn-fab) .fa {
-  font-size: 18px;
+  font-size: 15px;
   margin-top: -2px;
+  margin-right: 4px;
   position: relative;
   top: 2px;
 }
@@ -7187,6 +7188,11 @@ output {
   min-height: 20px;
 }
 
+.radio span,
+.checkbox span {
+  margin-left: -15px;
+}
+
 .form-control-static {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -7341,6 +7347,9 @@ output {
 
   font-weight: 400;
 }
+
+
+/*
 .form-control::-moz-placeholder,
 .form-group .form-control::-moz-placeholder {
   color: #AAAAAA;
@@ -7356,6 +7365,8 @@ output {
   color: #AAAAAA;
   font-weight: 400;
 }
+*/
+
 .form-control[readonly], .form-control[disabled], fieldset[disabled] .form-control,
 .form-group .form-control[readonly],
 .form-group .form-control[disabled], fieldset[disabled]
@@ -7484,7 +7495,9 @@ output {
   color: #666;
 }
 
-.form-control::-moz-placeholder {
+
+
+/*.form-control::-moz-placeholder {
   font-size: 14px;
   line-height: 1.42857;
   color: #AAAAAA;
@@ -7501,7 +7514,8 @@ output {
   line-height: 1.42857;
   color: #AAAAAA;
   font-weight: 400;
-}
+}*/
+
 
 .checkbox label,
 .radio label,
@@ -7531,6 +7545,8 @@ label.control-label {
   padding-bottom: 10px;
   margin: 10px 0 0 0;
 }
+
+/*
 .form-group .form-control::-moz-placeholder {
   font-size: 14px;
   line-height: 1.42857;
@@ -7549,6 +7565,8 @@ label.control-label {
   color: #AAAAAA;
   font-weight: 400;
 }
+*/
+
 .form-group .checkbox label,
 .form-group .radio label,
 .form-group label,
@@ -7592,6 +7610,7 @@ label.control-label {
   padding-bottom: 10px;
   margin: 20px 0 0 0;
 }
+/*
 .form-group.form-group-sm .form-control::-moz-placeholder {
   font-size: 11px;
   line-height: 1.5;
@@ -7609,7 +7628,8 @@ label.control-label {
   line-height: 1.5;
   color: #AAAAAA;
   font-weight: 400;
-}
+}*/
+
 .form-group.form-group-sm .checkbox label,
 .form-group.form-group-sm .radio label,
 .form-group.form-group-sm label,
@@ -7653,6 +7673,7 @@ label.control-label {
   padding-bottom: 10px;
   margin: 20px 0 0 0;
 }
+/*
 .form-group.form-group-lg .form-control::-moz-placeholder {
   font-size: 18px;
   line-height: 1.33333;
@@ -7670,7 +7691,8 @@ label.control-label {
   line-height: 1.33333;
   color: #AAAAAA;
   font-weight: 400;
-}
+}*/
+
 .form-group.form-group-lg .checkbox label,
 .form-group.form-group-lg .radio label,
 .form-group.form-group-lg label,
@@ -9694,6 +9716,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .navbar.navbar-default .navbar-form input.form-control::-webkit-input-placeholder {
   color: #555555;
 }
+
 .navbar .dropdown-menu, .navbar.navbar-default .dropdown-menu {
   border-radius: 3px !important;
 }

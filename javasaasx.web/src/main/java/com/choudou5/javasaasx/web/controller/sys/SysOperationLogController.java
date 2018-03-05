@@ -8,12 +8,14 @@
 package com.choudou5.javasaasx.web.controller.sys;
 
 import com.choudou5.base.annotation.ControllerDesc;
+import com.choudou5.base.bean.BetweenBean;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.service.sys.SysOperationLogService;
 import com.choudou5.javasaasx.service.sys.bo.SysOperationLogBo;
 import com.choudou5.javasaasx.service.sys.bo.SysOperationLogQueryParam;
 import com.choudou5.javasaasx.web.controller.BaseController;
+import com.choudou5.javasaasx.web.util.RequestUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -64,9 +66,13 @@ public class SysOperationLogController extends BaseController {
     @RequiresPermissions("sys:sysOperationLog:view")
     @RequestMapping(value = {"list", ""})
     public String list(SysOperationLogQueryParam queryParam, HttpServletRequest req, Model model) {
-        queryParam.setDefOrder("create_time", "desc");
+        queryParam.setOrderDefParam("create_time", "desc");
+        BetweenBean betweenBean = RequestUtil.getRangeDateParameter(req, "rangeCreateDate", " - ");
+        if(betweenBean != null)
+            queryParam.addExtendParam("create_time", betweenBean.toSql());
         PageResult<SysOperationLogBo> pageResult = sysOperationLogService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
+        model.addAttribute("rangeCreateDate", RequestUtil.getStrParameter(req, "rangeCreateDate"));
         return "/sys/sysOperationLogList";
     }
 

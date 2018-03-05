@@ -84,7 +84,7 @@ public class ${className}Controller extends BaseController {
     }
 
     /**
-     * @param id
+     * @param bo
      * @param req
      * @param model
      * @return
@@ -92,9 +92,8 @@ public class ${className}Controller extends BaseController {
     @ControllerDesc(desc = "编辑${table.remarks}", optType = "edit")
     @RequiresPermissions("${moduleName}:${classNameLower}:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
-    public String form(String id, HttpServletRequest req, Model model) {
+    public String form(${classBOName} bo, HttpServletRequest req, Model model) {
         try {
-            ${classBOName} bo = ${classService}.get(id);
             AssertUtil.isNotNull(bo, "数据不存在！");
             model.addAttribute("${classBONameLower}", bo);
         } catch (Exception e) {

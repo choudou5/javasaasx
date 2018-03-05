@@ -8,6 +8,7 @@
 package com.choudou5.javasaasx.web.controller;
 
 import com.choudou5.base.exception.BizException;
+import com.choudou5.base.exception.Exceptions;
 import com.choudou5.base.util.DateUtil;
 import com.choudou5.base.util.JsonUtil;
 import com.choudou5.base.util.ObjUtil;
@@ -212,7 +213,7 @@ public abstract class BaseController {
 			else if(defMsg == null){
 				defMsg = e.getMessage();
 			}
-			model.addAttribute("errorMsg", e.getCause().getLocalizedMessage());
+			model.addAttribute("errorMsg", Exceptions.getStackTraceAsString(e));
 		}
 		model.addAttribute("message", defMsg);
 	}

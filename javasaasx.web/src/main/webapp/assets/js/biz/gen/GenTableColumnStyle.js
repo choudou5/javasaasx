@@ -154,6 +154,7 @@ function buildGenCodeShowTypeHtm(index, selectValue){
     htm.append('<option value="select" '+(selectValue=="select"?"selected=\"selected\"":"")+'>select</option>');
     htm.append('<option value="checkbox" '+(selectValue=="checkbox"?"selected=\"selected\"":"")+'>checkbox</option>');
     htm.append('<option value="radio" '+(selectValue=="radio"?"selected=\"selected\"":"")+'>radio</option>');
+    htm.append('<option value="switch" '+(selectValue=="switch"?"selected=\"selected\"":"")+'>switch</option>');
     htm.append('<option value="dialog" '+(selectValue=="dialog"?"selected=\"selected\"":"")+'>dialog</option>');
     htm.append('</select>');
     return htm.toString();

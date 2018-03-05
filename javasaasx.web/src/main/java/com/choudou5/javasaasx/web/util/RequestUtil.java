@@ -7,6 +7,7 @@
 */
 package com.choudou5.javasaasx.web.util;
 
+import com.choudou5.base.bean.BetweenBean;
 import com.choudou5.base.util.ArrayUtil;
 import com.choudou5.base.util.CollUtil;
 import com.choudou5.base.util.DateUtil;
@@ -86,6 +87,47 @@ public class RequestUtil {
                 return DateUtil.parseDate(dateString);
             } catch (Exception e) {
                 return null;
+            }
+        }
+        return null;
+    }
+
+    public static BetweenBean getRangeDateParameter(HttpServletRequest request, String paramName) {
+        return getRangeDateParameter(request, paramName, " - ");
+    }
+
+    public static BetweenBean getRangeDateParameter(HttpServletRequest request, String paramName, String separator) {
+        String dateStr = request.getParameter(paramName);
+        if (StrUtil.isNotEmpty(dateStr)) {
+            try {
+                String[] array = dateStr.split(separator);
+                if(array.length == 2){
+                    return new BetweenBean(DateUtil.parse(array[0]), DateUtil.parse(array[1]));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取 范围字符串 （为防注入 日期请使用 getRangeDateParameter）
+     * @param request
+     * @param paramName
+     * @param separator
+     * @return
+     */
+    public static BetweenBean getRangeStrParameter(HttpServletRequest request, String paramName, String separator) {
+        String dateStr = request.getParameter(paramName);
+        if (StrUtil.isNotEmpty(dateStr)) {
+            try {
+                String[] array = dateStr.split(separator);
+                if(array.length == 2){
+                    return new BetweenBean(array[0], array[1]);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return null;

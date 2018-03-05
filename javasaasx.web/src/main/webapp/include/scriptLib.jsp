@@ -41,6 +41,7 @@
 <script src="${ctxStatic }/jquery-plugs/jasny-bootstrap.min.js"></script>
 <script src="${ctxStatic }/jquery-plugs/fullcalendar.min.js"></script>
 <script src="${ctxStatic }/jquery-plugs/jquery.tagsinput.js"></script>
+<script src="${ctxStatic }/jquery-plugs/jquery.clearsearch.js"></script>
 <script src="${ctxStatic }/js/material-dashboard.js"></script>
 <script src="${ctxStatic }/js/commons.js"></script>
 <script src="${ctxStatic }/layer/3.1.1/layer.full.js"></script>

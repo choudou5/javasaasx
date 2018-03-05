@@ -76,7 +76,7 @@
             </ul>
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group form-search is-empty">
-                    <input type="text" id="globalSearch" class="form-control" placeholder="搜索">
+                    <input type="text" id="globalSearch" class="form-control clearable" placeholder="搜索">
                     <span class="material-input"></span>
                 </div>
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -97,6 +97,7 @@
             dialogTip(message);
         });
     }
+
 </script>
 
 <!-- 备忘录 -->

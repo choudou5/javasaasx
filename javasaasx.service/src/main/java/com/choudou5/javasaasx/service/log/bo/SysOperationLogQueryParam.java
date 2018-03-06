@@ -5,7 +5,7 @@
 * License：MIT
 * Since 2018 - 2020
 */
-package com.choudou5.javasaasx.service.sys.bo;
+package com.choudou5.javasaasx.service.log.bo;
 
 import com.choudou5.base.bean.QueryParam;
 

@@ -5,18 +5,18 @@
 * License：MIT
 * Since 2018 - 2020
 */
-package com.choudou5.javasaasx.dao.sys;
+package com.choudou5.javasaasx.dao.log;
 
 import com.choudou5.javasaasx.dao.orm.mybatis.MyBatisDao;
-import com.choudou5.javasaasx.dao.sys.po.SysOperationLogPo;
+import com.choudou5.javasaasx.dao.log.po.SysRemoteExceptionPo;
 import com.choudou5.javasaasx.base.dao.BaseDao;
 
 /**
- * @Name：系统操作日志 Dao
+ * @Name：系统远程异常 Dao
  * @Author：xuhaowen
- * @Date：2018-02-28
+ * @Date：2018-03-06
  */
 @MyBatisDao
-public interface SysOperationLogDao extends BaseDao<SysOperationLogPo, String> {
+public interface SysRemoteExceptionDao extends BaseDao<SysRemoteExceptionPo, String> {
 
 }

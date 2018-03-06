@@ -7,6 +7,7 @@ package ${packageNamePrefix}.service.${moduleName}.bo;
 
 <#if isAddValidAnnotationToBo=='true'>
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 </#if>
 import ${packageNamePrefix}.base.bean.BaseBo;
 

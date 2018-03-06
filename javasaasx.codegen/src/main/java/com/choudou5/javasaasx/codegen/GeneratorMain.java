@@ -29,8 +29,8 @@ public class GeneratorMain {
 	public static void main(String[] args) throws Exception {
 		String outDir = "D:\\data\\code_out";
 		String author = "xuhaowen";
-		String moduleName = "sys";
-		String table = "sys_setting";
+		String moduleName = "log";
+		String table = "sys_remote_exception";
 		genCode(outDir, author, moduleName, table);
 	}
 

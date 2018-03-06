@@ -5,7 +5,7 @@
 * License：MIT
 * Since 2018 - 2020
 */
-package com.choudou5.javasaasx.dao.sys.po;
+package com.choudou5.javasaasx.dao.log.po;
 
 import com.choudou5.javasaasx.base.bean.AbstractBasePo;
 

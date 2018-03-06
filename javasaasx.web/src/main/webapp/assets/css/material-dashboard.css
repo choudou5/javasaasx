@@ -1556,7 +1556,6 @@ table.dataTable > tfoot > tr > th,
 table.dataTable > thead > tr > td,
 table.dataTable > tbody > tr > td,
 table.dataTable > tfoot > tr > td {
-  padding: 5px !important;
   outline: 0;
 }
 table.dataTable > thead > tr > th {
@@ -8229,9 +8228,10 @@ form .form-footer .checkbox {
 .form-horizontal .checkbox-inline {
   margin-top: 16px;
   padding-left: 0;
+  margin-right: 15px;
 }
 .form-horizontal .radio label {
-  padding-left: 28px;
+  padding-left: 12px;
 }
 .form-horizontal .radio label span {
   left: 2px;

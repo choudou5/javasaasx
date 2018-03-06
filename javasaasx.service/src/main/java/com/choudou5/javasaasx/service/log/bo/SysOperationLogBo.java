@@ -5,7 +5,7 @@
 * License：MIT
 * Since 2018 - 2020
 */
-package com.choudou5.javasaasx.service.sys.bo;
+package com.choudou5.javasaasx.service.log.bo;
 
 import org.hibernate.validator.constraints.Length;
 import com.choudou5.javasaasx.base.bean.BaseBo;

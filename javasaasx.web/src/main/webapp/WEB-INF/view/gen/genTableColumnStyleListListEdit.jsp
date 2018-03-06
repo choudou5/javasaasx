@@ -55,9 +55,9 @@
                                             <th width="130">列名</th>
                                             <th>描述<small>*</small></th>
                                             <th>字段<small>*</small></th>
-                                            <th>是否插入</th>
-                                            <th>是否编辑</th>
-                                            <th>是否列表</th>
+                                            <th>插入</th>
+                                            <th>编辑</th>
+                                            <th>列表</th>
                                             <th>显示类型</th>
                                             <th>是否查询</th>
                                             <th>查询类型</th>

@@ -33,15 +33,13 @@
                                         <form:option value="">${column.desc}</form:option>
                                     </form:select>
                                         <#elseif column.showType=="checkbox" ||  column.showType=="radio">
-                                    <div class="row">
-                                        <div class="col-sm-10">
-                                            <div class="${column.showType} checkbox-inline"><span>${column.desc}<#if column.notNull>*</#if>：</span></div>
-                                            <div class="${column.showType} checkbox-inline">
-                                                <label><input type="${column.showType}" name="${column.javaColumn}" <#if column.notNull>required="true"</#if> value="a"/>选项A</label>
-                                            </div>
-                                            <div class="${column.showType} checkbox-inline">
-                                                <label><input type="${column.showType}" name="${column.javaColumn}" <#if column.notNull>required="true"</#if> value="b"/>选项B</label>
-                                            </div>
+                                    <div class="col-sm-12">
+                                        <div class="${column.showType} checkbox-inline"><span>${column.desc}<#if column.notNull>*</#if>：</span></div>
+                                        <div class="${column.showType} checkbox-inline">
+                                            <label><input type="${column.showType}" name="${column.javaColumn}" <#if column.notNull>required="true"</#if> value="a"/>选项A</label>
+                                        </div>
+                                        <div class="${column.showType} checkbox-inline">
+                                            <label><input type="${column.showType}" name="${column.javaColumn}" <#if column.notNull>required="true"</#if> value="b"/>选项B</label>
                                         </div>
                                     </div>
                                         <#elseif column.showType=="switch">

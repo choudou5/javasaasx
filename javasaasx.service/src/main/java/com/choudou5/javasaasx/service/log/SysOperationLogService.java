@@ -5,11 +5,10 @@
 * License：MIT
 * Since 2018 - 2020
 */
-package com.choudou5.javasaasx.service.sys;
+package com.choudou5.javasaasx.service.log;
 
-import com.choudou5.javasaasx.base.bean.BaseBo;
 import com.choudou5.javasaasx.base.service.BaseService;
-import com.choudou5.javasaasx.service.sys.bo.SysOperationLogBo;
+import com.choudou5.javasaasx.service.log.bo.SysOperationLogBo;
 
 /**
  * @Name：系统操作日志 接口

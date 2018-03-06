@@ -15,7 +15,7 @@
             <div class="card-content">
                 <div class="toolbar">
                     <div class="row">
-                        <form:form id="searchForm" modelAttribute="sysOperationLogQueryParam" action="${ctx}/sys/sysOperationLog/list" method="post">
+                        <form:form id="searchForm" modelAttribute="sysOperationLogQueryParam" action="${ctx}/log/sysOperationLog/list" method="post">
                             <div class="col-md-1">
                                 <form:select path="sysOperationLogBo.method" class="selectpicker" data-style="select-with-transition">
                                     <form:option value="">方法类型</form:option>

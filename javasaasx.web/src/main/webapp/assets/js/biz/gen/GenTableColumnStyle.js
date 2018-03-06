@@ -91,17 +91,17 @@ function ajaxRightDataTable(table){
             },
             {
                 "render": function(name, type, row, meta) {
-                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isInsert" '+BindUtil.bindCheckBoxStatus(row.isInsert)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    return '<div class="form-group checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isInsert" '+BindUtil.bindCheckBoxStatus(row.isInsert)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                 },"targets": 3
             },
             {
                 "render": function(name, type, row, meta) {
-                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isEdit" '+BindUtil.bindCheckBoxStatus(row.isEdit)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    return '<div class="form-group checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isEdit" '+BindUtil.bindCheckBoxStatus(row.isEdit)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                 },"targets": 4
             },
             {
                 "render": function(name, type, row, meta) {
-                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isList" '+BindUtil.bindCheckBoxStatus(row.isList)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    return '<div class="form-group checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isList" '+BindUtil.bindCheckBoxStatus(row.isList)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                 },"targets": 5
             },
             {
@@ -111,7 +111,7 @@ function ajaxRightDataTable(table){
             },
             {
                 "render": function(name, type, row, meta) {
-                    return '<div class="checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isQuery" '+BindUtil.bindCheckBoxStatus(row.isQuery)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
+                    return '<div class="form-group checkbox"><label><input type="checkbox" name="columnStyleList['+meta.row+'].isQuery" '+BindUtil.bindCheckBoxStatus(row.isQuery)+'/><span class="checkbox-material"><span class="check"></span></span></label></div>';
                 },"targets": 7
             },
             {

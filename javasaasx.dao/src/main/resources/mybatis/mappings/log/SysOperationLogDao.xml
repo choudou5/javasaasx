@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.choudou5.javasaasx.dao.sys.SysOperationLogDao" >
-    <resultMap id="RM_SysOperationLog" type="com.choudou5.javasaasx.dao.sys.po.SysOperationLogPo">
+<mapper namespace="com.choudou5.javasaasx.dao.log.SysOperationLogDao" >
+    <resultMap id="RM_SysOperationLog" type="com.choudou5.javasaasx.dao.log.po.SysOperationLogPo">
         <result property="id" column="id"/>
         <result property="optType" column="opt_type"/>
         <result property="desc" column="desc"/>

@@ -69,7 +69,7 @@ public class ${className}Controller extends BaseController {
     }
 
     /**
-     * @param id
+     * @param bo
      * @param req
      * @param model
      * @return
@@ -77,9 +77,8 @@ public class ${className}Controller extends BaseController {
     @ControllerDesc(desc = "查看${table.remarks}-详情", optType = "view")
     @RequiresPermissions("${moduleName}:${classNameLower}:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
-    public String view(String id, HttpServletRequest req, Model model) {
-        ${classBOName} ${classBONameLower} = ${classService}.get(id);
-        model.addAttribute("${classBONameLower}", ${classBONameLower});
+    public String view(${classBOName} bo, HttpServletRequest req, Model model) {
+        model.addAttribute("${classBONameLower}", bo);
         return "/${moduleName}/${classNameLower}View";
     }
 

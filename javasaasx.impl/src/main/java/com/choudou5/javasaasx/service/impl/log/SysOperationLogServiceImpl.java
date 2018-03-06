@@ -5,14 +5,14 @@
 * License：MIT
 * Since 2018 - 2020
 */
-package com.choudou5.javasaasx.service.impl.sys;
+package com.choudou5.javasaasx.service.impl.log;
 
-import com.choudou5.javasaasx.dao.sys.SysOperationLogDao;
-import com.choudou5.javasaasx.dao.sys.po.SysOperationLogPo;
-import com.choudou5.javasaasx.service.sys.bo.SysOperationLogBo;
+import com.choudou5.javasaasx.dao.log.SysOperationLogDao;
+import com.choudou5.javasaasx.dao.log.po.SysOperationLogPo;
+import com.choudou5.javasaasx.service.log.bo.SysOperationLogBo;
 import com.choudou5.javasaasx.base.dao.BaseDao;
 import com.choudou5.javasaasx.service.impl.BaseServiceImpl;
-import com.choudou5.javasaasx.service.sys.SysOperationLogService;
+import com.choudou5.javasaasx.service.log.SysOperationLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

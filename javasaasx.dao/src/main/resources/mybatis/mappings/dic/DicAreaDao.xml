@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.dic.DicAreaDao" >
+    <resultMap id="RM_DicArea" type="com.choudou5.javasaasx.dao.dic.po.DicAreaPo">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="pcode" column="pcode"/>
+        <result property="pname" column="pname"/>
+        <result property="level" column="level"/>
+        <result property="geo" column="geo"/>
+        <result property="fullname" column="fullname"/>
+        <result property="pinyin" column="pinyin"/>
+        <result property="pinyinShort" column="pinyin_short"/>
+        <result property="pinyinFirstLetter" column="pinyin_first_letter"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `code`, `name`, `pcode`, `pname`, `level`, `geo`, `fullname`, `pinyin`, `pinyin_short`, `pinyin_first_letter`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            
+            <!--
+            eg: AND title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+                <if test="paramBean.id != null ">
+                     AND `id` = #{paramBean.id}
+                </if>
+                <if test="paramBean.code != null and paramBean.code != ''">
+                     AND `code` = #{paramBean.code}
+                </if>
+                <if test="paramBean.name != null and paramBean.name != ''">
+                     AND `name` LIKE concat('%',#{paramBean.name},'%')
+                </if>
+                <if test="paramBean.pcode != null and paramBean.pcode != ''">
+                     AND `pcode` = #{paramBean.pcode}
+                </if>
+                <if test="paramBean.pname != null and paramBean.pname != ''">
+                     AND `pname` LIKE concat('%',#{paramBean.pname},'%')
+                </if>
+                <if test="paramBean.level != null ">
+                     AND `level` = #{paramBean.level}
+                </if>
+                <if test="paramBean.geo != null and paramBean.geo != ''">
+                     AND `geo` = #{paramBean.geo}
+                </if>
+                <if test="paramBean.fullname != null and paramBean.fullname != ''">
+                     AND `fullname` = #{paramBean.fullname}
+                </if>
+                <if test="paramBean.pinyin != null and paramBean.pinyin != ''">
+                     AND `pinyin` LIKE concat('%',#{paramBean.pinyin},'%')
+                </if>
+                <if test="paramBean.pinyinShort != null and paramBean.pinyinShort != ''">
+                     AND `pinyin_short` LIKE concat('%',#{paramBean.pinyinShort},'%')
+                </if>
+                <if test="paramBean.pinyinFirstLetter != null and paramBean.pinyinFirstLetter != ''">
+                     AND `pinyin_first_letter` LIKE concat('%',#{paramBean.pinyinFirstLetter},'%')
+                </if>
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO dic_area (
+        <if test="id != null">`id`</if>
+        <if test="code != null">,`code`</if>
+        <if test="name != null">,`name`</if>
+        <if test="pcode != null">,`pcode`</if>
+        <if test="pname != null">,`pname`</if>
+        <if test="level != null">,`level`</if>
+        <if test="geo != null">,`geo`</if>
+        <if test="fullname != null">,`fullname`</if>
+        <if test="pinyin != null">,`pinyin`</if>
+        <if test="pinyinShort != null">,`pinyin_short`</if>
+        <if test="pinyinFirstLetter != null">,`pinyin_first_letter`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="code != null">,#{code}</if>
+        <if test="name != null">,#{name}</if>
+        <if test="pcode != null">,#{pcode}</if>
+        <if test="pname != null">,#{pname}</if>
+        <if test="level != null">,#{level}</if>
+        <if test="geo != null">,#{geo}</if>
+        <if test="fullname != null">,#{fullname}</if>
+        <if test="pinyin != null">,#{pinyin}</if>
+        <if test="pinyinShort != null">,#{pinyinShort}</if>
+        <if test="pinyinFirstLetter != null">,#{pinyinFirstLetter}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO dic_area (
+        `id`
+        ,`code`
+        ,`name`
+        ,`pcode`
+        ,`pname`
+        ,`level`
+        ,`geo`
+        ,`fullname`
+        ,`pinyin`
+        ,`pinyin_short`
+        ,`pinyin_first_letter`
+        ) VALUES
+        <foreach collection="list" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.code}
+        ,#{entity.name}
+        ,#{entity.pcode}
+        ,#{entity.pname}
+        ,#{entity.level}
+        ,#{entity.geo}
+        ,#{entity.fullname}
+        ,#{entity.pinyin}
+        ,#{entity.pinyinShort}
+        ,#{entity.pinyinFirstLetter}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE dic_area SET
+            `code` = #{code} ,
+            `name` = #{name} ,
+            `pcode` = #{pcode} ,
+            `pname` = #{pname} ,
+            `level` = #{level} ,
+            `geo` = #{geo} ,
+            `fullname` = #{fullname} ,
+            `pinyin` = #{pinyin} ,
+            `pinyin_short` = #{pinyinShort} ,
+            `pinyin_first_letter` = #{pinyinFirstLetter} 
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM dic_area
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM dic_area
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM dic_area
+        <include refid="where"/>
+    </delete>
+
+
+    <select id="findById" resultMap="RM_DicArea">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM dic_area
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM dic_area
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_DicArea">
+        SELECT <include refid="columns"/>
+        FROM dic_area
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_DicArea">
+        SELECT <include refid="columns"/>
+        FROM dic_area
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_DicArea">
+        SELECT <include refid="columns"/>
+        FROM dic_area
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql'">limit 1</if>
+    </select>
+
+
+</mapper>
+
+

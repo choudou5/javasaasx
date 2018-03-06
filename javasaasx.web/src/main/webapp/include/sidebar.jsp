@@ -33,7 +33,7 @@
             </div>
         </div>
         <ul class="nav layui-nav layui-nav-tree" lay-filter="side">
-            <li class="active layui-nav-item">
+            <li class="layui-this layui-nav-item">
                 <a href="javascript:;" href-url="${ctx }/sys/index">
                     <i class="layui-icon">&#xe629;</i>
                     <p>控制台</p>
@@ -51,9 +51,6 @@
                         </li>
                         <li>
                             <a href="javascript:;" href-url="${ctx }/sys/sysSetting">系统设置</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" href-url="${ctx }/sys/sysOperationLog">系统日志</a>
                         </li>
                         <li>
                             <a href="javascript:;" href-url="${ctx }/sys/sysUser">用户管理</a>
@@ -87,6 +84,28 @@
                 </div>
             </li>
             <li class="layui-nav-item">
+                <a data-toggle="collapse" href="#logExamples">
+                    <i class="fa fa-history"></i>
+                    <p>日志管理<b class="caret"></b></p>
+                </a>
+                <div class="collapse" id="logExamples">
+                    <ul class="nav layui-nav-child">
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/log/sysOperationLog">操作日志</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/log/sysUserLoginHi">登录日志</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/log/sysException">异常日志</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/log/sysRemoteException">远程日志</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="layui-nav-item">
                 <a data-toggle="collapse" href="#baseExamples">
                     <i class="material-icons">settings_input_component</i>
                     <p>基础管理<b class="caret"></b></p>
@@ -100,7 +119,7 @@
                             <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">分类管理</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }timeline.jsp">地区管理</a>
+                            <a href="javascript:;" href-url="${ctx }/dic/dicArea">地区管理</a>
                         </li>
                         <li>
                             <a href="javascript:;" href-url="${ctxStaticPage }timeline.jsp">OSS配置</a>
@@ -137,21 +156,12 @@
                     </ul>
                 </div>
             </li>
+
             <li class="layui-nav-item">
-                <a data-toggle="collapse" href="#codeExamples">
-                    <i class="material-icons">code</i>
-                    <p>在线代码生成<b class="caret"></b></p>
+                <a href="javascript:;" href-url="${ctx }/gen/genTableColumnStyle">
+                    <i class="fa fa-code"></i>
+                    <p>在线代码生成</p>
                 </a>
-                <div class="collapse" id="codeExamples">
-                    <ul class="nav layui-nav-child">
-                        <li>
-                            <a href="javascript:;" href-url="${ctx }/gen/genTableColumnStyle">表字段设计管理</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" href-url="${ctx }/viewPage/tool/sqlconvert">sql转换</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
             <li class="hide">
                 <a data-toggle="collapse" href="#pagesExamples">

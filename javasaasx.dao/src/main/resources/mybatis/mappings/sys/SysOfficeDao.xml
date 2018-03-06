@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.choudou5.javasaasx.dao.sys.SysOfficeDao" >
     <resultMap id="RM_SysOffice" type="com.choudou5.javasaasx.dao.sys.po.SysOfficePo">
         <result property="id" column="id"/>
@@ -35,14 +35,14 @@
         <where>
             `del_flag` = 1
             <!--
-            eg: AND a.title LIKE concat('%',#{paramBean.title},'%')
+            eg: AND title LIKE concat('%',#{paramBean.title},'%')
             -->
             <if test="paramBean != null">
                 <if test="paramBean.id != null and paramBean.id != ''">
                     AND `id` = #{paramBean.id}
                 </if>
                 <if test="paramBean.name != null and paramBean.name != ''">
-                    AND `name` = #{paramBean.name}
+                    AND `name` LIKE concat('%',#{paramBean.name},'%')
                 </if>
                 <if test="paramBean.pid != null and paramBean.pid != ''">
                     AND `p_id` = #{paramBean.pid}
@@ -66,13 +66,16 @@
                     AND `address` = #{paramBean.address}
                 </if>
                 <if test="paramBean.master != null and paramBean.master != ''">
-                    AND `master` = #{paramBean.master}
+                    AND `master` LIKE concat('%',#{paramBean.master},'%')
                 </if>
                 <if test="paramBean.tel != null and paramBean.tel != ''">
-                    AND `tel` = #{paramBean.tel}
+                    AND `tel` LIKE concat('%',#{paramBean.tel},'%')
                 </if>
                 <if test="paramBean.remarks != null and paramBean.remarks != ''">
                     AND `remarks` = #{paramBean.remarks}
+                </if>
+                <if test="paramBean.dataMd5 != null and paramBean.dataMd5 != ''">
+                    AND `data_md5` = #{paramBean.dataMd5}
                 </if>
                 <if test="paramBean.code != null and paramBean.code != ''">
                     AND `code` = #{paramBean.code}
@@ -106,17 +109,6 @@
             </if>
         </where>
     </sql>
-
-    <update id="logicDeleteById">
-        UPDATE sys_office SET `del_flag` = 0
-        WHERE id = #{id}
-    </update>
-
-    <update id="logicDeleteByIds">
-        UPDATE sys_office SET `del_flag` = 0
-        WHERE id IN
-        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
-    </update>
 
     <insert id="insert" keyProperty="id">
         INSERT INTO sys_office (
@@ -162,7 +154,7 @@
         <if test="isSysData != null">,#{isSysData}</if>
         <if test="delFlag != null">,#{delFlag}</if>
         )
-     </insert>
+    </insert>
 
     <insert id="batchInsert" keyProperty="id">
         INSERT INTO sys_office (
@@ -181,36 +173,40 @@
         ,`code`
         ,`create_by`
         ,`create_time`
+
+
         ,`status`
         ,`is_sys_data`
         ,`del_flag`
         ) VALUES
         <foreach collection="list" item="entity" index="index" separator="," >
-        (
-        #{entity.id}
-        ,#{entity.name}
-        ,#{entity.pid}
-        ,#{entity.ppath}
-        ,#{entity.depth}
-        ,#{entity.sort}
-        ,#{entity.areaCode}
-        ,#{entity.type}
-        ,#{entity.address}
-        ,#{entity.master}
-        ,#{entity.tel}
-        ,#{entity.remarks}
-        ,#{entity.code}
-        ,#{entity.createBy}
-        ,#{entity.createTime}
-        ,#{entity.status}
-        ,#{entity.isSysData}
-        ,#{entity.delFlag}
-        )
+            (
+            #{entity.id}
+            ,#{entity.name}
+            ,#{entity.pid}
+            ,#{entity.ppath}
+            ,#{entity.depth}
+            ,#{entity.sort}
+            ,#{entity.areaCode}
+            ,#{entity.type}
+            ,#{entity.address}
+            ,#{entity.master}
+            ,#{entity.tel}
+            ,#{entity.remarks}
+            ,#{entity.code}
+            ,#{entity.createBy}
+            ,#{entity.createTime}
+
+
+            ,#{entity.status}
+            ,#{entity.isSysData}
+            ,#{entity.delFlag}
+            )
         </foreach>
     </insert>
 
     <update id="update" >
-    <![CDATA[
+        <![CDATA[
         UPDATE sys_office SET
             `name` = #{name} ,
             `p_id` = #{pid} ,
@@ -224,6 +220,8 @@
             `tel` = #{tel} ,
             `remarks` = #{remarks} ,
             `code` = #{code} ,
+
+
             `update_by` = #{updateBy} ,
             `update_time` = #{updateTime} ,
             `status` = #{status} ,
@@ -235,7 +233,7 @@
     </update>
 
     <delete id="deleteById">
-    <![CDATA[
+        <![CDATA[
         DELETE FROM sys_office
         WHERE id = #{id} 
     ]]>
@@ -251,6 +249,17 @@
         DELETE FROM sys_office
         <include refid="where"/>
     </delete>
+
+    <update id="logicDeleteById">
+        UPDATE sys_office SET `del_flag` = 0
+        WHERE id = #{id}
+    </update>
+
+    <update id="logicDeleteByIds">
+        UPDATE sys_office SET `del_flag` = 0
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </update>
 
     <select id="findById" resultMap="RM_SysOffice">
         SELECT <include refid="columns"/>
@@ -280,6 +289,9 @@
     <select id="findAll" resultMap="RM_SysOffice">
         SELECT <include refid="columns"/>
         FROM sys_office
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
     </select>
 
     <select id="findUniqueBy" resultMap="RM_SysOffice">
@@ -294,5 +306,3 @@
 
 
 </mapper>
-
-

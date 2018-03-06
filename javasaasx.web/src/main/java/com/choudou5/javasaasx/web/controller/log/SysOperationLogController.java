@@ -5,15 +5,15 @@
 * License：MIT
 * Since 2018 - 2020
 */
-package com.choudou5.javasaasx.web.controller.sys;
+package com.choudou5.javasaasx.web.controller.log;
 
 import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.bean.BetweenBean;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.StrUtil;
-import com.choudou5.javasaasx.service.sys.SysOperationLogService;
-import com.choudou5.javasaasx.service.sys.bo.SysOperationLogBo;
-import com.choudou5.javasaasx.service.sys.bo.SysOperationLogQueryParam;
+import com.choudou5.javasaasx.service.log.SysOperationLogService;
+import com.choudou5.javasaasx.service.log.bo.SysOperationLogBo;
+import com.choudou5.javasaasx.service.log.bo.SysOperationLogQueryParam;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import com.choudou5.javasaasx.web.util.RequestUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @Scope("prototype")
-@RequestMapping("/sys/sysOperationLog")
+@RequestMapping("/log/sysOperationLog")
 public class SysOperationLogController extends BaseController {
 
     @Autowired
@@ -63,7 +63,7 @@ public class SysOperationLogController extends BaseController {
      * @return
      */
     @ControllerDesc(desc = "查看系统操作日志-列表", optType = "view")
-    @RequiresPermissions("sys:sysOperationLog:view")
+    @RequiresPermissions("log:sysOperationLog:view")
     @RequestMapping(value = {"list", ""})
     public String list(SysOperationLogQueryParam queryParam, HttpServletRequest req, Model model) {
         queryParam.setOrderDefParam("create_time", "desc");
@@ -73,7 +73,7 @@ public class SysOperationLogController extends BaseController {
         PageResult<SysOperationLogBo> pageResult = sysOperationLogService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         model.addAttribute("rangeCreateDate", RequestUtil.getStrParameter(req, "rangeCreateDate"));
-        return "/sys/sysOperationLogList";
+        return "/log/sysOperationLogList";
     }
 
     /**
@@ -83,12 +83,12 @@ public class SysOperationLogController extends BaseController {
      * @return
      */
     @ControllerDesc(desc = "查看系统操作日志-详情", optType = "view")
-    @RequiresPermissions("sys:sysOperationLog:view")
+    @RequiresPermissions("log:sysOperationLog:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
         SysOperationLogBo sysOperationLogBo = sysOperationLogService.get(id);
         model.addAttribute("sysOperationLogBo", sysOperationLogBo);
-        return "/sys/sysOperationLogView";
+        return "/log/sysOperationLogView";
     }
 
 }

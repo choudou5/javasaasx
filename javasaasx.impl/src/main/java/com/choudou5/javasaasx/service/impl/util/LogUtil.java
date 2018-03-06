@@ -3,8 +3,8 @@ package com.choudou5.javasaasx.service.impl.util;
 import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.util.*;
 import com.choudou5.javasaasx.common.util.SpringContextHolder;
-import com.choudou5.javasaasx.dao.sys.SysOperationLogDao;
-import com.choudou5.javasaasx.dao.sys.po.SysOperationLogPo;
+import com.choudou5.javasaasx.dao.log.SysOperationLogDao;
+import com.choudou5.javasaasx.dao.log.po.SysOperationLogPo;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;

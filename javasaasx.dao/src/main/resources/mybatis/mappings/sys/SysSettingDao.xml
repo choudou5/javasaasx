@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.sys.SysSettingDao" >
+    <resultMap id="RM_SysSetting" type="com.choudou5.javasaasx.dao.sys.po.SysSettingPo">
+        <result property="id" column="id"/>
+        <result property="typeCode" column="type_code"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="value" column="value"/>
+        <result property="remark" column="remark"/>
+        <result property="ext1" column="ext_1"/>
+        <result property="ext2" column="ext_2"/>
+        <result property="ext3" column="ext_3"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="status" column="status"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <sql id="columns">
+        <![CDATA[
+        `id`, `type_code`, `code`, `name`, `value`, `remark`, `ext_1`, `ext_2`, `ext_3`, `create_by`, `create_time`, `update_by`, `update_time`, `status`, `del_flag`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            `del_flag` = 1
+            <!--
+            eg: AND title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+                <if test="paramBean.id != null and paramBean.id != ''">
+                    AND `id` = #{paramBean.id}
+                </if>
+                <if test="paramBean.typeCode != null and paramBean.typeCode != ''">
+                    AND `type_code` = #{paramBean.typeCode}
+                </if>
+                <if test="paramBean.code != null and paramBean.code != ''">
+                    AND `code` = #{paramBean.code}
+                </if>
+                <if test="paramBean.name != null and paramBean.name != ''">
+                    AND `name` LIKE concat('%',#{paramBean.name},'%')
+                </if>
+                <if test="paramBean.value != null and paramBean.value != ''">
+                    AND `value` = #{paramBean.value}
+                </if>
+                <if test="paramBean.remark != null and paramBean.remark != ''">
+                    AND `remark` = #{paramBean.remark}
+                </if>
+                <if test="paramBean.ext1 != null and paramBean.ext1 != ''">
+                    AND `ext_1` = #{paramBean.ext1}
+                </if>
+                <if test="paramBean.ext2 != null and paramBean.ext2 != ''">
+                    AND `ext_2` = #{paramBean.ext2}
+                </if>
+                <if test="paramBean.ext3 != null and paramBean.ext3 != ''">
+                    AND `ext_3` = #{paramBean.ext3}
+                </if>
+                <if test="paramBean.createBy != null and paramBean.createBy != ''">
+                    AND `create_by` = #{paramBean.createBy}
+                </if>
+                <if test="paramBean.createTime != null ">
+                    AND `create_time` = #{paramBean.createTime}
+                </if>
+                <if test="paramBean.updateBy != null and paramBean.updateBy != ''">
+                    AND `update_by` = #{paramBean.updateBy}
+                </if>
+                <if test="paramBean.updateTime != null ">
+                    AND `update_time` = #{paramBean.updateTime}
+                </if>
+                <if test="paramBean.status != null and paramBean.status != ''">
+                    AND `status` = #{paramBean.status}
+                </if>
+                <if test="paramBean.delFlag != null and paramBean.delFlag != ''">
+                    AND `del_flag` = #{paramBean.delFlag}
+                </if>
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO sys_setting (
+        <if test="id != null">`id`</if>
+        <if test="typeCode != null">,`type_code`</if>
+        <if test="code != null">,`code`</if>
+        <if test="name != null">,`name`</if>
+        <if test="value != null">,`value`</if>
+        <if test="remark != null">,`remark`</if>
+        <if test="ext1 != null">,`ext_1`</if>
+        <if test="ext2 != null">,`ext_2`</if>
+        <if test="ext3 != null">,`ext_3`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+
+
+        <if test="status != null">,`status`</if>
+        <if test="delFlag != null">,`del_flag`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="typeCode != null">,#{typeCode}</if>
+        <if test="code != null">,#{code}</if>
+        <if test="name != null">,#{name}</if>
+        <if test="value != null">,#{value}</if>
+        <if test="remark != null">,#{remark}</if>
+        <if test="ext1 != null">,#{ext1}</if>
+        <if test="ext2 != null">,#{ext2}</if>
+        <if test="ext3 != null">,#{ext3}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+
+
+        <if test="status != null">,#{status}</if>
+        <if test="delFlag != null">,#{delFlag}</if>
+        )
+    </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO sys_setting (
+        `id`
+        ,`type_code`
+        ,`code`
+        ,`name`
+        ,`value`
+        ,`remark`
+        ,`ext_1`
+        ,`ext_2`
+        ,`ext_3`
+        ,`create_by`
+        ,`create_time`
+
+
+        ,`status`
+        ,`del_flag`
+        ) VALUES
+        <foreach collection="list" item="entity" index="index" separator="," >
+            (
+            #{entity.id}
+            ,#{entity.typeCode}
+            ,#{entity.code}
+            ,#{entity.name}
+            ,#{entity.value}
+            ,#{entity.remark}
+            ,#{entity.ext1}
+            ,#{entity.ext2}
+            ,#{entity.ext3}
+            ,#{entity.createBy}
+            ,#{entity.createTime}
+
+
+            ,#{entity.status}
+            ,#{entity.delFlag}
+            )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+        <![CDATA[
+        UPDATE sys_setting SET
+            `type_code` = #{typeCode} ,
+            `code` = #{code} ,
+            `name` = #{name} ,
+            `value` = #{value} ,
+            `remark` = #{remark} ,
+            `ext_1` = #{ext1} ,
+            `ext_2` = #{ext2} ,
+            `ext_3` = #{ext3} ,
+
+
+            `update_by` = #{updateBy} ,
+            `update_time` = #{updateTime} ,
+            `status` = #{status} ,
+            `del_flag` = #{delFlag} 
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+        <![CDATA[
+        DELETE FROM sys_setting
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM sys_setting
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM sys_setting
+        <include refid="where"/>
+    </delete>
+
+    <update id="logicDeleteById">
+        UPDATE sys_setting SET `del_flag` = 0
+        WHERE id = #{id}
+    </update>
+
+    <update id="logicDeleteByIds">
+        UPDATE sys_setting SET `del_flag` = 0
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </update>
+
+    <select id="findById" resultMap="RM_SysSetting">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM sys_setting
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM sys_setting
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_SysSetting">
+        SELECT <include refid="columns"/>
+        FROM sys_setting
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_SysSetting">
+        SELECT <include refid="columns"/>
+        FROM sys_setting
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_SysSetting">
+        SELECT <include refid="columns"/>
+        FROM sys_setting
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql'">limit 1</if>
+    </select>
+
+
+</mapper>

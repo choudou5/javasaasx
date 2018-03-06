@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>admin-首页</title>
+    <title>${siteName}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%@include file="/include/cssLib.jsp" %>
     <link rel="stylesheet" href="${ctxStatic }/iframe/layui/css/layui.css" />
@@ -18,7 +18,7 @@
             <div class="layui-body my-body">
                 <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
                     <ul class="layui-tab-title">
-                        <li class="layui-this" lay-id="0" style="margin-left: -42px;"><span>首页</span></li>
+                        <li class="layui-this" lay-id="0" style="margin-left: -42px;" id="home"><span>首页</span></li>
                     </ul>
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
@@ -56,13 +56,15 @@
 <%@include file="/include/sidebarRight.jsp" %>
 </body>
 <%@include file="/include/scriptLib.jsp" %>
-<script src="${ctxStatic }/iframe/layui/layui.js"></script>
 <script src="${ctxStatic }/iframe/frame.js"></script>
 <link rel="stylesheet" href="${ctxStatic }/iframe/frame.css" />
 
 <script type="text/javascript">
     $(document).ready(function() {
 //        dialogTip( '进入框架页面');
+        $("#home").on("click", function(){
+            dialogPopupRight(ctx+'/viewPage/common/demo', 'test');
+        });
     });
 </script>
 

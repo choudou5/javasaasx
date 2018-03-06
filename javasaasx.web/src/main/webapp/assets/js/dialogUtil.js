@@ -77,6 +77,33 @@ function dialogTipText(title, autoCloseTime){
 }
 
 /**
+ * 右侧 呼出层
+ * @param url
+ * @param bindId
+ */
+function dialogPopupRight(url, bindId){
+	if(CommUtil.isEmpty(url)){
+		dialogTip("脚本缺失 url 参数");
+		return;
+	}
+	if(CommUtil.isEmpty(bindId)){
+		dialogTip("脚本缺失 bindId 参数");
+		return;
+	}
+	//该方法 是扩展的layer
+	layer.popupRight({
+		id: bindId,
+		success: function() {
+			//log(popup);
+			HttpUtil.ajaxAsyncGET(url, function(data){
+				$("#"+bindId).html(data);
+			});
+		}
+	})
+
+}
+
+/**
  * prompt层
  * @param title
  * @param callBack 回调函数

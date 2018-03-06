@@ -51,8 +51,12 @@ table thead .sorting:after{opacity: 0.2;content: "\f0dc";/* sort */}
 table thead .sorting_asc:after{content: "\f0de";top: 2px;color: #FF5722;}
 table thead .sorting_desc:after{content: "\f0dd";top: -3px;color: #FF5722;}
 
+table thead tr{background: #f2f2f2;}
+
 .footable tr.active{border-left: 5px solid grey;background: #CCCCCC;}
 .footable tr.active a{font-weight: bold;}
+
+
 
 
 /** 详情页面 */

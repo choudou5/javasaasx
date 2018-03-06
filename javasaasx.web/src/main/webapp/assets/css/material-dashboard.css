@@ -5672,8 +5672,8 @@ h2.title {
 .off-canvas-sidebar[data-background-color="white"]:before {
   background: #FFFFFF;
 }
-.sidebar[data-active-color="grey"] li.active > a,
-.off-canvas-sidebar[data-active-color="grey"] li.active > a {
+.sidebar[data-active-color="grey"] li.layui-this > a,
+.off-canvas-sidebar[data-active-color="grey"] li.layui-this > a {
   background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
   background-blend-mode: multiply,multiply;
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0,0,0,0.15);

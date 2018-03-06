@@ -44,10 +44,10 @@
                             </div>
                             <div class="col-md-2">
 
-                                <form:input type="text" path="sysOperationLogBo.ip" class="form-control" placeholder=" ip地址"/>
+                                <form:input type="text" path="sysOperationLogBo.ip" class="form-control clearable" placeholder=" ip地址"/>
                             </div>
                             <div class="col-md-2">
-                                <form:input type="text" path="sysOperationLogBo.desc" class="form-control" placeholder=" 操作说明"/>
+                                <form:input type="text" path="sysOperationLogBo.desc" class="form-control clearable" placeholder=" 操作说明"/>
                             </div>
                             <div class="col-md-2">
                                 <input type="text" id="rangeCreateDate" name="rangeCreateDate" value="${rangeCreateDate}" class="form-control" placeholder=" 范围时间"/>

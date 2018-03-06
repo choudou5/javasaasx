@@ -4,10 +4,8 @@ import com.choudou5.cache.ehcache.EhCacheUtil;
 
 /**
  * @Name：本地 缓存API
- * @Author：xuhaowende@sina.cn
- * @Date：2018-01-13 17:33
- * @Site：http://solrhome.com
- * @License：MIT
+ * @Author：xuhaowen
+ * @Date：2018-01-13
  */
 public class LocalCacheHelper extends EhCacheUtil {
 

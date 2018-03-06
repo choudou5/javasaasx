@@ -22,7 +22,7 @@
                             <form:hidden path="id"/>
                             <div class="card-content">
                                 <#list columnStyles as column>
-                                    <#if column.isInsert=="1">
+                                    <#if column.isInsert=="1" && !column.abstractField>
                                 <div class="form-group label-floating">
                                         <#if column.showType=="input">
                                     <form:input type="text" path="${column.javaColumn}" class="form-control <#if column.notNull>input-required</#if>" <#if column.notNull>required="true"</#if> placeholder=" ${column.desc}<#if column.notNull>*</#if>"/>

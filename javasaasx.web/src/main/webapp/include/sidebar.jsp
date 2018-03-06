@@ -75,7 +75,7 @@
                 <div class="collapse" id="safeExamples">
                     <ul class="nav layui-nav-child">
                         <li>
-                            <a href="javascript:;" href-url="${ctx }/dic/dicSensitiveWord">屏蔽词管理</a>
+                            <a href="javascript:;" href-url="${ctx }/dic/dicSensitiveWord">敏感词管理</a>
                         </li>
                         <li>
                             <a href="javascript:;" href-url="${ctxStaticPage }login.jsp">黑名单</a>

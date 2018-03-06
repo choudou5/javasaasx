@@ -44,14 +44,14 @@ function ajaxRightDataTable(pid){
         },
         columns: [
         <#list columnStyles as column>
-            <#if column.isList=="1">
+            <#if column.isList=="1" && !column.isIgnoreFieldByCreateAndUpdate>
             {"data": "${column.javaColumn}"},
             </#if>
         </#list>
         ],
         "columnDefs": [<#assign index=0/>
         <#list columnStyles as column>
-            <#if column.isList=="1">
+            <#if column.isList=="1" && !column.isIgnoreFieldByCreateAndUpdate>
             {
                 "render": function(name, type, row, meta) {
                     return CommUtil.toText(row.${column.javaColumn}); //${column.desc}

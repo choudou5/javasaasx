@@ -23,14 +23,18 @@
         <where>
             <#if table.existsDelFlagField>`${table.delFlagSqlField}` = ${table.delFlagNormal}</#if>
             <!--
-            eg: AND a.title LIKE concat('%',${"#"}{paramBean.title},'%')
+            eg: AND title LIKE concat('%',${"#"}{paramBean.title},'%')
             -->
             <if test="paramBean != null">
-            <#list table.columns as column>
-                <if test="paramBean.${column.columnNameFirstLower} != null <#if column.isStringColumn>and paramBean.${column.columnNameFirstLower} != ''</#if>">
-                    AND `${column.sqlName}` = <@mapperEl 'paramBean.${column.columnNameFirstLower}'/>
+                <#list columnStyles as column>
+                <if test="paramBean.${column.javaColumn} != null <#if column.isStringColumn>and paramBean.${column.javaColumn} != ''</#if>">
+                    <#if column.queryType=="like">
+                     AND `${column.column}` LIKE concat('%',<@mapperEl 'paramBean.${column.javaColumn}'/>,'%')
+                    <#else>
+                     AND `${column.column}` = <@mapperEl 'paramBean.${column.javaColumn}'/>
+                    </#if>
                 </if>
-            </#list>
+                </#list>
             </if>
             <if test="extendParams.size() > 0">
                 <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
@@ -39,19 +43,6 @@
             </if>
         </where>
     </sql>
-
-    <#if table.existsDelFlagField>
-    <update id="logicDeleteById">
-        UPDATE ${table.sqlName} SET `${table.delFlagSqlField}` = ${table.delFlagDeleted}
-        WHERE id = <@mapperEl 'id'/>
-    </update>
-
-    <update id="logicDeleteByIds">
-        UPDATE ${table.sqlName} SET `${table.delFlagSqlField}` = ${table.delFlagDeleted}
-        WHERE id IN
-        <foreach collection="ids" item="id" open="(" close=")" separator="," ><@mapperEl 'id'/> </foreach>
-    </update>
-    </#if>
 
     <insert id="insert" keyProperty="${table.idColumn.columnNameFirstLower}">
         INSERT INTO ${table.sqlName} (
@@ -111,6 +102,19 @@
         DELETE FROM ${table.sqlName}
         <include refid="where"/>
     </delete>
+
+    <#if table.existsDelFlagField>
+    <update id="logicDeleteById">
+        UPDATE ${table.sqlName} SET `${table.delFlagSqlField}` = ${table.delFlagDeleted}
+        WHERE id = <@mapperEl 'id'/>
+    </update>
+
+    <update id="logicDeleteByIds">
+        UPDATE ${table.sqlName} SET `${table.delFlagSqlField}` = ${table.delFlagDeleted}
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," ><@mapperEl 'id'/> </foreach>
+    </update>
+    </#if>
 
     <select id="findById" resultMap="RM_${className}">
         SELECT <include refid="columns"/>

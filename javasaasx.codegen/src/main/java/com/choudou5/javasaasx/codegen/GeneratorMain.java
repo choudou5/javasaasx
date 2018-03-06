@@ -8,9 +8,6 @@ import cn.org.rapid_framework.generator.provider.db.table.model.Table;
 import cn.org.rapid_framework.generator.util.BeanHelper;
 import com.choudou5.base.util.DateUtil;
 import com.choudou5.base.util.StrUtil;
-import com.choudou5.javasaasx.codegen.model.GenTableColumnStyle;
-
-import java.util.List;
 
 public class GeneratorMain {
 
@@ -32,8 +29,8 @@ public class GeneratorMain {
 	public static void main(String[] args) throws Exception {
 		String outDir = "D:\\data\\code_out";
 		String author = "xuhaowen";
-		String moduleName = "dic";
-		String table = "dic_sensitive_word";
+		String moduleName = "sys";
+		String table = "sys_setting";
 		genCode(outDir, author, moduleName, table);
 	}
 

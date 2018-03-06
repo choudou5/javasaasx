@@ -8,8 +8,11 @@
 package com.choudou5.javasaasx.codegen.model;
 
 
+import cn.org.rapid_framework.generator.util.ArrayHelper;
 import cn.org.rapid_framework.generator.util.StringHelper;
+import cn.org.rapid_framework.generator.util.typemapping.DatabaseDataTypesUtils;
 import com.choudou5.javasaasx.base.bean.AbstractBasePo;
+import com.choudou5.javasaasx.codegen.GeneratorMain;
 
 /**
  * @Name：生成表字段样式
@@ -208,5 +211,53 @@ public class GenTableColumnStyle extends AbstractBasePo {
 
     public void setNotNull(boolean notNull) {
         this.notNull = notNull;
+    }
+
+    /** 列是否是String类型 */
+    public boolean getIsStringColumn() {
+        return DatabaseDataTypesUtils.isString(getFieldType());
+    }
+
+    /** 列是否是日期类型 */
+    public boolean getIsDateTimeColumn() {
+        return DatabaseDataTypesUtils.isDate(getFieldType());
+    }
+
+    /** 列是否是Number类型 */
+    public boolean getIsNumberColumn() {
+        return DatabaseDataTypesUtils.isFloatNumber(getFieldType())
+                || DatabaseDataTypesUtils.isIntegerNumber(getFieldType());
+    }
+
+    /**
+     * 是否为抽象继承字段
+     * @return
+     */
+    public boolean isAbstractField() {
+        return ArrayHelper.contains(GeneratorMain.ABSTRAC_TFIELDS, getJavaColumn());
+    }
+
+    /**
+     * 新增 忽略字段
+     * @return
+     */
+    public boolean getIsIgnoreFieldByCreate() {
+        return ArrayHelper.contains(GeneratorMain.IGNORE_FIELD_BY_CREATE, getJavaColumn());
+    }
+
+    /**
+     * 更新 忽略字段
+     * @return
+     */
+    public boolean getIsIgnoreFieldByUpdate() {
+        return ArrayHelper.contains(GeneratorMain.IGNORE_FIELD_BY_UPDATE, getJavaColumn());
+    }
+
+    /**
+     * 忽略字段
+     * @return
+     */
+    public boolean getIsIgnoreFieldByCreateAndUpdate() {
+        return getIsIgnoreFieldByCreate() || getIsIgnoreFieldByUpdate();
     }
 }

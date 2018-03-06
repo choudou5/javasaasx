@@ -388,7 +388,7 @@ body{font: 14px Helvetica Neue,Helvetica,PingFang SC,\5FAE\8F6F\96C5\9ED1,Tahoma
 /* Tab卡片风格 */.layui-tab-card{border: 1px solid #e2e2e2; border-radius: 2px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);}
 .layui-tab-card > .layui-tab-title{ background-color: hsla(0,0%,100%,.96);}
 .layui-tab-card > .layui-tab-title li{margin-left: -1px;}
-.layui-tab-card > .layui-tab-title .layui-this{background-color: #EEEEEE;     }
+.layui-tab-card > .layui-tab-title .layui-this{background-color: #EEEEEE; }
 .layui-tab-card > .layui-tab-title .layui-this:after{border-top: none; border-width: 1px; border-bottom-color: #fff;}
 .layui-tab-card > .layui-tab-title .layui-tab-bar{height: 40px; line-height: 40px; border-radius: 0; border-top: none; border-right: none;}
 .layui-tab-card > .layui-tab-more .layui-this{background: none; color: #5FB878;}

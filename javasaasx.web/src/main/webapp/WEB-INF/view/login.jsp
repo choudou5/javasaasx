@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>admin-</title>
+    <title>${siteName}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%@include file="/include/cssLib.jsp" %>
 </head>

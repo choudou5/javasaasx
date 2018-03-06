@@ -3,6 +3,11 @@ var __winOutWidth = top.window.outerWidth;
 //移动端
 var __isMobileModel = __winOutWidth < 768;
 
+var layer;
+layui.use(['layer', 'laydate'], function () {
+	layer = layui.layer;
+});
+
 $(function(){
 
 	//输入框 x
@@ -772,7 +777,7 @@ SelectUtil = {
 HttpUtil = {
 
 	/**
-	 * ajax 异步请求
+	 * ajax POST异步请求
 	 * @param url
 	 * @param paramArr
 	 * @param succCall 或消息
@@ -807,6 +812,28 @@ HttpUtil = {
 						dialogTip(data.message, "error");
 					}
 				}
+			},
+			error: function(e){
+				log(e)
+				HttpUtil.ajaxErrorTip(e);
+			}
+		});
+	},
+	/**
+	 * ajax GET异步请求
+	 * @param url
+	 * @param succCall
+	 * @param dataType html/json/xml
+	 */
+	ajaxAsyncGET: function (url, succCall, dataType){
+		dataType = CommUtil.setDefValue(dataType, "html");
+		$.ajax({
+			type: "GET",
+			dataType: dataType,
+			url: url,
+			data: {},
+			success: function (data) {
+				succCall(data);
 			},
 			error: function(e){
 				log(e)

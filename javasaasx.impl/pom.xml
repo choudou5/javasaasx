@@ -46,13 +46,6 @@
 			<version>1.0.2</version>
 		</dependency>
 
-		<!-- commons -->
-		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-dfa</artifactId>
-			<version>${hutool.version}</version>
-		</dependency>
-
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

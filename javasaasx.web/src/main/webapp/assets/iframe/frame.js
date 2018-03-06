@@ -1,27 +1,28 @@
 
 layui.use(['layer', 'element'], function () {
+
     var element = layui.element(), layer = layui.layer, $ = layui.jquery; //导航的hover效果、二级菜单等功能，需要依赖element模块
     var body = $('.my-body');
 
     // http://demo.vip-admin.com/
     // http://fslayuiplugin.fallsea.com/
-
     // 监听导航(side)点击切换页面
     element.on('nav(side)', function (elem) {
+        log("side");
         // 添加tab方法
         addTab(element,elem);
     });
 
     // 监听顶部导航
     element.on('nav(side-top)', function (elem) {
-        log($(this));
+        log("side-top");
         // 添加tab方法
         addTab(element,elem);
     });
 
     // 监听顶部左侧导航
     element.on('nav(side-right)', function (elem) {
-        log("right");
+        log("side-right");
         // 添加tab方法
         addTab(element,elem);
     });

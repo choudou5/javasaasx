@@ -56,6 +56,7 @@
 <%@include file="/include/sidebarRight.jsp" %>
 </body>
 <%@include file="/include/scriptLib.jsp" %>
+<script src="${ctxStatic }/iframe/crypto.js"></script>
 <script src="${ctxStatic }/iframe/frame.js"></script>
 <link rel="stylesheet" href="${ctxStatic }/iframe/frame.css" />
 

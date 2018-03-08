@@ -133,7 +133,7 @@ public class ${className}Controller extends BaseController {
     @RequiresPermissions("${moduleName}:${classNameLower}:delete")
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(String id, HttpServletRequest req, RedirectAttributes attributes) {
+    public String delete(String id, HttpServletRequest req) {
         try {
             ${classService}.logicDeleteById(id);
             return returnOK("删除成功！");

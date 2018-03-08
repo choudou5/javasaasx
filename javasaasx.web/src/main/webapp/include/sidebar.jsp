@@ -102,6 +102,9 @@
                         <li>
                             <a href="javascript:;" href-url="${ctx }/log/sysRemoteException">远程日志</a>
                         </li>
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/viewPage/log/sysLogAdminList">系统日志管理</a>
+                        </li>
                     </ul>
                 </div>
             </li>

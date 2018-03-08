@@ -62,6 +62,35 @@ layui.use(['layer', 'element'], function () {
         element.tabDelete('card', layId);
     };
 
+    //添加 tab到框架
+    window.addTabToFrame = function(title, src){
+        //var id = hex_md5(title);
+        var card    = 'card';                                   // 选项卡对象
+        var id      = new Date().getTime();                     // ID
+        var flag    = getTitleId(card, title);                  // 是否有该选项卡存在
+        // 大于0就是有该选项卡了
+        if(flag > 0){
+            id = flag;
+        }else{
+            if(src){
+                //新增
+                element.tabAdd(card, {
+                    title: '<span>'+title+'</span>'
+                    ,content: '<iframe src="' + src + '" frameborder="0"></iframe>'
+                    ,id: id
+                });
+                // 关闭弹窗
+                layer.closeAll();
+            }
+        }
+        // 切换相应的ID tab
+        element.tabChange(card, id);
+        // 提示信息
+        dialogLoading();
+    }
+
+
+
     // 删除所有选项卡
     window.delAllTab = function () {
         // 选项卡对象

@@ -1,65 +1,13 @@
-var logging_url = ctx + '/log/sysLogAdmin/ajaxList';
+var logging_url = ctx + '/log/sysLogAdmin/ajaxPrintLog';
 var cookie_logging_timezone = 'logging_timezone';
 var frame_element = $( '#frame' );
 
 
 bindEvent();
 
-function bindEvent(){
-    var table = $( 'table', frame_element );
-
-    table.off( 'update' ) .on('update', function( event ) {
-            var table = $( this );
-            var tbody = $( 'tbody', table );
-
-            0 !== tbody.size()
-                ? table.addClass( 'has-data' )
-                : table.removeClass( 'has-data' );
-            return false;
-        }
-    );
-
-    load_logging_viewer();
-
-    $( '.has-trace a', table ).off( 'click' ).on('click', function( event ) {
-            $( this ).closest( 'tr' )
-                .toggleClass( 'open' )
-                .next().toggle();
-            return false;
-        }
-    );
-
-    var date_format = $( '#date-format a', frame_element );
-
-    date_format.off( 'click' ).on('click', function( event ) {
-        var self = $( this );
-        if( !self.hasClass( 'on' ) ){
-            self.addClass( 'on' );
-            $( 'table th.time span', frame_element ).text( 'UTC' );
-            format_time_options.timeZone = 'UTC';
-            $.cookie( cookie_logging_timezone, 'UTC' );
-        }
-        else{
-            self.removeClass( 'on' );
-            $( 'table th.time span', frame_element ).text( 'Local' );
-            delete format_time_options.timeZone;
-            $.cookie( cookie_logging_timezone, null );
-        }
-
-        $( 'time', frame_element ).each(function( index, element ){
-            var self = $( element );
-            self.text( format_time_content( new Date( self.attr( 'datetime' ) ) ) );
-        });
-        return false;
-    });
-
-    if( 'UTC' === $.cookie( cookie_logging_timezone ) ) {
-        date_format.trigger( 'click' );
-    }
-}
 
 
-var load_logging_viewer = function() {
+function load_logging_viewer() {
     var table = $( 'table', frame_element );
     var state = $( '#state', frame_element );
     var since = table.data( 'latest' ) || 0;
@@ -84,12 +32,12 @@ var load_logging_viewer = function() {
         },
         success : function( response, text_status, xhr )
         {
-            var docs = response.history.docs;
+            var docs = response.history;
             var docs_count = docs.length;
             var table = $( 'table', frame_element );
             $( 'h2 span', frame_element ).text( response.watcher.esc() );
             state.html( 'Last Check: ' + format_time() );
-            app.timeout = setTimeout(
+            setTimeout(
                 load_logging_viewer,
                 10000
             );
@@ -125,10 +73,9 @@ var load_logging_viewer = function() {
                     classes.push( 'has-trace' );
                 }
 
-                content += '<tr class="' + classes.join( ' ' ) + '">' + "\n";
+                content += '<tr class="' + classes.join( ' ' ) + '" '+(has_trace?"onclick=\"toggleErrorTip(event)\"":"")+' >' + "\n";
                 content += '<td class="span"><a><span>' + format_time( doc.time ) + '</span></a></td>' + "\n";
                 content += '<td class="level span"><a><span>' + doc.level.esc() + '</span></span></a></td>' + "\n";
-                content += '<td class="span"><a><span>' + doc.core   + '</span></a></td>' + "\n";
                 content += '<td class="span"><a><span>' + doc.logger + '</span></a></td>' + "\n";
                 content += '<td class="message span"><a><span>' + doc.message.replace( /,/g, ',&#8203;' ).esc() + '</span></a></td>' + "\n";
                 content += '</tr>' + "\n";
@@ -152,4 +99,78 @@ var load_logging_viewer = function() {
         complete : function( xhr, text_status ) {
         }
     });
+}
+
+function toggleErrorTip(event){
+    $( event.target ).closest( 'tr' ).toggleClass( 'open' ).next().toggle();
+}
+
+function bindEvent(){
+    var table = $( 'table', frame_element );
+
+    table.off( 'update' ) .on('update', function( event ) {
+            var table = $( this );
+            var tbody = $( 'tbody', table );
+
+            0 !== tbody.length
+                ? table.addClass( 'has-data' )
+                : table.removeClass( 'has-data' );
+            return false;
+        }
+    );
+
+    load_logging_viewer();
+
+    var date_format = $( '#date-format a', frame_element );
+
+    date_format.off( 'click' ).on('click', function( event ) {
+        var self = $( this );
+        if( !self.hasClass( 'on' ) ){
+            self.addClass( 'on' );
+            $( 'table th.time span', frame_element ).text( 'UTC' );
+            format_time_options.timeZone = 'UTC';
+            CacheUtil.set( cookie_logging_timezone, 'UTC' );
+        }
+        else{
+            self.removeClass( 'on' );
+            $( 'table th.time span', frame_element ).text( 'Local' );
+            delete format_time_options.timeZone;
+            CacheUtil.set( cookie_logging_timezone, null );
+        }
+
+        $( 'time', frame_element ).each(function( index, element ){
+            var self = $( element );
+            self.text( format_time_content( new Date( self.attr( 'datetime' ) ) ) );
+        });
+        return false;
+    });
+
+    if( 'UTC' === CacheUtil.get( cookie_logging_timezone ) ) {
+        date_format.trigger( 'click' );
+    }
+}
+
+
+
+var format_time_options = {};
+
+var format_time = function( time )
+{
+    time = time ? new Date( time ) : new Date();
+    return '<time datetime="' + time.toISOString().esc() + '">' + format_time_content( time ) + '</abbr>';
+}
+
+var format_time_content = function( time )
+{
+    return time.toLocaleString( undefined, format_time_options ).esc();
+}
+
+Number.prototype.esc = function()
+{
+    return new String( this ).esc();
+}
+
+String.prototype.esc = function()
+{
+    return this.replace( /</g, '&lt;').replace( />/g, '&gt;');
 }

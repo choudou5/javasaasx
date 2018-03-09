@@ -50,6 +50,9 @@ public class LogUtil {
      * 保存日志
      */
     private static void saveLog(HttpServletRequest request, Object handler, String desc){
+        if("/log/sysLogAdmin/ajaxPrintLog".equals(request.getRequestURI())){
+            return;
+        }
         SysOperationLogPo log = new SysOperationLogPo();
         log.setDesc(desc);
         // 获取Controller信息

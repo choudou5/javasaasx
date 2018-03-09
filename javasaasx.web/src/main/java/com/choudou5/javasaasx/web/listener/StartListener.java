@@ -8,6 +8,11 @@
 package com.choudou5.javasaasx.web.listener;
 
 import com.choudou5.base.bean.QueryParam;
+import com.choudou5.javasaasx.base.logging.ListenerConfig;
+import com.choudou5.javasaasx.base.logging.LogWatcher;
+import com.choudou5.javasaasx.base.logging.logback.CustomEventFilter;
+import com.choudou5.javasaasx.base.logging.logback.LogbackWatcher;
+import com.choudou5.javasaasx.base.logging.util.LogAdminHelper;
 import com.choudou5.javasaasx.common.constants.SysPropConsts;
 import com.choudou5.javasaasx.common.util.SysUtil;
 import org.springframework.web.context.ContextLoaderListener;
@@ -23,8 +28,14 @@ import javax.servlet.ServletContextEvent;
  */
 public class StartListener extends ContextLoaderListener {
 
+    private LogAdminHelper loggingHandler = null;
     @Override
     public void contextInitialized(ServletContextEvent event) {
+        //注册 日志观察者
+        LogWatcher watcher = new LogbackWatcher();
+        watcher.registerListener(new ListenerConfig(50));//保留50条最新日志
+        CustomEventFilter.setWatcher(watcher);
+        LogAdminHelper.setWatcher(watcher);
 
         String siteName = SysUtil.getSiteName();
         QueryParam.setDbName(SysPropConsts.JDBC_TPYE);
@@ -39,6 +50,7 @@ public class StartListener extends ContextLoaderListener {
     public void contextDestroyed(ServletContextEvent event) {
         String siteName = SysUtil.getSiteName();
         System.out.println("正在停止 " + siteName + " 系统...");
+        LogAdminHelper.stop();
         super.contextDestroyed(event);
     }
 

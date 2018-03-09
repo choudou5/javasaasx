@@ -1,4 +1,5 @@
-package com.choudou5.javasaasx.web.util;
+package com.choudou5.javasaasx.base.logging;
+
 
 import com.choudou5.base.util.StrUtil;
 
@@ -53,3 +54,4 @@ public class LoggerInfo implements Serializable, Comparable<LoggerInfo>  {
         return tN.compareTo(oN);
     }
 }
+

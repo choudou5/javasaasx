@@ -28,7 +28,6 @@
                                         <tr>
                                             <th class="time">Time (<span>Local</span>)</th>
                                             <th class="level">Level</th>
-                                            <th class="core">Core</th>
                                             <th class="logger">Logger</th>
                                             <th class="message">Message</th>
                                         </tr>

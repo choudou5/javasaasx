@@ -19,7 +19,10 @@ import org.apache.shiro.subject.PrincipalCollection;
  */
 public class AdminShiroRealm extends AuthorizingRealm {
 
-    private CommService commService;
+    private CommService commService;//用get set 设值防止注入，不要用 SpringContextHolder.getBean
+    public void setCommService(CommService commService) {
+        this.commService = commService;
+    }
 
     /**
      * 获取授权信息 
@@ -76,11 +79,5 @@ public class AdminShiroRealm extends AuthorizingRealm {
         return user;
     }
 
-    public CommService getCommService() {
-        return commService;
-    }
-    public void setCommService(CommService commService) {
-        this.commService = commService;
-    }
 }
 

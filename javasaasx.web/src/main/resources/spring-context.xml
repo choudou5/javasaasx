@@ -12,9 +12,12 @@
 	default-lazy-init="true">
 
 	<description>Spring Configuration</description>
-	
+
     <!-- 加载配置属性文件 -->
 	<context:property-placeholder ignore-unresolvable="true" location="classpath:system.properties" />
+
+	<bean id="springContextHolder" class="com.choudou5.javasaasx.base.util.SpringContextHolder" lazy-init="false" destroy-method="destroy" autowire="byType"  />
+
 
 	<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解 -->
 	<context:component-scan base-package="com.choudou5.javasaasx.service.impl"><!-- base-package 如果多个，用“,”分隔 -->
@@ -77,7 +80,7 @@
 	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 		<property name="basePackage" value="com.choudou5.javasaasx.dao"/>
-		<property name="annotationClass" value="com.choudou5.javasaasx.dao.orm.mybatis.MyBatisDao"/>
+		<property name="annotationClass" value="com.choudou5.javasaasx.base.orm.mybatis.MyBatisDao"/>
 	</bean>
 
 	<!-- 定义事务 -->
@@ -120,6 +123,5 @@
 		<constructor-arg name="corpSecret" value="${dingtalk.corpSecret}"/>
 	</bean>
 
-	<bean id="springContextHolder" class="com.choudou5.javasaasx.common.util.SpringContextHolder" lazy-init="false" destroy-method="destroy" autowire="byType"  />
-
+	<import resource="spring-context-shiro.xml"/>
 </beans>

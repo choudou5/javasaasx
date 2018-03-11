@@ -5,9 +5,9 @@
 <#assign pkJavaType = table.pkJavaType>
 package ${packageNamePrefix}.dao.${moduleName};
 
-import ${packageNamePrefix}.dao.orm.mybatis.MyBatisDao;
 import ${packageNamePrefix}.dao.${moduleName}.po.${classPOName};
 import ${packageNamePrefix}.base.dao.BaseDao;
+import ${packageNamePrefix}.base.dao.orm.mybatis.MyBatisDao;
 
 /**
  * @Name：${table.remarks} Dao

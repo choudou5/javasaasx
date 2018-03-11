@@ -7,7 +7,7 @@
 */
 package com.choudou5.javasaasx.dao.dic;
 
-import com.choudou5.javasaasx.dao.orm.mybatis.MyBatisDao;
+import com.choudou5.javasaasx.base.orm.mybatis.MyBatisDao;
 import com.choudou5.javasaasx.dao.dic.po.DicAreaPo;
 import com.choudou5.javasaasx.base.dao.BaseDao;
 

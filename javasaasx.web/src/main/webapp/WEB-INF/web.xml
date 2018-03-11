@@ -3,7 +3,7 @@
   
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath*:/spring-context*.xml</param-value>
+    <param-value>classpath*:/spring-context.xml</param-value>
   </context-param>
   <listener>
     <listener-class>com.choudou5.javasaasx.web.listener.StartListener</listener-class>

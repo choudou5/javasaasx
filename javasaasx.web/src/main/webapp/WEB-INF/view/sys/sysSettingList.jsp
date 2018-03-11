@@ -10,6 +10,78 @@
 
 <body>
 <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-123">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <h4 class="card-title">快捷设置</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <ul class="nav nav-pills nav-pills-rose nav-stacked">
+                                    <li class="active">
+                                        <a href="#tab1" data-toggle="tab">开发者设置</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab2" data-toggle="tab">阿里OSS</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab3" data-toggle="tab">企业钉钉</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab4" data-toggle="tab">阿里大鱼</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab5" data-toggle="tab">邮箱</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab1">
+                                        <div class="col-md-3">
+                                            <div class="togglebutton">
+                                                <label> <input type="checkbox" checked>调试模式</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab2">
+                                        <div class="col-md-3">
+                                            <input id="" type="text" placeholder="corpId"/>
+                                            <input id="" type="text" placeholder="corpSecret"/>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab3">
+                                        Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                                        <br />
+                                        <br />Dynamically innovate resource-leveling customer service for state of the art customer service.
+                                    </div>
+                                    <div class="tab-pane" id="tab4">
+                                        <div class="col-md-3">
+                                            <input id="" type="text" placeholder="accessKeyId"/>
+                                            <input id="" type="text" placeholder="accessKeySecret"/>
+                                            <input id="" type="text" placeholder="signName"/>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab5">
+                                        <div class="col-md-3">
+                                            <input id="" type="text" placeholder=" 系统管理员邮箱"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="card">
             <div class="card-content">

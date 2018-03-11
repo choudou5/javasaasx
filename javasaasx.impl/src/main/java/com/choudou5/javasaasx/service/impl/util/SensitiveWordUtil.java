@@ -3,7 +3,7 @@ package com.choudou5.javasaasx.service.impl.util;
 import com.choudou5.base.util.CollUtil;
 import com.choudou5.base.util.sensitive.SensitiveUtil;
 import com.choudou5.javasaasx.common.cache.GlobalCacheHelper;
-import com.choudou5.javasaasx.common.util.SpringContextHolder;
+import com.choudou5.javasaasx.base.util.SpringContextHolder;
 import com.choudou5.javasaasx.service.dic.DicSensitiveWordService;
 
 import java.util.List;

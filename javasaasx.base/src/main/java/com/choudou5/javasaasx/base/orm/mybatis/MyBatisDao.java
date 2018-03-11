@@ -1,4 +1,4 @@
-package com.choudou5.javasaasx.dao.orm.mybatis;
+package com.choudou5.javasaasx.base.orm.mybatis;
 
 import java.lang.annotation.*;
 

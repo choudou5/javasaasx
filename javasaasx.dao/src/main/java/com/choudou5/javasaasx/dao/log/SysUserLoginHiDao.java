@@ -7,7 +7,7 @@
 */
 package com.choudou5.javasaasx.dao.log;
 
-import com.choudou5.javasaasx.dao.orm.mybatis.MyBatisDao;
+import com.choudou5.javasaasx.base.orm.mybatis.MyBatisDao;
 import com.choudou5.javasaasx.dao.log.po.SysUserLoginHiPo;
 import com.choudou5.javasaasx.base.dao.BaseDao;
 

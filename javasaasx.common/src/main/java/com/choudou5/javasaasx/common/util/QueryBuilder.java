@@ -1,10 +1,10 @@
 package com.choudou5.javasaasx.common.util;
 
 import com.choudou5.base.mapper.BeanMapper;
-import com.choudou5.javasaasx.base.bean.BasePo;
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -35,7 +35,7 @@ public class QueryBuilder {
 	 * @param req
 	 * @return
 	 */
-	public static <T extends BasePo> T buildQuery(HttpServletRequest req, Class<T> clasz){
+	public static <T extends Serializable> T buildQuery(HttpServletRequest req, Class<T> clasz){
 		Map query = new LinkedHashMap();
 		//构建 分页
 		buildQueryPaging(req, query);
@@ -45,7 +45,7 @@ public class QueryBuilder {
 //		return query;
 	}
 
-	
+
 	//构建查询分页
 	private static void buildQueryPaging(HttpServletRequest req, Map query){
 		String pageNoStr = req.getParameter("pageNo");
@@ -60,7 +60,7 @@ public class QueryBuilder {
 		req.setAttribute("pageNo", pageNo);
 		req.setAttribute("pageSize", pageSize);
 	}
-	
+
 	//构建查询参数
 	@SuppressWarnings("unchecked")
 	private static void buildQueryParam(HttpServletRequest req, Map query){

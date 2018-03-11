@@ -8,7 +8,7 @@
 package com.choudou5.javasaasx.dao.gen;
 
 import com.choudou5.javasaasx.codegen.model.GenTableColumnStyle;
-import com.choudou5.javasaasx.dao.orm.mybatis.MyBatisDao;
+import com.choudou5.javasaasx.base.orm.mybatis.MyBatisDao;
 import com.choudou5.javasaasx.base.dao.BaseDao;
 
 /**

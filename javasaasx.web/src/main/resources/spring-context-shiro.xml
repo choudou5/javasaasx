@@ -36,8 +36,8 @@
     </bean>
 
     <!-- 配置进行授权和认证的 Realm -->
-    <bean id="adminShiroRealm" class="com.choudou5.javasaasx.common.security.AdminShiroRealm">
-        <property name="userService" ref="sysUserService" />
+    <bean id="adminShiroRealm" class="com.choudou5.javasaasx.base.security.AdminShiroRealm">
+        <property name="commService" ref="commonService" />
     </bean>
 
     <!-- 配置 Shiro 的 SecurityManager Bean. -->

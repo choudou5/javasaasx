@@ -1,4 +1,4 @@
-package com.choudou5.javasaasx.common.security;
+package com.choudou5.javasaasx.base.security;
 
 import cn.hutool.core.util.EscapeUtil;
 import com.choudou5.base.util.EncryptUtil;

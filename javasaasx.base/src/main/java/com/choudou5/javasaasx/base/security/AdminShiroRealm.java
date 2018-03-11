@@ -1,10 +1,9 @@
-package com.choudou5.javasaasx.common.security;
+package com.choudou5.javasaasx.base.security;
 
 import cn.hutool.core.lang.Validator;
+import com.choudou5.javasaasx.base.service.CommService;
+import com.choudou5.javasaasx.base.service.vo.SysUserVo;
 import com.choudou5.javasaasx.common.constants.CommConsts;
-import com.choudou5.javasaasx.service.sys.SysUserService;
-import com.choudou5.javasaasx.service.sys.bo.LoginUserBo;
-import com.choudou5.javasaasx.service.sys.bo.SysUserBo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -12,17 +11,15 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Desc: 授权查询领域
- * User: xuhaowende
- * Time: 2017/12/18
+ * Name: 授权查询领域
+ * Author: xuhaowen
+ * Date: 2017/12/18
  */
 public class AdminShiroRealm extends AuthorizingRealm {
 
-    @Autowired
-    private SysUserService userService;
+    private CommService commService;
 
     /**
      * 获取授权信息 
@@ -30,7 +27,7 @@ public class AdminShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-        LoginUserBo user = (LoginUserBo) SecurityUtils.getSubject().getSession().getAttribute(CommConsts.USER_SESSION);
+        SysUserVo user = (SysUserVo) SecurityUtils.getSubject().getSession().getAttribute(CommConsts.USER_SESSION);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 //        info.addRole(StringUtils.join(user.getRoleIds()));
         return info;
@@ -44,14 +41,14 @@ public class AdminShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken authcToken) throws AuthenticationException {
         // 把token转换成User对象
-        LoginUserBo userLogin = tokenToUser((UsernamePasswordToken) authcToken);
+        SysUserVo userLogin = tokenToUser((UsernamePasswordToken) authcToken);
         // 验证用户是否可以登录
-        SysUserBo user = null;
+        SysUserVo user = null;
         try {
             if(Validator.isEmail(userLogin.getAccount())){
-                user = userService.getByEmail(userLogin.getAccount());
+                user = commService.getByEmail(userLogin.getAccount());
             }else if(Validator.isMobile(userLogin.getAccount())){
-                user = userService.getByMobile(userLogin.getAccount());
+                user = commService.getByMobile(userLogin.getAccount());
             }
         } catch (Exception e) {
             throw new AuthenticationException(e.getMessage());
@@ -72,20 +69,18 @@ public class AdminShiroRealm extends AuthorizingRealm {
         return new SimpleAuthenticationInfo(principal, userLogin.getPassword(), realmName);
     }
 
-    private LoginUserBo tokenToUser(UsernamePasswordToken authcToken) {
-        LoginUserBo user = new LoginUserBo();
+    private SysUserVo tokenToUser(UsernamePasswordToken authcToken) {
+        SysUserVo user = new SysUserVo();
         user.setAccount(authcToken.getUsername());
         user.setPassword(String.valueOf(authcToken.getPassword()));
         return user;
     }
 
-    //一定要写getset方法
-    public SysUserService getUserService() {
-        return userService;
+    public CommService getCommService() {
+        return commService;
     }
-
-    public void setUserService(SysUserService userService) {
-        this.userService = userService;
+    public void setCommService(CommService commService) {
+        this.commService = commService;
     }
 }
 

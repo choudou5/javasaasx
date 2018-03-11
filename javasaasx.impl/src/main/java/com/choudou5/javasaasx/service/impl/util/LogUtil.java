@@ -2,7 +2,8 @@ package com.choudou5.javasaasx.service.impl.util;
 
 import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.util.*;
-import com.choudou5.javasaasx.common.util.SpringContextHolder;
+import com.choudou5.javasaasx.base.util.SpringContextHolder;
+import com.choudou5.javasaasx.base.util.ThreadUtil;
 import com.choudou5.javasaasx.dao.log.SysOperationLogDao;
 import com.choudou5.javasaasx.dao.log.po.SysOperationLogPo;
 import org.springframework.web.method.HandlerMethod;
@@ -89,7 +90,7 @@ public class LogUtil {
         if((now-lastAccessTime) > INTERVAL){//间隔5秒 批量保存一次
             lastAccessTime = now;
 //				异步保存日志
-            TaskUtil.EXECUTOR.execute(new SaveLogThread());
+            ThreadUtil.execute(new SaveLogThread());
         }
 
     }

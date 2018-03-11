@@ -30,7 +30,7 @@ public class GeneratorMain {
 		String outDir = "D:\\data\\code_out";
 		String author = "xuhaowen";
 		String moduleName = "log";
-		String table = "sys_remote_exception";
+		String table = "sys_data_change_log";
 		genCode(outDir, author, moduleName, table);
 	}
 

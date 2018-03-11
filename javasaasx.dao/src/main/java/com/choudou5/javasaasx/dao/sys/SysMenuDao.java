@@ -7,7 +7,7 @@
 */
 package com.choudou5.javasaasx.dao.sys;
 
-import com.choudou5.javasaasx.dao.orm.mybatis.MyBatisDao;
+import com.choudou5.javasaasx.base.orm.mybatis.MyBatisDao;
 import com.choudou5.javasaasx.dao.sys.po.SysMenuPo;
 import com.choudou5.javasaasx.base.dao.BaseDao;
 import org.apache.ibatis.annotations.Param;

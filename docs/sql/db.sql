@@ -485,3 +485,18 @@ CREATE TABLE `sys_user_rel_thirdparty` (
 -- ----------------------------
 -- Records of sys_user_rel_thirdparty
 -- ----------------------------
+
+
+DROP TABLE sys_data_change_log;
+CREATE TABLE `sys_data_change_log` (
+  `id` VARCHAR(32) NOT NULL,
+  `biz_key` VARCHAR(36) NOT NULL COMMENT '业务key',
+  `biz_id` VARCHAR(32) NOT NULL COMMENT '业务ID',
+  `opt_type` VARCHAR(4) NOT NULL COMMENT '操作类型，edit、del',
+  `field_list` VARCHAR(512) DEFAULT NULL COMMENT '字段(多个___隔开)',
+  `old_val_list` VARCHAR(512) DEFAULT NULL COMMENT '旧值(多个___隔开)',
+  `new_val_list` VARCHAR(512) DEFAULT NULL COMMENT '新值(多个___隔开)',
+  `create_by` VARCHAR(32) NOT NULL COMMENT '创建人',
+  `create_date` DATETIME NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='系统数据变更日志';

@@ -19,7 +19,7 @@ import com.choudou5.base.util.ObjUtil;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.common.cache.GlobalCacheHelper;
 import com.choudou5.javasaasx.common.constants.CommConsts;
-import com.choudou5.javasaasx.common.security.PasswordUtil;
+import com.choudou5.javasaasx.base.security.PasswordUtil;
 import com.choudou5.javasaasx.common.util.CommUtil;
 import com.choudou5.javasaasx.dao.sys.SysRoleDao;
 import com.choudou5.javasaasx.dao.sys.SysUserRoleDao;

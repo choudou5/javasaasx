@@ -20,6 +20,7 @@ import com.choudou5.javasaasx.base.bean.BaseBo;
 import com.choudou5.javasaasx.base.dao.BaseDao;
 import com.choudou5.javasaasx.base.service.BaseService;
 import com.choudou5.javasaasx.base.util.SysSeqUtil;
+import com.choudou5.javasaasx.base.util.SysDataChangeUtil;
 import com.choudou5.javasaasx.service.impl.util.SysExceptionUtil;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +46,12 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
                 po.preInsert();
                 getDao().insert(po);
             }else{
+                //记录 变更信息
+                P oldObj = null;
+                if(po.isRecordDataChange()) {
+                    oldObj = getDao().findById(po.getId());
+                    SysDataChangeUtil.saveEdit(po, oldObj);
+                }
                 po.preUpdate();
                 getDao().update(po);
             }
@@ -102,6 +109,8 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public void logicDeleteById(String id) throws BizException {
         try {
+            //记录 变更信息
+            SysDataChangeUtil.saveDel(getDao().findById(id));
             getDao().logicDeleteById(id);
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.logicDeleteById fail", e);
@@ -123,6 +132,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public void delete(String id) throws BizException {
         try {
+            SysDataChangeUtil.saveDel(getDao().findById(id));
             getDao().deleteById(id);
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.delete fail", e);

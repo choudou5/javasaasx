@@ -1,6 +1,7 @@
 package com.choudou5.javasaasx.base.bean;
 
 import com.choudou5.javasaasx.base.util.SysSeqUtil;
+import com.choudou5.javasaasx.base.util.UserUtil;
 
 import java.util.Date;
 
@@ -25,6 +26,8 @@ public class AbstractBasePo implements BasePo {
     /** 删除标记 0=已删除，1=正常 */
     private String delFlag;
 
+    protected boolean recordDataChange = true;
+
     protected static final String DEL_FLAG_YES = "0";
     protected static final String DEL_FLAG_NO = "1";
 
@@ -44,20 +47,13 @@ public class AbstractBasePo implements BasePo {
      * 插入之前执行方法，需要手动调用
      */
     public void preInsert(boolean autoId){
-        if(autoId){
+        if(autoId) {
             String id = SysSeqUtil.getIdStr();
             setId(id);
 //        Long id = SysSeqUtil.generateId(SystemNames.SYSTEM, SystemNames.SUB_SYSTEM_ADMIN, TableNames.MODULE, getSqlTableName());
-//        setId(id);
-//        User user = UserUtils.getUser();
-//        if (0 != user.getId()){
-//            this.updateBy = user;
-//            this.createBy = user;
-//        }
         }
-        this.createBy = "1";
+        this.createBy = UserUtil.getUserId();
         this.createTime = new Date();
-//        setActonInfo(true, user.getId());
     }
 
 
@@ -65,18 +61,8 @@ public class AbstractBasePo implements BasePo {
      * 更新之前执行方法，需要手动调用
      */
     public void preUpdate(){
-//        User user = UserUtils.getUser();
-//        //if (StringUtils.isNotBlank(user.getId())){
-//        if (0!=user.getId()){
-//            this.updateBy = user;
-//        }
-//        this.updateDate = new Date();
-//        setActonInfo(false, user.getId());
-//        if(this.recordModify){
-//            Session session = UserUtils.getSession();
-//            if(session != null)
-//                this.ip = session.getHost();
-//        }
+        this.updateBy = UserUtil.getUserId();
+        this.updateTime = new Date();
     }
 
 
@@ -126,5 +112,13 @@ public class AbstractBasePo implements BasePo {
 
     public void setDelFlag(String delFlag) {
         this.delFlag = delFlag;
+    }
+
+    public boolean isRecordDataChange() {
+        return recordDataChange;
+    }
+
+    public void setRecordDataChange(boolean recordDataChange) {
+        this.recordDataChange = recordDataChange;
     }
 }

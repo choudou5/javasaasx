@@ -15,7 +15,7 @@
   <function>
     <description>获取 用户下拉列表数据</description>
     <name>getUserSelectListData</name>
-    <function-class>com.choudou5.javasaasx.service.impl.util.UserUtil</function-class>
+    <function-class>com.choudou5.javasaasx.base.util.UserUtil</function-class>
     <function-signature>java.util.List getUserSelectListData(java.lang.String))</function-signature>
     <example>${fns:getUserSelectListData(userId)}</example>
   </function>

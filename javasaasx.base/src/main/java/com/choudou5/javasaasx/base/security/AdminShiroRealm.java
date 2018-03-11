@@ -19,7 +19,7 @@ import org.apache.shiro.subject.PrincipalCollection;
  */
 public class AdminShiroRealm extends AuthorizingRealm {
 
-    private CommService commService;//用get set 设值防止注入，不要用 SpringContextHolder.getBean
+    private CommService commService;//用get/set 设值防止注入，不要用 SpringContextHolder.getBean
     public void setCommService(CommService commService) {
         this.commService = commService;
     }

@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.Length;
  * @Author：菜单管理
  * @Date：2018-02-18
  */
-public class SysUserBo implements BaseBo {
+public class SysUserBo implements BaseBo<String> {
 
     /**  用户id */
 	private String id;

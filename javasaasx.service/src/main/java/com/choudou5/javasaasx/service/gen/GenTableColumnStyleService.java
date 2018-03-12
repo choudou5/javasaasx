@@ -1,3 +1,10 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.service.gen;
 
 import com.choudou5.base.bean.SelectBo;
@@ -9,11 +16,8 @@ import java.util.List;
 
 /**
  * @Name：生成表字段样式 接口
- * @Author：xuhaowende@sina.cn
+ * @Author：xuhaowen
  * @Date：2018-01-14
- * @Site：http://solrhome.com
- * @License：MIT
- * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 public interface GenTableColumnStyleService extends BaseService<GenTableColumnStyleBo> {
 

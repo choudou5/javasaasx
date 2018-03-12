@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * @Author：xuhaowen
  * @Date：2018-03-06
  */
-public class SysSettingBo implements BaseBo {
+public class SysSettingBo implements BaseBo<String> {
 
     /**  id */
 	private String id;

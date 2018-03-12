@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
-public class SysMenuBo implements BaseBo, TreeNodeBo {
+public class SysMenuBo implements BaseBo<String>, TreeNodeBo {
 
     /**  id */
 	private String id;

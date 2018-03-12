@@ -53,7 +53,22 @@
 -->
 
 
-  <!-- UIUtil -->
+  <!-- SysUtil -->
+  <function>
+    <description>获取调试</description>
+    <name>getDebugCss</name>
+    <function-class>com.choudou5.javasaasx.common.util.SysUtil</function-class>
+    <function-signature>java.lang.String getDebugCss()</function-signature>
+    <example>${fns:getDebugCss()}</example>
+  </function>
+  <function>
+    <description>是否调试</description>
+    <name>isDebug</name>
+    <function-class>com.choudou5.javasaasx.common.util.SysUtil</function-class>
+    <function-signature>boolean isDebug()</function-signature>
+    <example>${fns:isDebug()}</example>
+  </function>
+
 
   <!-- GenUtil -->
   <function>

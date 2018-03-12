@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * @Author：xuhaowen
  * @Date：2018-03-05
  */
-public class DicSensitiveWordBo implements BaseBo {
+public class DicSensitiveWordBo implements BaseBo<Long> {
 
     /**  id */
 	private Long id;

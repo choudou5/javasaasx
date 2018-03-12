@@ -44,7 +44,7 @@
                                     <div class="tab-pane active" id="tab1">
                                         <div class="col-md-3">
                                             <div class="togglebutton">
-                                                <label> <input type="checkbox" checked>调试模式</label>
+                                                <label> <input type="checkbox" data-switch-url="/sys/sysSetting/debug" value="true" ${fns:isDebug()?'checked':''}>调试模式</label>
                                             </div>
                                         </div>
                                     </div>
@@ -163,6 +163,8 @@
     $(function () {
         //构建数据表格
         buildDataTable();
+
+        FormUtil.bindSwitchAjax();
     });
 </script>
 </html>

@@ -44,6 +44,9 @@ public class StartListener extends ContextLoaderListener {
         event.getServletContext().setAttribute("siteName", siteName);
         super.contextInitialized(event);
         System.out.println("启动 " + siteName + " 系统完毕...");
+
+        //关闭调试模式
+        SysUtil.openDebug(false);
     }
 
     @Override

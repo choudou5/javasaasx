@@ -8,13 +8,16 @@
 package com.choudou5.javasaasx.web.controller.sys;
 
 import com.choudou5.base.annotation.ControllerDesc;
+import com.choudou5.base.exception.BizException;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
+import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.service.sys.SysSettingService;
 import com.choudou5.javasaasx.service.sys.bo.SysSettingBo;
 import com.choudou5.javasaasx.service.sys.bo.SysSettingQueryParam;
 import com.choudou5.javasaasx.web.controller.BaseController;
+import com.choudou5.javasaasx.web.util.RequestUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -22,7 +25,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -129,14 +131,13 @@ public class SysSettingController extends BaseController {
     /**
      * @param id
      * @param req
-     * @param attributes
      * @return
      */
     @ControllerDesc(desc = "删除系统设置", optType = "delete")
     @RequiresPermissions("sys:sysSetting:delete")
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(String id, HttpServletRequest req, RedirectAttributes attributes) {
+    public String delete(String id, HttpServletRequest req) {
         try {
             sysSettingService.logicDeleteById(id);
             return returnOK("删除成功！");
@@ -145,4 +146,25 @@ public class SysSettingController extends BaseController {
         }
     }
 
+
+    /**
+     * @param req
+     * @return
+     */
+    @ControllerDesc(desc = "设置调试", optType = "edit")
+    @RequiresPermissions("sys:sysSetting:edit")
+    @RequestMapping(value = "debug", method = RequestMethod.POST)
+    @ResponseBody
+    public String debug(HttpServletRequest req) {
+        boolean flag = RequestUtil.getBoolParameter(req, "flag", false);
+        String tip = flag?"开启":"关闭";
+        try {
+            if(flag && SysUtil.isDebug())
+                throw new BizException("已开启调试，请刷新F5刷新页面");
+            SysUtil.openDebug(flag);
+            return returnOK("已"+tip+"调试，请刷新F5刷新页面");
+        } catch (Exception e) {
+            return returnFail(e, tip+"调试失败！");
+        }
+    }
 }

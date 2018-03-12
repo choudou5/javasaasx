@@ -2,6 +2,8 @@ package com.choudou5.javasaasx.common.util;
 
 import com.choudou5.base.util.IpUtil;
 import com.choudou5.base.util.PropUtil;
+import com.choudou5.base.util.StrUtil;
+import com.choudou5.javasaasx.common.cache.LocalCacheHelper;
 import com.choudou5.javasaasx.common.constants.CommConsts;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -46,7 +48,33 @@ public class SysUtil {
 		}
 		return model==null?"demo":model;
 	}
-	
+
+	/**
+	 * 是否 调试
+	 * @return
+	 */
+	public static String getDebugCss(){
+		return isDebug()?" hide":"";
+	}
+
+	/**
+	 * 是否 调试
+	 * @return
+	 */
+	public static boolean isDebug(){
+		String cacheKey = "sys.debug";
+		String value = LocalCacheHelper.getLocalInstance().get(cacheKey);
+		return StrUtil.equals("true", value);
+	}
+
+	/**
+	 * 开启 调试
+	 * @return
+	 */
+	public static void openDebug(boolean flag){
+		String cacheKey = "sys.debug";
+		LocalCacheHelper.getLocalInstance().put(cacheKey, flag);
+	}
 	/**
 	 * 获得 生成代码地址
 	 * @return

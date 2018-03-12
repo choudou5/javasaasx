@@ -16,9 +16,6 @@
     <!-- 加载配置属性文件 -->
 	<context:property-placeholder ignore-unresolvable="true" location="classpath:system.properties" />
 
-	<bean id="springContextHolder" class="com.choudou5.javasaasx.base.util.SpringContextHolder" lazy-init="false" destroy-method="destroy" autowire="byType"  />
-
-
 	<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解 -->
 	<context:component-scan base-package="com.choudou5.javasaasx.service.impl"><!-- base-package 如果多个，用“,”分隔 -->
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -122,6 +119,8 @@
 		<constructor-arg name="corpId" value="${dingtalk.corpId}"/>
 		<constructor-arg name="corpSecret" value="${dingtalk.corpSecret}"/>
 	</bean>
+
+	<bean id="springContextHolder" class="com.choudou5.javasaasx.base.util.SpringContextHolder" lazy-init="false" destroy-method="destroy" autowire="byType"  />
 
 	<import resource="spring-context-shiro.xml"/>
 </beans>

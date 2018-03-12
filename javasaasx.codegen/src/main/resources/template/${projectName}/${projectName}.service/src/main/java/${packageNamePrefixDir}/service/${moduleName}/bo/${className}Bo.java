@@ -18,7 +18,7 @@ import java.io.Serializable;
  * @Author：${author}
  * @Date：${createTime}
  */
-public class ${classBOName} implements BaseBo {
+public class ${classBOName} implements BaseBo<${table.pkJavaType}> {
 
 	<#list table.columns as column>
     /**  ${column.columnAlias!} */

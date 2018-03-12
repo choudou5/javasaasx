@@ -17,7 +17,7 @@ import java.io.Serializable;
  * @Author：xuhaowen
  * @Date：2018-02-28
  */
-public class SysOperationLogBo implements BaseBo {
+public class SysOperationLogBo implements BaseBo<String> {
 
     /**  编号 */
 	private String id;

@@ -18,7 +18,7 @@ import java.io.Serializable;
  * @Author：xuhaowen
  * @Date：2018-03-06
  */
-public class SysUserLoginHiBo implements BaseBo {
+public class SysUserLoginHiBo implements BaseBo<String> {
 
     /**  id */
 	private String id;

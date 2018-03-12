@@ -18,7 +18,7 @@ import java.io.Serializable;
  * @Author：xuhaowen
  * @Date：2018-03-06
  */
-public class SysRemoteExceptionBo implements BaseBo {
+public class SysRemoteExceptionBo implements BaseBo<String> {
 
     /**  编号 */
 	private String id;

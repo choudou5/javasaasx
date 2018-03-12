@@ -209,7 +209,7 @@ public class Table implements java.io.Serializable,Cloneable {
 		if(c == null) {
 			return "String";
 		}
-		return c.getJavaType();
+		return c.getSimpleJavaType();
 	}
 	
 	/**使用 getPkColumn()替换 */

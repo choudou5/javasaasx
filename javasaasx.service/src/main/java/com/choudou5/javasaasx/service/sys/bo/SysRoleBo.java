@@ -15,7 +15,7 @@ import com.choudou5.javasaasx.base.bean.BaseBo;
  * @Author：xuhaowen
  * @Date：2018-02-22
  */
-public class SysRoleBo implements BaseBo {
+public class SysRoleBo implements BaseBo<String> {
 
     /**  id */
 	private String id;

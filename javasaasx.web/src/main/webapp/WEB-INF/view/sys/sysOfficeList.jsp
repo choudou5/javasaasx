@@ -26,7 +26,7 @@
                     <table id="datatables" class="table table-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                         <tr>
-                            <th>编号</th>
+                            <th class="${fns:getDebugCss()}">编号</th>
                             <th>名称</th>
                             <th>上级id</th>
                             <th>区域编码</th>
@@ -45,7 +45,7 @@
                         <tbody>
                         <c:forEach items="${pageResult.result}" var="item">
                             <tr>
-                                <td>${item.id}</td>
+                                <td class="${fns:getDebugCss()}">${item.id}</td>
                                 <td>
                                     <shiro:hasPermission name="sys:sysOffice:view">
                                         <a href="javascript:;" onclick="dialogOpenPageView('详情', '${ctx}/sys/sysOffice/view?id=${item.id}');" class="btn btn-simple btn-facebook">${item.name}</a>

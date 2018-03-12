@@ -9,6 +9,8 @@ import java.io.Serializable;
  * @Site：http://solrhome.com
  * @License：MIT
  */
-public interface BaseBo extends Serializable {
+public interface BaseBo<T> extends Serializable {
 
+    T getId();
+    void setId(T id);
 }

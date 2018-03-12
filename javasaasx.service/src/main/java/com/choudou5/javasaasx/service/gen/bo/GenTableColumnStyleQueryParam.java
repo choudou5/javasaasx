@@ -1,14 +1,18 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.service.gen.bo;
 
 import com.choudou5.base.bean.QueryParam;
 
 /**
  * @Name：生成表字段样式 查询对象
- * @Author：xuhaowende@sina.cn
+ * @Author：xuhaowen
  * @Date：2018-01-14
- * @Site：http://solrhome.com
- * @License：MIT
- * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
 public class GenTableColumnStyleQueryParam extends QueryParam {
 

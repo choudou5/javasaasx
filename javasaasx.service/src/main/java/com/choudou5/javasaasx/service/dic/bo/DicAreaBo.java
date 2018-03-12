@@ -17,7 +17,7 @@ import java.io.Serializable;
  * @Author：xuhaowen
  * @Date：2018-03-06
  */
-public class DicAreaBo implements BaseBo {
+public class DicAreaBo implements BaseBo<Integer> {
 
     /**  ID */
 	private Integer id;

@@ -1,3 +1,10 @@
+/*
+* Powered By [javasaasx]
+* Web Site: http://solrhome.com
+* Github Code: https://github.com/choudou5
+* License：MIT
+* Since 2018 - 2020
+*/
 package com.choudou5.javasaasx.service.gen.bo;
 
 import com.choudou5.javasaasx.base.bean.BaseBo;
@@ -6,13 +13,10 @@ import org.hibernate.validator.constraints.Length;
 
 /**
  * @Name：生成表字段样式 业务对象
- * @Author：xuhaowende@sina.cn
+ * @Author：xuhaowen
  * @Date：2018-01-17
- * @Site：http://solrhome.com
- * @License：MIT
- * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */
-public class GenTableColumnStyleBo implements BaseBo {
+public class GenTableColumnStyleBo implements BaseBo<String> {
 
     /**  ID */
 	private String id;

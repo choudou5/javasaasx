@@ -49,7 +49,7 @@
                 <div class="error_ex">
                   <h3>很抱歉，服务器内部错误！</h3>
                   <div class="errorMessage">
-                    错误信息：<%=ex==null?"未知错误.":ex.getMessage()%> <br/> <br/>
+                    错误信息：<span class="text-danger"><%=ex==null?"未知错误.":ex.getMessage()%></span> <br/> <br/>
                     请点击“查看详细信息”按钮，将详细错误信息发送给系统管理员，谢谢！<br/> <br/>
                   </div>
                   <div class="errorMessage scroll-y" style="display: none;height: 400px;">

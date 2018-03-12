@@ -18,7 +18,7 @@
                     <table id="datatables" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <thead>
                         <tr>
-                            <th>用户id</th>
+                            <th class="${fns:getDebugCss()}">用户id</th>
                             <th>公司</th>
                             <th>部门</th>
                             <th>工号</th>
@@ -42,7 +42,7 @@
                         <tbody>
                         <c:forEach items="${pageResult.result}" var="item">
                             <tr>
-                                <td>${item.id} </td>
+                                <td class="${fns:getDebugCss()}">${item.id} </td>
                                 <td>${item.companyId} </td>
                                 <td>${item.officeId} </td>
                                 <td>${item.jobNumber} </td>

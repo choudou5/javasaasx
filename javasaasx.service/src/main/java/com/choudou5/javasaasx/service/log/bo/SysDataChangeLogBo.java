@@ -18,7 +18,7 @@ import java.io.Serializable;
  * @Author：xuhaowen
  * @Date：2018-03-11
  */
-public class SysDataChangeLogBo implements BaseBo {
+public class SysDataChangeLogBo implements BaseBo<String> {
 
     /**  id */
 	private String id;

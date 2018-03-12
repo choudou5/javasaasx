@@ -12,21 +12,21 @@ import com.choudou5.base.bean.QueryParam;
 import com.choudou5.base.exception.BizException;
 import com.choudou5.base.mapper.BeanMapper;
 import com.choudou5.base.page.PageResult;
-import com.choudou5.base.util.AssertUtil;
-import com.choudou5.base.util.CollUtil;
-import com.choudou5.base.util.ReflectionUtil;
+import com.choudou5.base.util.*;
 import com.choudou5.javasaasx.base.bean.AbstractBasePo;
 import com.choudou5.javasaasx.base.bean.BaseBo;
 import com.choudou5.javasaasx.base.dao.BaseDao;
 import com.choudou5.javasaasx.base.service.BaseService;
-import com.choudou5.javasaasx.base.util.SysSeqUtil;
 import com.choudou5.javasaasx.base.util.SysDataChangeUtil;
+import com.choudou5.javasaasx.base.util.SysSeqUtil;
+import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.service.impl.util.SysExceptionUtil;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Name：基础接口 实现
@@ -46,6 +46,8 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
                 po.preInsert();
                 getDao().insert(po);
             }else{
+                if(SysUtil.isDebug())
+                    po.setId(IdSeqUtil.depthDecryptId(po.getId()));
                 //记录 变更信息
                 P oldObj = null;
                 if(po.isRecordDataChange()) {
@@ -96,6 +98,8 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
         try {
             if (CollUtil.isEmpty(list))
                 return;
+            if(SysUtil.isDebug())
+                list.forEach(bo -> {bo.setId(IdSeqUtil.depthDecryptId(bo.getId().toString()));});
             List<P> poList = BeanMapper.mapList(list, getPoClazz());
             for (P po : poList) {
                 getDao().update(po);
@@ -109,6 +113,8 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public void logicDeleteById(String id) throws BizException {
         try {
+            if(SysUtil.isDebug())
+                id = IdSeqUtil.depthDecryptId(id);
             //记录 变更信息
             SysDataChangeUtil.saveDel(getDao().findById(id));
             getDao().logicDeleteById(id);
@@ -121,6 +127,8 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public void logicDeleteByIds(List<String> idList) throws BizException {
         try {
+            if(SysUtil.isDebug())
+                idList = idList.stream().map(str -> IdSeqUtil.depthDecryptId(str)).collect(Collectors.toList());
             getDao().logicDeleteByIds(idList);
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.logicDeleteByIds fail", e);
@@ -132,6 +140,8 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public void delete(String id) throws BizException {
         try {
+            if(SysUtil.isDebug())
+                id = IdSeqUtil.depthDecryptId(id);
             SysDataChangeUtil.saveDel(getDao().findById(id));
             getDao().deleteById(id);
         } catch (Exception e) {
@@ -144,6 +154,8 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public void deleteByIds(List<String> idList) throws BizException {
         try {
+            if(SysUtil.isDebug())
+                idList = idList.stream().map(str -> IdSeqUtil.depthDecryptId(str)).collect(Collectors.toList());
             getDao().deleteByIds(idList);
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.deleteByIds fail", e);
@@ -154,6 +166,8 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public B get(Serializable id) {
         AssertUtil.isNotEmpty(id, "请求ID为空！");
+        if(SysUtil.isDebug())
+            id = IdSeqUtil.depthDecryptId(id.toString());
         P po = getDao().findById(id);
         return po==null?null:BeanMapper.map(po, getBoClazz());
     }
@@ -172,18 +186,24 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
     @Override
     public List<B> findList(QueryParam queryBean) throws BizException {
         List<P> list = getDao().findList(queryBean);
+        if(CollUtil.isNotEmpty(list) && SysUtil.isDebug())
+            list.forEach(po -> {po.setId(IdSeqUtil.depthEncryptId(po.getId()));});
         return BeanMapper.mapList(list, getBoClazz());
     }
 
     @Override
     public List<B> findAll(OrderBean orderBean) throws BizException {
         List<P> list = getDao().findAll(orderBean);
+        if(CollUtil.isNotEmpty(list) && SysUtil.isDebug())
+            list.forEach(po -> {po.setId(IdSeqUtil.depthEncryptId(po.getId()));});
         return BeanMapper.mapList(list, getBoClazz());
     }
 
     @Override
     public List<B> findAll() throws BizException {
         List<P> list = getDao().findAll(null);
+        if(CollUtil.isNotEmpty(list) && SysUtil.isDebug())
+            list.forEach(po -> {po.setId(IdSeqUtil.depthEncryptId(po.getId()));});
         return BeanMapper.mapList(list, getBoClazz());
     }
 

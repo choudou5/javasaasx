@@ -12,6 +12,7 @@ $(function(){
 
 	//输入框 x
 	$('.clearable').clearSearch({ callback: function() { console.log("cleared"); } } );
+
 });
 
 
@@ -1054,6 +1055,21 @@ FormUtil = {
 				}
 			});
 		}, type);
+	},
+	bindSwitchAjax: function(){
+		$("input[type=checkbox][data-switch-url]").on("change", function(){
+			var url = $(this).attr("data-switch-url");
+			var flag = $(this).is(":checked");
+			if(CommUtil.isEmpty(url)){
+				dialogAlert("程序代码有误，请联系管理员", "warning")
+				return;
+			}
+			HttpUtil.ajaxAsyncJsonPost(url, {flag: flag}, function(message){
+				dialogTip(message);
+			});
+		});
+
+
 	}
 
 }

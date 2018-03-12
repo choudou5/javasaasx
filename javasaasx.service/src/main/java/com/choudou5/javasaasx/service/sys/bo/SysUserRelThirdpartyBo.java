@@ -9,12 +9,14 @@ package com.choudou5.javasaasx.service.sys.bo;
 
 import com.choudou5.javasaasx.base.bean.BaseBo;
 
+import java.io.Serializable;
+
 /**
  * @Name：用户关联第三方 业务对象
  * @Author：xuhaowen
  * @Date：2018-02-19
  */
-public class SysUserRelThirdpartyBo implements BaseBo {
+public class SysUserRelThirdpartyBo implements BaseBo<String> {
 
     /**  用户ID */
 	private String userId;
@@ -78,6 +80,15 @@ public class SysUserRelThirdpartyBo implements BaseBo {
 		this.wwxGlobalId = wwxGlobalId;
 	}
 
-	
+
+	@Override
+	public String getId() {
+		return null;
+	}
+
+	@Override
+	public void setId(String id) {
+
+	}
 }
 

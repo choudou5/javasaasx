@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.Length;
  * @Author：xuhaowen
  * @Date：2018-02-18
  */
-public class SysOfficeBo implements BaseBo {
+public class SysOfficeBo implements BaseBo<String> {
 
     /**  编号 */
 	private String id;

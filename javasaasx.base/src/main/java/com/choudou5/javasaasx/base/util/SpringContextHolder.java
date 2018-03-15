@@ -2,24 +2,31 @@ package com.choudou5.javasaasx.base.util;
 
 import com.choudou5.base.bean.MapBuilder;
 import com.choudou5.base.exception.BizException;
+import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEvent;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 
-	private static ApplicationContext applicationContext = null;
-
 	private static Logger logger = LoggerFactory.getLogger(SpringContextHolder.class);
+
+	private static ApplicationContext applicationContext = null;
 
 	/**
 	 * 取得存储在静态变量中的ApplicationContext.
@@ -28,7 +35,6 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 		assertContextInjected();
 		return applicationContext;
 	}
-	
 
 	/**
 	 * 从静态变量applicationContext中取得Bean, 自动转型为所赋值对象的类型.
@@ -164,6 +170,67 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 			}
 		}
 		return MapBuilder.create().result(true, "执行成功", obj);
+	}
+
+
+	private String propsPath = "/conf/system.properties";
+	public String getPropsPath() {
+		return propsPath;
+	}
+	public void setPropsPath(String propsPath) {
+		this.propsPath = propsPath;
+	}
+
+	/** 属性配置 map */
+	private static Map<String, String> propsMap = new HashMap();
+	/**
+	 * 获得 属性配置
+	 * @param key
+	 * @return
+	 */
+	public static String getProp(String key) {
+		if(StringUtils.isNotBlank(key)){
+			return propsMap.get(key);
+		}
+		return null;
+	}
+	/**
+	 * 获得 属性配置 （带断言 空判断）
+	 * @param key
+	 * @return
+	 */
+	public static String getPropByAssert(String key) {
+		String value = null;
+		if(StringUtils.isNotBlank(key)){
+			value = propsMap.get(key);
+			AssertUtil.isNotBlank(value, "未配置属性:"+key);
+		}
+		return value;
+	}
+
+	/**
+	 * 初始化 属性配置
+	 */
+	public void initProps() {
+		assertContextInjected();
+		if(StringUtils.isNotBlank(propsPath)){
+			//读取配置
+			Resource resource = applicationContext.getResource(propsPath);
+			if(resource != null && resource.exists()){
+				try {
+					Properties prop = PropertiesLoaderUtils.loadProperties(resource);
+					if(prop != null && !prop.isEmpty()){
+						for (String key : prop.stringPropertyNames()) {
+							propsMap.put(key, prop.getProperty(key));
+						}
+					}
+					prop = null;
+					resource = null;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }

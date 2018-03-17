@@ -849,14 +849,16 @@ HttpUtil = {
 	ajaxErrorTip: function (e, defMessage){
 		console.log(e);
 		if(e.status == 403){
-			dialogTip("您没有操作权限，请联系管理员！", "error");
+			dialogTip("您没有操作权限，请联系管理员", "error");
 		}else if(e.status == 404){
-			dialogTip("请求不存在, 请联系管理员!", "error");
+			dialogTip("请求不存在, 请联系管理员", "error");
 		}else if(e.status == 500) {
-			dialogTip("服务器内部错误，请联系管理员！", "error");
+			dialogTip("服务器内部错误，请联系管理员", "error");
+		}else if(e.status == 0) {
+			dialogTip("网络故障, 系统出错", "error");
 		}else{
 			if(CommUtil.isNotEmpty(defMessage))
-				dialogTip("服务器内部错误，请联系管理员！", "error");
+				dialogTip("服务器内部错误，请联系管理员", "error");
 		}
 	}
 }

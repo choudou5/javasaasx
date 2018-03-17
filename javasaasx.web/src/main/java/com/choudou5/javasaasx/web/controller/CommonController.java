@@ -80,7 +80,7 @@ public class CommonController extends BaseController{
 //		}
 //		try {
 //			MessageBoardService.add(req, message);
-//			return writeJson(STATUS_OK, "留言成功！");
+//			return writeJson(STATUS_OK, "留言成功");
 //		} catch (Exception e) {
 //			log.error("新增留言失败!", e);
 //			return writeJson(STATUS_ERROR, "亲...留言失败了");

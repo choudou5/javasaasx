@@ -39,7 +39,7 @@ function ajaxRightDataTable(pid){
         },
         bInfo: false,//不显示信息
         language: {
-            "emptyTable": "未找到记录！",
+            "emptyTable": "未找到记录",
             "loadingRecords": "请等待，数据正在加载中......",
         },
         columns: [

@@ -41,7 +41,7 @@ function ajaxRightDataTable(menuId){
         },
         bInfo: false,//不显示信息
         language: {
-            "emptyTable": "找不到记录！",
+            "emptyTable": "找不到记录",
             "loadingRecords": "请等待，数据正在加载中......",
         },
         columns: [
@@ -97,7 +97,7 @@ function ajaxRightDataTable(menuId){
             var checked = $(this).is(":checked");
             var url = "/sys/sysMenu/ajaxUpdate";
             HttpUtil.ajaxAsyncJsonPost(url, {id: id, field: field, flag: checked}, function(data){
-                dialogTip("更新成功！");
+                dialogTip("更新成功");
             });
         });
     }, 500);

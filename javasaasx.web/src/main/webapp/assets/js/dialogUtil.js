@@ -27,14 +27,14 @@ function dialogConfirm(content, href, title, okBtnText, noBtnText){
 
 function dialogConfirmAjaxDel(href, table, tr, tip){
 	if(CommUtil.isEmpty(href)){
-		dialogTip("请求失败，地址有误！", "error");
+		dialogTip("请求失败，地址有误", "error");
 		return;
 	}
 	tip = tip==undefined?'确定删除记录？':tip;
 	layer.confirm(tip, {title: '提示', icon: 3, btn: ["确定", "取消"]}, function(index){
 		layer.close(index);
 		HttpUtil.ajaxAsyncJsonPost(href, {}, function(data){
-			dialogTip("删除成功！");
+			dialogTip("删除成功");
 			table.row(tr).remove().draw();
 		});
 	}, function(){

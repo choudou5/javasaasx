@@ -44,8 +44,8 @@ public abstract class BaseController {
 	protected final int STATUS_ERROR = 500;
 	protected final int STATUS_UNVALID_PARAM = 403;
 
-	public static final String NO_PERMISSION = "对不起，您无权操作！";
-	public static final String DEMO_MODEL_NO_ACTION = "对不起，演示模式 不能操作！";
+	public static final String NO_PERMISSION = "对不起，您无权操作";
+	public static final String DEMO_MODEL_NO_ACTION = "对不起，演示模式 不能操作";
 
 	/**
 	 * 是否 演示模式
@@ -277,7 +277,7 @@ public abstract class BaseController {
 
 	protected String returnFail(RedirectAttributes attributes){
 		Object msgObj = attributes.getFlashAttributes().get("message");
-		String message = "操作失败！";
+		String message = "操作失败";
 		if(msgObj != null)
 			message = msgObj.toString();
 		return returnJson(STATUS_ERROR, null, message, null);

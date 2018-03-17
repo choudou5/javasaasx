@@ -53,7 +53,7 @@ function ajaxRightDataTable(table){
         },
         bInfo: false,//不显示信息
         language: {
-            "emptyTable": "找不到记录！",
+            "emptyTable": "找不到记录",
             "loadingRecords": "请等待，数据正在加载中......",
         },
         columns: [

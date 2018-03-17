@@ -98,7 +98,7 @@ public class SysSettingController extends BaseController {
     @RequestMapping(value = "form", method = RequestMethod.GET)
     public String form(SysSettingBo bo, HttpServletRequest req, Model model) {
         try {
-            AssertUtil.isNotNull(bo, "数据不存在！");
+            AssertUtil.isNotNull(bo, "数据不存在");
             model.addAttribute("sysSettingBo", bo);
         } catch (Exception e) {
             addMessage(model, e);
@@ -122,9 +122,9 @@ public class SysSettingController extends BaseController {
             return returnFail(attributes);
         try {
             sysSettingService.save(sysSettingBo);
-            return returnOK("保存成功！");
+            return returnOK("保存成功");
         } catch (Exception e) {
-            return returnFail(e, "保存失败！");
+            return returnFail(e, "保存失败");
         }
     }
 
@@ -140,9 +140,9 @@ public class SysSettingController extends BaseController {
     public String delete(String id, HttpServletRequest req) {
         try {
             sysSettingService.logicDeleteById(id);
-            return returnOK("删除成功！");
+            return returnOK("删除成功");
         } catch (Exception e) {
-            return returnFail(e, "删除失败！");
+            return returnFail(e, "删除失败");
         }
     }
 
@@ -164,7 +164,7 @@ public class SysSettingController extends BaseController {
             SysUtil.openDebug(flag);
             return returnOK("已"+tip+"调试，请刷新F5刷新页面");
         } catch (Exception e) {
-            return returnFail(e, tip+"调试失败！");
+            return returnFail(e, tip+"调试失败");
         }
     }
 }

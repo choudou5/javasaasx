@@ -93,9 +93,9 @@ public class GenTableColumnStyleController extends BaseController {
             //生成代码
             GenUtil.genCode(genCodeBo);
             genTableColumnStyleService.save(genCodeBo.getColumnStyleList());
-            return returnOK("保存成功！");
+            return returnOK("保存成功");
         } catch (Exception e) {
-            return returnFail(e, "保存失败！");
+            return returnFail(e, "保存失败");
         }
     }
 

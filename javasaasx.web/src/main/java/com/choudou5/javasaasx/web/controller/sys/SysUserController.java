@@ -94,7 +94,7 @@ public class SysUserController extends BaseController {
     public String form(String id, HttpServletRequest req, Model model) {
         try {
             SysUserBo bo = sysUserService.get(id);
-            AssertUtil.isNotNull(bo, "数据不存在！");
+            AssertUtil.isNotNull(bo, "数据不存在");
             model.addAttribute("sysUserBo", bo);
         } catch (Exception e) {
             addMessage(model, e);
@@ -118,9 +118,9 @@ public class SysUserController extends BaseController {
             return returnFail(attributes);
         try {
             sysUserService.save(sysUserBo);
-            return returnOK("保存成功！");
+            return returnOK("保存成功");
         } catch (Exception e) {
-            return returnFail(e, "保存失败！");
+            return returnFail(e, "保存失败");
         }
     }
 
@@ -137,9 +137,9 @@ public class SysUserController extends BaseController {
     public String delete(String id, HttpServletRequest req, RedirectAttributes attributes) {
         try {
 //            sysUserService.logicDeleteById(id);
-            return returnOK("删除成功！");
+            return returnOK("删除成功");
         } catch (Exception e) {
-            return returnFail(e, "删除失败！");
+            return returnFail(e, "删除失败");
         }
     }
 

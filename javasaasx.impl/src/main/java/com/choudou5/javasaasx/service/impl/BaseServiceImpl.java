@@ -80,7 +80,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
             return poList.size();
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.batchUpdate fail", e);
-            throw new BizException("批量更新失败！", e);
+            throw new BizException("批量更新失败", e);
         }
     }
 
@@ -106,7 +106,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
             }
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.batchUpdate fail", e);
-            throw new BizException("批量更新失败！", e);
+            throw new BizException("批量更新失败", e);
         }
     }
 
@@ -120,7 +120,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
             getDao().logicDeleteById(id);
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.logicDeleteById fail", e);
-            throw new BizException("删除失败！", e);
+            throw new BizException("删除失败", e);
         }
     }
 
@@ -132,7 +132,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
             getDao().logicDeleteByIds(idList);
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.logicDeleteByIds fail", e);
-            throw new BizException("批量删除失败！", e);
+            throw new BizException("批量删除失败", e);
         }
     }
 
@@ -146,7 +146,7 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
             getDao().deleteById(id);
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.delete fail", e);
-            throw new BizException("删除失败！", e);
+            throw new BizException("删除失败", e);
         }
     }
 
@@ -159,13 +159,13 @@ public abstract class BaseServiceImpl<P extends AbstractBasePo, B extends BaseBo
             getDao().deleteByIds(idList);
         } catch (Exception e) {
             SysExceptionUtil.error("BaseServiceImpl.deleteByIds fail", e);
-            throw new BizException("批量删除失败！", e);
+            throw new BizException("批量删除失败", e);
         }
     }
 
     @Override
     public B get(Serializable id) {
-        AssertUtil.isNotEmpty(id, "请求ID为空！");
+        AssertUtil.isNotEmpty(id, "请求ID为空");
         if(SysUtil.isDebug())
             id = IdSeqUtil.depthDecryptId(id.toString());
         P po = getDao().findById(id);

@@ -78,9 +78,9 @@ public class DicSensitiveWordController extends BaseController {
         try {
             dicSensitiveWordService.save(dicSensitiveWordBo);
             SensitiveWordUtil.refresh();
-            return returnOK("保存成功！");
+            return returnOK("保存成功");
         } catch (Exception e) {
-            return returnFail(e, "保存失败！");
+            return returnFail(e, "保存失败");
         }
     }
 
@@ -98,9 +98,9 @@ public class DicSensitiveWordController extends BaseController {
         try {
             dicSensitiveWordService.delete(id);
             SensitiveWordUtil.refresh();
-            return returnOK("删除成功！");
+            return returnOK("删除成功");
         } catch (Exception e) {
-            return returnFail(e, "删除失败！");
+            return returnFail(e, "删除失败");
         }
     }
 

@@ -83,7 +83,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuPo, SysMenuBo> im
             }
         } catch (Exception e) {
             SysExceptionUtil.error("save fail", e);
-            throw new BizException("保存失败！", e);
+            throw new BizException("保存失败", e);
         }
     }
 
@@ -144,7 +144,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuPo, SysMenuBo> im
     @Transactional(readOnly=false)
     @Override
     public void logicDeleteById(String id) throws BizException {
-        AssertUtil.isEmpty(findMenuListByPid(id), "存在子菜单，禁止删除！");
+        AssertUtil.isEmpty(findMenuListByPid(id), "存在子菜单，禁止删除");
         dao.logicDeleteByPid(id);
         super.logicDeleteById(id);
     }

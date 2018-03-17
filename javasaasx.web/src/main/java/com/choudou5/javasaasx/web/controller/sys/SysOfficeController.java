@@ -95,7 +95,7 @@ public class SysOfficeController extends BaseController {
     @RequestMapping(value = "form", method = RequestMethod.GET)
     public String form(SysOfficeBo bo, HttpServletRequest req, Model model) {
         try {
-            AssertUtil.isNotNull(bo, "数据不存在！");
+            AssertUtil.isNotNull(bo, "数据不存在");
             model.addAttribute("sysOfficeBo", bo);
         } catch (Exception e) {
             addMessage(model, e);
@@ -119,9 +119,9 @@ public class SysOfficeController extends BaseController {
             return returnFail(attributes);
         try {
             sysOfficeService.save(sysOfficeBo);
-            return returnOK("保存成功！");
+            return returnOK("保存成功");
         } catch (Exception e) {
-            return returnFail(e, "保存失败！");
+            return returnFail(e, "保存失败");
         }
     }
 
@@ -138,9 +138,9 @@ public class SysOfficeController extends BaseController {
     public String delete(String id, HttpServletRequest req, RedirectAttributes attributes) {
         try {
             sysOfficeService.logicDeleteById(id);
-            return returnOK("删除成功！");
+            return returnOK("删除成功");
         } catch (Exception e) {
-            return returnFail(e, "删除失败！");
+            return returnFail(e, "删除失败");
         }
     }
 

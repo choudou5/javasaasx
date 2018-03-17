@@ -43,9 +43,9 @@ public class SysDataController extends BaseController {
     public String synData(HttpServletRequest req) {
         try {
             dingTalkService.synData();
-            return returnOK("同步数据完成！");
+            return returnOK("同步数据完成");
         } catch (Exception e) {
-            return returnFail(e, "同步数据失败！");
+            return returnFail(e, "同步数据失败");
         }
     }
 

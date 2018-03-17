@@ -100,9 +100,9 @@ public class SysRemoteExceptionController extends BaseController {
             return returnFail(attributes);
         try {
 //            sysRemoteExceptionService.save(sysRemoteExceptionBo);
-            return returnOK("修复成功！");
+            return returnOK("修复成功");
         } catch (Exception e) {
-            return returnFail(e, "修复失败！");
+            return returnFail(e, "修复失败");
         }
     }
 
@@ -119,9 +119,9 @@ public class SysRemoteExceptionController extends BaseController {
     public String ignore(String id, HttpServletRequest req, RedirectAttributes attributes) {
         try {
 //            sysRemoteExceptionService.logicDeleteById(id);
-            return returnOK("忽略成功！");
+            return returnOK("忽略成功");
         } catch (Exception e) {
-            return returnFail(e, "忽略失败！");
+            return returnFail(e, "忽略失败");
         }
     }
 

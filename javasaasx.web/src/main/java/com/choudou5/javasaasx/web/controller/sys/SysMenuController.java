@@ -137,9 +137,9 @@ public class SysMenuController extends BaseController {
             return returnFail(attributes);
         try {
             sysMenuService.save(sysMenuBo, perms);
-            return returnOK("保存成功！");
+            return returnOK("保存成功");
         } catch (Exception e) {
-            return returnFail(e, "保存失败！");
+            return returnFail(e, "保存失败");
         }
     }
 
@@ -152,12 +152,12 @@ public class SysMenuController extends BaseController {
         String[] perms = RequestUtil.getStrParameters(req, "perms", ",");
         //数据 验证
         if (!paramValidNull(id, field, flag))
-            return returnFail("请求出错！");
+            return returnFail("请求出错");
         try {
             sysMenuService.updateField(id, field, flag);
-            return returnOK("更新成功！");
+            return returnOK("更新成功");
         } catch (Exception e) {
-            return returnFail(e, "更新失败！");
+            return returnFail(e, "更新失败");
         }
     }
 
@@ -175,9 +175,9 @@ public class SysMenuController extends BaseController {
     public String delete(String id, HttpServletRequest req, RedirectAttributes attributes) {
         try {
             sysMenuService.logicDeleteById(id);
-            return returnOK("删除成功！");
+            return returnOK("删除成功");
         } catch (Exception e) {
-            return returnFail(e, "删除失败！");
+            return returnFail(e, "删除失败");
         }
     }
 

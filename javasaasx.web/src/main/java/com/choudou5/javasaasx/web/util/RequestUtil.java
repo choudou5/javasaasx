@@ -323,7 +323,7 @@ public class RequestUtil {
                 break;
         }
         if (CollUtil.isEmpty(result)) {
-            throw new Exception("没有上传文件！");
+            throw new Exception("没有上传文件");
         }
         return result;
     }

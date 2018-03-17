@@ -181,7 +181,7 @@ var logging_handler = function( response, text_status, xhr )
             success : function(){
                 $(".selector-holder.open .selector a.trigger").text(level);
                 $(".selector-holder.open .selector .close").trigger('click');
-                dialogTip("设置成功！");
+                dialogTip("设置成功");
             }
           }
         );

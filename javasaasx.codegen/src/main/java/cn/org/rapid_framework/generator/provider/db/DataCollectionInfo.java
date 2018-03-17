@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @Name：数据连接
  * @Author：xuhaowende@sina.cn
  * @Date：2018-01-14
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */

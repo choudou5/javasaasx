@@ -1,6 +1,6 @@
 /*
 * Powered By [javasaasx]
-* Web Site: http://solrhome.com
+* Web Site: http://www.javasaas.top
 * Github Code: https://github.com/choudou5
 * License：MIT
 * Since 2018 - 2020
@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
  * @Name：日志拦截器
  * @Author：xuhaowen
  * @Date：2018-02-28
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */

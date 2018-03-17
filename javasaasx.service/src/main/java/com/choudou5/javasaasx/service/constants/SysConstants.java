@@ -4,7 +4,7 @@ package com.choudou5.javasaasx.service.constants;
  * @Name：系统 常量
  * @Author：xuhaowende
  * @Date：2018-01-18
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */

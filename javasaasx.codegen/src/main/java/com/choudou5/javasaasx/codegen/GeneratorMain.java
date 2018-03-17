@@ -57,7 +57,7 @@ public class GeneratorMain {
 
 		//作者
 		GeneratorProperties.setProperty("author", author);
-		GeneratorProperties.setProperty("site", "http://solrhome.com");
+		GeneratorProperties.setProperty("site", "http://www.javasaas.top");
 		GeneratorProperties.setProperty("createTime", DateUtil.today());
 		GeneratorProperties.setProperty("copyright", "xuhaowende@sina.cn (@Copyright 2018-2020)");
 		GeneratorProperties.setProperty("license", "MIT");

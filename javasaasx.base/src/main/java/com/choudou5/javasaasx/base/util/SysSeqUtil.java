@@ -6,7 +6,7 @@ import com.choudou5.base.util.IdSeqUtil;
  * @Name：系统序列工具类
  * @Author：xuhaowen
  * @Date：2018-01-20
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */

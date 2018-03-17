@@ -7,7 +7,7 @@ import com.choudou5.base.util.PropUtil;
  * @Name：系统属性配置 常量
  * @Author：xuhaowende@sina.cn
  * @Date：2018-01-14
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */

@@ -13,7 +13,7 @@ import java.util.List;
  * @Name：基础 接口
  * @Author：xuhaowende
  * @Date：2018-01-13 16:22
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  */
 public interface BaseService <B extends BaseBo>{

@@ -19,7 +19,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * @Name：日志工具类
  * @Author：xuhaowen
  * @Date：2018-02-28
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */

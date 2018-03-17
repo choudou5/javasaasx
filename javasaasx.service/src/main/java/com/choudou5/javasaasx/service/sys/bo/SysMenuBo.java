@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * @Name：菜单表 业务对象
  * @Author：xuhaowen
  * @Date：2018-01-21
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */

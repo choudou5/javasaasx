@@ -1,6 +1,6 @@
 /*
 * Powered By [javasaasx]
-* Web Site: http://solrhome.com
+* Web Site: http://www.javasaas.top
 * Github Code: https://github.com/choudou5
 * License：MIT
 * Since 2018 - 2020
@@ -250,16 +250,16 @@ public abstract class BaseController {
 		return returnJson(statusCode, null, message);
 	}
 
-	protected String returnOK(Object obj){
-		return returnJson(STATUS_OK, obj, "成功");
+	protected String returnOK(Object data){
+		return returnJson(STATUS_OK, data, "成功");
 	}
 
 	protected String returnOK(String message){
 		return returnJson(STATUS_OK, null, message);
 	}
 
-	protected String returnOK(Object obj, String message){
-		return returnJson(STATUS_OK, obj, message);
+	protected String returnOK(Object data, String message){
+		return returnJson(STATUS_OK, data, message);
 	}
 
 	protected String returnFail(Object obj, String message){
@@ -287,14 +287,14 @@ public abstract class BaseController {
 		return returnJson(STATUS_ERROR, null, message, null);
 	}
 
-	protected String returnJson(int statusCode, Object obj, String message){
-		return returnJson(statusCode, obj, message, null);
+	protected String returnJson(int statusCode, Object data, String message){
+		return returnJson(statusCode, data, message, null);
 	}
 
-	protected String returnJson(int statusCode, Object obj, String message, Exception e){
+	protected String returnJson(int statusCode, Object data, String message, Exception e){
 		Map<String, Object> result = new HashMap<String, Object>(6);
 		result.put("statusCode", statusCode);
-		result.put("obj", obj);
+		result.put("data", data);
 		result.put("message", message);
 		if(e != null) {
 			logger.error(message, e);

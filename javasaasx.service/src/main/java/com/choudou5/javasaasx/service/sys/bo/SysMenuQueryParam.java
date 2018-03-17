@@ -6,7 +6,7 @@ import com.choudou5.base.bean.QueryParam;
  * @Name：菜单表 查询对象
  * @Author：xuhaowen
  * @Date：2018-01-18
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */

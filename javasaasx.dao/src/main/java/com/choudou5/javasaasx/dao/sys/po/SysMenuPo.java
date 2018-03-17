@@ -7,7 +7,7 @@ import com.choudou5.javasaasx.base.bean.AbstractBasePo;
  * @Name：菜单表 Po
  * @Author：xuhaowen
  * @Date：2018-01-21
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  * @Copyright：xuhaowende@sina.cn (@Copyright 2018-2020)
  */

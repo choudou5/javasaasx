@@ -799,7 +799,7 @@ HttpUtil = {
 			success: function (data) {
 				if(data.statusCode == 200){
 					if(typeof succCall == 'function'){
-						succCall(CommUtil.isEmpty(data.obj)?data.message:data.obj);
+						succCall(CommUtil.isEmpty(data.data)?data.message:data.data);
 					}else if(typeof succCall == 'string'){
 						dialogTip(succCall);
 					}else{

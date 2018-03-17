@@ -9,7 +9,7 @@ import java.util.Date;
  * @Name：抽象 基础Po类
  * @Author：xuhaowende@sina.cn
  * @Date：2018-01-14 13:30
- * @Site：http://solrhome.com
+ * @Site：http://www.javasaas.top
  * @License：MIT
  */
 public class AbstractBasePo implements BasePo {

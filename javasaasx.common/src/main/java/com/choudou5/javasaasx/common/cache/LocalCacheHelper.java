@@ -11,6 +11,12 @@ public class LocalCacheHelper extends EhCacheUtil {
 
     private static LocalCacheHelper ehCache;
 
+    public LocalCacheHelper() {
+        if (ehCache== null) {
+            ehCache= new LocalCacheHelper(CONF_PATH);
+        }
+    }
+
     public LocalCacheHelper(String path) {
         super(path);
     }

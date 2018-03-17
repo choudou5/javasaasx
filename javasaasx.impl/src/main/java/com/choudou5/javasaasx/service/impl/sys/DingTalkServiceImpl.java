@@ -7,30 +7,32 @@
 */
 package com.choudou5.javasaasx.service.impl.sys;
 
-import com.alibaba.dingtalk.openapi.auth.AuthService;
 import com.alibaba.dingtalk.openapi.department.DepartmentHelper;
+import com.alibaba.dingtalk.openapi.message.LinkMessage;
 import com.alibaba.dingtalk.openapi.role.RoleHelper;
 import com.alibaba.dingtalk.openapi.user.UserHelper;
-import com.alibaba.dingtalk.openapi.utils.HttpHelper;
-import com.alibaba.fastjson.JSONObject;
 import com.choudou5.base.exception.BizException;
+import com.choudou5.base.mapper.BeanMapper;
+import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.CollUtil;
 import com.choudou5.base.util.ObjUtil;
 import com.choudou5.base.util.StrUtil;
-import com.choudou5.javasaasx.common.cache.GlobalCacheHelper;
-import com.choudou5.javasaasx.common.constants.CommConsts;
 import com.choudou5.javasaasx.base.security.PasswordUtil;
+import com.choudou5.javasaasx.base.util.SysSeqUtil;
+import com.choudou5.javasaasx.common.constants.CommConsts;
 import com.choudou5.javasaasx.common.util.CommUtil;
 import com.choudou5.javasaasx.dao.sys.SysRoleDao;
 import com.choudou5.javasaasx.dao.sys.SysUserRoleDao;
 import com.choudou5.javasaasx.dao.sys.po.SysRolePo;
 import com.choudou5.javasaasx.dao.sys.po.SysUserRolePo;
-import com.choudou5.javasaasx.base.util.SysSeqUtil;
 import com.choudou5.javasaasx.service.impl.util.SysExceptionUtil;
+import com.choudou5.javasaasx.service.message.MessageTpGroupService;
 import com.choudou5.javasaasx.service.sys.DingTalkService;
 import com.choudou5.javasaasx.service.sys.SysOfficeService;
 import com.choudou5.javasaasx.service.sys.SysUserService;
 import com.choudou5.javasaasx.service.sys.bo.*;
+import com.com.choudou5.message.dingtalk.service.DingTalkAuthService;
+import com.com.choudou5.message.dingtalk.service.DingTalkChatService;
 import com.dingtalk.api.model.corp.CorpRole;
 import com.dingtalk.api.model.corp.CorpUserDetailExt;
 import com.dingtalk.api.model.corp.CorpUserDetailListExt;
@@ -50,7 +52,7 @@ import java.util.Map;
  * @Date：2018-01-13
  */
 @Service("dingTalkService")
-public class DingTalkServiceImpl implements DingTalkService, AuthService {
+public class DingTalkServiceImpl implements DingTalkService {
 
     @Autowired
     private SysUserService sysUserService;
@@ -60,17 +62,13 @@ public class DingTalkServiceImpl implements DingTalkService, AuthService {
     private SysRoleDao sysRoleDao;
     @Autowired
     private SysUserRoleDao sysUserRoleDao;
+    @Autowired
+    private MessageTpGroupService messageTpGroupService;
+    @Autowired
+    private DingTalkAuthService dingTalkAuthService;
+    @Autowired
+    private DingTalkChatService dingTalkChatService;
 
-
-    private final String CACHE_KEY = "dingtalk_auth_accesstoken";
-     //企业应用接入秘钥相关
-    private String corpId;
-    private String corpSecret;
-
-    public DingTalkServiceImpl(String corpId, String corpSecret) {
-        this.corpId = corpId;
-        this.corpSecret = corpSecret;
-    }
 
     private int getOfficeDepth(Map<String, Integer> tree, String id, String pid){
         Integer depth = tree.get(pid);
@@ -88,7 +86,7 @@ public class DingTalkServiceImpl implements DingTalkService, AuthService {
     @Transactional(readOnly = false)
     @Override
     public void synData() {
-        String accessToken = getAccessToken();
+        String accessToken = dingTalkAuthService.getAccessToken();
         try {
             //同步 角色数据
             synRoleData(accessToken);
@@ -98,6 +96,27 @@ public class DingTalkServiceImpl implements DingTalkService, AuthService {
             SysExceptionUtil.error("同步钉钉部门失败", e);
             throw new BizException(e.getMessage());
         }
+    }
+
+    @Override
+    public String create(String chatName, String owner, List<String> userIdlist) {
+        return dingTalkChatService.create(chatName, owner, userIdlist);
+    }
+
+    @Override
+    public void sendTextMsg(String bizType, String text) {
+        AssertUtil.isNotBlank(text, "消息不能为空");
+        String chatId = messageTpGroupService.getCode(bizType);
+        AssertUtil.isNotBlank(chatId, "钉钉群组未配置业务:"+bizType);
+        dingTalkChatService.sendTextMsg(chatId, text);
+    }
+
+    @Override
+    public void sendLinkMsg(String bizType, DingLinkMessageBo messageBo) {
+        String chatId = messageTpGroupService.getCode(bizType);
+        AssertUtil.isNotBlank(chatId, "钉钉群组未配置业务:"+bizType);
+        LinkMessage message = BeanMapper.map(messageBo, LinkMessage.class);
+        dingTalkChatService.sendLinkMsg(chatId, message);
     }
 
     private void synDeptData(String accessToken) throws Exception {
@@ -207,50 +226,4 @@ public class DingTalkServiceImpl implements DingTalkService, AuthService {
         }
     }
 
-
-    @Override
-    public String getAccessToken() {
-        String cacheKey = "/data/cache/dingtalk/accessToken.txt";
-        String accessToken = GlobalCacheHelper.getGlobalInstance().get(cacheKey);
-        if(StrUtil.isBlank(accessToken))
-            accessToken = httpGetAccessToken();
-        return accessToken;
-    }
-
-    private String httpGetAccessToken(){
-        String accessToken = null;
-        String url = "/gettoken?corpid="+corpId+"&corpsecret="+corpSecret;
-        try {
-            JSONObject accessTokenJson = HttpHelper.httpGet(url);
-            accessToken = accessTokenJson.getString("access_token");
-            if(StrUtil.isNotBlank(accessToken))
-                GlobalCacheHelper.getGlobalInstance().put(CACHE_KEY, accessToken, 3600);
-        } catch (Exception e) {
-            SysExceptionUtil.error("获取钉钉accessToken失败", e);
-        }
-        return accessToken;
-    }
-
-
-    @Override
-    public String getNoCacheAccessToken() {
-        return httpGetAccessToken();
-    }
-
-    @Override
-    public String getSsoToken() {
-        String ssoToken = null;
-//        try {
-//            String url = "/sso/gettoken?corpid=" + corpId + "&corpsecret=" + ssoSecret;
-//            JSONObject response = HttpHelper.httpGet(url);
-//            if (response.containsKey("access_token")) {
-//                ssoToken = response.getString("access_token");
-//            } else {
-//                throw new OApiException("Sso_token");
-//            }
-//        } catch (OApiException e) {
-//            e.printStackTrace();
-//        }
-        return ssoToken;
-    }
 }

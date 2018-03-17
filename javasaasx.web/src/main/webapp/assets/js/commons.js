@@ -803,7 +803,11 @@ HttpUtil = {
 					}else if(typeof succCall == 'string'){
 						dialogTip(succCall);
 					}else{
-						dialogTip("succCall参数不能为空", "error");
+						if(CommUtil.isEmpty(data.data) && succCall==undefined){
+							dialogTip(data.message);
+						}else{
+							dialogTip("succCall参数不能为空", "error");
+						}
 					}
 				}else{
 					log("error:"+data.exception);

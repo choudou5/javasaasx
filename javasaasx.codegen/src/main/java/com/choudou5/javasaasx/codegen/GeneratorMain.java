@@ -29,8 +29,8 @@ public class GeneratorMain {
 	public static void main(String[] args) throws Exception {
 		String outDir = "D:\\data\\code_out";
 		String author = "xuhaowen";
-		String moduleName = "log";
-		String table = "sys_data_change_log";
+		String moduleName = "message";
+		String table = "message_tp_group";
 		genCode(outDir, author, moduleName, table);
 	}
 

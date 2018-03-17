@@ -61,6 +61,9 @@
                         <li>
                             <a href="javascript:;" href-url="${ctx }/sys/sysOffice">机构管理</a>
                         </li>
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/message/messageTpGroup/test">第三方群组</a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -154,7 +157,7 @@
                             <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">公告管理</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }timeline.jsp">留言板</a>
+                            <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">公告管理</a>
                         </li>
                     </ul>
                 </div>

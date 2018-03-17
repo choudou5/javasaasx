@@ -9,6 +9,5 @@ public interface CacheConsts {
 	String CACHE_TO_DISK = "persistentDisk";
 
 	String CACHE_KEY_GEN_TABLE = "genTable";
-	
-	
+
 }

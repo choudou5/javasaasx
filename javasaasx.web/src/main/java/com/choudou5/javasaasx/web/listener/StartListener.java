@@ -13,8 +13,10 @@ import com.choudou5.javasaasx.base.logging.LogWatcher;
 import com.choudou5.javasaasx.base.logging.logback.CustomEventFilter;
 import com.choudou5.javasaasx.base.logging.logback.LogbackWatcher;
 import com.choudou5.javasaasx.base.logging.util.LogAdminHelper;
+import com.choudou5.javasaasx.common.cache.GlobalCacheHelper;
 import com.choudou5.javasaasx.common.constants.SysPropConsts;
 import com.choudou5.javasaasx.common.util.SysUtil;
+import com.choudou5.javasaasx.service.impl.util.SensitiveWordUtil;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -31,18 +33,24 @@ public class StartListener extends ContextLoaderListener {
     private LogAdminHelper loggingHandler = null;
     @Override
     public void contextInitialized(ServletContextEvent event) {
+
+        super.contextInitialized(event);
+
         //注册 日志观察者
         LogWatcher watcher = new LogbackWatcher();
         watcher.registerListener(new ListenerConfig(50));//保留50条最新日志
         CustomEventFilter.setWatcher(watcher);
         LogAdminHelper.setWatcher(watcher);
 
+        //敏感词
+        SensitiveWordUtil.initCache();
+
         String siteName = SysUtil.getSiteName();
         QueryParam.setDbName(SysPropConsts.JDBC_TPYE);
 
         System.out.println("正在启动 " + siteName + " 系统...");
         event.getServletContext().setAttribute("siteName", siteName);
-        super.contextInitialized(event);
+
         System.out.println("启动 " + siteName + " 系统完毕...");
 
         //关闭调试模式

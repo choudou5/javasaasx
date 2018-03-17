@@ -67,6 +67,16 @@ function dialogTip(title, type, autoCloseTime, align){
 }
 
 /**
+ * 提示框
+ * @param title
+ * @param autoCloseTime 自动关闭时间（毫秒）
+ * @param algin t/r/b/l/lt/lb/rt/rb  默认：auto
+ */
+function dialogTipError(title, autoCloseTime, align){
+	return dialogTip(title, "error", autoCloseTime, align);
+}
+
+/**
  * 提示 文本
  * @param title
  * @param autoCloseTime 自动关闭时间（毫秒）

@@ -59,10 +59,10 @@ public class GenTableColumnStyleServiceImpl extends BaseServiceImpl<GenTableColu
 
     private static List<Table> init(){
         DataCollectionInfo collectionInfo = new DataCollectionInfo();
-        collectionInfo.setUrl(PropUtil.getString(SysPropConsts.JDBC_URL));
-        collectionInfo.setUsername(PropUtil.getString(SysPropConsts.JDBC_USERNAME));
-        collectionInfo.setPassword(PropUtil.getString(SysPropConsts.JDBC_PASSWORD));
-        collectionInfo.setDriverClass(PropUtil.getString(SysPropConsts.JDBC_DRIVER));
+        collectionInfo.setUrl(PropUtil.getStr(SysPropConsts.JDBC_URL));
+        collectionInfo.setUsername(PropUtil.getStr(SysPropConsts.JDBC_USERNAME));
+        collectionInfo.setPassword(PropUtil.getStr(SysPropConsts.JDBC_PASSWORD));
+        collectionInfo.setDriverClass(PropUtil.getStr(SysPropConsts.JDBC_DRIVER));
         List<Table> tables = TableFactory.getInstance().getAllTables(collectionInfo);
         cache.put(CacheConsts.CACHE_KEY_GEN_TABLE, tables);
         return tables;

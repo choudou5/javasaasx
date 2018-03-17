@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.message.MessageTpGroupDao" >
+    <resultMap id="RM_MessageTpGroup" type="com.choudou5.javasaasx.dao.message.po.MessageTpGroupPo">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="tpType" column="tp_type"/>
+        <result property="bizType" column="biz_type"/>
+        <result property="name" column="name"/>
+        <result property="ownerId" column="owner_id"/>
+        <result property="memberIds" column="member_ids"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="env" column="env"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `code`, `tp_type`, `biz_type`, `name`, `owner_id`, `member_ids`, `create_by`, `create_time`, `env`, `status`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            <!--
+            eg: AND title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+                <if test="paramBean.id != null and paramBean.id != ''">
+                    AND `id` = #{paramBean.id}
+                </if>
+                <if test="paramBean.code != null and paramBean.code != ''">
+                    AND `code` = #{paramBean.code}
+                </if>
+                <if test="paramBean.tpType != null and paramBean.tpType != ''">
+                    AND `tp_type` = #{paramBean.tpType}
+                </if>
+                <if test="paramBean.bizType != null and paramBean.bizType != ''">
+                    AND `biz_type` = #{paramBean.bizType}
+                </if>
+                <if test="paramBean.env != null and paramBean.env != ''">
+                    AND `env` = #{paramBean.env}
+                </if>
+                <if test="paramBean.status == null or paramBean.status == ''">
+                    AND `status` = 1
+                </if>
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO message_tp_group (
+        <if test="id != null">`id`</if>
+        <if test="code != null">,`code`</if>
+        <if test="tpType != null">,`tp_type`</if>
+        <if test="bizType != null">,`biz_type`</if>
+        <if test="name != null">,`name`</if>
+        <if test="ownerId != null">,`owner_id`</if>
+        <if test="memberIds != null">,`member_ids`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+        <if test="env != null">,`env`</if>
+        <if test="status != null">,`status`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="code != null">,#{code}</if>
+        <if test="tpType != null">,#{tpType}</if>
+        <if test="bizType != null">,#{bizType}</if>
+        <if test="name != null">,#{name}</if>
+        <if test="ownerId != null">,#{ownerId}</if>
+        <if test="memberIds != null">,#{memberIds}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+        <if test="env != null">,#{env}</if>
+        <if test="status != null">,#{status}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO message_tp_group (
+        `id`
+        ,`code`
+        ,`tp_type`
+        ,`biz_type`
+        ,`name`
+        ,`owner_id`
+        ,`member_ids`
+        ,`create_by`
+        ,`create_time`
+        ,`env`
+        ,`status`
+        ) VALUES
+        <foreach collection="list" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.code}
+        ,#{entity.tpType}
+        ,#{entity.bizType}
+        ,#{entity.name}
+        ,#{entity.ownerId}
+        ,#{entity.memberIds}
+        ,#{entity.createBy}
+        ,#{entity.createTime}
+        ,#{entity.env}
+        ,#{entity.status}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE message_tp_group SET
+            `code` = #{code} ,
+            `tp_type` = #{tpType} ,
+            `biz_type` = #{bizType} ,
+            `name` = #{name} ,
+            `owner_id` = #{ownerId} ,
+            `member_ids` = #{memberIds} ,
+            `env` = #{env} ,
+            `status` = #{status} 
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM message_tp_group
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM message_tp_group
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM message_tp_group
+        <include refid="where"/>
+    </delete>
+
+
+    <select id="findById" resultMap="RM_MessageTpGroup">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM message_tp_group
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM message_tp_group
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_MessageTpGroup">
+        SELECT <include refid="columns"/>
+        FROM message_tp_group
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_MessageTpGroup">
+        SELECT <include refid="columns"/>
+        FROM message_tp_group
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_MessageTpGroup">
+        SELECT <include refid="columns"/>
+        FROM message_tp_group
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="dbName == 'mysql'">limit 1</if>
+    </select>
+
+
+</mapper>
+
+

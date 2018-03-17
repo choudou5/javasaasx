@@ -195,6 +195,19 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 		return null;
 	}
 	/**
+	 * 获得 属性配置
+	 * @param key
+	 * @return
+	 */
+	public static String getProp(String key, String def) {
+		String value = null;
+		if(StrUtil.isNotBlank(key))
+			value = propsMap.get(key);
+		if(StrUtil.isBlank(value))
+			value = def;
+		return value;
+	}
+	/**
 	 * 获得 属性配置 （带断言 空判断）
 	 * @param key
 	 * @return

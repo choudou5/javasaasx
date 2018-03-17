@@ -55,7 +55,7 @@
             return;
         }
         HttpUtil.ajaxAsyncJsonPost("/dic/dicSensitiveWord/test", {text: text}, function(data){
-            var text = $("#wordOut").text(data);
+            var text = $("#wordOut").val(data);
         });
     }
 </script>

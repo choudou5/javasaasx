@@ -128,12 +128,13 @@ INSERT INTO `gen_table_column_style` VALUES ('955451293655240704', 'dic_sensitiv
 INSERT INTO `gen_table_column_style` VALUES ('955451293655240705', 'dic_sensitive_word', 'word', '敏感词', 'word', '0', '0', '1', '0', 'eq', 'input', '', '1');
 
 -- ----------------------------
--- Table structure for `message_group`
+-- Table structure for `message_tp_group`
 -- ----------------------------
-DROP TABLE IF EXISTS `message_group`;
-CREATE TABLE `message_group` (
+DROP TABLE IF EXISTS `message_tp_group`;
+CREATE TABLE `message_tp_group` (
   `id` varchar(64) NOT NULL COMMENT 'id',
-  `type` varchar(32) NOT NULL COMMENT '类型',
+  `code` varchar(64) NOT NULL COMMENT '编码',
+  `tp_type` varchar(32) NOT NULL COMMENT '第三方类型',
   `biz_type` varchar(32) NOT NULL COMMENT '业务类型',
   `group_key` varchar(64) NOT NULL COMMENT '群组key',
   `name` varchar(36) NOT NULL COMMENT '群组名',
@@ -144,10 +145,10 @@ CREATE TABLE `message_group` (
   `env` varchar(10) NOT NULL DEFAULT 'test' COMMENT '环境: test/product',
   `status` char(1) DEFAULT '0' COMMENT '状态: 0=禁用，1=正常',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='消息群';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='第三方消息群';
 
 -- ----------------------------
--- Records of message_group
+-- Records of message_tp_group
 -- ----------------------------
 
 -- ----------------------------

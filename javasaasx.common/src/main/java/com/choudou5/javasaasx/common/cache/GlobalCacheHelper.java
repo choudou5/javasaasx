@@ -9,12 +9,17 @@ import com.choudou5.cache.ehcache.EhCacheUtil;
  */
 public class GlobalCacheHelper extends EhCacheUtil {
 
+    public GlobalCacheHelper() {
+//        if (ehCache== null) {
+            ehCache= new GlobalCacheHelper(CONF_PATH);
+//        }
+    }
+
     public GlobalCacheHelper(String path) {
         super(path);
     }
 
     private static GlobalCacheHelper ehCache;
-
     public static GlobalCacheHelper getGlobalInstance() {
         if (ehCache== null) {
             ehCache= new GlobalCacheHelper(CONF_PATH);

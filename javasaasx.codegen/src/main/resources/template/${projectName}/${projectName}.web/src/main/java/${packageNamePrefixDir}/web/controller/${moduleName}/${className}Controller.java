@@ -93,7 +93,7 @@ public class ${className}Controller extends BaseController {
     @RequestMapping(value = "form", method = RequestMethod.GET)
     public String form(${classBOName} bo, HttpServletRequest req, Model model) {
         try {
-            AssertUtil.isNotNull(bo, "数据不存在！");
+            AssertUtil.isNotNull(bo, "数据不存在");
             model.addAttribute("${classBONameLower}", bo);
         } catch (Exception e) {
             addMessage(model, e);
@@ -117,16 +117,15 @@ public class ${className}Controller extends BaseController {
             return returnFail(attributes);
         try {
             ${classService}.save(${classBONameLower});
-            return returnOK("保存成功！");
+            return returnOK("保存成功");
         } catch (Exception e) {
-            return returnFail(e, "保存失败！");
+            return returnFail(e, "保存失败");
         }
     }
 
     /**
      * @param id
      * @param req
-     * @param attributes
      * @return
      */
     @ControllerDesc(desc = "删除${table.remarks}", optType = "delete")
@@ -136,9 +135,9 @@ public class ${className}Controller extends BaseController {
     public String delete(String id, HttpServletRequest req) {
         try {
             ${classService}.logicDeleteById(id);
-            return returnOK("删除成功！");
+            return returnOK("删除成功");
         } catch (Exception e) {
-            return returnFail(e, "删除失败！");
+            return returnFail(e, "删除失败");
         }
     }
 

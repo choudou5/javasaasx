@@ -13,12 +13,12 @@ import com.choudou5.base.util.PropUtil;
  */
 public interface SysPropConsts {
 
-	String PROP_KEY_SIG = PropUtil.getString("system.sig.key");
+	String PROP_KEY_SIG = PropUtil.getStr("system.sig.key");
 	
 	String KEY_ADMIN_EMAIL = "system.admin.email";
 	String SESSION_KEY_USER = "sess_key";
 
-	String JDBC_TPYE = PropUtil.getString("jdbc.type");
+	String JDBC_TPYE = PropUtil.getStr("jdbc.type");
 	String JDBC_DRIVER = "jdbc.driver";
 	String JDBC_URL = "jdbc.url";
 	String JDBC_USERNAME = "jdbc.username";

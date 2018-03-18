@@ -32,7 +32,7 @@
                                     <div class="col-sm-2">
                                         <div class="card-content bd-grey pd-10">
                                             <h4 class="card-title">系统用户</h4>
-                                            <div class="material-datatables">
+                                            <div class="material-datatables table-responsive">
                                                 <input type="text" class="form-control input-sm" id="filter" placeholder="搜索...">
                                                 <div class="form-group scroll-y h-max-580 h-min-450">
                                                     <table id="leftDatatables" class="table table-bordered table-hover"  data-filter="#filter" data-page-size="100" cellspacing="0" width="100%" style="width:100%">

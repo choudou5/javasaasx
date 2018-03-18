@@ -261,12 +261,12 @@ public class Table implements java.io.Serializable,Cloneable {
 		return GeneratorMain.DEL_FLAG_NORMAL;
 	}
 
-	public boolean isFieldNotNull(String field){
-		Column column = this.columns.getByColumnName(field);
+	public boolean isFieldNotNull(String columnName){
+		Column column = this.columns.getBySqlName(columnName);
 		if(column != null){
 			return !column.isNullable();
 		}
-		return true;
+		return false;
 	}
 
 	/**

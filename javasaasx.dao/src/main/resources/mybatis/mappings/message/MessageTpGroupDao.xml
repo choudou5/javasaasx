@@ -12,13 +12,12 @@
         <result property="memberIds" column="member_ids"/>
         <result property="createBy" column="create_by"/>
         <result property="createTime" column="create_time"/>
-        <result property="env" column="env"/>
         <result property="status" column="status"/>
     </resultMap>
 
     <sql id="columns">
     <![CDATA[
-        `id`, `code`, `tp_type`, `biz_type`, `name`, `owner_id`, `member_ids`, `create_by`, `create_time`, `env`, `status`
+        `id`, `code`, `tp_type`, `biz_type`, `name`, `owner_id`, `member_ids`, `create_by`, `create_time`, `status`
     ]]>
     </sql>
 
@@ -39,9 +38,6 @@
                 </if>
                 <if test="paramBean.bizType != null and paramBean.bizType != ''">
                     AND `biz_type` = #{paramBean.bizType}
-                </if>
-                <if test="paramBean.env != null and paramBean.env != ''">
-                    AND `env` = #{paramBean.env}
                 </if>
                 <if test="paramBean.status == null or paramBean.status == ''">
                     AND `status` = 1
@@ -66,7 +62,6 @@
         <if test="memberIds != null">,`member_ids`</if>
         <if test="createBy != null">,`create_by`</if>
         <if test="createTime != null">,`create_time`</if>
-        <if test="env != null">,`env`</if>
         <if test="status != null">,`status`</if>
         ) VALUES (
         <if test="id != null">#{id}</if>
@@ -78,7 +73,6 @@
         <if test="memberIds != null">,#{memberIds}</if>
         <if test="createBy != null">,#{createBy}</if>
         <if test="createTime != null">,#{createTime}</if>
-        <if test="env != null">,#{env}</if>
         <if test="status != null">,#{status}</if>
         )
      </insert>
@@ -94,7 +88,6 @@
         ,`member_ids`
         ,`create_by`
         ,`create_time`
-        ,`env`
         ,`status`
         ) VALUES
         <foreach collection="list" item="entity" index="index" separator="," >
@@ -108,7 +101,6 @@
         ,#{entity.memberIds}
         ,#{entity.createBy}
         ,#{entity.createTime}
-        ,#{entity.env}
         ,#{entity.status}
         )
         </foreach>
@@ -123,8 +115,7 @@
             `name` = #{name} ,
             `owner_id` = #{ownerId} ,
             `member_ids` = #{memberIds} ,
-            `env` = #{env} ,
-            `status` = #{status} 
+            `status` = #{status}
         WHERE
             id = #{id} 
     ]]>

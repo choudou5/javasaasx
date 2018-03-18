@@ -48,7 +48,7 @@
                             <div class="card-content bd-grey">
                                 <h4 class="card-title">字段设计</h4>
                                 <form id="inputForm" class="form-horizontal" onsubmit="return ajaxSubmitForm()">
-                                <div class="material-datatables">
+                                <div class="material-datatables table-responsive">
                                     <table id="datatables" class="table table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%; max-height: 600px;">
                                         <thead>
                                         <tr>
@@ -78,7 +78,7 @@
                                         </div>
                                        <%-- <div class="col-md-2">
                                             <div class="form-group label-floating is-empty">
-                                                <sys:treeselect name="menuId" value="" labelValue="" dialogTitle="挑选挂载菜单" ajaxJsonUrl="/sys/sysMenu/ajaxParentTree"/>
+                                                <sys:choose name="menuId" value="" labelValue="" dialogTitle="挑选挂载菜单" ajaxJsonUrl="/sys/sysMenu/ajaxParentTree"/>
                                             </div>
                                         </div>--%>
                                         <div class="col-md-2">

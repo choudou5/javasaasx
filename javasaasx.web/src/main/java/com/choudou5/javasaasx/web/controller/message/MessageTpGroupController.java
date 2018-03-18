@@ -177,6 +177,8 @@ public class MessageTpGroupController extends BaseController {
     @ResponseBody
     public String send(String bizType, String message, HttpServletRequest req) {
         try {
+            if(!"dingtalk".equals(bizType))
+                returnFail("暂未集成"+bizType+"消息");
             dingTalkService.sendTextMsg(bizType, message);
             return returnOK("发送成功");
         } catch (Exception e) {

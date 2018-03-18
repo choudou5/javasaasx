@@ -21,12 +21,12 @@
                     <b class="caret"></b>
                 </a>
                 <div class="collapse" id="collapseExample">
-                    <ul class="nav">
-                        <li>
-                            <a href="javascript:;" href-url="${ctx }/sys/user/updateProfile">编辑资料</a>
+                    <ul class="nav layui-nav layui-nav-tree" lay-filter="side">
+                        <li class="layui-nav-item">
+                            <a href="javascript:;" href-url="${ctx }/viewPage/sys/userProfile">编辑资料</a>
                         </li>
-                        <li>
-                            <a href="javascript:;" href-url="${ctx }/sys/user/updatePwd">修改密码</a>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;" href-url="${ctx }/viewPage/sys/sysUserUpdatePwd">修改密码</a>
                         </li>
                     </ul>
                 </div>
@@ -62,7 +62,7 @@
                             <a href="javascript:;" href-url="${ctx }/sys/sysOffice">机构管理</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctx }/message/messageTpGroup/test">第三方群组</a>
+                            <a href="javascript:;" href-url="${ctx }/message/messageTpGroup">第三方群组</a>
                         </li>
                     </ul>
                 </div>

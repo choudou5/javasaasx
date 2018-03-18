@@ -7,9 +7,9 @@
 */
 package com.choudou5.javasaasx.service.message.bo;
 
+import com.choudou5.javasaasx.base.bean.BaseBo;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import com.choudou5.javasaasx.base.bean.BaseBo;
 
 /**
  * @Name：第三方消息群 业务对象
@@ -36,8 +36,6 @@ public class MessageTpGroupBo implements BaseBo<String> {
 	private String createBy;
     /**  创建时间 */
 	private java.util.Date createTime;
-    /**  环境: test/product */
-	private String env;
     /**  状态: 0=禁用，1=正常 */
 	private String status;
 
@@ -48,10 +46,9 @@ public class MessageTpGroupBo implements BaseBo<String> {
 			setId(id);
 	}
 
-	public MessageTpGroupBo(String tpType, String bizType, String env) {
+	public MessageTpGroupBo(String tpType, String bizType) {
 		this.tpType = tpType;
 		this.bizType = bizType;
-		this.env = env;
 	}
 
 	public String getId() {
@@ -61,8 +58,6 @@ public class MessageTpGroupBo implements BaseBo<String> {
 		this.id = id;
 	}
 
-	@NotBlank(message="编码不能为空")
-	@Length(min=1, max=64, message="编码长度必须介于 1 和 64 之间")
 	public String getCode() {
 		return this.code;
 	}
@@ -125,15 +120,6 @@ public class MessageTpGroupBo implements BaseBo<String> {
 	}
 	public void setCreateTime(java.util.Date createTime) {
 		this.createTime = createTime;
-	}
-
-	@NotBlank(message="环境: test/product不能为空")
-	@Length(min=1, max=10, message="环境: test/product长度必须介于 1 和 10 之间")
-	public String getEnv() {
-		return this.env;
-	}
-	public void setEnv(String env) {
-		this.env = env;
 	}
 
 	public String getStatus() {

@@ -8,6 +8,7 @@
 package com.choudou5.javasaasx.web.controller.sys;
 
 import com.choudou5.base.annotation.ControllerDesc;
+import com.choudou5.base.bean.SelectBo;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Name：系统机构 Controller
@@ -64,9 +66,13 @@ public class SysOfficeController extends BaseController {
     @RequestMapping(value = {"list", ""})
     public String list(SysOfficeQueryParam queryParam, HttpServletRequest req, Model model) {
         queryParam.setDefParam(1, 200, "create_time", "desc");
-        PageResult<SysOfficeBo> pageResult = sysOfficeService.findPage(queryParam);
-        model.addAttribute("pageResult", pageResult);
-        return "/sys/sysOfficeList";
+
+//        List<SelectBo> list = sysOfficeService.getTableList();
+//        model.addAttribute("leftDataList", list);
+        return "/sys/sysOfficeListTree";
+//        PageResult<SysOfficeBo> pageResult = sysOfficeService.findPage(queryParam);
+//        model.addAttribute("pageResult", pageResult);
+//        return "/sys/sysOfficeList";
     }
 
     /**

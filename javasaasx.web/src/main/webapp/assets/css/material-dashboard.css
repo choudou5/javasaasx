@@ -5327,6 +5327,16 @@ h6, .h6 {
   text-decoration: none;
 }
 
+.title a,
+.card-title a{
+  color: #337ab7;
+}
+
+.title a:hover,
+.card-title a:hover{
+  color: #23527c;
+}
+
 .card-blog .card-title {
   font-weight: 700;
 }
@@ -5360,9 +5370,12 @@ h2.title {
 .text-info {
   color: #00bcd4;
 }
-
 .text-rose {
   color: #e91e63;
+}
+
+.text-black {
+  color: #555;
 }
 
 .text-gray {
@@ -6981,7 +6994,6 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 a:hover, a:focus {
   text-decoration: none;
 }
-
 a.text-info:hover, a.text-info:focus {
   color: #00a5bb;
 }
@@ -7588,12 +7600,12 @@ label.control-label {
   font-size: 11px;
 }
 .form-group.label-floating label.control-label, .form-group.label-placeholder label.control-label {
-  top: 5px;
+  /*top: 5px;*/
   font-size: 14px;
   line-height: 1.42857;
 }
 .form-group.label-static label.control-label, .form-group.label-floating.is-focused label.control-label, .form-group.label-floating:not(.is-empty) label.control-label {
-  top: -20px;
+  top: -30px;
   left: 0;
   font-size: 11px;
   line-height: 1.07143;

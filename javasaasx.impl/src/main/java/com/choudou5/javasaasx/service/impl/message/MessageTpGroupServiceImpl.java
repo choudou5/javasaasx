@@ -7,8 +7,6 @@
 */
 package com.choudou5.javasaasx.service.impl.message;
 
-import com.choudou5.base.util.PropUtil;
-import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.base.dao.BaseDao;
 import com.choudou5.javasaasx.common.cache.GlobalCacheHelper;
 import com.choudou5.javasaasx.dao.message.MessageTpGroupDao;
@@ -43,9 +41,9 @@ public class MessageTpGroupServiceImpl extends BaseServiceImpl<MessageTpGroupPo,
         String tpType = "dingtalk";
         String cacheKey = tpType+"_msg_group";
         String code = GlobalCacheHelper.getGlobalInstance().get(cacheKey);
-        if(StrUtil.isNotBlank(code))
-            return code.replace("\"", "");
-        MessageTpGroupBo groupBo = new MessageTpGroupBo(tpType, bizType, PropUtil.getStr("system.env", "test"));
+//        if(StrUtil.isNotBlank(code))
+//            return code.replace("\"", "");
+        MessageTpGroupBo groupBo = new MessageTpGroupBo(tpType, bizType);
         MessageTpGroupBo bo = findOne(new MessageTpGroupQueryParam(groupBo));
         if(bo != null)
             code = bo.getCode();

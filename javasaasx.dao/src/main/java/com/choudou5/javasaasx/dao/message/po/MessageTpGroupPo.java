@@ -41,10 +41,6 @@ public class MessageTpGroupPo extends AbstractBasePo{
      */
     private String memberIds;
     /**
-     * 数据库字段：env 环境: test/product
-     */
-    private String env;
-    /**
      * 数据库字段：status 状态: 0=禁用，1=正常
      */
     private String status;
@@ -91,12 +87,6 @@ public class MessageTpGroupPo extends AbstractBasePo{
     }
     public void setMemberIds(String memberIds) {
         this.memberIds = memberIds;
-    }
-    public String getEnv() {
-        return this.env;
-    }
-    public void setEnv(String env) {
-        this.env = env;
     }
     public String getStatus() {
         return this.status;

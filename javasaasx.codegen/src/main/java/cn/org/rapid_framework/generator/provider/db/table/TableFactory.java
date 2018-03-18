@@ -138,7 +138,7 @@ public class TableFactory {
 				obj.setShowType(rs.getString("show_type"));
 				obj.setDicType(rs.getString("dic_type"));
 				obj.setSort(rs.getInt("sort"));
-				obj.setNotNull(table.isFieldNotNull(rs.getString("field_name")));
+				obj.setNotNull(table.isFieldNotNull(rs.getString("column")));
 				result.add(obj);
 			}
 		} catch (SQLException e) {

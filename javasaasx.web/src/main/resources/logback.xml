@@ -4,7 +4,7 @@
     <property scope="system" name="LOG_DIR" value="/data/logs" />
 
     <appender name="CONSOLE_LOG" class="ch.qos.logback.core.ConsoleAppender">
-        <filter class="com.choudou5.javasaasx.base.logging.logback.CustomEventFilter">
+        <filter class="com.choudou5.log.admin.logback.CustomEventFilter">
     	<!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
             <level>INFO</level>
             <onMatch>DENY</onMatch>

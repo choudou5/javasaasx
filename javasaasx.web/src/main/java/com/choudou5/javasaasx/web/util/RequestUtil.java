@@ -241,7 +241,7 @@ public class RequestUtil {
     public static List<Long> getLongParameterList(HttpServletRequest request, String paramName) {
         List<Long> list = new ArrayList<Long>(5);
         Map map = request.getParameterMap();
-        String[] strs = request.getParameterValues(paramName+"[]");
+        String[] strs = request.getParameterValues(paramName + "[]");
         if(ArrayUtil.isEmpty(strs))
             strs = request.getParameterValues(paramName);
         if(ArrayUtil.isNotEmpty(strs)){
@@ -326,6 +326,20 @@ public class RequestUtil {
             throw new Exception("没有上传文件");
         }
         return result;
+    }
+
+    /**
+     * 判断请求是否是ajax请求
+     * @param request
+     * @return
+     */
+    public static boolean isAjax(HttpServletRequest request){
+        Enumeration<String> headerNames = request.getHeaderNames();
+        String accept = request.getHeader("accept");
+        if(accept != null && accept.indexOf("application/json") > -1 || (request.getHeader("X-Requested-With") != null && request.getHeader("X-Requested-With").indexOf("XMLHttpRequest") > -1)){
+            return true;
+        }
+        return false;
     }
 
 }

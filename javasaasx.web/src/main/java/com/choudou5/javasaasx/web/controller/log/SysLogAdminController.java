@@ -8,9 +8,9 @@
 package com.choudou5.javasaasx.web.controller.log;
 
 import com.choudou5.base.annotation.ControllerDesc;
-import com.choudou5.javasaasx.base.logging.util.LogAdminHelper;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import com.choudou5.javasaasx.web.util.RequestUtil;
+import com.choudou5.log.admin.util.LogAdminHelper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;

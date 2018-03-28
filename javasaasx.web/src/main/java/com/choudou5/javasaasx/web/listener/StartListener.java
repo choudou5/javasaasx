@@ -8,15 +8,14 @@
 package com.choudou5.javasaasx.web.listener;
 
 import com.choudou5.base.bean.QueryParam;
-import com.choudou5.javasaasx.base.logging.ListenerConfig;
-import com.choudou5.javasaasx.base.logging.LogWatcher;
-import com.choudou5.javasaasx.base.logging.logback.CustomEventFilter;
-import com.choudou5.javasaasx.base.logging.logback.LogbackWatcher;
-import com.choudou5.javasaasx.base.logging.util.LogAdminHelper;
-import com.choudou5.javasaasx.common.cache.GlobalCacheHelper;
 import com.choudou5.javasaasx.common.constants.SysPropConsts;
 import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.service.impl.util.SensitiveWordUtil;
+import com.choudou5.log.admin.ListenerConfig;
+import com.choudou5.log.admin.LogWatcher;
+import com.choudou5.log.admin.logback.CustomEventFilter;
+import com.choudou5.log.admin.logback.LogbackWatcher;
+import com.choudou5.log.admin.util.LogAdminHelper;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -30,7 +29,6 @@ import javax.servlet.ServletContextEvent;
  */
 public class StartListener extends ContextLoaderListener {
 
-    private LogAdminHelper loggingHandler = null;
     @Override
     public void contextInitialized(ServletContextEvent event) {
 

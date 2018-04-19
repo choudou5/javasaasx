@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%@include file="/include/cssLib.jsp" %>
     <link rel="stylesheet" href="${ctxStatic }/iframe/layui/css/layui.css" />
+    <link rel="stylesheet" href="${ctxStatic }/iframe/loading.css" />
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper" id="frame" style="opacity: 0;">
     <%@include file="/include/sidebar.jsp" %>
     <div class="main-panel">
         <%@include file="/include/sidebarHead.jsp" %>

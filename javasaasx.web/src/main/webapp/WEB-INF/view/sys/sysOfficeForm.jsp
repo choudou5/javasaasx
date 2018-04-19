@@ -19,19 +19,19 @@
                             <form:hidden path="id"/>
                             <div class="card-content">
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="name" class="form-control input-required" required="true" placeholder=" 名称*"/>
+                                    <form:input type="text" path="name" class="form-control" required="true" placeholder=" 名称*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="pid" class="form-control input-required" required="true" placeholder=" 上级id*"/>
+                                    <form:input type="text" path="pid" class="form-control" required="true" placeholder=" 上级id*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="ppath" class="form-control input-required" required="true" placeholder=" 父路径*"/>
+                                    <form:input type="text" path="ppath" class="form-control" required="true" placeholder=" 父路径*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="depth" class="form-control input-required" required="true" placeholder=" 层级深度*"/>
+                                    <form:input type="text" path="depth" class="form-control" required="true" placeholder=" 层级深度*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="sort" class="form-control input-required" required="true" placeholder=" 排序*"/>
+                                    <form:input type="text" path="sort" class="form-control" required="true" placeholder=" 排序*"/>
                                 </div>
                                 <div class="form-group label-floating">
                                 </div>
@@ -47,16 +47,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="address" class="form-control input-required" required="true" placeholder=" 联系地址*"/>
+                                    <form:input type="text" path="address" class="form-control" required="true" placeholder=" 联系地址*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="master" class="form-control input-required" required="true" placeholder=" 负责人*"/>
+                                    <form:input type="text" path="master" class="form-control" required="true" placeholder=" 负责人*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="tel" class="form-control input-required" required="true" placeholder=" 电话*"/>
+                                    <form:input type="text" path="tel" class="form-control" required="true" placeholder=" 电话*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="remarks" class="form-control input-required" required="true" placeholder=" 备注信息*"/>
+                                    <form:input type="text" path="remarks" class="form-control" required="true" placeholder=" 备注信息*"/>
                                 </div>
                                 <div class="form-group label-floating">
                                     <div class="togglebutton">

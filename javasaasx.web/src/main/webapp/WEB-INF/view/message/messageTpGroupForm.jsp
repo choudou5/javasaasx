@@ -25,10 +25,10 @@
                                     </form:select>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="bizType" class="form-control input-required" required="true" placeholder=" 业务key*"/>
+                                    <form:input type="text" path="bizType" class="form-control" required="true" placeholder=" 业务key*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="name" class="form-control input-required" required="true" placeholder=" 群组名*"/>
+                                    <form:input type="text" path="name" class="form-control" required="true" placeholder=" 群组名*"/>
                                 </div>
                                 <div class="form-group label-floating">
                                     <%--<form:input type="text" path="ownerId" class="form-control input-required" required="true" placeholder=" 群主*"/>--%>

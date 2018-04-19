@@ -200,6 +200,9 @@ public class DingTalkServiceImpl implements DingTalkService {
 
     private void synRoleData(String accessToken) throws Exception {
         List<CorpRoleListResponse.RoleGroups> list = RoleHelper.getRoleList(accessToken, 100, 0);
+        if(CollUtil.isEmpty(list)){
+            return;
+        }
         String groupName = null;
         for (CorpRoleListResponse.RoleGroups roleGroup : list) {
             groupName = roleGroup.getGroupName();

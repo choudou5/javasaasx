@@ -11,34 +11,13 @@
         <a href="#" class="simple-text">${siteName}</a>
     </div>
     <div class="sidebar-wrapper">
-        <div class="user">
-            <div class="photo">
-                <img src="${ctxStaticImg }avatar.jpg" />
-            </div>
-            <div class="info">
-                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                    ${user_session.email }
-                    <b class="caret"></b>
-                </a>
-                <div class="collapse" id="collapseExample">
-                    <ul class="nav layui-nav layui-nav-tree" lay-filter="side">
-                        <li class="layui-nav-item">
-                            <a href="javascript:;" href-url="${ctx }/viewPage/sys/userProfile">编辑资料</a>
-                        </li>
-                        <li class="layui-nav-item">
-                            <a href="javascript:;" href-url="${ctx }/viewPage/sys/sysUserUpdatePwd">修改密码</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <ul class="nav layui-nav layui-nav-tree" lay-filter="side">
-            <li class="layui-this layui-nav-item">
-                <a href="javascript:;" href-url="${ctx }/sys/index">
+            <%--<li class="layui-this layui-nav-item">
+                <a href="javascript:;" href-url="${ctx }/index">
                     <i class="layui-icon">&#xe629;</i>
                     <p>控制台</p>
                 </a>
-            </li>
+            </li>--%>
             <li class="layui-nav-item">
                 <a data-toggle="collapse" href="#sysExamples">
                     <i class="layui-icon">&#xe620;</i>
@@ -52,14 +31,14 @@
                         <li>
                             <a href="javascript:;" href-url="${ctx }/sys/sysSetting">系统设置</a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="javascript:;" href-url="${ctx }/sys/sysUser">用户管理</a>
-                        </li>
+                        </li>--%>
                         <li>
                             <a href="javascript:;" href-url="${ctx }/sys/sysRole">角色管理</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctx }/sys/sysOffice">机构管理</a>
+                            <a href="javascript:;" href-url="${ctx }/sys/sysOffice">通讯录</a>
                         </li>
                         <li>
                             <a href="javascript:;" href-url="${ctx }/message/messageTpGroup">第三方群组</a>

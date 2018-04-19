@@ -13,9 +13,6 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header card-header-icon" data-background-color="rose">
-                    <i class="material-icons">perm_identity</i>
-                </div>
                 <div class="card-content">
                     <h4 class="card-title">编辑资料 -
                         <small class="category">完善你的资料</small>
@@ -104,7 +101,7 @@
             <div class="card card-profile">
                 <div class="card-avatar">
                     <a href="#pablo">
-                        <img class="img" src="${ctxStaticImg }marc.jpg" />
+                        <img class="img" src="${ctxStaticImg }avatar.jpg" />
                         <input type="file" name="..." />
                     </a>
                 </div>

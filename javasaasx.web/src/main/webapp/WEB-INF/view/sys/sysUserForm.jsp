@@ -6,92 +6,73 @@
     <title>admin-菜单管理</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%@include file="/include/cssLib.jsp" %>
-    <link rel="stylesheet" href="${ctxStatic }/jstree/3.3.5/dist/themes/default/style.min.css" />
 </head>
 
 <body>
-    <div class="wrapper">
-        <%@include file="/include/sidebar.jsp" %>
-        <div class="main-panel">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card" style="margin: 10px 0;">
-                            <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="sysMenuBo" action="" method="POST">
-                                <form:hidden path="id"/>
-                                <form:hidden path="type"/>
-                                <div class="card-content">
-                                    <div class="form-group label-floating ${isShowParent?'':'hide'}">
-                                        <form:hidden path="pid" value="${pid}"/>
-                                        <label class="control-label">父节点</label>
-                                        <div id="parentTree" class="demo">
-                                            <ul>
-                                                <li data-jstree='{"opened":true}'>Root node
-                                                    <ul>
-                                                        <li data-jstree='{ "selected" : true }'>Child node 1</li>
-                                                        <li>Child node 2</li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="form-group label-floating">
-                                        <form:input path="name" class="form-control" required="true" placeholder="名称*"/>
-                                    </div>
-                                    <div class="form-group label-floating">
-                                        <form:input path="permission" required="true" class="form-control" placeholder="权限标识*"/>
-                                    </div>
-                                    <div class="form-group label-floating">
-                                        <ul class="nav nav-tabs" data-tabs="tabs">
-                                            <li class="active">
-                                                <a href="#typeMenu" data-toggle="tab" onclick="FormUtil.setInputVal('#type', 'menu')">菜单</a>
-                                            </li>
-                                            <li class="">
-                                                <a href="#typeButton" data-toggle="tab" onclick="FormUtil.setInputVal('#type', 'buttom')">按钮</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="typeMenu">
-                                            <div class="form-group label-floating">
-                                                <form:input path="href" class="form-control" required="true" placeholder="链接*"/>
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <form:input path="icon" class="form-control" placeholder="请使用 fa fa- "/>
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <form:textarea path="remarks" class="form-control" rows="1" placeholder="备注"/>
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <div class="checkbox checkbox-inline">
-                                                    <label class="text-success">权限：</label>
-                                                </div>
-                                                <input type="text" name="perms" value="查看,新增,修改,删除" class="tagsinput" data-role="tagsinput" data-color="rose" />
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="typeButton"></div>
-                                    </div>
-                                    <div class="form-group label-floating">
-                                        <div class="togglebutton">
-                                          <span>手机端显示:</span>
-                                          <label>
-                                              <form:checkbox path="isMobileShow" value="1" />
-                                          </label>
-                                          <span>状态:</span>
-                                          <label>
-                                              <form:checkbox path="status" checked="checked" value="1" />
-                                          </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form:form>
-                            <!-- end content-->
-                        </div>
-                        <!--  end card  -->
-                    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="margin: 10px 0;">
+                    <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="sysUserBo" action="" method="POST">
+                        <form:hidden path="id"/>
+                        <div class="card-content">
+                            <div class="form-group label-floating">
+                                <form:input path="name" class="form-control" required="true" placeholder="姓名 *"/>
+                            </div>
+                            <div class="form-group label-floating">
+                                <form:input path="englishName" class="form-control" required="true" placeholder="英文名 *"/>
+                            </div>
+                            <div class="form-group label-floating">
+                                <form:password path="password" required="true" class="form-control" placeholder="密码 *"/>
+                            </div>
+                            <div class="form-group label-floating">
+                                <form:input path="mobile" class="form-control" placeholder="手机"/>
+                            </div>
+                            <div class="form-group label-floating">
+                                <form:input path="phone" class="form-control" placeholder="电话"/>
+                            </div>
+                            <div class="form-group label-floating">
+                                <form:input path="email" class="form-control" placeholder="邮箱"/>
+                            </div>
+                            <div class="form-group label-floating">
+                                <form:input path="position" class="form-control" placeholder="职位"/>
+                            </div>
+                            <div class="form-group label-floating">
+                                <form:input path="remarks" class="form-control" placeholder="备注"/>
+                            </div>
 
+                            <div class="form-group label-floating">
+                                <div class="togglebutton">
+                                    <span>管理员:</span>
+                                    <label>
+                                        <form:checkbox path="isAdmin" value="1" />
+                                    </label>
+                                    <span>老板:</span>
+                                    <label>
+                                        <form:checkbox path="isBoss" checked="checked" value="1" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group label-floating">
+                                <span>性别:</span>
+                                <div class="radio checkbox-inline">
+                                    <label>
+                                        <input type="radio" name="gender" value="1">男
+                                    </label>
+                                </div>
+                                <div class="radio checkbox-inline">
+                                    <label>
+                                        <input type="radio" name="gender" value="2">女
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form:form>
+                    <!-- end content-->
                 </div>
+                <!--  end card  -->
             </div>
+
         </div>
     </div>
 </body>

@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-content">
                 <div class="toolbar">
-                    <button id="addBtn" onclick="FormUtil.bindFormAddBtn('添加角色')" data-href="${ctx}/sys/sysRole/form" class="btn btn-success btn-sm"><i class="fa fa-plus"></i>&nbsp;添加</button>
+                    <button id="addBtn" onclick="FormUtil.bindFormAddBtn('添加角色')" data-href="${ctx}/sys/sysRole/form" class="btn btn-success btn-simple btn-sm"><i class="fa fa-plus"></i>&nbsp;添加</button>
                 </div>
                 <div class="material-datatables">
                     <table id="datatables" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%" style="width:100%">

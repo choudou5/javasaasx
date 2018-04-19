@@ -19,28 +19,28 @@
                             <form:hidden path="id"/>
                             <div class="card-content">
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="typeCode" class="form-control input-required" required="true" placeholder=" 类型code*"/>
+                                    <form:input type="text" path="typeCode" class="form-control" required="true" placeholder=" 类型code*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="code" class="form-control input-required" required="true" placeholder=" code*"/>
+                                    <form:input type="text" path="code" class="form-control" required="true" placeholder=" code*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="name" class="form-control input-required" required="true" placeholder=" 名称*"/>
+                                    <form:input type="text" path="name" class="form-control" required="true" placeholder=" 名称*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="value" class="form-control input-required" required="true" placeholder=" 值*"/>
+                                    <form:input type="text" path="value" class="form-control" required="true" placeholder=" 值*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="remark" class="form-control input-required" required="true" placeholder=" 备注*"/>
+                                    <form:input type="text" path="remark" class="form-control" required="true" placeholder=" 备注*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="ext1" class="form-control input-required" required="true" placeholder=" 预留字段1*"/>
+                                    <form:input type="text" path="ext1" class="form-control" required="true" placeholder=" 预留字段1*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="ext2" class="form-control input-required" required="true" placeholder=" 预留字段2*"/>
+                                    <form:input type="text" path="ext2" class="form-control" required="true" placeholder=" 预留字段2*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="ext3" class="form-control input-required" required="true" placeholder=" 预留字段3*"/>
+                                    <form:input type="text" path="ext3" class="form-control" required="true" placeholder=" 预留字段3*"/>
                                 </div>
                                 <div class="form-group label-floating">
                                     <div class="togglebutton">

@@ -88,7 +88,7 @@
                 <div class="toolbar">
                     <div class="row">
                         <div class="col-md-12">
-                            <button id="addBtn" onclick="FormUtil.bindFormAddBtn('添加系统设置')" data-href="${ctx}/sys/sysSetting/form" class="btn btn-success btn-sm"><i class="fa fa-plus"></i>&nbsp;添加</button>
+                            <button id="addBtn" onclick="FormUtil.bindFormAddBtn('添加系统设置')" data-href="${ctx}/sys/sysSetting/form" class="btn btn-success btn-simple btn-sm"><i class="fa fa-plus"></i>&nbsp;添加</button>
                         </div>
                     </div>
                 </div>

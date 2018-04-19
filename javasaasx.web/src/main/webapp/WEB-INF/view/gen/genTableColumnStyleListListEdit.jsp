@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group label-floating  is-empty">
-                                                <input type="text" required name="moduleName" class="form-control input-required" placeholder="模块(如sys)">
+                                                <input type="text" required name="moduleName" class="form-control" placeholder="模块(如sys)">
                                             </div>
                                         </div>
                                         <div class="col-md-2">

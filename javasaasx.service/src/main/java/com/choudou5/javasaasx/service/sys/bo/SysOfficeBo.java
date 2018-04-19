@@ -7,6 +7,7 @@
 */
 package com.choudou5.javasaasx.service.sys.bo;
 
+import com.choudou5.base.util.tree.model.TreeNodeBo;
 import com.choudou5.javasaasx.base.bean.BaseBo;
 import org.hibernate.validator.constraints.Length;
 
@@ -15,7 +16,7 @@ import org.hibernate.validator.constraints.Length;
  * @Author：xuhaowen
  * @Date：2018-02-18
  */
-public class SysOfficeBo implements BaseBo<String> {
+public class SysOfficeBo implements BaseBo<String>, TreeNodeBo {
 
     /**  编号 */
 	private String id;
@@ -83,6 +84,7 @@ public class SysOfficeBo implements BaseBo<String> {
 	public String getName() {
 		return this.name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -214,6 +216,10 @@ public class SysOfficeBo implements BaseBo<String> {
 		this.delFlag = delFlag;
 	}
 
-	
+	@Override
+	public String getParentId() {
+		return getPid();
+	}
+
 }
 

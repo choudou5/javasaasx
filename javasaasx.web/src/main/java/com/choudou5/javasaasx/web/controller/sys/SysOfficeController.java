@@ -8,13 +8,14 @@
 package com.choudou5.javasaasx.web.controller.sys;
 
 import com.choudou5.base.annotation.ControllerDesc;
-import com.choudou5.base.bean.SelectBo;
-import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
+import com.choudou5.base.util.tree.TreeHelper;
 import com.choudou5.javasaasx.service.sys.SysOfficeService;
+import com.choudou5.javasaasx.service.sys.SysUserService;
 import com.choudou5.javasaasx.service.sys.bo.SysOfficeBo;
 import com.choudou5.javasaasx.service.sys.bo.SysOfficeQueryParam;
+import com.choudou5.javasaasx.service.sys.bo.SysUserBo;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Name：系统机构 Controller
@@ -39,6 +41,8 @@ public class SysOfficeController extends BaseController {
 
     @Autowired
     private SysOfficeService sysOfficeService;
+    @Autowired
+    private SysUserService sysUserService;
 
 
     /**
@@ -66,10 +70,15 @@ public class SysOfficeController extends BaseController {
     @RequestMapping(value = {"list", ""})
     public String list(SysOfficeQueryParam queryParam, HttpServletRequest req, Model model) {
         queryParam.setDefParam(1, 200, "create_time", "desc");
+        List<SysOfficeBo> leftList = sysOfficeService.findAll();
+        Map<String, Object> leftTree = TreeHelper.buildTreeData(leftList, "总部");
+        model.addAttribute("leftDataList", leftTree);
+        List<SysUserBo> list = sysUserService.findAll();
+        model.addAttribute("list", list);
+        return "/sys/sysOfficeListTree";
 
 //        List<SelectBo> list = sysOfficeService.getTableList();
 //        model.addAttribute("leftDataList", list);
-        return "/sys/sysOfficeListTree";
 //        PageResult<SysOfficeBo> pageResult = sysOfficeService.findPage(queryParam);
 //        model.addAttribute("pageResult", pageResult);
 //        return "/sys/sysOfficeList";

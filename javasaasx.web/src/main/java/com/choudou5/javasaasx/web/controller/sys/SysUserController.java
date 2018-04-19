@@ -83,7 +83,6 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * @param id
      * @param req
      * @param model
      * @return
@@ -91,9 +90,8 @@ public class SysUserController extends BaseController {
     @ControllerDesc(desc = "编辑系统用户", optType = "edit")
     @RequiresPermissions("sys:sysUser:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
-    public String form(String id, HttpServletRequest req, Model model) {
+    public String form(SysUserBo bo, HttpServletRequest req, Model model) {
         try {
-            SysUserBo bo = sysUserService.get(id);
             AssertUtil.isNotNull(bo, "数据不存在");
             model.addAttribute("sysUserBo", bo);
         } catch (Exception e) {

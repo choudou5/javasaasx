@@ -15,7 +15,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+
             <a class="navbar-brand" href="#">【控制台】 </a>
+      <%--      <a class="navbar-brand" href="#">【会员】 </a>
+            <a class="navbar-brand" href="#">【监控】 </a>
+            --%>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right" lay-filter="side-top">
@@ -54,7 +58,13 @@
                         <i class="material-icons">person</i>
                         <p class="hidden-lg hidden-md">快捷操作<b class="caret"></b></p>
                     </a>
-                    <ul class="dropdown-menu head-r-menu">
+                    <ul class="dropdown-menu head-r-menu layui-nav layui-nav-tree" lay-filter="side">
+                        <li class="layui-nav-item">
+                            <a href="javascript:;" href-url="${ctx }/viewPage/sys/userProfile"><i class="fa fa-question-circle fa-lg "></i>基本资料</a>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;" href-url="${ctx }/viewPage/sys/sysUserUpdatePwd"><i class="fa fa-unlock-alt fa-lg "></i>修改密码</a>
+                        </li>
                         <li>
                             <a href="#"><i class="fa fa-question-circle fa-lg "></i>帮助中心</a>
                         </li>
@@ -63,9 +73,6 @@
                         </li>
                         <li>
                             <a href="javascript:;" onclick="refreshCache()"><i class="fa fa-refresh fa-lg"></i>刷新缓存</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" onclick="synData()"><i class="fa fa-refresh fa-lg"></i>同步通讯录</a>
                         </li>
                         <li>
                             <a href="javascript:;" onclick="dialogConfirm('确认退出系统？','${ctx }/logout.do','提示', '确定退出', '不，我点错了！')"><i class="fa fa-sign-out fa-lg"></i>退出登录</a>
@@ -87,18 +94,6 @@
         </div>
     </div>
 </nav>
-
-<script type="application/javascript">
-    function synData(){
-        var dex = dialogTipText("正在同步中...", 8000);
-        var url = "/sys/data/synData";
-        HttpUtil.ajaxAsyncJsonPost(url, {}, function(message){
-            dialogClose(dex);
-            dialogTip(message);
-        });
-    }
-
-</script>
 
 <!-- 备忘录 -->
 <div class="modal fade" id="nemoModal" tabindex="-1" role="dialog" aria-labelledby="nemoModalLabel" aria-hidden="true">

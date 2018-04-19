@@ -12,9 +12,6 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header card-header-icon" data-background-color="rose">
-                    <i class="fa fa-lock"></i>
-                </div>
                 <div class="card-content">
                     <h4 class="card-title">更改密码</h4>
                     <form id="updatePwdValidation">

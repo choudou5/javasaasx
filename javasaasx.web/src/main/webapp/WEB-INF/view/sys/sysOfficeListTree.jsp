@@ -18,57 +18,36 @@
                         <!-- left -->
                         <div class="col-sm-2">
                             <div class="card-content pd-10">
+                                <p><a href="javascript:;" onclick="synData()"><i class="fa fa-refresh"></i>&nbsp;同步通讯录</a></p>
                                 <h4 class="card-title ">成员</h4>
                                 <p><a href="" class="text-black"><i class="fa fa-user"></i>&nbsp;所有成员</a></p>
                                 <p><a href="" class="text-black"><i class="fa fa-user"></i>&nbsp;停用的成员</a></p>
                                 <h4 class="card-title">机构</h4>
                                 <a href="javascript:;" onclick="FormUtil.bindFormAddBtn('添加成员')" data-href="${ctx}/sys/sysUser/form"><i class="fa fa-plus"></i>&nbsp;创建部门</a>
+
+
+
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="headingOne">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <h4 class="panel-title">
-                                                    Collapsible  #1
-                                                    <i class="material-icons">keyboard_arrow_down</i>
-                                                </h4>
-                                            </a>
-                                        </div>
-                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                            <div class="panel-body">
-                                                Anim pariatur cliche reprehenderit, en nem aesthetn't heard of them accusamus labore sustainable VHS.
+                                    <c:forEach items="${leftDataList}" var="leftData" varStatus="vStatus">
+                                        <c:set var="headingId" value="heading${vStatus.index}"/>
+                                        <c:set var="collapseId" value="collapse${vStatus.index}"/>
+                                        <c:if test="${leftData.key == 'text'}">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="${headingId}">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+                                                        <h4 class="panel-title">${leftData.value}<i class="fa fa-chevron-down"></i></h4>
+                                                    </a>
+                                                </div>
+                                                <div id="${collapseId}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="${headingId}">
+                                                    <div class="panel-body">
+                                                     <c:if test="${not empty leftDataList['children']}">
+                                                         <sys:treePanelGroup leftDataList="${leftDataList['children']}" dex="${vStatus.index}"/>
+                                                     </c:if>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="headingTwo">
-                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                <h4 class="panel-title">
-                                                    Collapsib=Item #2
-                                                    <i class="material-icons">keyboard_arrow_down</i>
-                                                </h4>
-                                            </a>
-                                        </div>
-                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                            <div class="panel-body">
-                                                 occaecat craft beer farm-to-table, raw denim aestheem accusamus labore sustainable VHS.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="headingThree">
-                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                <h4 class="panel-title">
-                                                    Collapsibl= #3
-                                                    <i class="material-icons">keyboard_arrow_down</i>
-                                                </h4>
-                                            </a>
-                                        </div>
-                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                            <div class="panel-body">
-                                             em accusamus labore sustainable VHS.
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </c:if>
+                                    </c:forEach>
                                 </div>
                                 <%--
                                 <div class="material-datatables">
@@ -94,10 +73,10 @@
                         <div class="col-sm-10">
                             <div class="row col-sm-12 card-title">
                                 <div class="col-sm-3">
-                                    xxx . 成员 10
+                                    xxx . 成员 <span>${fn}</span>
                                 </div>
                                 <div class="col-sm-3">
-                                    <a href="javascript:;" class="text-link" onclick="FormUtil.bindFormAddBtn('添加成员')" data-href="${ctx}/sys/sysUser/form"><i class="fa fa-plus"></i>&nbsp;添加成员</a>
+                                    <a href="javascript:;" class="text-link" id="addBtn" onclick="FormUtil.bindFormAddBtn('添加成员')" data-href="${ctx}/sys/sysUser/form"><i class="fa fa-plus"></i>&nbsp;添加成员</a>
                                 </div>
                             </div>
                             <div class="row col-sm-12">
@@ -106,34 +85,55 @@
                                         <table id="datatables" class="table table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%; max-height: 600px;">
                                             <thead>
                                             <tr>
-                                                <th>名称<small class="red">*</small></th>
-                                                <th>上级id</th>
-                                                <th>父路径</th>
-                                                <th>层级深度</th>
-                                                <th>排序</th>
-                                                <th>区域编码</th>
-                                                <th>机构类型: company=公司、dept=部门<small class="red">*</small></th>
-                                                <th>联系地址</th>
-                                                <th>负责人</th>
-                                                <th>电话</th>
+                                                <th>姓名</th>
+                                                <th>手机</th>
+                                                <th>角色</th>
+                                                <th>最后登陆ip</th>
+                                                <th>最后登陆时间</th>
                                                 <th>备注信息</th>
-                                                <th>code标识</th>
-                                                <th>状态: 0=禁用，1=正常</th>
-                                                <th>是否系统数据: 0=否，1=是</th>
+                                                <th>状态</th>
                                             </tr>
                                             </thead>
-                                            <tbody></tbody>
+                                            <tbody>
+                                            <c:forEach items="${list}" var="item">
+                                                <tr>
+                                                    <td>
+                                                        <shiro:lacksPermission name="sys:sysUser:view">
+                                                            <a href="javascript:;" onclick="dialogOpenPageView('详情', '${ctx}/sys/sysUser/view?id=${item.id}');" class="btn btn-simple btn-facebook">${item.name}</a>
+                                                        </shiro:lacksPermission>
+                                                        <shiro:hasPermission name="sys:sysUser:view">
+                                                            ${item.name}
+                                                        </shiro:hasPermission>
+                                                    </td>
+                                                    <td>${item.mobile} </td>
+                                                    <td>${item.loginIp} </td>
+                                                    <td>${item.loginTime} </td>
+                                                    <td>${item.position} </td>
+                                                    <td>${item.remarks} </td>
+                                                    <td>
+                                                        <c:if test="${item.status eq 0}">
+                                                            <span class="label label-danger">禁用</span>
+                                                        </c:if>
+                                                        <c:if test="${item.status eq 1}">
+                                                            <span class="label label-success">正常</span>
+                                                        </c:if>
+                                                        <c:if test="${item.status eq 2}">
+                                                            <span class="label label-inverse">离职</span>
+                                                        </c:if>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <shiro:hasPermission name="sys:sysUser:edit">
+                                                            <a href="javascript:;" onclick="dialogOpenPage('sysUserEdit', '编辑', '${ctx}/sys/sysUser/form?id=${item.id}');" class="btn btn-simple btn-warning btn-icon"><i class="fa fa-edit"></i></a>
+                                                        </shiro:hasPermission>
+                                                        <shiro:hasPermission name="sys:sysUser:delete">
+                                                            <a href="javascript:;" data-href="${ctx}/sys/sysUser/delete?id=${item.id}" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-remove"></i></a>
+                                                        </shiro:hasPermission>
+                                                    </td>
+                                                </tr>
+                                                </tr>
+                                            </c:forEach>
+                                            </tbody>
                                         </table>
-                                    </div>
-                                    <div class="row bg-grey">
-                                        <label class="col-sm-4 label-on-left"></label>
-                                        <div class="col-sm-8 pull-right">
-                                            <div class="col-md-2">
-                                                <div class="form-group label-floating is-empty">
-                                                    <button id="submitBtn" class="btn btn-twitter mgt-f8" disabled >保存</button>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -162,4 +162,17 @@
         tbl.bingdTrMenuActive("#leftDatatables");
     });
 </script>
+
+<script type="application/javascript">
+    function synData(){
+        var dex = dialogTipText("正在同步中...", 8000);
+        var url = "/sys/data/synData";
+        HttpUtil.ajaxAsyncJsonPost(url, {}, function(message){
+            dialogClose(dex);
+            dialogTip(message);
+        });
+    }
+
+</script>
+
 </html>

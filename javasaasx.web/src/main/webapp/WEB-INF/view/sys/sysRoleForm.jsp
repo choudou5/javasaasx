@@ -24,10 +24,10 @@
                                     </form:select>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="groupName" class="form-control input-required" required="true" placeholder=" 分组名*"/>
+                                    <form:input type="text" path="groupName" class="form-control" required="true" placeholder=" 分组名*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="name" class="form-control input-required" required="true" placeholder=" 角色名称*"/>
+                                    <form:input type="text" path="name" class="form-control" required="true" placeholder=" 角色名称*"/>
                                 </div>
                                 <div class="form-group label-floating">
                                     <div class="row">
@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <form:input type="text" path="remarks" class="form-control input-required" required="true" placeholder=" 备注信息*"/>
+                                    <form:input type="text" path="remarks" class="form-control" required="true" placeholder=" 备注信息*"/>
                                 </div>
                                 <div class="form-group label-floating">
                                     <div class="togglebutton">

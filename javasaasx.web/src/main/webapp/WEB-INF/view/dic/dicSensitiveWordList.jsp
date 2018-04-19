@@ -28,7 +28,7 @@
                             </div>
                         </form:form>
                         <div class="col-md-12">
-                            <button id="addBtn" onclick="FormUtil.bindPromptAddBtn('添加敏感词库')" data-href="${ctx}/dic/dicSensitiveWord/save" class="btn btn-success btn-sm"><i class="fa fa-plus"></i>&nbsp;添加</button>
+                            <button id="addBtn" onclick="FormUtil.bindPromptAddBtn('添加敏感词库')" data-href="${ctx}/dic/dicSensitiveWord/save" class="btn btn-success btn-simple btn-sm"><i class="fa fa-plus"></i>&nbsp;添加</button>
                             <button onclick="dialogOpenPageView('测试敏感词', '${ctx}/viewPage/dic/dicSensitiveWordTest')" class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i>&nbsp;测试敏感词</button>
                         </div>
                     </div>

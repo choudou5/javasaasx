@@ -176,13 +176,14 @@ layui.use(['layer', 'element'], function () {
         }
     });
 
-
-    var tabTipStr = __isMobileModel?"双击刷新":"双击刷新，右键关闭更多";
-    var home = $(document).find('body .my-body .layui-tab-card > .layui-tab-title li:eq(0)');
-    layer.tips(tabTipStr, home, {
-        tips: [2, '#3595CC'],
-        time: 4000
-    });
+    window.initShowTabTip = function () {
+        var tabTipStr = __isMobileModel?"双击刷新":"双击刷新，右键关闭更多";
+        var home = $(document).find('body .my-body .layui-tab-card > .layui-tab-title li:eq(0)');
+        layer.tips(tabTipStr, home, {
+            tips: [2, '#3595CC'],
+            time: 4000
+        });
+    };
 
     // 点击body关闭tips
     $(document).on('click', 'html', function () {
@@ -248,3 +249,21 @@ layui.use(['layer', 'element'], function () {
     init();
 
 });
+
+frameLoading();
+
+function frameLoading(){
+    var htm = new StringBuffer();
+    htm.append('<div class="frame-loading">');
+    htm.append('<div><div></div></div>');
+    htm.append('<div><div></div></div>');
+    htm.append('<div><div></div></div>');
+    htm.append('<div><div></div></div>');
+    htm.append('</div>');
+    $("body").prepend(htm.toString());
+    setTimeout(function(){
+        $(".frame-loading").remove();
+        $("#frame").css("opacity", "1");
+        initShowTabTip();
+    }, 1500);
+}

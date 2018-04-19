@@ -16,3 +16,12 @@
 <c:set var="ctxStaticImg" value="${pageContext.request.contextPath}/assets/img/"/>
 <c:set var="ctxStaticPage" value="${pageContext.request.contextPath}/admin/"/>
 <c:set var="ossImg" value="http://choudoufu-hd2.oss-cn-shanghai.aliyuncs.com/web-codegen/assets/img/"/>
+
+<%--
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="ctxStatic" value="http://choudoufu-hd2.oss-cn-shanghai.aliyuncs.com/javasaasx/assets"/>
+<c:set var="ctxStaticCss" value="http://choudoufu-hd2.oss-cn-shanghai.aliyuncs.com/javasaasx/assets/css/"/>
+<c:set var="ctxStaticImg" value="http://choudoufu-hd2.oss-cn-shanghai.aliyuncs.com/javasaasx/assets/img/"/>
+<c:set var="ctxStaticPage" value="${pageContext.request.contextPath}/admin/"/>
+<c:set var="ossImg" value="http://choudoufu-hd2.oss-cn-shanghai.aliyuncs.com/web-codegen/assets/img/"/>
+--%>

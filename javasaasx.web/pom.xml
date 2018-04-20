@@ -24,6 +24,12 @@
 			<groupId>com.choudou5</groupId>
 			<artifactId>choudou5.log.admin</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 

@@ -15,19 +15,8 @@
         <div class="col-md-3">
             <div class="card card-profile" style="height: 80vh">
                 <div class="card-content text-left">
-                    <%--<h6 class="category text-gray">CEO / Co-Founder</h6>
-                    <h4 class="card-title">Alec Thompson</h4>--%>
-                    <input type="text" id="leftTree_q" value="" class="form-control input" placeholder="搜索菜单">
-                    <div id="leftTree" class="demo">
-                        <%--<ul>
-                            <li data-jstree='{"opened":true }'>Root node
-                                <ul>
-                                    <li data-jstree='{ "selected" : true }'>Child node 1</li>
-                                    <li>Child node 2</li>
-                                </ul>
-                            </li>
-                        </ul>--%>
-                    </div>
+                    <input type="text" id="leftTree_q" value="" class="form-control input clearable" placeholder="搜索菜单">
+                    <div id="leftTree" class="demo"></div>
                 </div>
             </div>
         </div>
@@ -42,10 +31,10 @@
                             <tr>
                                 <th>名称</th>
                                 <th class="disabled-sorting">权限标识</th>
-                                <th class="disabled-sorting">备注</th>
                                 <th class="disabled-sorting">手机端显示</th>
                                 <th class="disabled-sorting">系统数据</th>
                                 <th class="disabled-sorting">状态</th>
+                                <th class="disabled-sorting">备注</th>
                             </tr>
                             </thead>
                             <tbody></tbody>
@@ -103,6 +92,10 @@
                             var inst = $.jstree.reference(data.reference);
                             var obj = inst.get_node(data.reference);
                             var id = obj.id;
+                            if (id == 1){
+                                dialogTipText("根菜单不能删除");
+                                return;
+                            }
                             dialogConfirm("确认删除该菜单？", function(){
                                 var url = "/sys/sysMenu/delete?id="+id;
                                 HttpUtil.ajaxAsyncJsonPost(url, {}, function(){

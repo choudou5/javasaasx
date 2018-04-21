@@ -561,3 +561,26 @@ html body .layui-nav .layui-nav-bar {
         display: none;
     }
 }
+
+
+.admin-header-lock {
+    width: 320px;
+    height: 200px;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+}
+.admin-header-lock-img {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+}
+.admin-header-lock-img img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+.admin-header-lock-name {
+    color: #009688;
+    margin: 8px 0 10px 0;
+}

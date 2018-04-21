@@ -1,4 +1,4 @@
-
+var openMenus = [];
 layui.use(['layer', 'element'], function () {
 
     var element = layui.element(), layer = layui.layer, $ = layui.jquery; //导航的hover效果、二级菜单等功能，需要依赖element模块
@@ -27,13 +27,14 @@ layui.use(['layer', 'element'], function () {
         addTab(element,elem);
     });
 
-
+    openMenus = getSessionOpenMenus();
     // 添加TAB选项卡
     function addTab(element, elem){
         var card    = 'card';                                   // 选项卡对象
         var title   = elem.children('a').text();                // 导航栏text
         var src     = elem.children('a').attr('href-url');      // 导航栏跳转URL
-        var id      = new Date().getTime();                     // ID
+        var id = hex_md5(title);                                // ID
+        //var id      = new Date().getTime();                     // ID
         var flag    = getTitleId(card, title);                  // 是否有该选项卡存在
         // 大于0就是有该选项卡了
         if(flag > 0){
@@ -46,10 +47,17 @@ layui.use(['layer', 'element'], function () {
                     ,content: '<iframe src="' + src + '" frameborder="0"></iframe>'
                     ,id: id
                 });
+                //绑定关闭事件
+                $('.my-body .layui-tab-card > .layui-tab-title li[lay-id='+id+'] i.layui-tab-close').bind('click', function () {
+                    var cardLayId = $(this).closest("li").attr('lay-id');
+                    delSessionMenu(cardLayId);
+                });
                 // 关闭弹窗
                 layer.closeAll();
             }
+            setSessionOpenMenus(id, title, src);
         }
+        SessionUtil.set("curMenu", id); //当前的窗口
         // 切换相应的ID tab
         element.tabChange(card, id);
         // 提示信息
@@ -60,13 +68,15 @@ layui.use(['layer', 'element'], function () {
     window.delTab = function (layId) {
         // 删除
         element.tabDelete('card', layId);
+        delSessionMenu(layId);
     };
+
 
     //添加 tab到框架
     window.addTabToFrame = function(title, src){
-        //var id = hex_md5(title);
         var card    = 'card';                                   // 选项卡对象
-        var id      = new Date().getTime();                     // ID
+        var id = hex_md5(title);                                // ID
+        //var id      = new Date().getTime();                     // ID
         var flag    = getTitleId(card, title);                  // 是否有该选项卡存在
         // 大于0就是有该选项卡了
         if(flag > 0){
@@ -79,10 +89,17 @@ layui.use(['layer', 'element'], function () {
                     ,content: '<iframe src="' + src + '" frameborder="0"></iframe>'
                     ,id: id
                 });
+                //绑定关闭事件
+                $('.my-body .layui-tab-card > .layui-tab-title li[lay-id='+id+'] i.layui-tab-close').bind('click', function () {
+                    var cardLayId = $(this).closest("li").attr('lay-id');
+                    delSessionMenu(id);
+                });
                 // 关闭弹窗
                 layer.closeAll();
             }
+            setSessionOpenMenus(id, title, src);
         }
+        SessionUtil.set("curMenu", id); //当前的窗口
         // 切换相应的ID tab
         element.tabChange(card, id);
         // 提示信息
@@ -99,6 +116,7 @@ layui.use(['layer', 'element'], function () {
             if (layId > 1) {
                 // 删除
                 element.tabDelete('card', layId);
+                delSessionMenu(layId);
             }
         });
     };
@@ -111,15 +129,23 @@ layui.use(['layer', 'element'], function () {
             if (layId > 1 && layId != cardLayId) {
                 // 删除
                 element.tabDelete('card', layId);
+                delSessionMenu(layId);
             }
         });
     };
 
-    // 获取当前选中选项卡lay-id
-    window.getThisTabID = function () {
-        // 当前选中的选项卡id
-        return $(document).find('body .my-body .layui-tab-card > .layui-tab-title .layui-this').attr('lay-id');
-    };
+    // 单击 相应选项卡
+    $(document).on('click', '.my-body .layui-tab-card > .layui-tab-title li', function () {
+        var cardIdx = $(this).index();
+        var cardLayId = $(this).attr('lay-id');
+        // 窗体对象
+        var ifr = $(document).find('.my-body .layui-tab-content .layui-tab-item iframe').eq(cardIdx);
+        // 刷新当前页
+        ifr.attr('src', ifr.attr('src'));
+        // 切换到当前选项卡
+        element.tabChange('card', cardLayId);
+        SessionUtil.set("curMenu", cardLayId);
+    });
 
 
     // 双击 刷新相应选项卡
@@ -153,6 +179,7 @@ layui.use(['layer', 'element'], function () {
             mobileClickCount = 0;
         }
     });
+
 
     // 选项卡右键事件阻止
     $(document).on("contextmenu", '.my-body .layui-tab-card > .layui-tab-title li', function () {
@@ -199,30 +226,23 @@ layui.use(['layer', 'element'], function () {
         // 切换到当前选项卡
         element.tabChange('card', cardLayId);
     });
-
-    // 右键提示框菜单操作-关闭页面
+    // 右键提示框菜单操作-关闭其他页面
     $(document).on('click', '.card-close-other', function () {
         window.delOhterlTab();
     });
-
-
     // 右键提示框菜单操作-关闭所有页面
     $(document).on('click', '.card-close-all', function () {
         // 删除
         window.delAllTab();
     });
-
-    // 右键提示框菜单操作-关闭所有页面
+    // 右键提示框菜单操作-打开新页面
     $(document).on('click', '.card-open-new', function () {
         // 窗体对象
         var ifr = $(document).find('.my-body .layui-tab-content .layui-tab-item iframe').eq(cardIdx);
         // 刷新当前页
         var url = ifr.attr('src');
-        log(url);
         top.window.open(url);
     });
-
-
 
     // 根据导航栏text获取lay-id
     function getTitleId(card,title){
@@ -248,9 +268,108 @@ layui.use(['layer', 'element'], function () {
     // 初始化
     init();
 
+    /******************************** start 锁屏 *****************************************/
+    function lockPage() {
+        layer.open({
+            title: false,
+            type: 1,
+            content: '  <div class="admin-header-lock" id="lock-box">' +
+            '<div class="admin-header-lock-img text-center"><img src="/assets/img/avatar.jpg"/></div>' +
+            '<div class="admin-header-lock-name" id="lockUserName">请叫我臭哥</div>' +
+            '<div class="input_btn">' +
+            '<input type="password" class="admin-header-lock-input input-sm" autocomplete="off" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd" />&nbsp;' +
+            '<button class="btn btn-success btn-sm" id="unlock"><i class="fa fa-unlock"></i>解锁</button>' +
+            '</div>' +
+            '<p class="text-danger">请输入“123456”，否则不会解锁哦！！！</p>' +
+            '</div>',
+            closeBtn: 0,
+            shade: 0.9
+        })
+        $(".admin-header-lock-input").focus();
+    }
+    $("#locksystem").on("click", function() {
+        SessionUtil.set("locksystem", true);
+        lockPage();
+    })
+    // 判断是否显示锁屏
+    if (SessionUtil.get("locksystem") == "true") {
+        lockPage();
+    }
+    // 解锁
+    $("body").on("click", "#unlock", function() {
+        if ($(this).siblings(".admin-header-lock-input").val() == '') {
+            layer.msg("请输入解锁密码！");
+            $(this).siblings(".admin-header-lock-input").focus();
+        } else {
+            if ($(this).siblings(".admin-header-lock-input").val() == "123456") {
+                SessionUtil.set("locksystem", false);
+                $(this).siblings(".admin-header-lock-input").val('');
+                layer.closeAll("page");
+            } else {
+                layer.msg("密码错误，请重新输入！");
+                $(this).siblings(".admin-header-lock-input").val('').focus();
+            }
+        }
+    });
+    $(document).on('keydown', function() {
+        if (event.keyCode == 13) {
+            $("#unlock").click();
+        }
+    });
+    /******************************** end 锁屏 *****************************************/
+
+
+
+    /******************************** end 缓存菜单 *****************************************/
+    //退出 待完善
+    $(".signOut").click(function() {
+        SessionUtil.remove("openMenus");
+        openMenus = [];
+        SessionUtil.remove("curMenu");
+    })
+
+    //刷新后还原打开的窗口
+    if (SessionUtil.has("openMenus")) {
+        openMenus = getSessionOpenMenus();
+        var curMenu = SessionUtil.get("curMenu");
+        var openMenu = null;
+        for (var i = 0; i < openMenus.length; i++) {
+            openMenu = openMenus[i];
+            addTabToFrame(openMenu['title'], openMenu['src']);
+        }
+        //定位到刷新前的窗口
+        if (CommUtil.isNotEmpty(curMenu))
+            element.tabChange("bodyTab", curMenu);
+    }
+
+    function getSessionOpenMenus(){
+        var str = SessionUtil.get("openMenus");
+        if(CommUtil.isEmpty(str))
+            return [];
+        return JSON.parse(str);
+    }
+
+    function setSessionOpenMenus(id, title, src){
+        var item = CommUtil.getJsonArrayItemById(openMenus, id);
+        if(item == null){
+            var currMenuStr = {"id":id, "title": title, "src": src};
+            openMenus.push(currMenuStr);
+            //log(JSON.stringify(openMenus));
+            SessionUtil.set("openMenus", JSON.stringify(openMenus)); //打开的窗口
+        }
+    }
+
+    function delSessionMenu(id){
+        //log("delMenu:"+id);
+        openMenus = CommUtil.delJsonArrayById(openMenus, id);
+        SessionUtil.set("openMenus", JSON.stringify(openMenus)); //打开的窗口
+        //log(JSON.stringify(openMenus));
+    }
+    /******************************** end 缓存菜单 *****************************************/
+
 });
 
-frameLoading();
+//frameLoading();
 
 function frameLoading(){
     var htm = new StringBuffer();
@@ -267,3 +386,4 @@ function frameLoading(){
         initShowTabTip();
     }, 1500);
 }
+

@@ -56,12 +56,12 @@
                         <li>
                             <a href="javascript:;" href-url="${ctx }/dic/dicSensitiveWord">敏感词管理</a>
                         </li>
-                        <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }login.jsp">黑名单</a>
+                        <%--<li>
+                            <a href="javascript:dialogTipError('待完善');" href-url="">黑名单</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }login.jsp">在线用户</a>
-                        </li>
+                            <a href="javascript:dialogTipError('待完善');" href-url="">在线用户</a>
+                        </li>--%>
                     </ul>
                 </div>
             </li>
@@ -97,18 +97,18 @@
                 </a>
                 <div class="collapse" id="baseExamples">
                     <ul class="nav layui-nav-child">
-                        <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">字典管理</a>
+                    <%--    <li>
+                            <a href="javascript:dialogTipError('待完善');" href-url="">字典管理</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">分类管理</a>
-                        </li>
+                            <a href="javascript:dialogTipError('待完善');" href-url="">分类管理</a>
+                        </li>--%>
                         <li>
                             <a href="javascript:;" href-url="${ctx }/dic/dicArea">地区管理</a>
                         </li>
-                        <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }timeline.jsp">OSS配置</a>
-                        </li>
+                       <%-- <li>
+                            <a href="javascript:dialogTipError('待完善');" href-url="">OSS配置</a>
+                        </li>--%>
                     </ul>
                 </div>
             </li>
@@ -120,7 +120,7 @@
                 <div class="collapse" id="statExamples">
                     <ul class="nav layui-nav-child">
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">浏览统计</a>
+                            <a href="javascript:dialogTipError('待完善');" href-url="">浏览统计</a>
                         </li>
                     </ul>
                 </div>

@@ -32,6 +32,39 @@ CommUtil = {
 	isArray: function(obj) {
 		return Object.prototype.toString.call(obj) === '[object Array]';
 	},
+	delArrayValue: function(arr, value) {
+		log(arr);
+		var len = arr.length;
+		while(len--){
+			console.log(len+"="+arr[len]);
+			if(arr[len]==value){
+				arr.splice(len,1);
+				break;
+			}
+		}
+		return arr;
+	},
+	delJsonArrayById: function(jsonArr, id) {
+		for(var i=0,l=jsonArr.length;i<l;i++){
+			log(jsonArr[i]['id']);
+			if(jsonArr[i]['id']==id){
+				jsonArr.splice(i,1);
+				break;
+			}
+		}
+		return jsonArr;
+	},
+	getJsonArrayItemById: function(jsonArr, id) {
+		var item = null;
+		for(var i=0,l=jsonArr.length;i<l;i++){
+			log(jsonArr[i]['id']);
+			if(jsonArr[i]['id']==id){
+				item = jsonArr[i];
+				break;
+			}
+		}
+		return item;
+	},
 	containsArray: function(array, item) {
 		//console.log("isArray:"+isArray(array)+"  "+array+"  --- "+item);
 		var selectItem = false;
@@ -129,12 +162,6 @@ CommUtil = {
 }
 
 StrUtil = {
-	isEmpty: function(str) {
-		return (str == undefined || str == null || str.length == 0 || str == "undefined");
-	},
-	isNotEmpty: function(str) {
-		return !this.isEmpty(str);
-	},
 	trim: function (str) {
 		return str.replace(/^\s+|\s+$/g, "");
 	},
@@ -1095,8 +1122,25 @@ CacheUtil = {
 	has: function(key){
 		return store.has(key);
 	},
-	remove: function del(key){
+	remove: function (key){
 		store.remove(key);
+	}
+}
+
+
+SessionUtil = {
+	get: function(key){
+		return window.sessionStorage.getItem(key);
+	},
+	set: function(key, val){
+		return window.sessionStorage.setItem(key, val);
+	},
+	has: function(key){
+		var obj = this.get(key);
+		return CommUtil.isNotEmpty(obj);
+	},
+	remove: function remove(key){
+		return window.sessionStorage.removeItem(key);
 	}
 }
 

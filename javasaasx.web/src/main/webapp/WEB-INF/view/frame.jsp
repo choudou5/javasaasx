@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="${ctxStatic }/iframe/loading.css" />
 </head>
 <body>
-<div class="wrapper" id="frame" style="opacity: 0;">
+<div class="wrapper" id="frame" style="opacity: 1;">
     <%@include file="/include/sidebar.jsp" %>
     <div class="main-panel">
         <%@include file="/include/sidebarHead.jsp" %>

@@ -47,10 +47,9 @@ function ajaxRightDataTable(menuId){
         columns: [
             {"data": "name"},
             {"data": "permission"},
-            {"data": "remarks"},
             {"data": "isMobileShow"},
             {"data": "isSysData"},
-            {"data": ""}
+            {"data": "remarks"},
         ],
         "columnDefs": [
             {
@@ -65,27 +64,21 @@ function ajaxRightDataTable(menuId){
             },
             {
                 "render": function(name, type, row, meta) {
-                    return CommUtil.toText(row.remarks);
-                },"targets": 2
-            },
-            {
-                "render": function(name, type, row, meta) {
                     var htm = '<div class="togglebutton"><label><input type="checkbox" data-id="'+row.id+'" data-field="isMobileShow" value="1" '+BindUtil.bindCheckBoxStatus(row.isMobileShow)+' /></label></div>';
                     return htm
-                },"targets": 3
+                },"targets": 2
             },
             {
                 "render": function(name, type, row, meta) {
                     var htm = '<div class="togglebutton"><label><input type="checkbox" data-id="'+row.id+'" data-field="isSysData" value="1" '+BindUtil.bindCheckBoxStatus(row.isSysData)+' /></label></div>';
                     return htm;
-                },"targets": 4
+                },"targets": 3
             },
             {
                 "render": function(name, type, row, meta) {
-                    var htm = '<div class="togglebutton"><label><input type="checkbox" data-id="'+row.id+'" data-field="status" value="1" '+BindUtil.bindCheckBoxStatus(row.status)+' /></label></div>';
-                    return htm;
-                },"targets": 5
-            }
+                    return CommUtil.toText(row.remarks);
+                },"targets": 4
+            },
         ]
     });
 

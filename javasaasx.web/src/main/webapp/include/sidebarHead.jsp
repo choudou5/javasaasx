@@ -29,6 +29,11 @@
                         <p class="hidden-lg hidden-md">备忘录</p>
                     </a>
                 </li>
+                <li>
+                    <a href="#" id="locksystem" title="锁屏">
+                        <i class="fa fa-lock fa-lg"></i>&nbsp;锁屏
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">notifications</i>
@@ -69,9 +74,6 @@
                             <a href="#"><i class="fa fa-question-circle fa-lg "></i>帮助中心</a>
                         </li>
                         <li>
-                            <a href="${ctxStaticPage }lock.jsp"><i class="fa fa-lock fa-lg"></i>锁屏</a>
-                        </li>
-                        <li>
                             <a href="javascript:;" onclick="refreshCache()"><i class="fa fa-refresh fa-lg"></i>刷新缓存</a>
                         </li>
                         <li>
@@ -81,7 +83,7 @@
                 </li>
                 <li class="separator hidden-lg hidden-md"></li>
             </ul>
-            <form class="navbar-form navbar-right" role="search">
+            <%--<form class="navbar-form navbar-right" role="search">
                 <div class="form-group form-search is-empty">
                     <input type="text" id="globalSearch" class="form-control clearable" placeholder="搜索">
                     <span class="material-input"></span>
@@ -90,7 +92,7 @@
                     <i class="material-icons">search</i>
                     <div class="ripple-container"></div>
                 </button>
-            </form>
+            </form>--%>
         </div>
     </div>
 </nav>

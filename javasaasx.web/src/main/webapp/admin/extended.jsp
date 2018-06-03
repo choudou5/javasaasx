@@ -58,7 +58,7 @@
                     <br>
                     <br>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <legend>Switches</legend>
                             <div class="togglebutton">
                                 <label>
@@ -70,6 +70,17 @@
                                     <input type="checkbox"> Toggle is off
                                 </label>
                             </div>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="category">With Icons</p>
+
+                            <input class="bootstrap-switch" type="checkbox" data-on-label="<i class='fa fa-check'></i>" data-off-label="<i class='fa fa-remove'></i>" />
+                            <input class="bootstrap-switch" type="checkbox" data-toggle="switch" data-on-label="<i class='fa fa-check'></i>" data-off-label="<i class='fa fa-remove'></i>"/>
+
+                            <input type="checkbox" name="checkbox" checked class="bootstrap-switch"  data-on-label="打开" data-off-label=关闭 />
+                            <input type="checkbox" name="checkbox" class="bootstrap-switch"  data-on-label="启用" data-off-label="禁用" />
+
+
                         </div>
                         <div class="col-md-6">
                             <legend>Customisable Select
@@ -258,7 +269,15 @@
 <script type="text/javascript">
     $(document).ready(function() {
         md.initSliders()
-        demo.initFormExtendedDatetimepickers();
+
+        $(".bootstrap-switch").each(function() {
+            $this = $(this), data_on_label = $this.data("on-label") || "", data_off_label = $this.data("off-label") || "";
+            $this.bootstrapSwitch({
+                onText: data_on_label,
+                offText: data_off_label
+            });
+        })
+
     });
 </script>
 

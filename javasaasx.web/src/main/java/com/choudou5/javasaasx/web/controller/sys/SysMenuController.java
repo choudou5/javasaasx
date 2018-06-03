@@ -10,10 +10,10 @@ package com.choudou5.javasaasx.web.controller.sys;
 import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.StrUtil;
-import com.choudou5.javasaasx.service.constants.SysConstants;
+import com.choudou5.javasaasx.common.constants.SysConstants;
 import com.choudou5.javasaasx.service.sys.SysMenuService;
-import com.choudou5.javasaasx.service.sys.bo.SysMenuBo;
-import com.choudou5.javasaasx.service.sys.bo.SysMenuQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysMenuQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysMenuVo;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import com.choudou5.javasaasx.web.util.RequestUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -47,11 +47,11 @@ public class SysMenuController extends BaseController {
      * @return
      */
     @ModelAttribute
-    public SysMenuBo get(@RequestParam(required=false) String id) {
+    public SysMenuVo get(@RequestParam(required=false) String id) {
         if (StrUtil.isNotBlank(id)){
             return sysMenuService.get(id);
         }else{
-            return new SysMenuBo();
+            return new SysMenuVo();
         }
     }
 
@@ -67,8 +67,8 @@ public class SysMenuController extends BaseController {
     @RequiresPermissions("sys:sysMenu:view")
     @RequestMapping(value = {"list", ""})
     public String list(SysMenuQueryParam queryParam, HttpServletRequest req, Model model) {
-        queryParam.setDefBo().setType(SysConstants.MenuTypeEnum.MENU.getType());
-        PageResult<SysMenuBo> pageResult = sysMenuService.findPage(queryParam);
+        queryParam.setDefVo().setType(SysConstants.MenuTypeEnum.MENU.getType());
+        PageResult<SysMenuVo> pageResult = sysMenuService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         return "/sys/sysMenuListTree";
     }
@@ -77,7 +77,7 @@ public class SysMenuController extends BaseController {
     @RequestMapping(value = {"ajaxButtomList"}, method = RequestMethod.POST)
     @ResponseBody
     public String ajaxButtomList(String pid, HttpServletRequest req) {
-        List<SysMenuBo> list = sysMenuService.findButtomList(pid);
+        List<SysMenuVo> list = sysMenuService.findButtomList(pid);
         return returnTableData(list);
     }
 
@@ -99,8 +99,8 @@ public class SysMenuController extends BaseController {
     @RequiresPermissions("sys:sysMenu:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
-        SysMenuBo sysMenuBo = sysMenuService.get(id);
-        model.addAttribute("sysMenuBo", sysMenuBo);
+        SysMenuVo sysMenuVo = sysMenuService.get(id);
+        model.addAttribute("sysMenuVo", sysMenuVo);
         return "/sys/sysMenuView";
     }
 
@@ -130,7 +130,7 @@ public class SysMenuController extends BaseController {
     @RequiresPermissions("sys:sysMenu:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(SysMenuBo sysMenuBo, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(SysMenuVo sysMenuBo, HttpServletRequest req, RedirectAttributes attributes) {
         String[] perms = RequestUtil.getStrParameters(req, "perms", ",");
         //数据 验证
         if (!beanValidator(attributes, sysMenuBo))

@@ -17,6 +17,8 @@
 <c:set var="ctxStaticPage" value="${pageContext.request.contextPath}/admin/"/>
 <c:set var="ossImg" value="http://choudoufu-hd2.oss-cn-shanghai.aliyuncs.com/web-codegen/assets/img/"/>
 
+<c:set var="sysModel" value="iframe-page"/>
+
 <%--
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="ctxStatic" value="http://choudoufu-hd2.oss-cn-shanghai.aliyuncs.com/javasaasx/assets"/>

@@ -17,7 +17,7 @@
                     <div class="row">
                         <form:form id="searchForm" modelAttribute="dicSensitiveWordQueryParam" action="${ctx}/dic/dicSensitiveWord/list" method="post">
                             <div class="col-md-2">
-                                <form:input type="text" path="dicSensitiveWordBo.word" name="rangeWord" class="form-control clearable" placeholder=" 敏感词"/>
+                                <form:input type="text" path="dicSensitiveWordVo.word" name="rangeWord" class="form-control clearable" placeholder=" 敏感词"/>
                             </div>
                             <div class="col-md-1">
                                 <button type="submit" class="btn btn-twitter"><i class="fa fa-search"></i></button>

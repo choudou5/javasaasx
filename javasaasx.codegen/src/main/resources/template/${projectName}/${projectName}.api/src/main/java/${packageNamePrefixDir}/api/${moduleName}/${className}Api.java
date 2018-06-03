@@ -3,10 +3,7 @@
 <#assign classNameLower = className?uncap_first>
 package ${packageNamePrefix}.api.${moduleName};
 
-import ${packageNamePrefix}.base.bean.BaseBo;
-
 import java.io.Serializable;
-
 
 
 /**
@@ -14,6 +11,6 @@ import java.io.Serializable;
  * @Author：${author}
  * @Date：${createTime}
  */
-public interface ${className}Api<B extends BaseBo> extends Serializable{
+public interface ${className}Api extends Serializable{
 
 }

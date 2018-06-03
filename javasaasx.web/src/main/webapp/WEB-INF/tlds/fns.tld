@@ -74,12 +74,19 @@
   <function>
     <description> 获取 生成页面类型 枚举列表</description>
     <name>genPageTypeEnums</name>
-    <function-class>com.choudou5.javasaasx.service.impl.util.GenUtil</function-class>
+    <function-class>com.choudou5.javasaasx.service.util.GenUtil</function-class>
     <function-signature>com.choudou5.javasaasx.service.constants.GenConstants.GenPageTypeEnum[] genPageTypeEnums()</function-signature>
     <example>${fns:genPageTypeEnums()}</example>
   </function>
 
-  <!-- StrUtil -->
+  <!-- IpParseUtils -->
+  <function>
+    <description> 获取 Ip来源</description>
+    <name>getIpSource</name>
+    <function-class>com.choudou5.javasaasx.common.util.IpParseUtils</function-class>
+    <function-signature>java.lang.String getIpSource(java.lang.String)</function-signature>
+    <example>${fns:getIpSource(ip)}</example>
+  </function>
 
   <!-- GzipUtil -->
   <function>

@@ -1,4 +1,4 @@
-var logging_url = ctx + '/log/sysLogAdmin/ajaxPrintLog';
+var logging_url = ctx + '/log/logAdmin/ajaxPrintLog';
 var cookie_logging_timezone = 'logging_timezone';
 var frame_element = $( '#frame' );
 

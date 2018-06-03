@@ -206,6 +206,56 @@ function dialogOpenPage(iframeId, title, url, width, height, okCall, cancelCall,
 	});
 }
 
+
+/**
+ * 弹出 新页面
+ * @param iframeId
+ * @param title
+ * @param url
+ * @param width
+ * @param height
+ * @param okCall
+ * @param cancelCall
+ * @param initCall
+ */
+function dialogOpenFullPage(iframeId, title, url, okCall, cancelCall, initCall){
+	//layer.closeAll();
+	width = CommUtil.getResponsiveWidth(550)+'px';
+	height = CommUtil.getResponsiveHeight(450)+'px';
+	//单窗口模式，层叠置顶
+	var index = layer.open({
+		id: iframeId,
+		type: 2 //此处以iframe举例
+		,title: title
+		,closeBtn: 1
+		,area: [width, height]
+		,shadeClose: true
+		,maxmin: true
+		,content: url
+		,btn: ['确定', '取消']
+		,yes: function(index){
+			if(typeof okCall == 'function'){
+				okCall(index);
+			}
+		}
+		,btn2: function(){
+			if(typeof cancelCall == 'function'){
+				cancelCall();
+			}
+		}
+		,zIndex: layer.zIndex //重点1
+		,success: function(layero){
+			if(typeof initCall == 'function'){
+				initCall();
+			}
+		}
+	});
+	layer.full(index);
+	// layer.full()、layer.min()、layer.restore() - 手工执行最大小化（这三个酱油又一次被并列 ==。）一般用于在自定义元素上触发最大化、最小化和全屏。
+
+}
+
+
 /**
  * 弹出 新页面
  * @param iframeId

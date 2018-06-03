@@ -7,19 +7,34 @@
 */
 package com.choudou5.javasaasx.service.dic;
 
-import com.choudou5.javasaasx.base.bean.BaseBo;
-import com.choudou5.javasaasx.base.service.BaseService;
-import com.choudou5.javasaasx.service.dic.bo.DicSensitiveWordBo;
+import com.choudou5.javasaasx.dao.dic.DicSensitiveWordDao;
+import com.choudou5.javasaasx.dao.dic.po.DicSensitiveWordPo;
+import com.choudou5.javasaasx.service.dic.vo.DicSensitiveWordVo;
+import com.choudou5.javasaasx.base.dao.BaseDao;
+import com.choudou5.javasaasx.service.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * @Name：敏感词库 接口
+ * @Name：敏感词库 Service实现类
  * @Author：xuhaowen
- * @Date：2018-03-04
+ * @Date：2018-06-03
  */
-public interface DicSensitiveWordService extends BaseService<DicSensitiveWordBo> {
+@Service("dicSensitiveWordService")
+public class DicSensitiveWordService extends BaseService<DicSensitiveWordPo, DicSensitiveWordVo>{
 
-    List<String> findAllWord();
+    @Autowired
+    private DicSensitiveWordDao dao;
+
+    @Override
+    protected BaseDao getDao() {
+        return dao;
+    }
+
+    public List<String> findAllWord() {
+        return dao.findAllWord();
+    }
 
 }

@@ -1,6 +1,6 @@
 package com.choudou5.javasaasx.base.service;
 
-import com.choudou5.javasaasx.base.service.vo.SysUserVo;
+import com.choudou5.javasaasx.base.service.vo.SysUserSimpleVo;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import java.util.List;
  */
 public interface CommService {
 
-    List<SysUserVo> findAllActiveUsers();
+    List<SysUserSimpleVo> findAllActiveUsers();
 
-    SysUserVo getByEmail(String email);
+    SysUserSimpleVo getByEmail(String email);
 
-    SysUserVo getByMobile(String mobile);
+    SysUserSimpleVo getByMobile(String mobile);
 
 
 }

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.pl.AppVersionInfoDao" >
+    <resultMap id="RM_AppVersionInfo" type="com.choudou5.javasaasx.dao.pl.po.AppVersionInfoPo">
+        <result property="id" column="id"/>
+        <result property="clientType" column="client_type"/>
+        <result property="versionNum" column="version_num"/>
+        <result property="buildNum" column="build_num"/>
+        <result property="title" column="title"/>
+        <result property="versionType" column="version_type"/>
+        <result property="filePath" column="file_path"/>
+        <result property="fileSize" column="file_size"/>
+        <result property="pushTime" column="push_time"/>
+        <result property="updateType" column="update_type"/>
+        <result property="remark" column="remark"/>
+        <result property="channelCode" column="channel_code"/>
+        <result property="channelDownPath" column="channel_down_path"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="status" column="status"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `client_type`, `version_num`, `build_num`, `title`, `version_type`, `file_path`, `file_size`, `push_time`, `update_type`, `remark`, `channel_code`, `channel_down_path`, `create_by`, `create_time`, `update_by`, `update_time`, `status`, `del_flag`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            `del_flag` = 1
+            <!--
+            eg: AND title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO pl_app_version_info (
+        <if test="id != null">`id`</if>
+        <if test="clientType != null">,`client_type`</if>
+        <if test="versionNum != null">,`version_num`</if>
+        <if test="buildNum != null">,`build_num`</if>
+        <if test="title != null">,`title`</if>
+        <if test="versionType != null">,`version_type`</if>
+        <if test="filePath != null">,`file_path`</if>
+        <if test="fileSize != null">,`file_size`</if>
+        <if test="pushTime != null">,`push_time`</if>
+        <if test="updateType != null">,`update_type`</if>
+        <if test="remark != null">,`remark`</if>
+        <if test="channelCode != null">,`channel_code`</if>
+        <if test="channelDownPath != null">,`channel_down_path`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+
+
+        <if test="status != null">,`status`</if>
+        <if test="delFlag != null">,`del_flag`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="clientType != null">,#{clientType}</if>
+        <if test="versionNum != null">,#{versionNum}</if>
+        <if test="buildNum != null">,#{buildNum}</if>
+        <if test="title != null">,#{title}</if>
+        <if test="versionType != null">,#{versionType}</if>
+        <if test="filePath != null">,#{filePath}</if>
+        <if test="fileSize != null">,#{fileSize}</if>
+        <if test="pushTime != null">,#{pushTime}</if>
+        <if test="updateType != null">,#{updateType}</if>
+        <if test="remark != null">,#{remark}</if>
+        <if test="channelCode != null">,#{channelCode}</if>
+        <if test="channelDownPath != null">,#{channelDownPath}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+
+
+        <if test="status != null">,#{status}</if>
+        <if test="delFlag != null">,#{delFlag}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO pl_app_version_info (
+        `id`
+        ,`client_type`
+        ,`version_num`
+        ,`build_num`
+        ,`title`
+        ,`version_type`
+        ,`file_path`
+        ,`file_size`
+        ,`push_time`
+        ,`update_type`
+        ,`remark`
+        ,`channel_code`
+        ,`channel_down_path`
+        ,`create_by`
+        ,`create_time`
+
+
+        ,`status`
+        ,`del_flag`
+        ) VALUES
+        <foreach collection="list" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.clientType}
+        ,#{entity.versionNum}
+        ,#{entity.buildNum}
+        ,#{entity.title}
+        ,#{entity.versionType}
+        ,#{entity.filePath}
+        ,#{entity.fileSize}
+        ,#{entity.pushTime}
+        ,#{entity.updateType}
+        ,#{entity.remark}
+        ,#{entity.channelCode}
+        ,#{entity.channelDownPath}
+        ,#{entity.createBy}
+        ,#{entity.createTime}
+
+
+        ,#{entity.status}
+        ,#{entity.delFlag}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE pl_app_version_info SET
+            `client_type` = #{clientType} ,
+            `version_num` = #{versionNum} ,
+            `build_num` = #{buildNum} ,
+            `title` = #{title} ,
+            `version_type` = #{versionType} ,
+            `file_path` = #{filePath} ,
+            `file_size` = #{fileSize} ,
+            `push_time` = #{pushTime} ,
+            `update_type` = #{updateType} ,
+            `remark` = #{remark} ,
+            `channel_code` = #{channelCode} ,
+            `channel_down_path` = #{channelDownPath} ,
+
+
+            `update_by` = #{updateBy} ,
+            `update_time` = #{updateTime} ,
+            `status` = #{status} ,
+            `del_flag` = #{delFlag} 
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM pl_app_version_info
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM pl_app_version_info
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM pl_app_version_info
+        <include refid="where"/>
+    </delete>
+
+    <update id="logicDeleteById">
+        UPDATE pl_app_version_info SET `del_flag` = 0
+        WHERE id = #{id}
+    </update>
+
+    <update id="logicDeleteByIds">
+        UPDATE pl_app_version_info SET `del_flag` = 0
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </update>
+
+    <select id="findById" resultMap="RM_AppVersionInfo">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM pl_app_version_info
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM pl_app_version_info
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_AppVersionInfo">
+        SELECT <include refid="columns"/>
+        FROM pl_app_version_info
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            limit ${pageBean.start}, ${pageBean.pageSize}
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_AppVersionInfo">
+        SELECT <include refid="columns"/>
+        FROM pl_app_version_info
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_AppVersionInfo">
+        SELECT <include refid="columns"/>
+        FROM pl_app_version_info
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        limit 1
+    </select>
+
+
+</mapper>
+
+

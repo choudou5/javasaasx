@@ -12,8 +12,8 @@ import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.service.sys.SysRoleService;
-import com.choudou5.javasaasx.service.sys.bo.SysRoleBo;
-import com.choudou5.javasaasx.service.sys.bo.SysRoleQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysRoleQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysRoleVo;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +45,11 @@ public class SysRoleController extends BaseController {
      * @return
      */
     @ModelAttribute
-    public SysRoleBo get(@RequestParam(required=false) String id) {
+    public SysRoleVo get(@RequestParam(required=false) String id) {
         if (StrUtil.isNotBlank(id)){
             return sysRoleService.get(id);
         }else{
-            return new SysRoleBo();
+            return new SysRoleVo();
         }
     }
 
@@ -64,7 +64,7 @@ public class SysRoleController extends BaseController {
     @RequestMapping(value = {"list", ""})
     public String list(SysRoleQueryParam queryParam, HttpServletRequest req, Model model) {
         queryParam.setPageParam(1, 500);
-        PageResult<SysRoleBo> pageResult = sysRoleService.findPage(queryParam);
+        PageResult<SysRoleVo> pageResult = sysRoleService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         return "/sys/sysRoleList";
     }
@@ -79,13 +79,13 @@ public class SysRoleController extends BaseController {
     @RequiresPermissions("sys:sysRole:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
-        SysRoleBo sysRoleBo = sysRoleService.get(id);
-        model.addAttribute("sysRoleBo", sysRoleBo);
+        SysRoleVo sysRoleVo = sysRoleService.get(id);
+        model.addAttribute("sysRoleVo", sysRoleVo);
         return "/sys/sysRoleView";
     }
 
     /**
-     * @param bo
+     * @param vo
      * @param req
      * @param model
      * @return
@@ -93,10 +93,10 @@ public class SysRoleController extends BaseController {
     @ControllerDesc(desc = "编辑系统角色", optType = "edit")
     @RequiresPermissions("sys:sysRole:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
-    public String form(SysRoleBo bo, HttpServletRequest req, Model model) {
+    public String form(SysRoleVo vo, HttpServletRequest req, Model model) {
         try {
-            AssertUtil.isNotNull(bo, "数据不存在");
-            model.addAttribute("sysRoleBo", bo);
+            AssertUtil.isNotNull(vo, "数据不存在");
+            model.addAttribute("sysRoleVo", vo);
         } catch (Exception e) {
             addMessage(model, e);
         }
@@ -104,7 +104,7 @@ public class SysRoleController extends BaseController {
     }
 
     /**
-     * @param sysRoleBo
+     * @param sysRoleVo
      * @param req
      * @param attributes
      * @return
@@ -113,12 +113,12 @@ public class SysRoleController extends BaseController {
     @RequiresPermissions("sys:sysRole:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(SysRoleBo sysRoleBo, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(SysRoleVo sysRoleVo, HttpServletRequest req, RedirectAttributes attributes) {
         //数据 验证
-        if (!beanValidator(attributes, sysRoleBo))
+        if (!beanValidator(attributes, sysRoleVo))
             return returnFail(attributes);
         try {
-            sysRoleService.save(sysRoleBo);
+            sysRoleService.save(sysRoleVo);
             return returnOK("保存成功");
         } catch (Exception e) {
             return returnFail(e, "保存失败");

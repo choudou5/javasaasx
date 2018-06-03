@@ -7,16 +7,28 @@
 */
 package com.choudou5.javasaasx.service.sys;
 
-import com.choudou5.javasaasx.base.bean.BaseBo;
-import com.choudou5.javasaasx.base.service.BaseService;
-import com.choudou5.javasaasx.service.sys.bo.SysSettingBo;
+import com.choudou5.javasaasx.dao.sys.SysSettingDao;
+import com.choudou5.javasaasx.dao.sys.po.SysSettingPo;
+import com.choudou5.javasaasx.service.sys.vo.SysSettingVo;
+import com.choudou5.javasaasx.base.dao.BaseDao;
+import com.choudou5.javasaasx.service.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * @Name：系统设置 接口
+ * @Name：系统设置 Service实现类
  * @Author：xuhaowen
- * @Date：2018-03-06
+ * @Date：2018-06-03
  */
-public interface SysSettingService extends BaseService<SysSettingBo> {
+@Service("sysSettingService")
+public class SysSettingService extends BaseService<SysSettingPo, SysSettingVo>{
 
+    @Autowired
+    private SysSettingDao dao;
+
+    @Override
+    protected BaseDao getDao() {
+        return dao;
+    }
 
 }

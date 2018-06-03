@@ -17,13 +17,13 @@
                     <div class="row">
                         <form:form id="searchForm" modelAttribute="messageTpGroupQueryParam" action="${ctx}/message/messageTpGroup/list" method="post">
                             <div class="col-md-2">
-                                <form:select path="messageTpGroupBo.tpType" title="第三方类型" class="selectpicker" data-style="select-with-transition" data-live-search="false">
+                                <form:select path="messageTpGroupVo.tpType" title="第三方类型" class="selectpicker" data-style="select-with-transition" data-live-search="false">
                                     <form:option value="">第三方类型</form:option>
                                     <form:option value="dingtalk">钉钉</form:option>
                                 </form:select>
                             </div>
                             <div class="col-md-2">
-                                <form:input type="text" path="messageTpGroupBo.bizType" class="form-control clearable" placeholder=" 业务key"/>
+                                <form:input type="text" path="messageTpGroupVo.bizType" class="form-control clearable" placeholder=" 业务key"/>
                             </div>
                             <div class="col-md-1">
                                 <button type="submit" class="btn btn-twitter"><i class="fa fa-search"></i></button>

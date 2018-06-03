@@ -11,9 +11,9 @@ import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.service.dic.DicSensitiveWordService;
-import com.choudou5.javasaasx.service.dic.bo.DicSensitiveWordBo;
-import com.choudou5.javasaasx.service.dic.bo.DicSensitiveWordQueryParam;
-import com.choudou5.javasaasx.service.impl.util.SensitiveWordUtil;
+import com.choudou5.javasaasx.service.dic.vo.DicSensitiveWordQueryParam;
+import com.choudou5.javasaasx.service.dic.vo.DicSensitiveWordVo;
+import com.choudou5.javasaasx.service.util.SensitiveWordUtil;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import com.choudou5.javasaasx.web.util.RequestUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -54,7 +54,7 @@ public class DicSensitiveWordController extends BaseController {
     @RequestMapping(value = {"list", ""})
     public String list(DicSensitiveWordQueryParam queryParam, HttpServletRequest req, Model model) {
         queryParam.setOrderDefParam("create_time", "DESC");
-        PageResult<DicSensitiveWordBo> pageResult = dicSensitiveWordService.findPage(queryParam);
+        PageResult<DicSensitiveWordVo> pageResult = dicSensitiveWordService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         return "/dic/dicSensitiveWordList";
     }
@@ -70,7 +70,7 @@ public class DicSensitiveWordController extends BaseController {
     @RequiresPermissions("dic:dicSensitiveWord:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(DicSensitiveWordBo dicSensitiveWordBo, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(DicSensitiveWordVo dicSensitiveWordBo, HttpServletRequest req, RedirectAttributes attributes) {
         dicSensitiveWordBo.setWord(RequestUtil.getStrParameter(req, "text"));
         //数据 验证
         if (!beanValidator(attributes, dicSensitiveWordBo))

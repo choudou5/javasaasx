@@ -15,7 +15,7 @@
 
 		<dependency>
 			<groupId>${mavenGroup}</groupId>
-			<artifactId>${projectName}.impl</artifactId>
+			<artifactId>${projectName}.service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

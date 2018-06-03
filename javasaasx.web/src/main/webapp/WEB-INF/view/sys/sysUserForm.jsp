@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid ${sysModel}">
         <div class="row">
             <div class="col-md-12">
                 <div class="card" style="margin: 10px 0;">

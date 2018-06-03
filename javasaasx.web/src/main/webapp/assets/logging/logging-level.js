@@ -1,4 +1,4 @@
-var logging_change_url = ctx + '/log/sysLogAdmin/setting';
+var logging_change_url = ctx + '/log/logAdmin/setting';
 
 var logging_handler = function( response, text_status, xhr )
 {

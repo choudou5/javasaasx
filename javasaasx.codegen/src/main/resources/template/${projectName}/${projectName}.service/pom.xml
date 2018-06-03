@@ -11,28 +11,25 @@
 	<name>${projectName}.service</name>
 	<packaging>jar</packaging>
 
-	<properties>
-
-	</properties>
 
 	<dependencies>
 
 		<dependency>
 			<groupId>${mavenGroup}</groupId>
-			<artifactId>javasaasx.base</artifactId>
+			<artifactId>${projectName}.dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>${mavenGroup}</groupId>
-			<artifactId>${projectName}.api</artifactId>
+			<artifactId>${projectName}.common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
-		<!-- validation -->
+		<!-- Spring -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>5.2.4.Final</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${"$"}{spring.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>*</groupId>
@@ -40,6 +37,52 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${"$"}{spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>${"$"}{spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${"$"}{spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${"$"}{spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>${"$"}{aopalliance.version}</version>
+		</dependency>
+		<!-- Spring end-->
+
 
 	</dependencies>
 

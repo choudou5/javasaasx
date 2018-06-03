@@ -1,7 +1,7 @@
 <#include "/java_copyright.include"/>
 <#assign className = table.className>
 <#assign classPOName = table.className + 'Po'>
-<#assign classBOName = table.className + 'Bo'>
+<#assign classVOName = table.className + 'Vo'>
 <#assign classNameLower = className?uncap_first>
 
 

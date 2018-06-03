@@ -8,14 +8,14 @@
 package com.choudou5.javasaasx.web.controller.message;
 
 import com.choudou5.base.annotation.ControllerDesc;
-import com.choudou5.base.bean.SelectBo;
+import com.choudou5.base.bean.SelectBean;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.CollUtil;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.service.message.MessageTpGroupService;
-import com.choudou5.javasaasx.service.message.bo.MessageTpGroupBo;
-import com.choudou5.javasaasx.service.message.bo.MessageTpGroupQueryParam;
+import com.choudou5.javasaasx.service.message.vo.MessageTpGroupQueryParam;
+import com.choudou5.javasaasx.service.message.vo.MessageTpGroupVo;
 import com.choudou5.javasaasx.service.sys.DingTalkService;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -52,11 +52,11 @@ public class MessageTpGroupController extends BaseController {
      * @return
      */
     @ModelAttribute
-    public MessageTpGroupBo get(@RequestParam(required=false) String id) {
+    public MessageTpGroupVo get(@RequestParam(required=false) String id) {
         if (StrUtil.isNotBlank(id)){
             return messageTpGroupService.get(id);
         }else{
-            return new MessageTpGroupBo();
+            return new MessageTpGroupVo();
         }
     }
 
@@ -70,13 +70,13 @@ public class MessageTpGroupController extends BaseController {
     @RequiresPermissions("message:messageTpGroup:view")
     @RequestMapping(value = {"list", ""})
     public String list(MessageTpGroupQueryParam queryParam, HttpServletRequest req, Model model) {
-        PageResult<MessageTpGroupBo> pageResult = messageTpGroupService.findPage(queryParam);
+        PageResult<MessageTpGroupVo> pageResult = messageTpGroupService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         return "/message/messageTpGroupList";
     }
 
     /**
-     * @param bo
+     * @param vo
      * @param req
      * @param model
      * @return
@@ -84,13 +84,13 @@ public class MessageTpGroupController extends BaseController {
     @ControllerDesc(desc = "查看第三方消息群-详情", optType = "view")
     @RequiresPermissions("message:messageTpGroup:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
-    public String view(MessageTpGroupBo bo, HttpServletRequest req, Model model) {
-        model.addAttribute("messageTpGroupBo", bo);
+    public String view(MessageTpGroupVo vo, HttpServletRequest req, Model model) {
+        model.addAttribute("messageTpGroupVo", vo);
         return "/message/messageTpGroupView";
     }
 
     /**
-     * @param bo
+     * @param vo
      * @param req
      * @param model
      * @return
@@ -98,10 +98,10 @@ public class MessageTpGroupController extends BaseController {
     @ControllerDesc(desc = "编辑第三方消息群", optType = "edit")
     @RequiresPermissions("message:messageTpGroup:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
-    public String form(MessageTpGroupBo bo, HttpServletRequest req, Model model) {
+    public String form(MessageTpGroupVo vo, HttpServletRequest req, Model model) {
         try {
-            AssertUtil.isNotNull(bo, "数据不存在");
-            model.addAttribute("messageTpGroupBo", bo);
+            AssertUtil.isNotNull(vo, "数据不存在");
+            model.addAttribute("messageTpGroupVo", vo);
         } catch (Exception e) {
             addMessage(model, e);
         }
@@ -109,7 +109,7 @@ public class MessageTpGroupController extends BaseController {
     }
 
     /**
-     * @param messageTpGroupBo
+     * @param messageTpGroupVo
      * @param req
      * @param attributes
      * @return
@@ -118,12 +118,12 @@ public class MessageTpGroupController extends BaseController {
     @RequiresPermissions("message:messageTpGroup:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(MessageTpGroupBo messageTpGroupBo, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(MessageTpGroupVo messageTpGroupVo, HttpServletRequest req, RedirectAttributes attributes) {
         //数据 验证
-        if (!beanValidator(attributes, messageTpGroupBo))
+        if (!beanValidator(attributes, messageTpGroupVo))
             return returnFail(attributes);
         try {
-            messageTpGroupService.save(messageTpGroupBo);
+            messageTpGroupService.save(messageTpGroupVo);
             return returnOK("保存成功");
         } catch (Exception e) {
             return returnFail(e, "保存失败");
@@ -157,10 +157,10 @@ public class MessageTpGroupController extends BaseController {
     @RequiresPermissions("message:messageTpGroup:view")
     @RequestMapping(value = {"test"})
     public String test(HttpServletRequest req, Model model) {
-        List<MessageTpGroupBo> list = messageTpGroupService.findAll();
-        List<SelectBo> dataList = null;
+        List<MessageTpGroupVo> list = messageTpGroupService.findAll();
+        List<SelectBean> dataList = null;
         if(CollUtil.isNotEmpty(list))
-            dataList = list.stream().map(info -> new SelectBo(info.getName(), info.getBizType())).collect(Collectors.toList());
+            dataList = list.stream().map(info -> new SelectBean(info.getName(), info.getBizType())).collect(Collectors.toList());
         model.addAttribute("leftDataList", dataList);
         return "/message/messageTpGroupTest";
     }

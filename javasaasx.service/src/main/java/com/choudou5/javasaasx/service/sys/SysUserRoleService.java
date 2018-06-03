@@ -7,15 +7,28 @@
 */
 package com.choudou5.javasaasx.service.sys;
 
-import com.choudou5.javasaasx.base.service.BaseService;
-import com.choudou5.javasaasx.service.sys.bo.SysUserRoleBo;
+import com.choudou5.javasaasx.dao.sys.SysUserRoleDao;
+import com.choudou5.javasaasx.dao.sys.po.SysUserRolePo;
+import com.choudou5.javasaasx.service.sys.vo.SysUserRoleVo;
+import com.choudou5.javasaasx.base.dao.BaseDao;
+import com.choudou5.javasaasx.service.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * @Name：系统用户角色 接口
+ * @Name：系统用户角色 Service实现类
  * @Author：xuhaowen
- * @Date：2018-02-22
+ * @Date：2018-06-03
  */
-public interface SysUserRoleService extends BaseService<SysUserRoleBo> {
+@Service("sysUserRoleService")
+public class SysUserRoleService extends BaseService<SysUserRolePo, SysUserRoleVo>{
 
+    @Autowired
+    private SysUserRoleDao dao;
+
+    @Override
+    protected BaseDao getDao() {
+        return dao;
+    }
 
 }

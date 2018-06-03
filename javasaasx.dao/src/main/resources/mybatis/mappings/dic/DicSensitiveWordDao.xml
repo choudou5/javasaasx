@@ -121,7 +121,7 @@
             ORDER BY ${orderBean.orderBy} ${orderBean.order}
         </if>
         <if test="pageBean != null">
-            <if test="dbName == 'mysql'">limit ${pageBean.start}, ${pageBean.pageSize} </if>
+            limit ${pageBean.start}, ${pageBean.pageSize}
         </if>
     </select>
 
@@ -140,7 +140,7 @@
         <if test="orderBean != null and orderBean.orderBy != null">
             ORDER BY ${orderBean.orderBy} ${orderBean.order}
         </if>
-        <if test="dbName == 'mysql'">limit 1</if>
+        limit 1
     </select>
 
     <select id="getByWord" resultMap="RM_DicSensitiveWord" parameterType="java.lang.String">

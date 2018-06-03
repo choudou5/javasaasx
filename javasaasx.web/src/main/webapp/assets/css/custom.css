@@ -57,9 +57,12 @@ table thead tr{background: #f2f2f2;}
 .footable tr.active a{font-weight: bold;}
 
 
+.iframe-page{float: left;}
+.layui-layer-iframe .layui-layer-btn{text-align: center;}
+.layui-layer-btn a {height: 35px!important; line-height: 35px!important; padding: 0 25px!important;}
 
 
-/** 详情页面 */
+    /** 详情页面 */
 .page-detail > .row > label{min-width: 100px;text-align: right;}
 .page-detail > .row > div{display: inline-block}
 

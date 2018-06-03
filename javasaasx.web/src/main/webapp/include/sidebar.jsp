@@ -49,43 +49,55 @@
             <li class="layui-nav-item">
                 <a data-toggle="collapse" href="#safeExamples">
                     <i class="material-icons">verified_user</i>
-                    <p>安全管理<b class="caret"></b></p>
+                    <p>站点维护<b class="caret"></b></p>
                 </a>
                 <div class="collapse" id="safeExamples">
                     <ul class="nav layui-nav-child">
                         <li>
                             <a href="javascript:;" href-url="${ctx }/dic/dicSensitiveWord">敏感词管理</a>
                         </li>
-                        <%--<li>
-                            <a href="javascript:dialogTipError('待完善');" href-url="">黑名单</a>
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/log/logOperation">广告管理</a>
                         </li>
                         <li>
-                            <a href="javascript:dialogTipError('待完善');" href-url="">在线用户</a>
-                        </li>--%>
+                            <a href="javascript:;" href-url="${ctx }/log/logOperation">留言反馈</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/log/logOperation">友情链接</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/log/logOperation">APP版本管理</a>
+                        </li>
                     </ul>
                 </div>
             </li>
             <li class="layui-nav-item">
                 <a data-toggle="collapse" href="#logExamples">
                     <i class="fa fa-history"></i>
-                    <p>日志管理<b class="caret"></b></p>
+                    <p>安全与日志<b class="caret"></b></p>
                 </a>
                 <div class="collapse" id="logExamples">
                     <ul class="nav layui-nav-child">
                         <li>
-                            <a href="javascript:;" href-url="${ctx }/log/sysOperationLog">操作日志</a>
+                            <a href="javascript:;" href-url="${ctx }/log/logOperation">系统防火墙记录</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctx }/log/sysUserLoginHi">登录日志</a>
+                            <a href="javascript:;" href-url="${ctx }/log/logOperation">限制黑名单</a>
                         </li>
                         <li>
+                            <a href="javascript:;" href-url="${ctx }/log/logOperation">操作日志</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" href-url="${ctx }/log/logUserLogin">登录日志</a>
+                        </li>
+                       <%-- <li>
                             <a href="javascript:;" href-url="${ctx }/log/sysException">异常日志</a>
                         </li>
                         <li>
                             <a href="javascript:;" href-url="${ctx }/log/sysRemoteException">远程日志</a>
-                        </li>
+                        </li>--%>
                         <li>
-                            <a href="javascript:;" href-url="${ctx }/viewPage/log/sysLogAdminList">系统日志管理</a>
+                            <a href="javascript:;" href-url="${ctx }/viewPage/log/logAdminList">日志监管</a>
                         </li>
                     </ul>
                 </div>
@@ -122,6 +134,9 @@
                         <li>
                             <a href="javascript:dialogTipError('待完善');" href-url="">浏览统计</a>
                         </li>
+                        <li>
+                            <a href="javascript:dialogTipError('待完善');" href-url="">搜索统计</a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -136,7 +151,7 @@
                             <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">公告管理</a>
                         </li>
                         <li>
-                            <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">公告管理</a>
+                            <a href="javascript:;" href-url="${ctxStaticPage }pricing.jsp">验证码记录</a>
                         </li>
                     </ul>
                 </div>

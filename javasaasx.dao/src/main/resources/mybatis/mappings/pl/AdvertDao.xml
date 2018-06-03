@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.pl.AdvertDao" >
+    <resultMap id="RM_Advert" type="com.choudou5.javasaasx.dao.pl.po.AdvertPo">
+        <result property="id" column="id"/>
+        <result property="clientType" column="client_type"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="toUrl" column="to_url"/>
+        <result property="adDesc" column="ad_desc"/>
+        <result property="adType" column="ad_type"/>
+        <result property="def" column="def"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="adOrder" column="ad_order"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="status" column="status"/>
+        <result property="extParam1" column="ext_param1"/>
+        <result property="extParam2" column="ext_param2"/>
+        <result property="extParam3" column="ext_param3"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `client_type`, `img_url`, `to_url`, `ad_desc`, `ad_type`, `def`, `start_time`, `end_time`, `ad_order`, `create_by`, `create_time`, `update_by`, `update_time`, `status`, `ext_param1`, `ext_param2`, `ext_param3`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            
+            <!--
+            eg: AND title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO pl_advert (
+        <if test="id != null">`id`</if>
+        <if test="clientType != null">,`client_type`</if>
+        <if test="imgUrl != null">,`img_url`</if>
+        <if test="toUrl != null">,`to_url`</if>
+        <if test="adDesc != null">,`ad_desc`</if>
+        <if test="adType != null">,`ad_type`</if>
+        <if test="def != null">,`def`</if>
+        <if test="startTime != null">,`start_time`</if>
+        <if test="endTime != null">,`end_time`</if>
+        <if test="adOrder != null">,`ad_order`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+
+
+        <if test="status != null">,`status`</if>
+        <if test="extParam1 != null">,`ext_param1`</if>
+        <if test="extParam2 != null">,`ext_param2`</if>
+        <if test="extParam3 != null">,`ext_param3`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="clientType != null">,#{clientType}</if>
+        <if test="imgUrl != null">,#{imgUrl}</if>
+        <if test="toUrl != null">,#{toUrl}</if>
+        <if test="adDesc != null">,#{adDesc}</if>
+        <if test="adType != null">,#{adType}</if>
+        <if test="def != null">,#{def}</if>
+        <if test="startTime != null">,#{startTime}</if>
+        <if test="endTime != null">,#{endTime}</if>
+        <if test="adOrder != null">,#{adOrder}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+
+
+        <if test="status != null">,#{status}</if>
+        <if test="extParam1 != null">,#{extParam1}</if>
+        <if test="extParam2 != null">,#{extParam2}</if>
+        <if test="extParam3 != null">,#{extParam3}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO pl_advert (
+        `id`
+        ,`client_type`
+        ,`img_url`
+        ,`to_url`
+        ,`ad_desc`
+        ,`ad_type`
+        ,`def`
+        ,`start_time`
+        ,`end_time`
+        ,`ad_order`
+        ,`create_by`
+        ,`create_time`
+
+
+        ,`status`
+        ,`ext_param1`
+        ,`ext_param2`
+        ,`ext_param3`
+        ) VALUES
+        <foreach collection="list" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.clientType}
+        ,#{entity.imgUrl}
+        ,#{entity.toUrl}
+        ,#{entity.adDesc}
+        ,#{entity.adType}
+        ,#{entity.def}
+        ,#{entity.startTime}
+        ,#{entity.endTime}
+        ,#{entity.adOrder}
+        ,#{entity.createBy}
+        ,#{entity.createTime}
+
+
+        ,#{entity.status}
+        ,#{entity.extParam1}
+        ,#{entity.extParam2}
+        ,#{entity.extParam3}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE pl_advert SET
+            `client_type` = #{clientType} ,
+            `img_url` = #{imgUrl} ,
+            `to_url` = #{toUrl} ,
+            `ad_desc` = #{adDesc} ,
+            `ad_type` = #{adType} ,
+            `def` = #{def} ,
+            `start_time` = #{startTime} ,
+            `end_time` = #{endTime} ,
+            `ad_order` = #{adOrder} ,
+
+
+            `update_by` = #{updateBy} ,
+            `update_time` = #{updateTime} ,
+            `status` = #{status} ,
+            `ext_param1` = #{extParam1} ,
+            `ext_param2` = #{extParam2} ,
+            `ext_param3` = #{extParam3} 
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM pl_advert
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM pl_advert
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM pl_advert
+        <include refid="where"/>
+    </delete>
+
+
+    <select id="findById" resultMap="RM_Advert">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM pl_advert
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM pl_advert
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_Advert">
+        SELECT <include refid="columns"/>
+        FROM pl_advert
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            limit ${pageBean.start}, ${pageBean.pageSize}
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_Advert">
+        SELECT <include refid="columns"/>
+        FROM pl_advert
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_Advert">
+        SELECT <include refid="columns"/>
+        FROM pl_advert
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        limit 1
+    </select>
+
+
+</mapper>
+
+

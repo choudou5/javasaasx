@@ -51,7 +51,6 @@
 		<module>${projectName}.framework</module>
 		<module>${projectName}.common</module>
 		<module>${projectName}.dao</module>
-		<module>${projectName}.impl</module>
 		<module>${projectName}.service</module>
 		<module>${projectName}.api</module>
 		<module>${projectName}.web</module>

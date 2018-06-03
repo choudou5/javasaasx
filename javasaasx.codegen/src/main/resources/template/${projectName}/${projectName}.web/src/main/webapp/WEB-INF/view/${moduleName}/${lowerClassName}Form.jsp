@@ -1,6 +1,6 @@
 <#assign className = table.className>
 <#assign classNameLower = className?uncap_first>
-<#assign classBOName = classNameLower + 'Bo'>
+<#assign classVOName = classNameLower + 'Vo'>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/include/tagLib.jsp" %>
 <!doctype html>
@@ -13,12 +13,12 @@
 
 <body>
 <div class="wrapper">
-    <div class="main-panel">
+    <div class="main-panel ${"$"}{sysModel}">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px 0;">
-                        <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="${classBOName}" action="" method="POST">
+                        <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="${classVOName}" action="" method="POST">
                             <form:hidden path="id"/>
                             <div class="card-content">
                                 <#list columnStyles as column>

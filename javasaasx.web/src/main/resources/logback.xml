@@ -65,8 +65,6 @@
     <logger name="org.dozer" level="ERROR" />
     <logger name="org.apache.shiro.web.servlet.SimpleCookie" level="ERROR" />
 
-    <!-- <logger name="com.lianj.admin.common.security.shiro.session" level="ERROR" />
-     -->
 
     <logger name="com.choudou5.javasaasx" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE_LOG" />

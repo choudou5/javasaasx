@@ -14,8 +14,8 @@ import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.service.sys.SysSettingService;
-import com.choudou5.javasaasx.service.sys.bo.SysSettingBo;
-import com.choudou5.javasaasx.service.sys.bo.SysSettingQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysSettingQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysSettingVo;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import com.choudou5.javasaasx.web.util.RequestUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -48,11 +48,11 @@ public class SysSettingController extends BaseController {
      * @return
      */
     @ModelAttribute
-    public SysSettingBo get(@RequestParam(required=false) String id) {
+    public SysSettingVo get(@RequestParam(required=false) String id) {
         if (StrUtil.isNotBlank(id)){
             return sysSettingService.get(id);
         }else{
-            return new SysSettingBo();
+            return new SysSettingVo();
         }
     }
 
@@ -67,7 +67,7 @@ public class SysSettingController extends BaseController {
     @RequestMapping(value = {"list", ""})
     public String list(SysSettingQueryParam queryParam, HttpServletRequest req, Model model) {
         queryParam.setDefParam(1, 1000, "create_time", "DESC");
-        PageResult<SysSettingBo> pageResult = sysSettingService.findPage(queryParam);
+        PageResult<SysSettingVo> pageResult = sysSettingService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         return "/sys/sysSettingList";
     }
@@ -82,13 +82,13 @@ public class SysSettingController extends BaseController {
     @RequiresPermissions("sys:sysSetting:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
-        SysSettingBo sysSettingBo = sysSettingService.get(id);
-        model.addAttribute("sysSettingBo", sysSettingBo);
+        SysSettingVo sysSettingVo = sysSettingService.get(id);
+        model.addAttribute("sysSettingVo", sysSettingVo);
         return "/sys/sysSettingView";
     }
 
     /**
-     * @param bo
+     * @param Vo
      * @param req
      * @param model
      * @return
@@ -96,10 +96,10 @@ public class SysSettingController extends BaseController {
     @ControllerDesc(desc = "编辑系统设置", optType = "edit")
     @RequiresPermissions("sys:sysSetting:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
-    public String form(SysSettingBo bo, HttpServletRequest req, Model model) {
+    public String form(SysSettingVo Vo, HttpServletRequest req, Model model) {
         try {
-            AssertUtil.isNotNull(bo, "数据不存在");
-            model.addAttribute("sysSettingBo", bo);
+            AssertUtil.isNotNull(Vo, "数据不存在");
+            model.addAttribute("sysSettingVo", Vo);
         } catch (Exception e) {
             addMessage(model, e);
         }
@@ -107,7 +107,7 @@ public class SysSettingController extends BaseController {
     }
 
     /**
-     * @param sysSettingBo
+     * @param sysSettingVo
      * @param req
      * @param attributes
      * @return
@@ -116,12 +116,12 @@ public class SysSettingController extends BaseController {
     @RequiresPermissions("sys:sysSetting:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(SysSettingBo sysSettingBo, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(SysSettingVo sysSettingVo, HttpServletRequest req, RedirectAttributes attributes) {
         //数据 验证
-        if (!beanValidator(attributes, sysSettingBo))
+        if (!beanValidator(attributes, sysSettingVo))
             return returnFail(attributes);
         try {
-            sysSettingService.save(sysSettingBo);
+            sysSettingService.save(sysSettingVo);
             return returnOK("保存成功");
         } catch (Exception e) {
             return returnFail(e, "保存失败");

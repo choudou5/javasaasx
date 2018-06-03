@@ -1,18 +1,22 @@
 <#include "/java_copyright.include"/>
 <#assign className = table.className>
-<#assign classBOName = table.className + 'Bo'>
+<#assign classVOName = table.className + 'Vo'>
+<#assign classVOListName = table.className + 'ListVo'>
 <#assign classNameLower = className?uncap_first>
 <#assign classService = classNameLower + 'Service'>
-<#assign classBONameLower = classBOName?uncap_first>
+<#assign classVONameLower = classVOName?uncap_first>
 package ${packageNamePrefix}.web.controller.${moduleName};
 
 import com.choudou5.base.annotation.ControllerDesc;
+import com.choudou5.base.mapper.BeanMapper;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
 import ${packageNamePrefix}.service.${moduleName}.${className}Service;
-import ${packageNamePrefix}.service.${moduleName}.bo.${classBOName};
-import ${packageNamePrefix}.service.${moduleName}.bo.${className}QueryParam;
+import ${packageNamePrefix}.service.${moduleName}.vo.${classVOName};
+import ${packageNamePrefix}.service.${moduleName}.vo.${classVOListName};
+import ${packageNamePrefix}.service.${moduleName}.vo.${className}QueryParam;
+
 import ${packageNamePrefix}.web.controller.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +49,11 @@ public class ${className}Controller extends BaseController {
      * @return
      */
     @ModelAttribute
-    public ${classBOName} get(@RequestParam(required=false) String id) {
+    public ${classVOName} get(@RequestParam(required=false) String id) {
         if (StrUtil.isNotBlank(id)){
             return ${classService}.get(id);
         }else{
-            return new ${classBOName}();
+            return new ${classVOName}();
         }
     }
 
@@ -63,13 +67,14 @@ public class ${className}Controller extends BaseController {
     @RequiresPermissions("${moduleName}:${classNameLower}:view")
     @RequestMapping(value = {"list", ""})
     public String list(${className}QueryParam queryParam, HttpServletRequest req, Model model) {
-        PageResult<${classBOName}> pageResult = ${classService}.findPage(queryParam);
+        PageResult<${classVOName}> pageResult = ${classService}.findPage(queryParam);
+//        PageResult<ValidcodeTraceListVo> result = BeanMapper.mapPage(pageResult, ValidcodeTraceListVo.class);
         model.addAttribute("pageResult", pageResult);
         return "/${moduleName}/${classNameLower}List";
     }
 
     /**
-     * @param bo
+     * @param vo
      * @param req
      * @param model
      * @return
@@ -77,13 +82,13 @@ public class ${className}Controller extends BaseController {
     @ControllerDesc(desc = "查看${table.remarks}-详情", optType = "view")
     @RequiresPermissions("${moduleName}:${classNameLower}:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
-    public String view(${classBOName} bo, HttpServletRequest req, Model model) {
-        model.addAttribute("${classBONameLower}", bo);
+    public String view(${classVOName} vo, HttpServletRequest req, Model model) {
+        model.addAttribute("${classVONameLower}", vo);
         return "/${moduleName}/${classNameLower}View";
     }
 
     /**
-     * @param bo
+     * @param vo
      * @param req
      * @param model
      * @return
@@ -91,10 +96,10 @@ public class ${className}Controller extends BaseController {
     @ControllerDesc(desc = "编辑${table.remarks}", optType = "edit")
     @RequiresPermissions("${moduleName}:${classNameLower}:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
-    public String form(${classBOName} bo, HttpServletRequest req, Model model) {
+    public String form(${classVOName} vo, HttpServletRequest req, Model model) {
         try {
-            AssertUtil.isNotNull(bo, "数据不存在");
-            model.addAttribute("${classBONameLower}", bo);
+            AssertUtil.isNotNull(vo, "数据不存在");
+            model.addAttribute("${classVONameLower}", vo);
         } catch (Exception e) {
             addMessage(model, e);
         }
@@ -102,7 +107,7 @@ public class ${className}Controller extends BaseController {
     }
 
     /**
-     * @param ${classBONameLower}
+     * @param ${classVONameLower}
      * @param req
      * @param attributes
      * @return
@@ -111,12 +116,12 @@ public class ${className}Controller extends BaseController {
     @RequiresPermissions("${moduleName}:${classNameLower}:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(${classBOName} ${classBONameLower}, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(${classVOName} ${classVONameLower}, HttpServletRequest req, RedirectAttributes attributes) {
         //数据 验证
-        if (!beanValidator(attributes, ${classBONameLower}))
+        if (!beanValidator(attributes, ${classVONameLower}))
             return returnFail(attributes);
         try {
-            ${classService}.save(${classBONameLower});
+            ${classService}.save(${classVONameLower});
             return returnOK("保存成功");
         } catch (Exception e) {
             return returnFail(e, "保存失败");

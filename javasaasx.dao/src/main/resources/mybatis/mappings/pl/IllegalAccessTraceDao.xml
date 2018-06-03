@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.pl.IllegalAccessTraceDao" >
+    <resultMap id="RM_IllegalAccessTrace" type="com.choudou5.javasaasx.dao.pl.po.IllegalAccessTracePo">
+        <result property="id" column="id"/>
+        <result property="ip" column="ip"/>
+        <result property="url" column="url"/>
+        <result property="dangerStr" column="danger_str"/>
+        <result property="sysKey" column="sys_key"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `ip`, `url`, `danger_str`, `sys_key`, `create_by`, `create_time`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            
+            <!--
+            eg: AND title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO pl_illegal_access_trace (
+        <if test="id != null">`id`</if>
+        <if test="ip != null">,`ip`</if>
+        <if test="url != null">,`url`</if>
+        <if test="dangerStr != null">,`danger_str`</if>
+        <if test="sysKey != null">,`sys_key`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createTime != null">,`create_time`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="ip != null">,#{ip}</if>
+        <if test="url != null">,#{url}</if>
+        <if test="dangerStr != null">,#{dangerStr}</if>
+        <if test="sysKey != null">,#{sysKey}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createTime != null">,#{createTime}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO pl_illegal_access_trace (
+        `id`
+        ,`ip`
+        ,`url`
+        ,`danger_str`
+        ,`sys_key`
+        ,`create_by`
+        ,`create_time`
+        ) VALUES
+        <foreach collection="list" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.ip}
+        ,#{entity.url}
+        ,#{entity.dangerStr}
+        ,#{entity.sysKey}
+        ,#{entity.createBy}
+        ,#{entity.createTime}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE pl_illegal_access_trace SET
+            `ip` = #{ip} ,
+            `url` = #{url} ,
+            `danger_str` = #{dangerStr} ,
+            `sys_key` = #{sysKey} ,
+
+
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM pl_illegal_access_trace
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM pl_illegal_access_trace
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM pl_illegal_access_trace
+        <include refid="where"/>
+    </delete>
+
+
+    <select id="findById" resultMap="RM_IllegalAccessTrace">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM pl_illegal_access_trace
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM pl_illegal_access_trace
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_IllegalAccessTrace">
+        SELECT <include refid="columns"/>
+        FROM pl_illegal_access_trace
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            limit ${pageBean.start}, ${pageBean.pageSize}
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_IllegalAccessTrace">
+        SELECT <include refid="columns"/>
+        FROM pl_illegal_access_trace
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_IllegalAccessTrace">
+        SELECT <include refid="columns"/>
+        FROM pl_illegal_access_trace
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        limit 1
+    </select>
+
+
+</mapper>
+
+

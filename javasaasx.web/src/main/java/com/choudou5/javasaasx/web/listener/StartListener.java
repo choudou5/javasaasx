@@ -10,7 +10,7 @@ package com.choudou5.javasaasx.web.listener;
 import com.choudou5.base.bean.QueryParam;
 import com.choudou5.javasaasx.common.constants.SysPropConsts;
 import com.choudou5.javasaasx.common.util.SysUtil;
-import com.choudou5.javasaasx.service.impl.util.SensitiveWordUtil;
+import com.choudou5.javasaasx.service.util.SensitiveWordUtil;
 import com.choudou5.log.admin.ListenerConfig;
 import com.choudou5.log.admin.LogWatcher;
 import com.choudou5.log.admin.logback.CustomEventFilter;
@@ -44,8 +44,6 @@ public class StartListener extends ContextLoaderListener {
         SensitiveWordUtil.initCache();
 
         String siteName = SysUtil.getSiteName();
-        QueryParam.setDbName(SysPropConsts.JDBC_TPYE);
-
         System.out.println("正在启动 " + siteName + " 系统...");
         event.getServletContext().setAttribute("siteName", siteName);
 

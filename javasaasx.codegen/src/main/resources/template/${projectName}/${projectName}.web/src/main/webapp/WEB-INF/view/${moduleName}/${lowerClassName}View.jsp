@@ -1,7 +1,7 @@
 <#include "/macro.include"/>
 <#assign className = table.className>
 <#assign classNameLower = className?uncap_first>
-<#assign classBOName = classNameLower + 'Bo'>
+<#assign classVOName = classNameLower + 'Vo'>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/include/tagLib.jsp" %>
 <!doctype html>
@@ -17,9 +17,9 @@
     <div class="row">
         <label class="col-sm-2">${column.desc}</label>
         <#if column.fieldType=='Date'>
-        <div class="col-sm-10"><@jspEl 'fns:formatDateTime(${classBOName}.${column.javaColumn})'/> </div>
+        <div class="col-sm-10"><@jspEl 'fns:formatDateTime(${classVOName}.${column.javaColumn})'/> </div>
         <#else>
-        <div class="col-sm-10"><@jspEl '${classBOName}.${column.javaColumn}'/> </div>
+        <div class="col-sm-10"><@jspEl '${classVOName}.${column.javaColumn}'/> </div>
         </#if>
     </div>
 </#list>

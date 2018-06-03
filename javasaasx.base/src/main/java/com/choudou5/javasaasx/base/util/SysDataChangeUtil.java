@@ -10,6 +10,7 @@ import com.choudou5.javasaasx.common.util.CompareField;
 import com.choudou5.javasaasx.common.util.CompareObjUtil;
 import org.apache.commons.lang.StringUtils;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +22,16 @@ import java.util.List;
  */
 public class SysDataChangeUtil {
 
-    private static SysDataChangeLogDao dao = SpringContextHolder.getBean(SysDataChangeLogDao.class);
+    private static SysDataChangeLogDao dao;
+
+    @PostConstruct
+    public void init(){
+        try {
+            dao = SpringContextHolder.getBean(SysDataChangeLogDao.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 保存 编辑

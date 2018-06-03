@@ -27,12 +27,18 @@ public class GeneratorMain {
 	 * 请直接修改以下代码调用不同的方法以执行相关生成任务.
 	 */
 	public static void main(String[] args) throws Exception {
-		String outDir = "D:\\data\\code_out";
+		String outDir = "D:\\workspace-idea-java\\javasaasx\\javasaasx.codegen\\code_out";
 		String author = "xuhaowen";
 		String moduleName = "sys";
-		String table = "sys_office";
-		genCode(outDir, author, moduleName, table);
+		String[] tables = new String[]{"sys_menu", "sys_office", "sys_role", "sys_setting", "sys_user", "sys_user_rel_thirdparty", "sys_user_role"};
+//		String[] tables = new String[]{"message_tp_group"};
+//		String[] tables = new String[]{"log_user_login", "log_data_modify", "log_operation", "log_remote_exception"};
+		for (String table : tables) {
+			genCode(outDir, author, moduleName, table);
+		}
+
 	}
+
 
 	/**
 	 * 生成代码
@@ -49,7 +55,8 @@ public class GeneratorMain {
 		busCodeGenerator.setOutRootDir(outDir);
 		GeneratorFacade generatorFacade = new GeneratorFacade();
 		generatorFacade.setGenerator(busCodeGenerator);
-        generatorFacade.deleteOutRootDir();//删除生成目录
+//		generatorFacade.deleteByTable(table);
+//        generatorFacade.deleteOutRootDir();//删除生成目录
 
 		//项目名
 		GeneratorProperties.setProperty("projectName", "javasaasx");
@@ -68,11 +75,16 @@ public class GeneratorMain {
 		GeneratorProperties.setProperty("isAddValidAnnotationToBo", "true");
 
 		//需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_
-		GeneratorProperties.setProperty("tableRemovePrefixes", "");
+		String removePrefix = "";//moduleName+"_";
+		GeneratorProperties.setProperty("tableRemovePrefixes", removePrefix);
 
 		//模块名
 		GeneratorProperties.setProperty("moduleName", moduleName);
-		GeneratorProperties.setProperty("lowerClassName", StrUtil.toCamelCase(table));
+
+		String className = table;
+		if(StrUtil.startWith(table, removePrefix))
+			className = table.replace(removePrefix, "");
+		GeneratorProperties.setProperty("lowerClassName", StrUtil.toCamelCase(className));
 //		GeneratorProperties.set("columnStyles", columnStyles);
 
 		//表名 sys_user  gen_table_column_style  sys_menu

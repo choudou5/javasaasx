@@ -4,7 +4,7 @@ import com.choudou5.base.bean.OrderBean;
 import com.choudou5.base.bean.QueryParam;
 import com.choudou5.base.exception.BizException;
 import com.choudou5.base.page.PageResult;
-import com.choudou5.javasaasx.base.bean.BaseBo;
+import com.choudou5.javasaasx.base.bean.BaseVo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,26 +16,26 @@ import java.util.List;
  * @Site：http://www.javasaas.top
  * @License：MIT
  */
-public interface BaseService <B extends BaseBo>{
+public interface BaseService <V extends BaseVo>{
 
     /**
      * 保存
-     * @param bo
+     * @param vo
      * @throws BizException
      */
-    void save(B bo) throws BizException;
+    void save(V vo) throws BizException;
 
     /**
      * 批量新增
      * @param list 实体集合
      */
-    int batchInsert(List<B> list);
+    int batchInsert(List<V> list);
 
     /**
      * 批量更新
      * @param list
      */
-    void batchUpdate(List<B> list) throws BizException;
+    void batchUpdate(List<V> list) throws BizException;
 
 
     /**
@@ -74,14 +74,14 @@ public interface BaseService <B extends BaseBo>{
      * @param id
      * @return
      */
-    B get(Serializable id);
+    V get(Serializable id);
 
     /**
      * 查询 单条记录
      * @param queryBean
      * @return
      */
-    B findOne(QueryParam queryBean) throws BizException;
+    V findOne(QueryParam queryBean) throws BizException;
 
     /**
      * 查询 数量
@@ -96,7 +96,7 @@ public interface BaseService <B extends BaseBo>{
      * @return
      * @throws BizException
      */
-    List<B> findList(QueryParam queryBean) throws BizException;
+    List<V> findList(QueryParam queryBean) throws BizException;
 
     /**
      * 查询所有
@@ -104,20 +104,20 @@ public interface BaseService <B extends BaseBo>{
      * @return
      * @throws BizException
      */
-    List<B> findAll(OrderBean orderBean) throws BizException;
+    List<V> findAll(OrderBean orderBean) throws BizException;
 
     /**
      * 查询所有
      * @return
      * @throws BizException
      */
-    List<B> findAll() throws BizException;
+    List<V> findAll() throws BizException;
 
     /**
      * 分页查询
      * @param queryBean
      * @return
      */
-    public PageResult<B> findPage(QueryParam queryBean) throws BizException;
+    public PageResult<V> findPage(QueryParam queryBean) throws BizException;
 
 }

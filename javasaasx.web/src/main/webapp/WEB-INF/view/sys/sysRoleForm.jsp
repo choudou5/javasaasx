@@ -10,7 +10,7 @@
 
 <body>
 <div class="wrapper">
-    <div class="main-panel">
+    <div class="main-panel ${sysModel}">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">

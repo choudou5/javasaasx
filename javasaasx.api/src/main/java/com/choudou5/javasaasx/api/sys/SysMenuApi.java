@@ -18,6 +18,6 @@ import java.io.Serializable;
  * @Author：xuhaowen
  * @Date：2018-02-15
  */
-public interface SysMenuApi<B extends BaseBo> extends Serializable{
+public interface SysMenuApi extends Serializable{
 
 }

@@ -7,16 +7,28 @@
 */
 package com.choudou5.javasaasx.service.dic;
 
-import com.choudou5.javasaasx.base.bean.BaseBo;
-import com.choudou5.javasaasx.base.service.BaseService;
-import com.choudou5.javasaasx.service.dic.bo.DicAreaBo;
+import com.choudou5.javasaasx.dao.dic.DicAreaDao;
+import com.choudou5.javasaasx.dao.dic.po.DicAreaPo;
+import com.choudou5.javasaasx.service.dic.vo.DicAreaVo;
+import com.choudou5.javasaasx.base.dao.BaseDao;
+import com.choudou5.javasaasx.service.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * @Name： 字典地区接口
+ * @Name：字典地区 Service实现类
  * @Author：xuhaowen
- * @Date：2018-03-06
+ * @Date：2018-06-03
  */
-public interface DicAreaService extends BaseService<DicAreaBo> {
+@Service("dicAreaService")
+public class DicAreaService extends BaseService<DicAreaPo, DicAreaVo>{
 
+    @Autowired
+    private DicAreaDao dao;
+
+    @Override
+    protected BaseDao getDao() {
+        return dao;
+    }
 
 }

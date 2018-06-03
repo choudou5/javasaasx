@@ -12,8 +12,8 @@ import com.choudou5.base.page.PageResult;
 import com.choudou5.base.util.AssertUtil;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.service.sys.SysUserService;
-import com.choudou5.javasaasx.service.sys.bo.SysUserBo;
-import com.choudou5.javasaasx.service.sys.bo.SysUserQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysUserQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysUserVo;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +44,11 @@ public class SysUserController extends BaseController {
      * @return
      */
     @ModelAttribute
-    public SysUserBo get(@RequestParam(required=false) String id) {
+    public SysUserVo get(@RequestParam(required=false) String id) {
         if (StrUtil.isNotBlank(id)){
             return sysUserService.get(id);
         }else{
-            return new SysUserBo();
+            return new SysUserVo();
         }
     }
 
@@ -62,7 +62,7 @@ public class SysUserController extends BaseController {
     @RequiresPermissions("sys:sysUser:view")
     @RequestMapping(value = {"list", ""})
     public String list(SysUserQueryParam queryParam, HttpServletRequest req, Model model) {
-        PageResult<SysUserBo> pageResult = sysUserService.findPage(queryParam);
+        PageResult<SysUserVo> pageResult = sysUserService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         return "/sys/sysUserList";
     }
@@ -77,8 +77,8 @@ public class SysUserController extends BaseController {
     @RequiresPermissions("sys:sysUser:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
-        SysUserBo sysUserBo = sysUserService.get(id);
-        model.addAttribute("sysUserBo", sysUserBo);
+        SysUserVo sysUserVo = sysUserService.get(id);
+        model.addAttribute("sysUserVo", sysUserVo);
         return "/sys/sysUserView";
     }
 
@@ -90,10 +90,10 @@ public class SysUserController extends BaseController {
     @ControllerDesc(desc = "编辑系统用户", optType = "edit")
     @RequiresPermissions("sys:sysUser:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
-    public String form(SysUserBo bo, HttpServletRequest req, Model model) {
+    public String form(SysUserVo vo, HttpServletRequest req, Model model) {
         try {
-            AssertUtil.isNotNull(bo, "数据不存在");
-            model.addAttribute("sysUserBo", bo);
+            AssertUtil.isNotNull(vo, "数据不存在");
+            model.addAttribute("sysUserVo", vo);
         } catch (Exception e) {
             addMessage(model, e);
         }
@@ -101,7 +101,7 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * @param sysUserBo
+     * @param sysUserVo
      * @param req
      * @param attributes
      * @return
@@ -110,12 +110,12 @@ public class SysUserController extends BaseController {
     @RequiresPermissions("sys:sysUser:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(SysUserBo sysUserBo, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(SysUserVo sysUserVo, HttpServletRequest req, RedirectAttributes attributes) {
         //数据 验证
-        if (!beanValidator(attributes, sysUserBo))
+        if (!beanValidator(attributes, sysUserVo))
             return returnFail(attributes);
         try {
-            sysUserService.save(sysUserBo);
+            sysUserService.save(sysUserVo);
             return returnOK("保存成功");
         } catch (Exception e) {
             return returnFail(e, "保存失败");

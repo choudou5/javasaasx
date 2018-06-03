@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choudou5.javasaasx.dao.log.LogDataModifyDao" >
+    <resultMap id="RM_LogDataModify" type="com.choudou5.javasaasx.dao.log.po.LogDataModifyPo">
+        <result property="id" column="id"/>
+        <result property="bizKey" column="biz_key"/>
+        <result property="bizId" column="biz_id"/>
+        <result property="optType" column="opt_type"/>
+        <result property="fieldList" column="field_list"/>
+        <result property="oldValList" column="old_val_list"/>
+        <result property="newValList" column="new_val_list"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+
+    <sql id="columns">
+    <![CDATA[
+        `id`, `biz_key`, `biz_id`, `opt_type`, `field_list`, `old_val_list`, `new_val_list`, `create_by`, `create_date`
+    ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            
+            <!--
+            eg: AND title LIKE concat('%',#{paramBean.title},'%')
+            -->
+            <if test="paramBean != null">
+                <if test="paramBean.bizKey != null and paramBean.bizKey != ''">
+                    AND `biz_key` = #{paramBean.bizKey}
+                </if>
+                <if test="paramBean.bizId != null and paramBean.bizId != ''">
+                    AND `biz_id` = #{paramBean.bizId}
+                </if>
+                <if test="paramBean.optType != null and paramBean.optType != ''">
+                    AND `opt_type` = #{paramBean.optType}
+                </if>
+            </if>
+            <if test="extendParams.size() > 0">
+                <foreach collection="extendParams" item="value" index="key" open="" separator="" close="">
+                    AND ${key} ${value}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO log_data_modify (
+        <if test="id != null">`id`</if>
+        <if test="bizKey != null">,`biz_key`</if>
+        <if test="bizId != null">,`biz_id`</if>
+        <if test="optType != null">,`opt_type`</if>
+        <if test="fieldList != null">,`field_list`</if>
+        <if test="oldValList != null">,`old_val_list`</if>
+        <if test="newValList != null">,`new_val_list`</if>
+        <if test="createBy != null">,`create_by`</if>
+        <if test="createDate != null">,`create_date`</if>
+        ) VALUES (
+        <if test="id != null">#{id}</if>
+        <if test="bizKey != null">,#{bizKey}</if>
+        <if test="bizId != null">,#{bizId}</if>
+        <if test="optType != null">,#{optType}</if>
+        <if test="fieldList != null">,#{fieldList}</if>
+        <if test="oldValList != null">,#{oldValList}</if>
+        <if test="newValList != null">,#{newValList}</if>
+        <if test="createBy != null">,#{createBy}</if>
+        <if test="createDate != null">,#{createDate}</if>
+        )
+     </insert>
+
+    <insert id="batchInsert" keyProperty="id">
+        INSERT INTO log_data_modify (
+        `id`
+        ,`biz_key`
+        ,`biz_id`
+        ,`opt_type`
+        ,`field_list`
+        ,`old_val_list`
+        ,`new_val_list`
+        ,`create_by`
+        ,`create_date`
+        ) VALUES
+        <foreach collection="list" item="entity" index="index" separator="," >
+        (
+        #{entity.id}
+        ,#{entity.bizKey}
+        ,#{entity.bizId}
+        ,#{entity.optType}
+        ,#{entity.fieldList}
+        ,#{entity.oldValList}
+        ,#{entity.newValList}
+        ,#{entity.createBy}
+        ,#{entity.createDate}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update" >
+    <![CDATA[
+        UPDATE log_data_modify SET
+            `biz_key` = #{bizKey} ,
+            `biz_id` = #{bizId} ,
+            `opt_type` = #{optType} ,
+            `field_list` = #{fieldList} ,
+            `old_val_list` = #{oldValList} ,
+            `new_val_list` = #{newValList}
+        WHERE
+            id = #{id} 
+    ]]>
+    </update>
+
+    <delete id="deleteById">
+    <![CDATA[
+        DELETE FROM log_data_modify
+        WHERE id = #{id} 
+    ]]>
+    </delete>
+
+    <delete id="deleteByIds" >
+        DELETE FROM log_data_modify
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator="," >#{id} </foreach>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM log_data_modify
+        <include refid="where"/>
+    </delete>
+
+
+    <select id="findById" resultMap="RM_LogDataModify">
+        SELECT <include refid="columns"/>
+        <![CDATA[
+            FROM log_data_modify
+            WHERE id = #{id} 
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT count(1) FROM log_data_modify
+        <include refid="where"/>
+    </select>
+
+    <select id="findList" resultMap="RM_LogDataModify">
+        SELECT <include refid="columns"/>
+        FROM log_data_modify
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        <if test="pageBean != null">
+            limit ${pageBean.start}, ${pageBean.pageSize}
+        </if>
+    </select>
+
+    <select id="findAll" resultMap="RM_LogDataModify">
+        SELECT <include refid="columns"/>
+        FROM log_data_modify
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+    </select>
+
+    <select id="findUniqueBy" resultMap="RM_LogDataModify">
+        SELECT <include refid="columns"/>
+        FROM log_data_modify
+        <include refid="where"/>
+        <if test="orderBean != null and orderBean.orderBy != null">
+            ORDER BY ${orderBean.orderBy} ${orderBean.order}
+        </if>
+        LIMIT 1
+    </select>
+
+
+</mapper>
+
+

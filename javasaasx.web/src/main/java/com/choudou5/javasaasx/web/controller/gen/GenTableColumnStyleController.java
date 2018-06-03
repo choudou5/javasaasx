@@ -8,12 +8,12 @@
 package com.choudou5.javasaasx.web.controller.gen;
 
 import com.choudou5.base.annotation.ControllerDesc;
-import com.choudou5.base.bean.SelectBo;
+import com.choudou5.base.bean.SelectBean;
 import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.service.gen.GenTableColumnStyleService;
-import com.choudou5.javasaasx.service.gen.bo.GenCodeBo;
-import com.choudou5.javasaasx.service.gen.bo.GenTableColumnStyleBo;
-import com.choudou5.javasaasx.service.impl.util.GenUtil;
+import com.choudou5.javasaasx.service.gen.vo.GenCodeVo;
+import com.choudou5.javasaasx.service.gen.vo.GenTableColumnStyleVo;
+import com.choudou5.javasaasx.service.util.GenUtil;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class GenTableColumnStyleController extends BaseController {
     @RequiresPermissions("gen:genTableColumnStyle:view")
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String list(HttpServletRequest req, Model model) {
-        List<SelectBo> list = genTableColumnStyleService.getTableList();
+        List<SelectBean> list = genTableColumnStyleService.getTableList();
         model.addAttribute("leftDataList", list);
         model.addAttribute("genCodePath", SysUtil.getGenCodePath());
         return "/gen/genTableColumnStyleListListEdit";
@@ -68,7 +68,7 @@ public class GenTableColumnStyleController extends BaseController {
     @ResponseBody
     public String edit(String table, HttpServletRequest req) {
         try {
-            List<GenTableColumnStyleBo> list = genTableColumnStyleService.getGenTableColumnStyleList(table);
+            List<GenTableColumnStyleVo> list = genTableColumnStyleService.getGenTableColumnStyleList(table);
             return returnTableData(list);
         } catch (Exception e) {
             return returnFail(e, "表字段样式列表失败");
@@ -85,14 +85,14 @@ public class GenTableColumnStyleController extends BaseController {
     @RequiresPermissions("gen:genTableColumnStyle:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(GenCodeBo genCodeBo, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(GenCodeVo genCodeVo, HttpServletRequest req, RedirectAttributes attributes) {
         //数据 验证
-        if (!beanValidator(attributes, genCodeBo))
+        if (!beanValidator(attributes, genCodeVo))
             return returnFail(attributes);
         try {
             //生成代码
-            GenUtil.genCode(genCodeBo);
-            genTableColumnStyleService.save(genCodeBo.getColumnStyleList());
+            GenUtil.genCode(genCodeVo);
+            genTableColumnStyleService.save(genCodeVo.getColumnStyleList());
             return returnOK("保存成功");
         } catch (Exception e) {
             return returnFail(e, "保存失败");

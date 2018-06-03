@@ -7,7 +7,7 @@
 */
 package com.choudou5.javasaasx.web.controller;
 
-import com.choudou5.javasaasx.service.sys.bo.SysMenuQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysMenuQueryParam;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

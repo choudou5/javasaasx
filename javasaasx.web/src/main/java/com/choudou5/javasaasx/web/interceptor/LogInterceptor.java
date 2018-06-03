@@ -8,7 +8,7 @@
 package com.choudou5.javasaasx.web.interceptor;
 
 import com.choudou5.base.util.DateUtil;
-import com.choudou5.javasaasx.service.impl.util.LogUtil;
+import com.choudou5.javasaasx.service.util.LogUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.NamedThreadLocal;

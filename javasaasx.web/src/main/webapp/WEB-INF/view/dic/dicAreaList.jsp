@@ -18,13 +18,13 @@
                         <form:form id="searchForm" modelAttribute="dicAreaQueryParam" action="${ctx}/dic/dicArea/list" method="post">
                             <div class="row col-md-12">
                                 <div class="col-md-2">
-                                    <form:input type="text" path="dicAreaBo.code" class="form-control clearable" placeholder=" 编码"/>
+                                    <form:input type="text" path="dicAreaVo.code" class="form-control clearable" placeholder=" 编码"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <form:input type="text" path="dicAreaBo.name" class="form-control clearable" placeholder=" 地区"/>
+                                    <form:input type="text" path="dicAreaVo.name" class="form-control clearable" placeholder=" 地区"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <form:select path="dicAreaBo.level" class="form-control">
+                                    <form:select path="dicAreaVo.level" class="form-control">
                                         <form:option value="" label="等级"/>
                                         <form:option value="1" label="省"/>
                                         <form:option value="2" label="市"/>
@@ -36,13 +36,13 @@
                             </div>
                             <div class="row col-md-12">
                                 <div class="col-md-2">
-                                    <form:input type="text" path="dicAreaBo.pinyin" class="form-control clearable" placeholder=" 拼音"/>
+                                    <form:input type="text" path="dicAreaVo.pinyin" class="form-control clearable" placeholder=" 拼音"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <form:input type="text" path="dicAreaBo.pinyinShort" class="form-control clearable" placeholder=" 短拼音"/>
+                                    <form:input type="text" path="dicAreaVo.pinyinShort" class="form-control clearable" placeholder=" 短拼音"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <form:input type="text" path="dicAreaBo.pinyinFirstLetter" class="form-control clearable" placeholder=" 拼音首字母"/>
+                                    <form:input type="text" path="dicAreaVo.pinyinFirstLetter" class="form-control clearable" placeholder=" 拼音首字母"/>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="submit" class="btn btn-twitter"><i class="fa fa-search"></i></button>

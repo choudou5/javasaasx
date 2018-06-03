@@ -1,10 +1,10 @@
 package com.choudou5.javasaasx.base.util;
 
-import com.choudou5.base.bean.SelectBo;
+import com.choudou5.base.bean.SelectBean;
 import com.choudou5.base.util.CollUtil;
 import com.choudou5.base.util.StrUtil;
 import com.choudou5.javasaasx.base.service.CommService;
-import com.choudou5.javasaasx.base.service.vo.SysUserVo;
+import com.choudou5.javasaasx.base.service.vo.SysUserSimpleVo;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,11 +29,11 @@ public class UserUtil {
      * @param userId
      * @return
      */
-    public static List<SelectBo> getUserSelectListData(String userId){
+    public static List<SelectBean> getUserSelectListData(String userId){
         final String userIdStr = StrUtil.isBlank(userId)?"":userId;
-        List<SysUserVo> userVos = commService.findAllActiveUsers();
+        List<SysUserSimpleVo> userVos = commService.findAllActiveUsers();
         if(CollUtil.isNotEmpty(userVos)){
-            return userVos.stream().map(bo -> new SelectBo(bo.getName(), bo.getId().toString(), bo.getId().equals(userIdStr))).collect(Collectors.toList());
+            return userVos.stream().map(bo -> new SelectBean(bo.getName(), bo.getId().toString(), bo.getId().equals(userIdStr))).collect(Collectors.toList());
         }
         return null;
     }

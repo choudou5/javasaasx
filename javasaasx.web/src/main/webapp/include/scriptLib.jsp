@@ -48,9 +48,11 @@
 <script src="${ctxStatic }/jquery-plugs/jasny-bootstrap.min.js"></script>
 <script src="${ctxStatic }/jquery-plugs/jquery.tagsinput.js"></script>
 <script src="${ctxStatic }/jquery-plugs/jquery.clearsearch.js"></script>
+<script src="${ctxStatic }/jquery-plugs/bootstrap-switch.js"></script>
 <script src="${ctxStatic }/js/material-dashboard.js"></script>
 <script src="${ctxStatic }/iframe/layui/layui.js"></script>
-<script src="${ctxStatic }/js/commons.js"></script>
 <script src="${ctxStatic }/store/1.3.20/store.min.js"></script>
+<script src="${ctxStatic }/js/commons.js"></script>
+<script src="${ctxStatic }/js/commons-init.js"></script>
 <script src="${ctxStatic }/js/dialogUtil.js"></script>
 <script src="${ctxStatic }/js/demo.js"></script>

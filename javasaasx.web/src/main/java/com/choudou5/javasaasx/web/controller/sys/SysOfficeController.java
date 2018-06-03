@@ -13,9 +13,9 @@ import com.choudou5.base.util.StrUtil;
 import com.choudou5.base.util.tree.TreeHelper;
 import com.choudou5.javasaasx.service.sys.SysOfficeService;
 import com.choudou5.javasaasx.service.sys.SysUserService;
-import com.choudou5.javasaasx.service.sys.bo.SysOfficeBo;
-import com.choudou5.javasaasx.service.sys.bo.SysOfficeQueryParam;
-import com.choudou5.javasaasx.service.sys.bo.SysUserBo;
+import com.choudou5.javasaasx.service.sys.vo.SysOfficeQueryParam;
+import com.choudou5.javasaasx.service.sys.vo.SysOfficeVo;
+import com.choudou5.javasaasx.service.sys.vo.SysUserVo;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +51,11 @@ public class SysOfficeController extends BaseController {
      * @return
      */
     @ModelAttribute
-    public SysOfficeBo get(@RequestParam(required=false) String id) {
+    public SysOfficeVo get(@RequestParam(required=false) String id) {
         if (StrUtil.isNotBlank(id)){
             return sysOfficeService.get(id);
         }else{
-            return new SysOfficeBo();
+            return new SysOfficeVo();
         }
     }
 
@@ -70,16 +70,16 @@ public class SysOfficeController extends BaseController {
     @RequestMapping(value = {"list", ""})
     public String list(SysOfficeQueryParam queryParam, HttpServletRequest req, Model model) {
         queryParam.setDefParam(1, 200, "create_time", "desc");
-        List<SysOfficeBo> leftList = sysOfficeService.findAll();
+        List<SysOfficeVo> leftList = sysOfficeService.findAll();
         Map<String, Object> leftTree = TreeHelper.buildTreeData(leftList, "总部");
         model.addAttribute("leftDataList", leftTree);
-        List<SysUserBo> list = sysUserService.findAll();
+        List<SysUserVo> list = sysUserService.findAll();
         model.addAttribute("list", list);
         return "/sys/sysOfficeListTree";
 
 //        List<SelectBo> list = sysOfficeService.getTableList();
 //        model.addAttribute("leftDataList", list);
-//        PageResult<SysOfficeBo> pageResult = sysOfficeService.findPage(queryParam);
+//        PageResult<SysOfficeVo> pageResult = sysOfficeService.findPage(queryParam);
 //        model.addAttribute("pageResult", pageResult);
 //        return "/sys/sysOfficeList";
     }
@@ -94,13 +94,13 @@ public class SysOfficeController extends BaseController {
     @RequiresPermissions("sys:sysOffice:view")
     @RequestMapping(value = {"view"}, method = RequestMethod.GET)
     public String view(String id, HttpServletRequest req, Model model) {
-        SysOfficeBo sysOfficeBo = sysOfficeService.get(id);
-        model.addAttribute("sysOfficeBo", sysOfficeBo);
+        SysOfficeVo sysOfficeVo = sysOfficeService.get(id);
+        model.addAttribute("sysOfficeVo", sysOfficeVo);
         return "/sys/sysOfficeView";
     }
 
     /**
-     * @param bo
+     * @param vo
      * @param req
      * @param model
      * @return
@@ -108,10 +108,10 @@ public class SysOfficeController extends BaseController {
     @ControllerDesc(desc = "编辑系统机构", optType = "edit")
     @RequiresPermissions("sys:sysOffice:edit")
     @RequestMapping(value = "form", method = RequestMethod.GET)
-    public String form(SysOfficeBo bo, HttpServletRequest req, Model model) {
+    public String form(SysOfficeVo vo, HttpServletRequest req, Model model) {
         try {
-            AssertUtil.isNotNull(bo, "数据不存在");
-            model.addAttribute("sysOfficeBo", bo);
+            AssertUtil.isNotNull(vo, "数据不存在");
+            model.addAttribute("sysOfficeVo", vo);
         } catch (Exception e) {
             addMessage(model, e);
         }
@@ -128,7 +128,7 @@ public class SysOfficeController extends BaseController {
     @RequiresPermissions("sys:sysOffice:edit")
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(SysOfficeBo sysOfficeBo, HttpServletRequest req, RedirectAttributes attributes) {
+    public String save(SysOfficeVo sysOfficeBo, HttpServletRequest req, RedirectAttributes attributes) {
         //数据 验证
         if (!beanValidator(attributes, sysOfficeBo))
             return returnFail(attributes);

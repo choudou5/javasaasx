@@ -34,7 +34,6 @@
 		<logback.version>1.1.7</logback.version>
 
 		<junit.version>4.12</junit.version>
-		<ant.version>1.7.1</ant.version>
 		<commons-io.version>2.5</commons-io.version>
 		<commons-logging.version>1.2</commons-logging.version>
 		<commons-lang.version>2.5</commons-lang.version>
@@ -54,7 +53,6 @@
 		<module>javasaasx.common</module>
 		<module>javasaasx.base</module>
 		<module>javasaasx.dao</module>
-		<module>javasaasx.impl</module>
 		<module>javasaasx.service</module>
 		<module>javasaasx.api</module>
 		<module>javasaasx.web</module>

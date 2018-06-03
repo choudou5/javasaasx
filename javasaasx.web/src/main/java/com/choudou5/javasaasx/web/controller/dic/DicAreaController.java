@@ -10,8 +10,8 @@ package com.choudou5.javasaasx.web.controller.dic;
 import com.choudou5.base.annotation.ControllerDesc;
 import com.choudou5.base.page.PageResult;
 import com.choudou5.javasaasx.service.dic.DicAreaService;
-import com.choudou5.javasaasx.service.dic.bo.DicAreaBo;
-import com.choudou5.javasaasx.service.dic.bo.DicAreaQueryParam;
+import com.choudou5.javasaasx.service.dic.vo.DicAreaQueryParam;
+import com.choudou5.javasaasx.service.dic.vo.DicAreaVo;
 import com.choudou5.javasaasx.web.controller.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class DicAreaController extends BaseController {
     @RequiresPermissions("dic:dicArea:view")
     @RequestMapping(value = {"list", ""})
     public String list(DicAreaQueryParam queryParam, HttpServletRequest req, Model model) {
-        PageResult<DicAreaBo> pageResult = dicAreaService.findPage(queryParam);
+        PageResult<DicAreaVo> pageResult = dicAreaService.findPage(queryParam);
         model.addAttribute("pageResult", pageResult);
         return "/dic/dicAreaList";
     }

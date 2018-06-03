@@ -2,7 +2,7 @@ package com.choudou5.javasaasx.base.security;
 
 import cn.hutool.core.lang.Validator;
 import com.choudou5.javasaasx.base.service.CommService;
-import com.choudou5.javasaasx.base.service.vo.SysUserVo;
+import com.choudou5.javasaasx.base.service.vo.SysUserSimpleVo;
 import com.choudou5.javasaasx.common.constants.CommConsts;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -30,7 +30,7 @@ public class AdminShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-        SysUserVo user = (SysUserVo) SecurityUtils.getSubject().getSession().getAttribute(CommConsts.USER_SESSION);
+        SysUserSimpleVo user = (SysUserSimpleVo) SecurityUtils.getSubject().getSession().getAttribute(CommConsts.USER_SESSION);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 //        info.addRole(StringUtils.join(user.getRoleIds()));
         return info;
@@ -44,9 +44,9 @@ public class AdminShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken authcToken) throws AuthenticationException {
         // 把token转换成User对象
-        SysUserVo userLogin = tokenToUser((UsernamePasswordToken) authcToken);
+        SysUserSimpleVo userLogin = tokenToUser((UsernamePasswordToken) authcToken);
         // 验证用户是否可以登录
-        SysUserVo user = null;
+        SysUserSimpleVo user = null;
         try {
             if(Validator.isEmail(userLogin.getAccount())){
                 user = commService.getByEmail(userLogin.getAccount());
@@ -72,8 +72,8 @@ public class AdminShiroRealm extends AuthorizingRealm {
         return new SimpleAuthenticationInfo(principal, userLogin.getPassword(), realmName);
     }
 
-    private SysUserVo tokenToUser(UsernamePasswordToken authcToken) {
-        SysUserVo user = new SysUserVo();
+    private SysUserSimpleVo tokenToUser(UsernamePasswordToken authcToken) {
+        SysUserSimpleVo user = new SysUserSimpleVo();
         user.setAccount(authcToken.getUsername());
         user.setPassword(String.valueOf(authcToken.getPassword()));
         return user;

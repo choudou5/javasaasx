@@ -1,26 +1,3 @@
-//var __width = top.window.innerWidth;
-var __winOutWidth = top.window.outerWidth;
-//移动端
-var __isMobileModel = __winOutWidth < 768;
-
-var layer;
-layui.use(['layer', 'laydate'], function () {
-	layer = layui.layer;
-});
-
-$(function(){
-
-	//输入框 x
-	$('.clearable').clearSearch({ callback: function() { console.log("cleared"); } } );
-
-});
-
-
-//屏蔽浏览器原始右键
-window.document.body.oncontextmenu = function(event){
-	return false;
-}
-
 
 CommUtil = {
 	isEmpty: function(str) {
@@ -1065,7 +1042,7 @@ FormUtil = {
 		btnId = CommUtil.setDefValue(btnId, "#addBtn")
 		var url = $(btnId).data("href");
 		var iframeId = CommUtil.getRandom();
-		dialogOpenPage(iframeId, title, url, width, height, function(){
+		dialogOpenFullPage(iframeId, title, url, function(){
 			var iframe = dialogGetIFrame(iframeId);
 			iframe.contentWindow.ajaxSubmitIframeForm(function(){
 				setTimeout(function(){
@@ -1091,7 +1068,7 @@ FormUtil = {
 	},
 	bindSwitchAjax: function(){
 		$("input[type=checkbox][data-switch-url]").on("change", function(){
-			var url = $(this).attr("data-switch-url");
+			var url = $(this).data("switch-url");
 			var flag = $(this).is(":checked");
 			if(CommUtil.isEmpty(url)){
 				dialogAlert("程序代码有误，请联系管理员", "warning")

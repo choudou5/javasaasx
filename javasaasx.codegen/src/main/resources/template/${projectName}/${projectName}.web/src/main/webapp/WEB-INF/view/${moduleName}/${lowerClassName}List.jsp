@@ -1,7 +1,7 @@
 <#include "/macro.include"/>
 <#assign className = table.className>
 <#assign classNameLower = className?uncap_first>
-<#assign classBOName = classNameLower + 'Bo'>
+<#assign classVOName = classNameLower + 'Vo'>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/include/tagLib.jsp" %>
 <!doctype html>
@@ -27,10 +27,10 @@
                                     <#if column.fieldType=="Date">
                                 <input type="text" id="range${column.javaColumn?cap_first}" name="range${column.javaColumn?cap_first}" class="form-control" placeholder=" ${column.desc}范围查询"/>
                                     <#else>
-                                <form:input type="text" path="${classBOName}.${column.javaColumn}" class="form-control clearable" placeholder=" ${column.desc}"/>
+                                <form:input type="text" path="${classVOName}.${column.javaColumn}" class="form-control clearable" placeholder=" ${column.desc}"/>
                                     </#if>
                                 <#elseif column.showType=="select">
-                                <form:select path="${classBOName}.${column.javaColumn}" title="${column.desc}" class="selectpicker" data-style="select-with-transition" data-live-search="false">
+                                <form:select path="${classVOName}.${column.javaColumn}" title="${column.desc}" class="selectpicker" data-style="select-with-transition" data-live-search="false">
                                     <form:option value="">${column.desc}</form:option>
                                 </form:select>
                                 </#if>

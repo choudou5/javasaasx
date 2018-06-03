@@ -13,6 +13,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" syn >
+<link rel="stylesheet" href="${ctxStaticCss }bootstrap-switch.css" />
 <link rel="stylesheet" href="${ctxStaticCss }material-dashboard.css" />
 <link rel="stylesheet" href="${ctxStaticCss }demo.css" />
 <!-- Bootstrap core CSS     -->

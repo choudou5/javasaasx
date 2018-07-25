@@ -7,11 +7,8 @@
 */
 package com.choudou5.javasaasx.web.listener;
 
-import com.choudou5.base.bean.QueryParam;
-import com.choudou5.javasaasx.common.constants.SysPropConsts;
 import com.choudou5.javasaasx.common.util.SysUtil;
 import com.choudou5.javasaasx.service.util.SensitiveWordUtil;
-import com.choudou5.log.admin.ListenerConfig;
 import com.choudou5.log.admin.LogWatcher;
 import com.choudou5.log.admin.logback.CustomEventFilter;
 import com.choudou5.log.admin.logback.LogbackWatcher;
@@ -35,8 +32,7 @@ public class StartListener extends ContextLoaderListener {
         super.contextInitialized(event);
 
         //注册 日志观察者
-        LogWatcher watcher = new LogbackWatcher();
-        watcher.registerListener(new ListenerConfig(50));//保留50条最新日志
+        LogWatcher watcher = new LogbackWatcher(50);//保留50条最新日志
         CustomEventFilter.setWatcher(watcher);
         LogAdminHelper.setWatcher(watcher);
 

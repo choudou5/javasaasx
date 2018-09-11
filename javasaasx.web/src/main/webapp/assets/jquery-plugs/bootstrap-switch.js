@@ -41,6 +41,7 @@
           offText: this.$element.data("off-text"),
           labelText: this.$element.data("label-text"),
           tipText: this.$element.data("tip-text"),
+          tipPosition: this.$element.data("tip-position"),
           handleWidth: this.$element.data("handle-width"),
           labelWidth: this.$element.data("label-width"),
           baseClass: this.$element.data("base-class"),
@@ -65,11 +66,13 @@
           return o.options.onInit.apply(t, arguments)
         })), this.$element.on("switchChange.bootstrapSwitch", (n = this, function(i) {
           if (!1 === n.options.onSwitchChange.apply(t, arguments)) return n.$element.is(":radio") ? e("[name='" + n.$element.attr("name") + "']").trigger("previousState.bootstrapSwitch", !0) : n.$element.trigger("previousState.bootstrapSwitch", !0)
-        })),
-            this.$tipText = e("<label>", {html: this.options.tipText, class: "bootstrap-switch-text"}),
+        }));
+            if(this.options.tipText!="")
+              this.$tipText = e("<label>", {html: this.options.tipText, class: "bootstrap-switch-text-"+this.options.tipPosition});
             this.$container = this.$element.wrap(this.$container).parent(),
             this.$wrapper = this.$container.wrap(this.$wrapper).parent(),
-            this.$wrapper.after(this.$tipText),
+            if(this.options.tipText!="")
+              this.options.tipPosition=="l"?this.$wrapper.before(this.$tipText):this.$wrapper.after(this.$tipText);
             this.$element.before(this.options.inverse ? this.$off : this.$on).before(this.$label).before(this.options.inverse ? this.$on : this.$off),
             this.options.indeterminate && this.$element.prop("indeterminate", !0),
             this._init(), this._elementHandlers(), this._handleHandlers(), this._labelHandlers(), this._formHandler(), this._externalLabelHandler(), this.$element.trigger("init.bootstrapSwitch", this.options.state)
@@ -252,7 +255,8 @@
       onText: "打开",
       offText: "关闭",
       labelText: "&nbsp;",
-      tipText: "&nbsp;",
+      tipText: "",
+      tipPosition: "l", //l=left、r=right
       handleWidth: "auto",
       labelWidth: "auto",
       baseClass: "bootstrap-switch",

@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px 0;">
-                        <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="sysRoleBo" action="" method="POST">
+                        <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="sysRoleVo" action="" method="POST">
                             <form:hidden path="id"/>
                             <div class="card-content">
                                 <div class="form-group label-floating">
@@ -51,20 +51,10 @@
                                     <form:input type="text" path="remarks" class="form-control" required="true" placeholder=" 备注信息*"/>
                                 </div>
                                 <div class="form-group label-floating">
-                                    <div class="togglebutton">
-                                        <span>状态: 0=禁用，1=正常:</span>
-                                        <label>
-                                            <form:checkbox path="status" value="1" />
-                                        </label>
-                                    </div>
+                                    <form:checkbox path="status" class="bootstrap-switch" value="1" data-on-label="有效" data-off-label="禁用" data-tip-text="状态" data-tip-position="l" />
                                 </div>
                                 <div class="form-group label-floating">
-                                    <div class="togglebutton">
-                                        <span>是否系统数据: 0=否，1=是:</span>
-                                        <label>
-                                            <form:checkbox path="isSysData" value="1" checked="checked" />
-                                        </label>
-                                    </div>
+                                    <form:checkbox path="isSysData" class="bootstrap-switch" value="1" data-on-label="是" data-off-label="否" data-tip-text="系统数据" data-tip-position="l" />
                                 </div>
                             </div>
                         </form:form>

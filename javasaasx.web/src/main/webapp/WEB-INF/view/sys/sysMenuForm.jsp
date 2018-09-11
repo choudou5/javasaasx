@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card" style="margin: 10px 0;">
-                            <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="sysMenuBo" action="" method="POST">
+                            <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="sysMenuVo" action="" method="POST">
                                 <form:hidden path="id"/>
                                 <form:hidden path="type"/>
                                 <div class="card-content">

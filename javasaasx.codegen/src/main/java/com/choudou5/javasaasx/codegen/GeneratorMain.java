@@ -30,8 +30,8 @@ public class GeneratorMain {
 		String outDir = "D:\\workspace-idea-java\\javasaasx\\javasaasx.codegen\\code_out";
 		String author = "xuhaowen";
 		String moduleName = "sys";
-		String[] tables = new String[]{"sys_menu", "sys_office", "sys_role", "sys_setting", "sys_user", "sys_user_rel_thirdparty", "sys_user_role"};
-//		String[] tables = new String[]{"message_tp_group"};
+//		String[] tables = new String[]{"sys_menu", "sys_office", "sys_role", "sys_setting", "sys_user", "sys_user_rel_thirdparty", "sys_user_role"};
+		String[] tables = new String[]{"solr_elevate"};
 //		String[] tables = new String[]{"log_user_login", "log_data_modify", "log_operation", "log_remote_exception"};
 		for (String table : tables) {
 			genCode(outDir, author, moduleName, table);

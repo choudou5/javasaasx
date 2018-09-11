@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" style="margin: 10px 0;">
-                        <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="messageTpGroupBo" action="" method="POST">
+                        <form:form id="inputForm" cssClass="form-horizontal" modelAttribute="messageTpGroupVo" action="" method="POST">
                             <form:hidden path="id"/>
                             <div class="card-content">
                                 <div class="form-group label-floating">

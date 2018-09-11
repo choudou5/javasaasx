@@ -37,7 +37,7 @@
                             <div class="col-md-1">
                                 <form:select path="logOperationVo.createBy" class="selectpicker" data-style="select-with-transition" data-live-search="true">
                                     <form:option value="">操作人</form:option>
-                                    <c:forEach items="${fns:getUserSelectListData('${logOperationVo.createBy}')}" var="selectBo">
+                                    <c:forEach items="${fns:getUserSelectListData('${logOperationVo.createBy}')}" var="selectVo">
                                         <form:option value="${selectVo.value}">${selectVo.text}</form:option>
                                     </c:forEach>
                                 </form:select>

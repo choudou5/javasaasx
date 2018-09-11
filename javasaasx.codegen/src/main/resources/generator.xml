@@ -7,7 +7,7 @@
 		2.可以引用环境变量: ${env.JAVA_HOME} or System.properties: ${user.home},property之间也可以相互引用
 	</comment>
 	<entry key="encoding">UTF-8</entry>
-	<entry key="dbName">javasaasx</entry><!-- 数据库名 -->
+	<entry key="dbName">qa_solr</entry><!-- 数据库名 -->
 
 	<!-- Mysql 47.88.220.75-->
 	<entry key="jdbc_url">jdbc:mysql://localhost:3306/${dbName}?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=true</entry>

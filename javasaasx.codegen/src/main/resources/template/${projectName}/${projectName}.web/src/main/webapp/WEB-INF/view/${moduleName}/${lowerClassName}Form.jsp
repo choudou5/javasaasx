@@ -43,12 +43,7 @@
                                         </div>
                                     </div>
                                         <#elseif column.showType=="switch">
-                                    <div class="togglebutton">
-                                        <span>${column.desc}:</span>
-                                        <label>
-                                            <form:checkbox path="${column.javaColumn}" value="1" />
-                                        </label>
-                                    </div>
+                                    <form:checkbox path="${column.javaColumn}" class="bootstrap-switch" value="1" data-on-label="是" data-off-label="否" data-tip-text="${column.desc}" />
                                         </#if>
                                 </div>
                                     </#if>

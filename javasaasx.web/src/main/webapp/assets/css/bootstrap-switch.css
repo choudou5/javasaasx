@@ -200,8 +200,13 @@
     visibility: hidden
 }
 
-.bootstrap-switch-text {
+.bootstrap-switch-text-l {
+    margin-right: 8px;
+    vertical-align: super;
+}
+.bootstrap-switch-text-r {
     margin-left: 8px;
     vertical-align: super;
 }
+
 
